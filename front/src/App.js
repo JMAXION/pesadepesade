@@ -11,6 +11,7 @@ export default function App() {
       children: [
         { path: "/", element: <Home /> },
         { path: "/about", element: <About /> },
+        { path: "/shop", element: <Shop /> },
       ],
     },
   ]);
