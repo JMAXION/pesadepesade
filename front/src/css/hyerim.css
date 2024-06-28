@@ -1,0 +1,152 @@
+.header,
+.footer,
+.content,
+body,
+div,
+nav,
+ul,
+li,
+p,
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+.hyerim_content {
+  width: 1510px;
+  height: 1346px;
+  padding-top: 148px;
+  background-color: #fffcf1;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.hyerim_content ul {
+  list-style-type: none;
+}
+
+.login {
+  width: 400px;
+  height: 670px;
+  text-align: center;
+}
+
+.login_title {
+  font-size: 29px;
+  padding: 62px 52px 30px;
+}
+
+.login_title_kor {
+  font-size: 13px;
+  margin: 40px 0 20px;
+  font-weight: 800;
+}
+
+.login_input {
+  width: 368px;
+  height: 36px;
+  font-size: 12px;
+  margin: 15px 0 0;
+  background-color: #fffcf1;
+  border: 1px solid black;
+}
+
+.login_button {
+  width: 374px;
+  height: 33px;
+  font-size: 14px;
+  margin: 15px 0 0;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background: #000;
+}
+
+.login_find {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login_find > a {
+  color: black;
+  font-size: 13px;
+  margin: 10px;
+}
+
+.login_sns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login_sns_button {
+  display: flex;
+  width: 182px;
+  height: 33px;
+  text-align: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.login_sns_button > a {
+  color: black;
+  padding: 10px 20px;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.login_sns_link {
+  display: inline-block;
+  width: 182px;
+  height: 33px;
+  padding: 10px 20px;
+}
+
+.login_sns_image {
+  width: 12px;
+  height: 12px;
+}
+
+.login_bar {
+  border: 1px solid black;
+  width: 95%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.login_join_box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login_join_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 33px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  border: 1px solid black;
+}
+
+.login_description_box {
+  margin-top: 20px;
+}
+
+.login_description {
+  font-size: 13px;
+  line-height: 1.6;
+}
