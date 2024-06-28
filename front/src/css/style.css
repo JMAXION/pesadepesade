@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/ppj4rln.css");
+
 #root {
   background-color: var(--color-bg);
 }
@@ -18,8 +20,14 @@
   margin-bottom: 50px;
   text-align: center;
   font-size: 18px;
+  font-family: "Sofia-Pro", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .sub-title h2 {
   color: var(--color-black);
+  font-weight: bold;
 }

@@ -1,0 +1,30 @@
+* {
+  list-style-type: none;
+}
+.about-belief {
+  border: 1px solid red;
+}
+.about-belief-image {
+  margin: 0 auto;
+  align-items: center;
+}
+.about-belief-story {
+  text-align: center;
+}
+.about-belief-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.about-belief-first {
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.about-belief-story-first {
+  margin-top: 2rem;
+}
+.about-belief-first-image {
+  border: 1px solid blue;
+  margin: 0 auto;
+  align-items: center;
+}
