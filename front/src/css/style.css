@@ -1,1 +1,25 @@
+#root {
+  background-color: var(--color-bg);
+}
 
+:root {
+  --color-bg: rgb(255, 251, 237);
+  --color-black: #000;
+}
+.content {
+  width: 926px;
+  height: auto;
+  border: 2px solid blue;
+  margin: auto;
+}
+
+.sub-title {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.sub-title h2 {
+  color: var(--color-black);
+}
