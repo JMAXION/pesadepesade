@@ -1,44 +1,61 @@
 .header {
-     position: fixed;
-     top: 0;
-     left: 0;
-     right: 0;
-     display: flex;
-     justify-content: space-between;
-     align-items: flex-start;
-     width: 100%;
-     padding: 25px 49px;
-     box-sizing: border-box;
-     font-size: 1.5rem;
-     background-color: var(--color-bg);
- }
- 
- .header-right-menu {
-     display: flex;
-     justify-content: space-between;
-     gap: 3rem;
- }
- 
- .header-menu, .header-logo, .header-right-menu {
-     flex-shrink: 0;
- }
- 
- .header-logo {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 39px;
-     width: 120px;
-     margin-left: 100px;
- }
- 
- .header-logo a {
-     display: block;
-     background-image: url('../../public/image/pesade-logo.png');
-     background-size: contain;
-     background-repeat: no-repeat;
-     background-position: center;
-     height: 100%;
-     width: 100%;
- }
- 
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px 49px;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header-top {
+  background-color: inherit;
+  color: #fcfaf1;
+}
+
+.header-scrolled {
+  background-color: var(--color-bg);
+  color: initial;
+}
+
+.header-right-menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.header-menu, .header-logo, .header-right-menu {
+  flex-shrink: 0;
+}
+
+.header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 39px;
+  width: 120px;
+  margin-left: 100px;
+}
+
+.header-logo a {
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+.logo-top {
+  background-image: url('../../public/image/pesade-logo-ivory.png');
+}
+
+.logo-scrolled {
+  background-image: url('../../public/image/pesade-logo.png');
+}

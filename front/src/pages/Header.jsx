@@ -1,18 +1,36 @@
-import React from "react";
-import '../css/header.css'
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-export default function Header() {
+import '../css/header.css';
+
+export default function Header({ isHome }) {
+  const [isTop, setIsTop] = useState(true);
+
+  useEffect(() => {
+    const checkScrollPosition = () => {
+      setIsTop(window.scrollY < 50);
+    };
+
+    if (isHome) {
+      checkScrollPosition();
+      window.addEventListener('scroll', checkScrollPosition);
+      return () => {
+        window.removeEventListener('scroll', checkScrollPosition);
+      };
+    } else {
+      setIsTop(false);
+    }
+  }, [isHome]);
+
   return (
-    <div className="header">
-      <div className="header-menu"> Shop</div>
+    <div className={`header ${isHome && isTop ? 'header-top' : 'header-scrolled'}`}>
+      <div className="header-menu">Shop</div>
       <div className="header-logo">
-        <Link to='/'></Link>
-        </div>
+        <Link to='/' className={`${isHome && isTop ? 'logo-top' : 'logo-scrolled'}`}></Link>
+      </div>
       <div className="header-right-menu">
         <div>Login</div>
         <div>Cart</div>
       </div>
-
     </div>
   );
 }

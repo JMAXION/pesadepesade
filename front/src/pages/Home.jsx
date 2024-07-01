@@ -1,9 +1,11 @@
 import React from "react";
+import "../css/home.css";
+import HomeCarousel from "../components/home/HomeCarousel";
 
 export default function Home() {
   return (
-    <div className="content">
-      <h1>home</h1>
+    <div className="home-content">
+      <HomeCarousel />
     </div>
   );
 }

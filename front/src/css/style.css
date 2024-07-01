@@ -31,3 +31,7 @@
   color: var(--color-black);
   font-weight: bold;
 }
+
+.swiper-pagination-bullet-active {
+  background-color: white; 
+}
