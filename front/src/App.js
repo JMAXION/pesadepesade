@@ -9,7 +9,7 @@ import Notice from "./pages/Notice.jsx";
 import StockList from "./pages/StockList.jsx";
 import NoticeContent from "./pages/NoticeContent.jsx";
 import Help from "./pages/Help.jsx";
-import Qna from "./pages/qna/qna.jsx";
+import QnaList from "./pages/qna/QnaList.jsx";
 import QnaContent from "./pages/qna/QnaContent.jsx";
 
 export default function App() {
@@ -28,7 +28,7 @@ export default function App() {
         { path: "/notice", element: <Notice /> },
         { path: "/stock", element: <StockList /> },
         { path: "/notice/1", element: <NoticeContent /> },
-        { path: "/qna", element: <Qna /> },
+        { path: "/qna", element: <QnaList /> },
         { path: "/qna/qnaContent", element: <QnaContent /> },
       ],
     },
