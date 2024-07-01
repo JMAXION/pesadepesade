@@ -23,6 +23,8 @@ export default function App() {
         { path: "/shop", element: <Shop /> },
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
+        { path: "/shop/all", element: <Shop /> },
+        { path: "/shop/parfum", element: <Shop /> },
         { path: "/notice", element: <Notice /> },
         { path: "/stock", element: <StockList /> },
         { path: "/notice/1", element: <NoticeContent /> },
