@@ -1,0 +1,43 @@
+/* flex justify-center items-center py-5 px-3 */
+/* w-[400px] lg:hidden */
+
+.sub-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .sub-carousel-img {
+  width: 400;
+  overflow: hidden;
+} */
+
+.nextArrow {
+  position: absolute;
+  top: 43%;
+  right: 13rem;
+  font-size: 50px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+
+.prevArrow {
+  position: absolute;
+  top: 43%;
+  left: 13rem;
+  font-size: 50px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+
+.sub-carousel-img {
+  width: 900px;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.inner-slide {
+  padding-left: 5px;
+  /* padding: 0 5px; */
+}

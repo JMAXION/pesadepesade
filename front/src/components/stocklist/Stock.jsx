@@ -16,5 +16,27 @@ export default function Stock() {
   for (let i = 0; i < stockList.length; i += 3) {
     rows.push(stockList.slice(i, i + 3));
   }
-  return <div>stockList</div>;
+  return (
+    <div>
+      {rows.map((row, rowIndex) => (
+        <ul className="stock" key={rowIndex}>
+          {row.map((stock, index) => {
+            const actualIndex = rowIndex * 5 + index;
+            return stock.id ? (
+              <li key={actualIndex} className="stock-list">
+                <div>
+                  <p>{stock.name}</p>
+                  <p>{stock.address}</p>
+                  <p>{stock.phone}</p>
+                  <p>{stock.opentime}</p>
+                </div>
+              </li>
+            ) : (
+              <p key={`empty-${actualIndex}`}></p>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
+  );
 }

@@ -19,3 +19,18 @@
 .imagecarousel-img {
   width: 900px;
 }
+.imagecarousel-slider {
+  width: 900px;
+}
+.stock {
+  display: flex;
+  justify-content: left;
+  margin: 2rem auto;
+  border: 1px solid green;
+}
+.stock-list {
+  margin: 0;
+  width: 400px;
+  border: 1px solid red;
+  text-align: center;
+}
