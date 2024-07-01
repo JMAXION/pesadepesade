@@ -15,6 +15,8 @@ export default function App() {
         { path: "/", element: <Home /> },
         { path: "/about", element: <About /> },
         { path: "/shop", element: <Shop /> },
+        { path: "/shop/all", element: <Shop /> },
+        { path: "/shop/parfum", element: <Shop /> },
         { path: "/notice", element: <Notice /> },
       ],
     },
