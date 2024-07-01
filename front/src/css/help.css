@@ -1,0 +1,39 @@
+.help-container {
+  margin: 0;
+  border: 1px solid red;
+}
+
+.help-container ul {
+  padding: 0;
+}
+.help-container ul li {
+  margin: 0 0 100px;
+}
+.help-container h1 {
+  margin: 90px 0 40px;
+  text-align: center;
+}
+
+.help-header {
+  width: 822px;
+  margin: auto;
+  border: 1px solid #000;
+  border-width: 1px 0;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.help-header a {
+  color: #000;
+  text-decoration: none;
+}
+
+.help-content {
+  padding: 10px 0;
+  line-height: 1.8;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}

@@ -5,12 +5,14 @@
 :root {
   --color-bg: rgb(255, 251, 237);
   --color-black: #000;
+  --color-white: #fff;
 }
 .content {
   width: 926px;
   height: auto;
   border: 2px solid blue;
   margin: auto;
+  margin-bottom: 50px;
 }
 
 .sub-title {
