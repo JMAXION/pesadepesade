@@ -2,12 +2,12 @@
      width: 100%;
 }
 
-.main-slider {
+.home-main-slider {
      width: 100%;
      height: 100vh;
    }
    
-   .slider-image {
+   .home-slider-image {
      width: 100%;
      height: 100vh;
      object-fit: cover; 
