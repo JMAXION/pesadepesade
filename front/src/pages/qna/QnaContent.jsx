@@ -1,6 +1,7 @@
 import React from "react";
 import SubTitle from "../../components/SubTitle";
 import { Link } from "react-router-dom";
+import "../../css/board.css";
 
 export default function QnaContent() {
   return (

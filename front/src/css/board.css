@@ -32,7 +32,24 @@
 .qna-summary .qna-row.bottom {
   margin-top: 10px;
 }
+.qna-btn {
+  text-align: center;
+  margin: 27px 0;
+}
+.qna-btn-write {
+  width: 200px;
+  height: 35px;
+  border: none;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 13px;
+  font-family: "SofiaProSemiBold", sans-serif;
+  font-weight: 900;
+}
 
+.qna-btn-write a {
+  color: var(--color-white);
+}
 /* qna content */
 .qna-container a {
   text-decoration: none;
@@ -96,9 +113,92 @@
   border-bottom: 1px solid #e5e9f2;
   margin-bottom: 20px;
 }
+
 .qna-page li strong {
   margin-right: 10px;
 }
+
 .qna-page li p {
   margin: 0;
+}
+
+/* * Qna Write */
+
+.qna-form {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--color-bg);
+  border: 1px solid #ddd;
+}
+
+.qna-form-group {
+  margin-bottom: 20px;
+}
+
+.qna-form-group label {
+  display: flex;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.qna-form-group input,
+.qna-form-group textarea {
+  width: 844px;
+  background-color: var(--color-bg);
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.qna-form-group textarea {
+  height: 200px; /* 초기 height 값 설정 */
+  resize: vertical; /* height만 조정 가능 */
+}
+
+.qna-form-group textarea {
+  height: 200px;
+}
+
+.qna-form-group-flex {
+  display: flex;
+  width: 690px;
+}
+
+.qna-form-group-flex .type {
+  display: flex;
+  width: 100px;
+  margin: 20px 0;
+}
+
+.qna-form-group .qna-form-group-flex input[type="radio"] {
+  width: 20px;
+  margin: 0 5px;
+  padding: 0;
+}
+
+.qna-form-group-btn {
+  width: 800px;
+  display: flex;
+  margin: auto;
+}
+
+.qna-form-group-btn button {
+  width: 417px;
+  height: 35px;
+  padding: 20px 20px;
+  line-height: 5px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.qna-form-group-btn button[type="button"] {
+  background: none;
+  color: var(--color-black);
+  border: 1px solid var(--color-black);
 }
