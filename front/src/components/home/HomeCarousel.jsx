@@ -14,7 +14,7 @@ export default function HomeCarousel() {
         slidesPerView={1}
         pagination={{ clickable: true }}
         loop={true}
-        autoplay={{ delay: 8000, disableOnInteraction: false }}
+        autoplay={{ delay: 80000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay]}
       >
         <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/05/30/ac069a771fb78612d41483046f585d07.jpg" alt="이미지 1" className="slider-image" /></SwiperSlide>
