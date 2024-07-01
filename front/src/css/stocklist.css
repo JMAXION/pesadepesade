@@ -1,0 +1,21 @@
+.store-one {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.store-one-image {
+  width: 900px;
+}
+.store-two {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.imagecarousel {
+  text-align: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+.imagecarousel-img {
+  width: 900px;
+}

@@ -8,6 +8,13 @@
   --color-bg: rgb(255, 251, 237);
   --color-black: #000;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .content {
   width: 926px;
   height: auto;

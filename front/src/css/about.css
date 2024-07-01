@@ -2,29 +2,134 @@
   list-style-type: none;
 }
 .about-belief {
-  border: 1px solid red;
+  background-color: rgb(255, 251, 237);
+
+  margin: 0;
+  padding: 0;
 }
 .about-belief-image {
   margin: 0 auto;
   align-items: center;
+  width: 100%;
 }
 .about-belief-story {
   text-align: center;
+  align-items: center;
 }
-.about-belief-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-.about-belief-first {
+.about-belief-subtitle {
+  font-family: "Sofia-Pro", sans-serif;
   font-size: 2rem;
   font-weight: bold;
-  text-decoration: underline;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.about-belief-ourstory {
+  margin: 2rem auto;
+  width: 1000px;
+  text-align: center;
+  align-items: center;
 }
 .about-belief-story-first {
   margin-top: 2rem;
+  text-align: center;
+  align-items: center;
 }
 .about-belief-first-image {
-  border: 1px solid blue;
-  margin: 0 auto;
   align-items: center;
+  margin: 0 auto;
+  width: 1000px;
+}
+.about-belief-story-second {
+  margin-top: 2rem;
+  text-align: center;
+  align-items: center;
+}
+.about-belief-story-third {
+  margin: 2rem 0;
+  text-align: center;
+  align-items: center;
+}
+.about-our-process {
+  background-color: #b3eabc;
+}
+.about-our-process-title {
+  font-family: "Sofia-Pro", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+.about-our-process-one {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin: 0 auto;
+}
+.about-our-process-one-text {
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  margin: auto 0;
+}
+.about-our-process-one-img {
+  width: 50%;
+}
+.about-our-process-two {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin: 2rem auto;
+}
+.about-our-process-two-text {
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  margin: auto 0;
+}
+.about-our-process-two-img {
+  width: 50%;
+}
+.about-our-process-three {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin: 2rem auto;
+  padding-bottom: 2rem;
+}
+.about-our-process-three-text {
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  margin: auto 0;
+}
+.about-our-process-three-img {
+  width: 50%;
+}
+.about-service {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto;
+}
+.about-service-subtitle {
+  font-family: "Sofia-Pro", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+.about-service-stories {
+  text-align: center;
+  align-items: center;
+  margin: auto 0;
+  width: 50%;
+}
+.about-service-image {
+  width: 600px;
+}
+.about-story-one {
+  margin: 1rem 0;
 }
