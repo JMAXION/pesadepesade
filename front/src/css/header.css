@@ -30,7 +30,9 @@
   gap: 3rem;
 }
 
-.header-menu, .header-logo, .header-right-menu {
+.header-menu,
+.header-logo,
+.header-right-menu {
   flex-shrink: 0;
 }
 
@@ -53,9 +55,9 @@
 }
 
 .logo-top {
-  background-image: url('../../public/image/pesade-logo-ivory.png');
+  background-image: url("../../public/image/pesade-logo-ivory.png");
 }
 
 .logo-scrolled {
-  background-image: url('../../public/image/pesade-logo.png');
+  background-image: url("../../public/image/pesade-logo.png");
 }

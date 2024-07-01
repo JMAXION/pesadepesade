@@ -1,15 +1,14 @@
 .home-content {
-     width: 100%;
+  width: 100%;
 }
 
 .main-slider {
-     width: 100%;
-     height: 100vh;
-   }
-   
-   .slider-image {
-     width: 100%;
-     height: 100vh;
-     object-fit: cover; 
-   }
-   
+  width: 100%;
+  height: 100vh;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
