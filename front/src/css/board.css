@@ -1,3 +1,7 @@
+.front {
+  margin-top: 80px;
+}
+
 .qna-list a {
   text-decoration: none;
   color: var(--color-black);
@@ -7,6 +11,10 @@
   margin: -1px 0 0;
   font-size: 11px;
   /* border-top: 1px solid #ececec; */
+}
+
+.qna-list img {
+  margin-right: 10px;
 }
 
 .qna-list ul {

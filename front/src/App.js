@@ -11,6 +11,7 @@ import NoticeContent from "./pages/NoticeContent.jsx";
 import Help from "./pages/Help.jsx";
 import QnaList from "./pages/qna/QnaList.jsx";
 import QnaContent from "./pages/qna/QnaContent.jsx";
+import QnaWrite from "./pages/qna/QnaWrite.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -29,7 +30,8 @@ export default function App() {
         { path: "/stock", element: <StockList /> },
         { path: "/notice/1", element: <NoticeContent /> },
         { path: "/qna", element: <QnaList /> },
-        { path: "/qna/qnaContent", element: <QnaContent /> },
+        { path: "/qna/:qid/:rno", element: <QnaContent /> },
+        { path: "/qna/qnaWrite", element: <QnaWrite /> },
       ],
     },
   ]);

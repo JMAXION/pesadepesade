@@ -1,3 +1,7 @@
+.front {
+  margin-top: 80px;
+}
+
 ul,
 li {
   list-style-type: none;
@@ -17,7 +21,7 @@ li {
 
 .notice-hr-stick {
   border: none;
-  border-top: 2px solid #000;
+  border-top: 1.5px solid #000;
   margin: 10px 0;
 }
 
@@ -37,7 +41,6 @@ li {
 }
 
 .notice-hr {
-  width: 926px;
   margin: 10px 0;
   border: none;
   border-top: 1px solid #b4b4b4;
