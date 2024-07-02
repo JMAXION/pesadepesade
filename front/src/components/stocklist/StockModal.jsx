@@ -1,4 +1,5 @@
 import React from "react";
+import StockModalMap from "./StockModalMap";
 
 export default function StockModal({ isOpen, content, closeModal }) {
   return (
@@ -19,19 +20,22 @@ export default function StockModal({ isOpen, content, closeModal }) {
       ></div>
       <div
         style={{
-          position: "absolute",
-          top: "50%",
+          position: "fixed",
+          top: "55%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 800,
+          width: 700,
+          height: 600,
           maxWidth: "100%",
           maxHeight: "90%",
           overflowY: "auto",
           backgroundColor: "white",
+          zIndex: 400,
         }}
       >
         <div>{content}</div>
         <button onClick={closeModal}>Close</button>
+        <StockModalMap />
       </div>
     </div>
   );
