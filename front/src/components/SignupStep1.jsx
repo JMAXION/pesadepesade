@@ -1,8 +1,8 @@
-import "../css/hyerim.css";
+import "../css/signup.css";
 
 export default function Signup1Step1() {
   return (
-    <div className="hyerim-content">
+    <div className="content">
       <div className="step1">
         <h2 className="step1-title">Sign up</h2>
         <div className="step1-progress-bar">
@@ -97,11 +97,11 @@ export default function Signup1Step1() {
                 <div className="step1-agree-sns">
                   <ul>
                     <li>
-                      <strong>SMS</strong>수신을 동의하십니까?
+                      <strong>SMS</strong>수신을 동의하십니까? &nbsp;
                       <input type="checkbox" /> 동의함
                     </li>
                     <li>
-                      <strong>이메일</strong>수신을 동의하십니까?
+                      <strong>이메일</strong>수신을 동의하십니까? &nbsp;
                       <input type="checkbox" /> 동의함
                     </li>
                   </ul>

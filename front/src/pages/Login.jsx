@@ -1,8 +1,8 @@
-import "../css/hyerim.css";
+import "../css/login.css";
 
 export default function Login() {
   return (
-    <div className="hyerim-content">
+    <div className="content">
       <div className="login">
         <h2 className="login-title">Login</h2>
         <div className="login-title-kor">로그인</div>
