@@ -1,0 +1,341 @@
+.header,
+.footer,
+.content,
+textarea,
+body,
+div,
+nav,
+ul,
+li,
+p,
+a,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+.hyerim-content {
+  width: 1510px;
+  height: 1346px;
+  padding-top: 148px;
+  background-color: #fffcf1;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.hyerim-content ul {
+  list-style-type: none;
+}
+
+/**************
+
+    Login
+
+***************/
+
+.login {
+  width: 400px;
+  height: 670px;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 29px;
+  padding: 62px 52px 30px;
+}
+
+.login-title-kor {
+  font-size: 13px;
+  margin: 40px 0 20px;
+  font-weight: 800;
+}
+
+.login-input {
+  width: 368px;
+  height: 36px;
+  font-size: 12px;
+  margin: 15px 0 0;
+  background-color: #fffcf1;
+  border: 1px solid black;
+}
+
+.login-button {
+  width: 374px;
+  height: 33px;
+  font-size: 14px;
+  margin: 15px 0 0;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background: #000;
+}
+
+.login-find {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-find > a {
+  color: black;
+  font-size: 13px;
+  margin: 10px;
+}
+
+.login-sns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login-sns-button {
+  display: flex;
+  width: 182px;
+  height: 33px;
+  text-align: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.login-sns-button > a {
+  color: black;
+  padding: 10px 20px;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.login-sns-link {
+  display: inline-block;
+  width: 182px;
+  height: 33px;
+  padding: 10px 20px;
+}
+
+.login-sns-image {
+  width: 12px;
+  height: 12px;
+}
+
+.login-bar {
+  border: 1px solid black;
+  width: 95%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.login-join-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login-join-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 33px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  border: 1px solid black;
+}
+
+.login-description-box {
+  margin-top: 20px;
+}
+
+.login-description {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/**************
+
+    SignupStep1
+
+***************/
+
+.step1 {
+  border: 1px solid green;
+  width: 400px;
+  height: 1010px;
+  padding: 0px 0px 128px;
+}
+
+.step1-title {
+  width: 400px;
+  height: 121px;
+  font-size: 29px;
+  padding: 62px 52px 30px;
+  border: 1px solid red;
+}
+
+.step1-progress-bar {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  height: 100px;
+  padding: 15px 16px;
+  border: 1px solid red;
+  margin-top: 10px;
+}
+
+.step1-progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step1-progress-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #cacaca;
+  margin: 0 10px;
+  position: relative;
+  color: #fff;
+}
+
+.step1-circle-black {
+  background-color: black;
+}
+
+.step1-progress-circle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 100px);
+  height: 1px;
+  background-color: #cacaca;
+  left: -10px;
+}
+
+.step1-progress-circle:first-child::before {
+  left: 23px;
+}
+
+.last-progress-item .step1-progress-circle::before {
+  display: none; /* 혹은 다른 스타일을 적용해 없앨 수 있음 */
+}
+
+.step1-progress-name {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #000;
+}
+
+.step1-agreeall {
+  width: 386px;
+  height: 108px;
+  color: 63666E;
+  text-align: left;
+  font-size: 12px;
+  padding: 0 0 20px 15px;
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+
+.step1-agreeall > h3 {
+  color: #000001;
+  font-size: 14px;
+}
+
+.step1-agreeall > p {
+  margin-top: 10px;
+  border: 1px solid red;
+}
+
+.step1-agreeall-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+  border: 1px solid red;
+}
+
+.step1-agreeall-label {
+  line-height: 20px;
+  color: #000001;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid red;
+}
+
+.step1-agreeall-label strong:nth-of-type(2) {
+  margin-left: 30px;
+}
+
+.step1-agree {
+  display: flex;
+  justify-content: space-between;
+  width: 384px;
+  height: 36px;
+  padding: 0 14px 0 14px;
+  border: 1px solid #333333;
+  text-align: left;
+  align-items: center;
+  font-size: 12px;
+  margin: auto;
+  border-bottom: none;
+}
+
+.step1-textarea {
+  width: 384px;
+  height: 90px;
+  font-size: 14px;
+  background-color: #fffcf1;
+  overflow: hidden;
+  overflow-y: auto;
+  height: 90px;
+  padding: 14px;
+  color: #757575;
+  font-size: 11px;
+}
+
+.step1-agree-shop {
+  justify-content: left;
+  gap: 4px;
+}
+
+.step1-agree-sns {
+  border: 1px solid #333333;
+  width: 384px;
+  height: 73px;
+  color: #333333;
+  font-size: 11px;
+  text-align: left;
+  padding: 0 14px;
+  margin: auto;
+  border-bottom: none;
+}
+.step1-agree-sns li {
+  margin-top: 10px;
+}
+
+.step1-btn {
+  width: 191px;
+  height: 35px;
+  font-size: 16px;
+  color: #ffffff;
+  background: #000001;
+  border: 1px solid #333333;
+  margin-top: 8px;
+}
+
+.step1-btn-cancel {
+  background-color: #fffcf1;
+  color: #333333;
+  margin-left: 5px;
+}
