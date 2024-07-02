@@ -6,14 +6,26 @@
   margin: 0;
   padding: 0;
 }
-.about-belief-image {
-  margin: 0 auto;
-  align-items: center;
-  width: 100%;
+.about-belief-main {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  width: 1200px;
+  margin: 2rem auto;
 }
+.about-belief-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s;
+}
+
 .about-belief-story {
   text-align: center;
   align-items: center;
+}
+.about-belief-story-image {
+  width: 30%;
 }
 .about-belief-subtitle {
   font-family: "Sofia-Pro", sans-serif;
