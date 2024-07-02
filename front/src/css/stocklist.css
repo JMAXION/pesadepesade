@@ -1,3 +1,10 @@
+body {
+  background-color: rgb(255, 251, 237);
+}
+.stockList {
+  margin: 0;
+  padding: 0;
+}
 .store-one {
   text-align: center;
   align-items: center;
@@ -26,11 +33,11 @@
   display: flex;
   justify-content: left;
   margin: 2rem auto;
-  border: 1px solid green;
+  width: 80%;
 }
 .stock-list {
   margin: 0;
-  width: 400px;
-  border: 1px solid red;
+  width: 25%;
   text-align: center;
+  margin: 0 auto;
 }
