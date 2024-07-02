@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/about.css";
+import SubTitle from "../components/SubTitle";
 import AboutStory from "../components/about/AboutStory";
 import AboutBelief from "../components/about/AboutBelief";
 import AboutProcess from "../components/about/AboutProcess";
@@ -13,8 +14,9 @@ export default function About() {
         alt=""
         className="about-belief-image"
       />
-      <AboutStory />
+      <SubTitle title="about" />
       <AboutBelief />
+      <AboutStory />
       <AboutProcess />
       <AboutService />
     </div>

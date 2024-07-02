@@ -29,7 +29,7 @@ export default function StockFlagShip() {
           <button onClick={openFirstModal}>지도 보기</button>
           <StockModal
             isOpen={isFirstModalOpen}
-            content="성수점 지도 내용"
+            content="페사드 성수점"
             closeModal={closeFirstModal}
           />
         </p>
@@ -44,7 +44,7 @@ export default function StockFlagShip() {
           <button onClick={openSecondModal}>지도 보기</button>
           <StockModal
             isOpen={isSecondModalOpen}
-            content="한남점 지도 내용"
+            content="페사드 한남점"
             closeModal={closeSecondModal}
           />
         </p>

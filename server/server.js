@@ -12,5 +12,5 @@ server.use(cors());
 server.use("/product", productRouter);
 
 server.listen(port, () => {
-  console.log("server start");
+  console.log(`welcome ${port} server start`);
 });
