@@ -33,8 +33,8 @@ export default function Header({ isHome }) {
         ></Link>
       </div>
       <div className="header-right-menu">
-        <div>Login</div>
-        <div>Cart</div>
+        <div><Link to={'/login'}>Login</Link></div>
+        <div><Link to={'/cart'}>Cart</Link></div>
       </div>
     </div>
   );

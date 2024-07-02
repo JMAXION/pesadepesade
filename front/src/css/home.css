@@ -12,3 +12,20 @@
   height: 100vh;
   object-fit: cover;
 }
+
+.main-slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: var(--color-white) 
+}
+
+
+.home-follow-instagram {
+  text-align: center;
+  padding: 51px 0;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.home-follow-instagram a {
+  text-decoration: none;
+  color: var(--color-black);
+}
