@@ -125,7 +125,7 @@
 .drawer-subcategory ul {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out;
+  transition: max-height 0.7s ease-out;
   background-color: inherit;
   padding-bottom: 12px;
   margin: 0;
