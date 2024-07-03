@@ -11,6 +11,7 @@ import NoticeContent from "./pages/NoticeContent.jsx";
 import Help from "./pages/Help.jsx";
 import QnaList from "./pages/qna/QnaList.jsx";
 import QnaContent from "./pages/qna/QnaContent.jsx";
+import Login from "./pages/Login.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,7 @@ export default function App() {
         { path: "/shop", element: <Shop /> },
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
+        { path: "/login", element: <Login /> },
         { path: "/shop/all", element: <Shop /> },
         { path: "/shop/parfum", element: <Shop /> },
         { path: "/notice", element: <Notice /> },

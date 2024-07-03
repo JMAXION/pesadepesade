@@ -6,7 +6,7 @@ import ScrollToTop from "../components/ScrollToTop";
 
 export default function Root() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === "/";
 
   return (
     <div>
