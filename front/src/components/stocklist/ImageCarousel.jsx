@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import Slider from "react-slick";
-import "../../css/stocklist.css";
+import "../../css/stock/stocklist.css";
 import "../../css/slider/slick-theme.css";
 import "../../css/slider/slick.css";
 import "../../css/slider/HomeSlider.css";

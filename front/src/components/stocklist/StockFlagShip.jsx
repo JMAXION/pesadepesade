@@ -1,17 +1,31 @@
 import React, { useState } from "react";
-import "../../css/stocklist.css";
+import "../../css/stock/stocklist.css";
 import ImageCarousel from "./ImageCarousel";
 import StockModal from "./StockModal";
 
 export default function StockFlagShip() {
   const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const [animationClass, setAnimationClass] = useState("");
 
-  const openFirstModal = () => setIsFirstModalOpen(true);
-  const closeFirstModal = () => setIsFirstModalOpen(false);
+  const openFirstModal = (type) => {
+    setModalType(type);
+    setIsFirstModalOpen(true);
+  };
+  const closeFirstModal = (type) => {
+    setModalType("");
+    setIsFirstModalOpen(false);
+  };
 
-  const openSecondModal = () => setIsSecondModalOpen(true);
-  const closeSecondModal = () => setIsSecondModalOpen(false);
+  const openSecondModal = (type) => {
+    setModalType(type);
+    setIsSecondModalOpen(true);
+  };
+  const closeSecondModal = (type) => {
+    setModalType(type);
+    setIsSecondModalOpen(false);
+  };
 
   return (
     <div>
@@ -26,12 +40,17 @@ export default function StockFlagShip() {
           <p>서울 성동구 성수이로 7가길 24</p>
           <p>+82 70-4070-7736</p>
           <p>월-일 11:00pm - 9:00pm(무휴)</p>
-          <button onClick={openFirstModal}>지도 보기</button>
-          <StockModal
-            isOpen={isFirstModalOpen}
-            content="페사드 성수점"
-            closeModal={closeFirstModal}
-          />
+          <button onClick={openFirstModal} className="flagship-button">
+            지도 보기
+          </button>
+
+          {isFirstModalOpen && (
+            <StockModal
+              type={modalType}
+              onClose={closeFirstModal}
+              places="seongsu"
+            />
+          )}
         </p>
       </li>
       <li className="store-two">
@@ -41,12 +60,17 @@ export default function StockFlagShip() {
           <p>서울 용산구 이태원로49길 16 </p>
           <p>+82 2-790-5001</p>
           <p>월-일 12:00pm - 8:00pm (무휴)</p>
-          <button onClick={openSecondModal}>지도 보기</button>
-          <StockModal
-            isOpen={isSecondModalOpen}
-            content="페사드 한남점"
-            closeModal={closeSecondModal}
-          />
+          <button onClick={openSecondModal} className="flagship-button">
+            지도 보기
+          </button>
+
+          {isSecondModalOpen && (
+            <StockModal
+              type={modalType}
+              onClose={closeSecondModal}
+              places="hannam"
+            />
+          )}
         </p>
       </li>
     </div>

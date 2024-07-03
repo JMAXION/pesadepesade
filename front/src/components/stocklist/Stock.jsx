@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../../css/stock/stocklist.css";
 
 export default function Stock() {
   const [stockList, setStockList] = useState([]);
@@ -24,7 +25,7 @@ export default function Stock() {
             const actualIndex = rowIndex * 5 + index;
             return stock.id ? (
               <li key={actualIndex} className="stock-list">
-                <div>
+                <div className="stocklist-detail">
                   <p>{stock.name}</p>
                   <p>{stock.address}</p>
                   <p>{stock.phone}</p>

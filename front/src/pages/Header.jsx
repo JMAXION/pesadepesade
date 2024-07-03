@@ -125,7 +125,7 @@ export default function Header({ isHome }) {
                 </Link>
               </li>
               <li>
-                <Link to="/stockist" onClick={toggleDrawer(false)}>
+                <Link to="/stocklist" onClick={toggleDrawer(false)}>
                   stockist
                 </Link>
               </li>

@@ -1,0 +1,11 @@
+.journal {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+.journal-image {
+  width: 1200px;
+  margin: auto;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+}
