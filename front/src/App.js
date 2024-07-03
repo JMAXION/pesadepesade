@@ -12,6 +12,7 @@ import Help from "./pages/Help.jsx";
 import QnaList from "./pages/qna/QnaList.jsx";
 import QnaContent from "./pages/qna/QnaContent.jsx";
 import Login from "./pages/Login.jsx";
+import Cart from "./pages/Cart.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,7 @@ export default function App() {
         { path: "/", element: <Home /> },
         { path: "/about", element: <About /> },
         { path: "/shop", element: <Shop /> },
+        { path: "/cart", element: <Cart /> },
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
         { path: "/login", element: <Login /> },
