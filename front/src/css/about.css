@@ -13,6 +13,16 @@
   width: 1200px;
   margin: 2rem auto;
 }
+.about-belief-img {
+  width: 100%;
+  z-index: 301; /* z-index 추가 */
+  position: relative;
+}
+.about-belief-img.scrolled {
+  width: 100%;
+  z-index: 200; /* z-index 추가 */
+  position: relative;
+}
 .about-belief-image {
   display: block;
   width: 100%;

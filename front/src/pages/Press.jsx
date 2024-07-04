@@ -6,18 +6,27 @@ import { Link } from "react-router-dom";
 
 export default function Press() {
   const [pressList, setPressList] = useState([]);
+  const url = "http://localhost:8080/press";
+
   useEffect(() => {
-    axios
-      .get("/data/press.json")
+    axios({
+      method: "post",
+      url: url,
+    })
       .then((res) => {
-        setPressList(res.data || []);
+        console.log(res.data);
+        setPressList(res.data);
       })
       .catch((error) => console.log(error));
   }, []);
+
   const rows = [];
   for (let i = 0; i < pressList.length; i += 2) {
     rows.push(pressList.slice(i, i + 2));
   }
+
+  console.log(pressList);
+
   return (
     <div className="press">
       <SubTitle title="Press" />
@@ -25,19 +34,20 @@ export default function Press() {
         <ul key={rowIndex} className="press-items">
           {row.map((press, index) => {
             const actualIndex = rowIndex * 2 + index;
-            return press.id ? (
-              <li>
-                <Link to={press.link} className="press-link">
+            console.log(press.plink);
+            return press.pid ? (
+              <li key={actualIndex}>
+                <Link to={press.plink} className="press-link">
                   <div className="press-item">
-                    <img src={press.img} alt="" className="press-img" />
-                    <p className="press-title">{press.title}</p>
-                    <p className="press-desc">{press.desc}</p>
-                    <p className="press-season">{press.season}</p>
+                    <img src={press.pimg} alt="" className="press-img" />
+                    <p className="press-title">{press.ptitle}</p>
+                    <p className="press-desc">{press.pdesc}</p>
+                    <p className="press-season">{press.pseason}</p>
                   </div>
                 </Link>
               </li>
             ) : (
-              <p key={`empty-${actualIndex}`}></p>
+              <li key={`empty-${actualIndex}`}></li>
             );
           })}
         </ul>
