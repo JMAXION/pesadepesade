@@ -14,6 +14,7 @@ import Press from "./pages/Press.jsx";
 import NoticeContent from "./pages/NoticeContent.jsx";
 import QnaList from "./pages/qna/QnaList.jsx";
 import QnaContent from "./pages/qna/QnaContent.jsx";
+import Cart from "./pages/Cart.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -26,6 +27,7 @@ export default function App() {
         { path: "/shop", element: <Shop /> },
         { path: "/shop/all", element: <Shop /> },
         { path: "/shop/parfum", element: <Shop /> },
+        { path: "/cart", element: <Cart /> },
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
         { path: "/login", element: <Login /> },

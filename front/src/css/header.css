@@ -20,7 +20,7 @@
 }
 .header-top div a {
   text-decoration: none;
-  color : #fcfaf1;
+  color: #fcfaf1;
 }
 
 .header-scrolled {
@@ -28,7 +28,7 @@
   color: var(--color-black);
 }
 
-.header-scrolled div a{
+.header-scrolled div a {
   text-decoration: none;
   color: var(--color-black);
 }
@@ -85,7 +85,6 @@
   color: var(--color-white);
 }
 
-
 .drawer-content li a,
 .drawer-subcategory li a,
 .drawer-subcategory span {
@@ -96,7 +95,7 @@
 .drawer-content li a::after,
 .drawer-subcategory li a::after,
 .drawer-subcategory span::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -3px;
@@ -112,7 +111,7 @@
   width: 100%;
 }
 
-.drawer-content li{
+.drawer-content li {
   padding: 5px 0;
 }
 
@@ -125,7 +124,7 @@
 .drawer-subcategory ul {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out;
+  transition: max-height 0.7s ease-out;
   background-color: inherit;
   padding-bottom: 12px;
   margin: 0;
@@ -133,7 +132,7 @@
 }
 
 .drawer-subcategory:hover ul {
-  max-height: 400px; 
+  max-height: 400px;
 }
 
 .drawer-subcategory ul li {
@@ -147,54 +146,20 @@
   transform: translateY(0);
 }
 
-.drawer-subcategory ul li:nth-child(1) {
-  transition-delay: 0s;
-}
-
-.drawer-subcategory ul li:nth-child(2) {
-  transition-delay: 0.1s;
-}
-
-.drawer-subcategory ul li:nth-child(3) {
-  transition-delay: 0.2s;
-}
-
-.drawer-subcategory ul li:nth-child(4) {
-  transition-delay: 0.3s;
-}
-
-.drawer-subcategory ul li:nth-child(5) {
-  transition-delay: 0.4s;
-}
-
-.drawer-subcategory ul li:nth-child(6) {
-  transition-delay: 0.5s;
-}
-
-.drawer-subcategory ul li:nth-child(7) {
-  transition-delay: 0.6s;
-}
-
-.drawer-subcategory ul li:nth-child(8) {
-  transition-delay: 0.7s;
-}
-
 .drawer-subcategory ul * {
   font-size: 24px;
 }
 
 .drawer-subcategory:hover ul {
-  max-height: 400px; 
+  max-height: 400px;
 }
 
 .drawer-subcategory ul li {
   padding: 8px 16px;
 }
 
-
-
 .drawer-list {
-  text-transform: capitalize; 
+  text-transform: capitalize;
 }
 
 .drawer-controller {
@@ -215,11 +180,11 @@
   position: absolute;
   top: 20px;
   right: 0;
-  width: 18px; 
+  width: 18px;
   height: 18px;
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
   background-color: inherit;
-  border: none; 
-  cursor: pointer; 
+  border: none;
+  cursor: pointer;
 }
