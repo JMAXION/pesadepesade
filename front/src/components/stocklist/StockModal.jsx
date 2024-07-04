@@ -1,37 +1,62 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import StockModalMap from "./StockModalMap";
+import "../../css/stock/stockmodal.css"; // CSS 파일을 import 합니다.
+const { kakao } = window;
 
-export default function StockModal({ isOpen, content, closeModal }) {
+export default function StockModal({ type, onClose, places }) {
+  const modalRef = useRef();
+  const [fadeOut, setFadeOut] = useState(false); // 애니메이션
+  console.log("placesfrommapcontainermodal", places);
+
+  const locations = {
+    seongsu: {
+      title: "페사드 성수점",
+      latlng: new kakao.maps.LatLng(37.542181, 127.0556108),
+    },
+    hannam: {
+      title: "페사드 한남점",
+      latlng: new kakao.maps.LatLng(37.537156, 126.99964),
+    },
+  };
+
+  let selectedLocation;
+  switch (places) {
+    case "seongsu":
+      selectedLocation = locations.seongsu.title;
+      break;
+    case "hannam":
+      selectedLocation = locations.hannam.title;
+      break;
+    default:
+      selectedLocation = locations.seongsu; // 기본값 설정
+      break;
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClose = () => {
+    setFadeOut(true);
+    setTimeout(() => {
+      onClose();
+    }, 500);
+  }; // 애니메이션
+
   return (
-    <div
-      style={{
-        display: isOpen ? "block" : "none",
-      }}
-    >
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          backgroundColor: "rgba(0, 0, 0, 0.35)",
-        }}
-      ></div>
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 800,
-          maxWidth: "100%",
-          maxHeight: "90%",
-          overflowY: "auto",
-          backgroundColor: "white",
-        }}
-      >
-        <div>{content}</div>
-        <button onClick={closeModal}>Close</button>
+    <div className="modal-overlay">
+      <div ref={modalRef} className={`modal ${fadeOut ? "fade-out" : ""}`}>
+        <div>{selectedLocation}</div>
+        <StockModalMap places={places} />
       </div>
     </div>
   );

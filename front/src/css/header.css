@@ -18,10 +18,19 @@
   background-color: inherit;
   color: #fcfaf1;
 }
+.header-top div a {
+  text-decoration: none;
+  color: #fcfaf1;
+}
 
 .header-scrolled {
   background-color: var(--color-bg);
-  color: initial;
+  color: var(--color-black);
+}
+
+.header-scrolled div a {
+  text-decoration: none;
+  color: var(--color-black);
 }
 
 .header-right-menu {
@@ -34,6 +43,7 @@
 .header-logo,
 .header-right-menu {
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .header-logo {
@@ -60,4 +70,121 @@
 
 .logo-scrolled {
   background-image: url("../../public/image/pesade-logo.png");
+}
+/* 사이드바 */
+
+.drawer-content {
+  width: 400px;
+  background-color: var(--color-black);
+  height: 100%;
+  padding: 20px 50px;
+}
+
+.drawer-content * {
+  font-size: 38px;
+  color: var(--color-white);
+}
+
+.drawer-content li a,
+.drawer-subcategory li a,
+.drawer-subcategory span {
+  position: relative;
+  text-decoration: none;
+}
+
+.drawer-content li a::after,
+.drawer-subcategory li a::after,
+.drawer-subcategory span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-white);
+  transition: width 0.3s ease-in-out;
+}
+
+.drawer-content li:hover a::after,
+.drawer-subcategory li:hover a::after,
+.drawer-subcategory span:hover::after {
+  width: 100%;
+}
+
+.drawer-content li {
+  padding: 5px 0;
+}
+
+/* 사이드바의 사이드메뉴 */
+
+.drawer-subcategory {
+  position: relative;
+}
+
+.drawer-subcategory ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease-out;
+  background-color: inherit;
+  padding-bottom: 12px;
+  margin: 0;
+  list-style: none;
+}
+
+.drawer-subcategory:hover ul {
+  max-height: 400px;
+}
+
+.drawer-subcategory ul li {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.drawer-subcategory:hover ul li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.drawer-subcategory ul * {
+  font-size: 24px;
+}
+
+.drawer-subcategory:hover ul {
+  max-height: 400px;
+}
+
+.drawer-subcategory ul li {
+  padding: 8px 16px;
+}
+
+.drawer-list {
+  text-transform: capitalize;
+}
+
+.drawer-controller {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  top: 0px;
+  padding: 27px 20px;
+  width: 300px;
+  left: 0;
+  z-index: 100;
+}
+
+.drawer-close-button {
+  background-image: url("https://pesade.kr/wJk/img/common/close_white_01.png");
+  left: auto;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
 }

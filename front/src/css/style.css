@@ -19,7 +19,7 @@ body {
 .content {
   width: 1200px;
   height: auto;
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   margin: auto;
   margin-bottom: 50px;
 }
@@ -39,8 +39,4 @@ body {
 .sub-title h2 {
   color: var(--color-black);
   font-weight: bold;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: white;
 }

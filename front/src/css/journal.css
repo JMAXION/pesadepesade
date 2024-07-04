@@ -1,0 +1,42 @@
+.journal {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  margin-bottom: 4rem;
+}
+
+.journal-iframe {
+  width: 100%;
+  z-index: 301; /* z-index 추가 */
+  position: relative; /* z-index 적용을 위해 position 속성 추가 */
+}
+
+.journal-iframe-video {
+  width: 100%;
+  min-height: 100vh;
+  object-fit: cover;
+}
+.journal-iframe.scrolled {
+  width: 100%;
+  z-index: 200; /* z-index 추가 */
+  position: relative; /* z-index 적용을 위해 position 속성 추가 */
+}
+.journal-contents {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.journal-content {
+  text-align: left;
+}
+
+.journal-content-image {
+  width: 100%;
+}
+
+.journal-content-desc {
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}

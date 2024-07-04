@@ -1,12 +1,10 @@
 import React from "react";
 import "../../css/about.css";
-import SubTitle from "../../components/SubTitle";
 
 export default function AboutStory() {
   return (
     <div>
       <ul className="about-belief-story">
-        <SubTitle title="about" />
         <li className="about-belief-subtitle">Our Story</li>
         <li className="about-belief-ourstory">
           <img
