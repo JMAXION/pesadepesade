@@ -10,4 +10,39 @@
   text-align: center;
   width: 100%;
   padding: 20px;
+  border-spacing: 0;
+}
+
+.cart-table-area tr td,
+.cart-table-area tr th {
+  border-bottom: 1px solid var(--color-black);
+}
+
+.cart-table-area th{
+  font-size: 14px;
+  font-weight: 700;
+  padding: 1rem;
+  text-transform: capitalize;
+}
+
+.cart-remove-e {
+  cursor: pointer;
+}
+
+.cart-product,
+.cart-qty,
+.cart-price,
+.cart-remove {
+  width: 18%;
+}
+
+.cart-product-desc {
+  width: 28%;
+}
+
+
+.cart-table-area td img {
+  width: 100%;
+  background-image: var(--color-bg);
+
 }
