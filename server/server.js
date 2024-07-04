@@ -3,6 +3,7 @@ import cors from "cors";
 import productRouter from "./router/productRouter.js";
 import qnaRouter from "./router/qnaRouter.js";
 import pressRouter from "./router/pressRouter.js";
+import stockRouter from "./router/stockRouter.js";
 
 const server = express();
 const port = 8080;
