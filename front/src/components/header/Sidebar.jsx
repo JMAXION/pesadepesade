@@ -68,8 +68,8 @@ export default function Sidebar({ drawerOpen, toggleDrawer }) {
               </Link>
             </li>
             <li>
-              <Link to="/stockist" onClick={toggleDrawer(false)}>
-                stockist
+              <Link to="/stocklist" onClick={toggleDrawer(false)}>
+                stocklist
               </Link>
             </li>
             <li>

@@ -20,7 +20,7 @@
 }
 .header-top div a {
   text-decoration: none;
-  color : #fcfaf1;
+  color: #fcfaf1;
 }
 
 .header-scrolled {
@@ -28,7 +28,7 @@
   color: var(--color-black);
 }
 
-.header-scrolled div a{
+.header-scrolled div a {
   text-decoration: none;
   color: var(--color-black);
 }
@@ -85,7 +85,6 @@
   color: var(--color-white);
 }
 
-
 .drawer-content li a,
 .drawer-subcategory li a,
 .drawer-subcategory span {
@@ -96,7 +95,7 @@
 .drawer-content li a::after,
 .drawer-subcategory li a::after,
 .drawer-subcategory span::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -3px;
@@ -112,7 +111,7 @@
   width: 100%;
 }
 
-.drawer-content li{
+.drawer-content li {
   padding: 5px 0;
 }
 
@@ -133,7 +132,7 @@
 }
 
 .drawer-subcategory:hover ul {
-  max-height: 400px; 
+  max-height: 400px;
 }
 
 .drawer-subcategory ul li {
@@ -152,17 +151,15 @@
 }
 
 .drawer-subcategory:hover ul {
-  max-height: 400px; 
+  max-height: 400px;
 }
 
 .drawer-subcategory ul li {
   padding: 8px 16px;
 }
 
-
-
 .drawer-list {
-  text-transform: capitalize; 
+  text-transform: capitalize;
 }
 
 .drawer-controller {
@@ -183,11 +180,11 @@
   position: absolute;
   top: 20px;
   right: 0;
-  width: 18px; 
+  width: 18px;
   height: 18px;
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
   background-color: inherit;
-  border: none; 
-  cursor: pointer; 
+  border: none;
+  cursor: pointer;
 }

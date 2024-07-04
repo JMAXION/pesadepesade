@@ -37,7 +37,9 @@ export default function Header({ isHome }) {
   return (
     <>
       <div
-        className={`header ${isHome && isTop ? "header-top" : "header-scrolled"}`}
+        className={`header ${
+          isHome && isTop ? "header-top" : "header-scrolled"
+        }`}
       >
         <div className="header-menu" onClick={toggleDrawer(true)}>
           Shop

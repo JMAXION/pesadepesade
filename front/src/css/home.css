@@ -9,15 +9,14 @@
 }
 
 .slider-image {
-  width: 100%; 
+  width: 100%;
   max-height: 100vh;
   object-fit: cover;
 }
 
 .main-slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: var(--color-white) 
+  background-color: var(--color-white);
 }
-
 
 .home-follow-instagram {
   text-align: center;

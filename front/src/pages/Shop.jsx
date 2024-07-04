@@ -1,39 +1,39 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Product from "../components/Product";
 
 export default function Shop() {
-  const [status, setStatus] = useState({
-    all: true,
-    parfum: false,
-  });
+  const [filter, setFilter] = useState("all");
 
-  function handleChange(e) {
-    if (e === "all") {
-      setStatus({ all: !status.all });
-      setStatus({ parfum: !status.parfum });
-    }
-    if (e === "parfum") {
-      setStatus({ parfum: !status.parfum });
-      setStatus({ all: !status.all });
-    }
-
-    console.log(status.all);
-    console.log(status.parfum);
+  function handleChange(type) {
+    setFilter(type);
   }
-  return (
-    <div>
-      {status.all && (
-        <div onClick={(e) => handleChange("all")}>
-          <Product name="all" />
-        </div>
-      )}
 
-      {status.parfum && (
-        <div onClick={(e) => handleChange("parfum")}>
-          <Product name="parfum" />
-        </div>
-      )}
+  return (
+    <div className="shop-wrapper">
+      <div className="filter-buttons">
+        <button
+          onClick={() => handleChange("all")}
+          className={filter === "all" ? "active" : "shop-category"}
+        >
+          All
+        </button>
+        <button
+          onClick={() => handleChange("parfum")}
+          className={filter === "parfum" ? "active" : "shop-category"}
+        >
+          Parfum
+        </button>
+        <button
+          onClick={() => handleChange("candle")}
+          className={filter === "candle" ? "active" : "shop-category"}
+        >
+          Candle
+        </button>
+      </div>
+
+      <div className="product-all-wrapper">
+        <Product name={filter} />
+      </div>
     </div>
   );
 }

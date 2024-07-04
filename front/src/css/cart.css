@@ -1,13 +1,13 @@
 .cart-empty {
-     text-align: center;
-     padding: 70px 0;
-     border-bottom: 1px solid #e8e8e8;    
-     margin-bottom: 30px;
+  text-align: center;
+  padding: 70px 0;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 30px;
 }
 
 .cart-table-area {
-     align-items: center;
-     text-align: center;
-     width: 100%;
-     padding: 20px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
 }

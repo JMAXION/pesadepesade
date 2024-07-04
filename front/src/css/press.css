@@ -1,0 +1,32 @@
+.press {
+  width: 1200px;
+  margin: 0 auto;
+}
+.press-items {
+  display: flex;
+  justify-content: center;
+}
+.press-link {
+  text-decoration: none;
+}
+.press-item {
+  margin: 2rem auto;
+  width: 95%;
+  text-align: center;
+}
+.press-img {
+  width: 100%;
+}
+.press-title,
+.press-desc,
+.press-season {
+  color: black;
+  text-decoration: none;
+}
+.press-title {
+  margin-bottom: 0.3rem;
+}
+.press-desc {
+  font-size: 0.75rem;
+  margin-bottom: 0.3rem;
+}

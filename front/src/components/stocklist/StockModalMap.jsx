@@ -1,34 +1,49 @@
+// StockModalMap.jsx
 import React, { useEffect } from "react";
 
 const { kakao } = window;
 
-export default function StockModalMap() {
+export default function StockModalMap({ places }) {
   useEffect(() => {
-    // 성수점과 한남점의 위치 좌표
-    const locations = [
-      {
+    const locations = {
+      seongsu: {
         title: "페사드 성수점",
-        latlng: new kakao.maps.LatLng(37.544579, 127.055831),
+        latlng: new kakao.maps.LatLng(37.542181, 127.0556108),
       },
-      {
+      hannam: {
         title: "페사드 한남점",
-        latlng: new kakao.maps.LatLng(37.529659, 127.001678),
+        latlng: new kakao.maps.LatLng(37.537156, 126.99964),
       },
-    ];
+    };
+
+    let selectedLocation;
+    switch (places) {
+      case "seongsu":
+        selectedLocation = locations.seongsu;
+        break;
+      case "hannam":
+        selectedLocation = locations.hannam;
+        break;
+      default:
+        selectedLocation = locations.seongsu; // 기본값 설정
+        break;
+    }
 
     var staticMapContainer = document.getElementById("staticMap"),
       staticMapOption = {
-        center: new kakao.maps.LatLng(37.537187, 127.005476), // 중앙 좌표는 두 위치의 중간 지점으로 설정
+        center: selectedLocation.latlng,
         level: 3, // 확대 레벨
-        marker: locations.map((location) => ({
-          position: location.latlng,
-          text: location.title, // 마커에 표시될 텍스트
-        })),
+        marker: [
+          {
+            position: selectedLocation.latlng,
+            text: selectedLocation.title, // 마커에 표시될 텍스트
+          },
+        ],
       };
 
     // 이미지 지도를 생성합니다
     new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-  }, []);
+  }, [places]);
 
   return (
     <div
