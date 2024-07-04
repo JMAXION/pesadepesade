@@ -29,7 +29,7 @@ export default function QnaContent() {
     })
       .then((result) => {
         if (result.data && result.data.length > 0) {
-          setNextQna(result.data[0]); // 배열일 경우 첫 번째 요소로 접근
+          setNextQna(result.data[0]); // 배열일 경우 첫 번째 요소로
         } else {
           setNextQna(null);
         }
@@ -52,6 +52,11 @@ export default function QnaContent() {
       })
       .catch((error) => console.log(error));
   }, [qid]);
+
+  const prevQid = parseInt(qid) - 1;
+  const nextQid = parseInt(qid) + 1;
+  const prevRno = parseInt(rno) - 1;
+  const nextRno = parseInt(rno) + 1;
 
   return (
     <div className="content">
@@ -81,11 +86,23 @@ export default function QnaContent() {
         <ul className="qna-page">
           <li className="qna-prev">
             <strong>이전글</strong>
-            <p>{prevQna.qtitle || "다음 글이 없습니다."}</p>
+            {prevQna ? (
+              <Link to={`/qna/${prevQid}/${prevRno}`}>
+                <p>{prevQna.qtitle}</p>
+              </Link>
+            ) : (
+              <p>이전 글이 없습니다.</p>
+            )}
           </li>
           <li className="qna-next">
             <strong>다음글</strong>
-            <p>{nextQna.qtitle || "다음 글이 없습니다."}</p>
+            {nextQna ? (
+              <Link to={`/qna/${nextQid}/${nextRno}`}>
+                <p>{nextQna.qtitle}</p>
+              </Link>
+            ) : (
+              <p>다음 글이 없습니다.</p>
+            )}
           </li>
         </ul>
       </div>

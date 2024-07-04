@@ -7,6 +7,9 @@ import axios from "axios";
 export default function QnaList() {
   const navigate = useNavigate();
   const [qnaList, setQnaList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const pagesToShow = 5; // 한 번에 보여줄 페이지 버튼 수
   const userId = "test";
 
   useEffect(() => {
@@ -18,25 +21,57 @@ export default function QnaList() {
       .then((result) => {
         // 데이터를 rno 값에 따라 내림차순으로 정렬
         const sortedList = result.data.sort((a, b) => b.rno - a.rno);
+        console.log(sortedList);
         setQnaList(sortedList);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  const handleUpdateQHits = (qid, rno) => {
-    // alert(qid);
-    const url = "http://localhost:8080/qna/updateQhits";
-    try {
-      axios({
-        method: "post",
-        url: url,
-        data: { qid: qid },
-      }).then((result) => {
-        if (result.data.cnt === 1) navigate(`/qna/${qid}/${rno}`);
-        console.log("result", result.data.cnt);
-      });
-    } catch (error) {}
+  const handleUpdateQHits = (qid, rno, isSecret) => {
+    if (isSecret) {
+      navigate("/qna/password");
+    } else {
+      const url = "http://localhost:8080/qna/updateQhits";
+      try {
+        axios({
+          method: "post",
+          url: url,
+          data: { qid: qid },
+        }).then((result) => {
+          if (result.data.cnt === 1) navigate(`/qna/${qid}/${rno}`);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
+
+  // 페이지 변경 함수
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // 현재 페이지에 해당하는 qna수 계산
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = qnaList.slice(indexOfFirstItem, indexOfLastItem);
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(qnaList.length / itemsPerPage);
+
+  // 페이지 범위 계산 함수
+  const getPageRange = () => {
+    const startPage =
+      Math.floor((currentPage - 1) / pagesToShow) * pagesToShow + 1;
+    const endPage = Math.min(startPage + pagesToShow - 1, totalPages);
+    return { startPage, endPage };
+  };
+
+  const { startPage, endPage } = getPageRange();
+  const pageNumbers = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div className="front">
@@ -44,10 +79,11 @@ export default function QnaList() {
         <SubTitle title="Q&A" />
         <div className="qna-list">
           <ul>
-            {qnaList.map((list) => (
+            {currentItems.map((list) => (
               <li
+                key={list.qid}
                 onClick={() => {
-                  handleUpdateQHits(list.qid, list.rno);
+                  handleUpdateQHits(list.qid, list.rno, list.is_secret);
                 }}
               >
                 <Link to={`/qna/${list.qid}/${list.rno}`}>
@@ -58,11 +94,13 @@ export default function QnaList() {
                     </div>
                     <div className="qna-row bottom">
                       <strong>
-                        <img
-                          src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif"
-                          alt="비밀글"
-                        />
-                        <span class="subject-text">{list.qtitle}</span>
+                        {list.is_secret === 1 && (
+                          <img
+                            src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif"
+                            alt="비밀글"
+                          />
+                        )}
+                        <span className="subject-text">{list.qtitle}</span>
                       </strong>
                       <span>{list.qdate}</span>
                     </div>
@@ -71,6 +109,35 @@ export default function QnaList() {
               </li>
             ))}
           </ul>
+          <div className="pagination">
+            {startPage > 1 && (
+              <button
+                className="page-button"
+                onClick={() => handlePageChange(startPage - 1)}
+              >
+                &lt;
+              </button>
+            )}
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                className={`page-button ${
+                  currentPage === number ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(number)}
+              >
+                {number}
+              </button>
+            ))}
+            {endPage < totalPages && (
+              <button
+                className="page-button"
+                onClick={() => handlePageChange(endPage + 1)}
+              >
+                &gt;
+              </button>
+            )}
+          </div>
           <div className="qna-btn">
             <button className="qna-btn-write" type="button">
               <Link to="/qna/qnaWrite">Write</Link>

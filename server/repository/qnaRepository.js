@@ -3,19 +3,29 @@ import { db } from "../database/database_mysql80.js";
 /* qna 등록 */
 export const insert = async (qnaFormData) => {
   let result_rows = 0;
-  const sql = ` 
-    insert into pesade_qboard(qtitle, user_id, qcontent, qhits, qpassword, qdate)
-      values(?, 'test', ?, 0, ?, now())
-  `;
+  let sql;
+  if (qnaFormData.isSecret) {
+    sql = `
+        INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qpassword, qdate, is_secret)
+        VALUES (?, 'test', ?, 0, ?, now(), TRUE)
+      `;
+  } else {
+    sql = `
+        INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qdate, is_secret)
+        VALUES (?, 'test', ?, 0, now(), FALSE)
+      `;
+  }
 
   try {
     const [result] = await db.execute(sql, [
       qnaFormData.qtitle,
       qnaFormData.qcontent,
-      qnaFormData.qformPs,
+      qnaFormData.qformPs, // 비밀글인 경우에만
     ]);
     result_rows = result.affectedRows;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
   return { cnt: result_rows };
 };
 
@@ -27,7 +37,8 @@ export const list = async () => {
             qid, 
             qtitle, 
             user_id,
-            left(qdate,10) as qdate
+            left(qdate,10) as qdate,
+             is_secret
     from pesade_qboard
   `;
   return db.execute(sql).then((result) => result[0]);

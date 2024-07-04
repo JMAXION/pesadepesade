@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function QnaWrite() {
-  const [isSecret, setIsSecret] = useState(false);
   const navigate = useNavigate();
+  const { isSecret } = qnaFormData;
 
   const [qnaFormData, setQnaFormData] = useState({
     qtitle: "",
     qcontent: "",
     qformPs: "",
+    isSecret: false,
   });
 
   const handleChange = (e) => {
@@ -31,6 +32,7 @@ export default function QnaWrite() {
       data: qnaFormData,
     })
       .then((res) => {
+        console.log(res.data.cnt);
         if (res.data.cnt === 1) {
           navigate("/qna");
         }
@@ -76,41 +78,49 @@ export default function QnaWrite() {
               </td>
             </tr>
             <tr className="qna-form-group">
-              <td>
-                <label htmlFor="qformPs">비밀번호</label>
-              </td>
-              <td>
-                <input
-                  type="password"
-                  name="qformPs"
-                  value={qnaFormData.qformPs}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr className="qna-form-group">
               <td>비밀글설정</td>
               <td>
                 <div className="qna-form-group-flex">
                   <input
                     type="radio"
-                    name="secret"
-                    value="public"
+                    name="isSecret"
+                    value="false"
                     checked={!isSecret}
-                    onChange={() => setIsSecret(false)}
+                    onChange={() =>
+                      setQnaFormData({ ...qnaFormData, isSecret: false })
+                    }
                   />
                   <p className="qna-form-group-flex type">공개글</p>
                   <input
                     type="radio"
-                    name="secret"
-                    value="secret"
+                    name="isSecret"
+                    value="true"
                     checked={isSecret}
-                    onChange={() => setIsSecret(true)}
+                    onChange={() =>
+                      setQnaFormData({ ...qnaFormData, isSecret: true })
+                    }
                   />
                   <p className="qna-form-group-flex type">비밀글</p>
                 </div>
               </td>
             </tr>
+            {isSecret && ( // 비밀글일 경우에만 비밀번호 입력 필드 보이기
+              <tr className="qna-form-group">
+                <td>
+                  <label htmlFor="qformPs">비밀번호</label>
+                </td>
+                <td>
+                  <input
+                    type="password"
+                    name="qformPs"
+                    // value={qnaFormData.qformPs}
+                    onChange={handleChange}
+                    placeholder="숫자 4자리"
+                    maxLength={4}
+                  />
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className="qna-form-group-btn">

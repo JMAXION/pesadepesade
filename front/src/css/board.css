@@ -1,3 +1,11 @@
+@import url("https://use.typekit.net/ppj4rln.css");
+
+body {
+  font-family: "Sofia-Pro", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
 .front {
   margin-top: 80px;
 }
@@ -209,4 +217,95 @@
   background: none;
   color: var(--color-black);
   border: 1px solid var(--color-black);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.page-button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: var(--color-bg);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.page-button.active {
+  color: var(--color-black);
+}
+
+.page-button:hover {
+  text-decoration: underline;
+}
+
+.qna-password {
+  width: 966px;
+  margin: auto;
+  color: #2e2e2e;
+  border: 1px solid #2e2e2e;
+  text-align: center;
+}
+
+.qna-password .qna-ps-info {
+  display: inline-block;
+  text-align: center;
+}
+
+.qna-password img {
+  width: 15px;
+  margin-right: 5px;
+}
+
+.qna-password h3 {
+  margin: 15px 0;
+  padding-bottom: 15px;
+  color: #2e2e2e;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.qna-password p {
+  margin-bottom: 5px;
+}
+
+.qna-password .qna-ps {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.qna-password .qna-ps-content {
+  text-align: center;
+}
+
+.qna-password .qna-ps input {
+  width: 146px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid var(--color-black);
+  margin-right: 5px;
+  background-color: var(--color-bg);
+}
+
+.qna-password .qna-ps button {
+  width: 50px;
+  height: 30px;
+  padding: 10px;
+  line-height: 5px;
+  font-family: "Sofia-Pro", sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.qna-password div {
+  width: 195px;
+  margin: auto;
+  padding-bottom: 10px;
 }
