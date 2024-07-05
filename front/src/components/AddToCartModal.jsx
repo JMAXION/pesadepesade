@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getUser } from '../util/localStorage.js';
@@ -11,7 +11,7 @@ export default function AddToCartModal({ product, closeModal }) {
   const [choice, setChoice] = useState({
     productName: '',
     messageCard: '[-필수]Options',
-    qty: 0,
+    qty: 1, // Initialize qty to 1 instead of 0
   });
 
   const [tp, setTp] = useState(0); // tp 값을 상태로 관리합니다.
@@ -48,7 +48,7 @@ export default function AddToCartModal({ product, closeModal }) {
   }
 
   function handleQtyDecrease() {
-    if (choice.qty === 0) return;
+    if (choice.qty === 1) return;
     if (choice.messageCard !== '[-필수]Options') {
       setChoice((prevChoice) => ({
         ...prevChoice,
@@ -108,7 +108,7 @@ export default function AddToCartModal({ product, closeModal }) {
       {(choice.messageCard === '[-필수]Options' || choice.qty === 0) && (
         <p className="purchase-total-info">총상품금액(수량) : 0 krw(0개)</p>
       )}
-      {choice.messageCard !== '[-필수]Options' && choice.qty !== 0 && (
+      {choice.messageCard !== '[-필수]Options' && choice.qty > 0 && (
         <p className="purchase-total-info">총상품금액(수량) : {tp.toLocaleString()} krw({choice.qty}개)</p>
       )}
 
