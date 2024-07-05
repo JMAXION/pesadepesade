@@ -28,7 +28,7 @@ insert into product_table(pname, pdetail, pscentdetail, pdesc, pprice, pinfo1, p
     '* 교환&반품에 대한 자세한 내용은 하단 Help 페이지에서 확인 가능합니다',
     'https://pesade.kr/web/product/big/202310/820b27d819593e6ac13fb80efb6cc532.png',
     'https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/NNEditor/20240612/copy-1718166603-1.png',
-    'parfum'
+    'Le Labo'
 );
 
 insert into product_table(pname, pdetail, pscentdetail, pdesc, pprice, pinfo1, pinfo2, pnotice, pimage, pdetailimage,category) values (

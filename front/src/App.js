@@ -20,6 +20,7 @@ import Cart from "./pages/Cart.jsx";
 import IdFind from "./pages/IdFind.jsx";
 import PasswordFind from "./pages/PasswordFind.jsx";
 import Signup from "./pages/Signup.jsx";
+import Upload from "./pages/Upload.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -50,6 +51,9 @@ export default function App() {
         { path: "/qna/:qid/:rno", element: <QnaContent /> },
         { path: "/qna/password", element: <QnaPassWord /> },
         { path: "/qna/qnaWrite", element: <QnaWrite /> },
+        { path: "/qna/qnaContent", element: <QnaContent /> },
+        { path: "/notice/1", element: <NoticeContent /> },
+        { path: "/upload", element: <Upload /> },
       ],
     },
   ]);
