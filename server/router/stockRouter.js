@@ -3,5 +3,5 @@ import * as controller from "../controller/stockController.js";
 
 const router = express.Router();
 
-router.post("/", controller.getPress);
+router.post("/", controller.getStock);
 export default router;
