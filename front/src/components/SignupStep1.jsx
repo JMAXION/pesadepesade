@@ -1,6 +1,9 @@
 import "../css/signup.css";
+import { handleFocus, validateCheckStep1 } from "../apis/validate.js";
+import { Link } from "react-router-dom";
 
-export default function Signup1Step1() {
+export default function Signup1Step1({ nextStep, formData, handleCheck }) {
+  console.log("리액트 넥스트", nextStep);
   return (
     <div className="content">
       <div className="step1">
@@ -32,7 +35,12 @@ export default function Signup1Step1() {
             <div className="step1-agreeall">
               <h3>전체 동의</h3>
               <div className="agreeall-checkbox-container">
-                <input id="check1" type="checkbox" />
+                <input
+                  id="check1"
+                  type="checkbox"
+                  onChange={(e) => handleCheck("all", e.target.checked)}
+                  onFocus={() => handleFocus("all")}
+                />
                 <label for="check1">✔</label>
                 <p>
                   <strong>이용약관 및 개인정보수집 및 이용,</strong>
@@ -51,7 +59,15 @@ export default function Signup1Step1() {
               <div>
                 <div className="step1-agree">
                   <div className="step1-agree-checkbox">
-                    <input id="check2" type="checkbox" />
+                    <input
+                      id="check2"
+                      type="checkbox"
+                      className="step1-terms"
+                      name="terms"
+                      checked={formData.terms}
+                      onChange={(e) => handleCheck("terms", e.target.checked)}
+                      onFocus={() => handleFocus("terms")}
+                    />
                     <label for="check2">✔</label>
                     <span>
                       이용약관 동의 <strong>(</strong>필수
@@ -79,7 +95,17 @@ export default function Signup1Step1() {
               <div>
                 <div className="step1-agree">
                   <div className="step1-agree-checkbox">
-                    <input id="check3" type="checkbox" />
+                    <input
+                      id="check3"
+                      type="checkbox"
+                      className="step1-personal"
+                      name="personal"
+                      checked={formData.personal}
+                      onChange={(e) =>
+                        handleCheck("personal", e.target.checked)
+                      }
+                      onFocus={() => handleFocus("personal")}
+                    />
                     <label for="check3">✔</label>
                     <span>
                       개인정보처리방침동의 <strong>(</strong>필수
@@ -104,7 +130,16 @@ export default function Signup1Step1() {
               </div>
               <div>
                 <div className="step1-agree step1-agree-shop">
-                  <input type="checkbox" />
+                  <input
+                    id="check4"
+                    type="checkbox"
+                    className="step1-shop"
+                    name="shop"
+                    checked={formData.shop}
+                    onChange={(e) => handleCheck("shopall", e.target.checked)}
+                    onFocus={() => handleFocus("shop")}
+                  />
+                  <label for="check4">✔</label>
                   <span>
                     쇼핑정보 수신 동의 <strong>(</strong>선택
                     <strong>)</strong>
@@ -115,15 +150,35 @@ export default function Signup1Step1() {
                     <li>
                       <strong>SMS</strong>수신을 동의하십니까? &nbsp;
                       <div className="step1-ad-checkbox">
-                        <input id="check4" type="checkbox" />
-                        <label for="check4">✔</label> <span>동의함</span>
+                        <input
+                          id="check5"
+                          type="checkbox"
+                          className="step1-smscheck"
+                          name="smscheck"
+                          checked={formData.smscheck}
+                          onChange={(e) =>
+                            handleCheck("smscheck", e.target.checked)
+                          }
+                          onFocus={() => handleFocus("smscheck")}
+                        />
+                        <label for="check5">✔</label> <span>동의함</span>
                       </div>
                     </li>
                     <li>
                       <strong>이메일</strong>수신을 동의하십니까? &nbsp;
                       <div className="step1-ad-checkbox">
-                        <input id="check5" type="checkbox" />
-                        <label for="check5">✔</label> <span>동의함</span>
+                        <input
+                          id="check6"
+                          type="checkbox"
+                          className="step1-emailcheck"
+                          name="emailcheck"
+                          checked={formData.emailcheck}
+                          onChange={(e) =>
+                            handleCheck("emailcheck", e.target.checked)
+                          }
+                          onFocus={() => handleFocus("emailcheck")}
+                        />
+                        <label for="check6">✔</label> <span>동의함</span>
                       </div>
                     </li>
                   </ul>
@@ -143,12 +198,18 @@ export default function Signup1Step1() {
                 </textarea>
               </div>
               <div className="step1-btns">
-                <button className="step1-btn" type="button">
+                <button
+                  className="step1-btn"
+                  type="button"
+                  onClick={() => validateCheckStep1(nextStep, formData)}
+                >
                   다음
                 </button>
-                <button className="step1-btn step1-btn-cancel" type="button">
-                  취소
-                </button>
+                <Link to="/login">
+                  <button className="step1-btn step1-btn-cancel" type="button">
+                    취소
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
