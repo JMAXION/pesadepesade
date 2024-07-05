@@ -1,6 +1,66 @@
 import "../css/signup.css";
+import { useState, useRef } from "react";
+import DaumPostcode from "react-daum-postcode";
+import {
+  validateCheckStep2,
+  /*   passCheck */
+  changeEmailDomain,
+} from "../apis/validate";
 
-export default function SignupStep2() {
+export default function SignupStep2(
+  nextStep,
+  formData,
+  handleChange,
+  handleAddress
+) {
+  const refs = {
+    userIdRef: useRef(null),
+    userPassRef: useRef(null),
+    userPassCheckRef: useRef(null),
+    userNameRef: useRef(null),
+    zipcodeRef: useRef(null),
+    addressRef: useRef(null),
+    detailAddressRef: useRef(null),
+    phoneNumber1Ref: useRef(null),
+    phoneNumber2Ref: useRef(null),
+    phoneNumber3Ref: useRef(null),
+    emailIdRef: useRef(null),
+    emailDomainRef: useRef(null),
+  };
+  console.log("리액트폼", formData);
+  console.log("리액트 넥스트", nextStep);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const themeObj = {
+    bgColor: "#FFFFFF",
+    pageBgColor: "#FFFFF",
+    postcodeTextColor: "#C05850",
+    emphTextColor: "#222222",
+  };
+  const postCodeStyle = {
+    width: "360px",
+    height: "480px",
+  };
+
+  const completeHandler = (data) => {
+    const { address, zonecode } = data;
+    handleAddress({ zipcode: zonecode, address: address });
+  };
+
+  const closeHandler = (state) => {
+    if (state === "FORCE_CLOSE") {
+      setIsOpen(false);
+    } else if (state === "COMPLETE_CLOSE") {
+      setIsOpen(false);
+      refs.detailAddressRef.current.value = "";
+      refs.detailAddressRef.current.focus();
+    }
+  };
+
   return (
     <div className="content">
       <div className="step2">
@@ -46,10 +106,21 @@ export default function SignupStep2() {
           <li className="step2-member-li step2-member-li-id">
             <div className="step2-member-li-name">
               <span>*</span>
-              <p>아이디</p>
+              <p className="step2-member-id-p">아이디</p>
             </div>
-            <input className="step2-member-id-input" />
-            <button className="step2-idcheck-btn" type="button">
+            <input
+              className="step2-member-id-input"
+              type="text"
+              name="userId"
+              value={formData.userId}
+              onChange={handleChange}
+              ref={refs.userIdRef}
+            />
+            <button
+              className="step2-idcheck-btn"
+              type="button"
+              /*  onClick={handleIdCheck} */
+            >
               중복확인
             </button>
           </li>
@@ -58,21 +129,39 @@ export default function SignupStep2() {
               <span>*</span>
               <p>비밀번호</p>
             </div>
-            <input />
+            <input
+              type="password"
+              name="userPass"
+              value={formData.userPass}
+              onChange={handleChange}
+              ref={refs.userPassRef}
+            />
           </li>
           <li className="step2-member-li">
             <div className="step2-member-li-name">
               <span>*</span>
               <p>비밀번호 확인</p>
             </div>
-            <input />
+            <input
+              type="password"
+              name="userPassCheck"
+              value={formData.usePassCheck}
+              onChange={handleChange}
+              ref={refs.userPassCheckRef}
+            />
           </li>
           <li className="step2-member-li">
             <div className="step2-member-li-name">
               <span>*</span>
               <p>이름</p>
             </div>
-            <input type="text" />
+            <input
+              type="text"
+              name="userName"
+              value={formData.userName}
+              onChange={handleChange}
+              ref={refs.userNameRef}
+            />
           </li>
           <li className="step2-member-address">
             <div className="step2-member-address-box">
@@ -82,38 +171,46 @@ export default function SignupStep2() {
               <div className="step2-member-address-input">
                 <input
                   className="step2-postcode"
-                  type="button"
+                  type="text"
+                  name="zipcode"
+                  value={formData.zipcode}
+                  onChange={handleChange}
                   placeholder="우편번호"
                 />
-                <button>주소검색</button>
+                <button type="button" onClick={handleToggle}>
+                  주소검색
+                </button>
               </div>
             </div>
-            <input className="step2-address-basic" placeholder="기본주소" />
+            <input
+              className="step2-address-basic"
+              type="text"
+              name="address"
+              value={formData.address}
+              ref={refs.addressRef}
+              placeholder="기본주소"
+            />
             <br />
             <input
               className="step2-address-detail"
+              type="text"
+              name="detailAddress"
+              onChange={handleChange}
+              ref={refs.detailAddressRef}
               placeholder="나머지 주소(선택 입력 가능)"
             />
-            {/* <div>
-              <DaumPostCode />
-            </div> */}
-          </li>
-          <li className="step2-member-li">
-            <div className="step2-member-li-name">
-              <p>일반전화</p>
-            </div>
-            <div className="step2-member-phone-group">
-              <select className="step2-member-phone">
-                <option>02</option>
-                <option>031</option>
-                <option>032</option>
-                <option>033</option>
-              </select>
-              -
-              <input className="step2-member-phone" />
-              -
-              <input className="step2-member-phone" />
-            </div>
+
+            {isOpen && (
+              <div>
+                <DaumPostcode
+                  className="postmodal"
+                  theme={themeObj}
+                  style={postCodeStyle}
+                  onComplete={completeHandler}
+                  onClose={closeHandler}
+                />
+              </div>
+            )}
           </li>
           <li className="step2-member-li">
             <div className="step2-member-li-name">
@@ -121,7 +218,12 @@ export default function SignupStep2() {
               <p>휴대전화</p>
             </div>
             <div className="step2-member-phone-group">
-              <select className="step2-member-phone">
+              <select
+                className="step2-member-phone"
+                name="phoneNumber1"
+                value={formData.phoneNumber1}
+                onChange={handleChange}
+              >
                 <option>010</option>
                 <option>011</option>
                 <option>016</option>
@@ -130,9 +232,23 @@ export default function SignupStep2() {
                 <option>019</option>
               </select>
               -
-              <input className="step2-member-phone" />
+              <input
+                className="step2-member-phone"
+                type="text"
+                name="phoneNumber2"
+                value={formData.phoneNumber2}
+                onChange={handleChange}
+                ref={refs.phoneNumber2Ref}
+              />
               -
-              <input className="step2-member-phone" />
+              <input
+                className="step2-member-phone"
+                type="text"
+                name="phoneNumber3"
+                value={formData.phoneNumber3}
+                onChange={handleChange}
+                ref={refs.phoneNumber3Ref}
+              />
             </div>
           </li>
           <li className="step2-member-li step2-member-li-email">
@@ -141,9 +257,27 @@ export default function SignupStep2() {
               <p>이메일</p>
             </div>
             <div className="step2-member-email-group">
-              <input className="step2-member-email" />@
-              <input className="step2-member-email" />
-              <select>
+              <input
+                className="step2-member-email"
+                type="text"
+                name="emailId"
+                value={formData.emailId}
+                onChange={handleChange}
+                ref={refs.emailIdRef}
+              />
+              @
+              <input
+                className="step2-member-email"
+                type="text"
+                name="emailDomain"
+                value={handleChange}
+                onChange={handleChange}
+                ref={refs.emailDomainRef}
+              />
+              <select
+                name="emailDomain"
+                onChange={(e) => changeEmailDomain(e, refs, handleChange)}
+              >
                 <option value="self">직접입력</option>
                 <option value="naver.com">네이버</option>
                 <option value="gmail.com">구글</option>
@@ -167,12 +301,18 @@ export default function SignupStep2() {
                 className="step2-gender-input"
                 type="radio"
                 name="gender"
+                value="male"
+                checked={formData.gender === "male"}
+                onChange={handleChange}
               />
               남자
               <input
                 className="step2-gender-input"
                 type="radio"
                 name="gender"
+                value="female"
+                checked={formData.gender === "female"}
+                onChange={handleChange}
               />
               여자
             </div>
@@ -188,25 +328,54 @@ export default function SignupStep2() {
                   className="step2-birthdate-input"
                   type="radio"
                   name="birthdate"
-                  checked
+                  value="solar"
+                  checked={formData.birthdate === "solar"}
+                  onChange={handleChange}
                 />
                 양력
                 <input
                   className="step2-birthdate-input"
                   type="radio"
                   name="birthdate"
+                  value="lunar"
+                  checked={formData.birthdate === "lunar"}
+                  onChange={handleChange}
                 />
                 음력
               </div>
             </div>
             <div className="step2-date-input">
               <div>
-                <input />년<input />월 <input />일
+                <input
+                  type="text"
+                  name="year"
+                  value={formData.year}
+                  onChange={handleChange}
+                />
+                년
+                <input
+                  type="text"
+                  name="month"
+                  value={formData.month}
+                  onChange={handleChange}
+                />
+                월
+                <input
+                  type="text"
+                  name="day"
+                  value={formData.day}
+                  onChange={handleChange}
+                />
+                일
               </div>
             </div>
           </>
 
-          <button className="step2-submit-btn" type="button">
+          <button
+            className="step2-submit-btn"
+            type="button"
+            onClick={() => validateCheckStep2(formData, refs, nextStep)}
+          >
             가입하기
           </button>
         </div>

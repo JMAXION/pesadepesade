@@ -17,6 +17,7 @@
   height: 121px;
   font-size: 29px;
   padding: 62px 52px 30px;
+  margin-top: 100px;
 }
 
 .step1-progress-bar {
@@ -254,6 +255,7 @@
   font-size: 29px;
   font-weight: 400;
   letter-spacing: -0.1rem;
+  margin-top: 100px;
 }
 
 .step2-progress-bar {
@@ -368,9 +370,14 @@
   font-weight: 400;
 }
 
+.step2-member-id-p {
+  width: 45px;
+  height: 19px;
+}
+
 .step2-member-id-input {
   width: 200px !important;
-  margin-left: 75px;
+  margin-left: 69px;
 }
 
 .step2-idcheck-btn {
@@ -408,7 +415,7 @@
 .step2-member-address-input input {
   background-color: rgb(255, 251, 237);
   border: 1px solid black;
-  margin-left: 93px;
+  margin-left: 94px;
 }
 
 .step2-member-address-input button {
@@ -427,7 +434,7 @@
   background-color: rgb(255, 251, 237);
   border: 1px solid black;
   margin-top: 5px;
-  margin-left: 119px;
+  margin-left: 120px;
 }
 
 .step2-member-phone-group {
@@ -442,12 +449,12 @@
   width: 76px !important;
   height: 36px !important;
   margin: 0 !important;
-  margin-left: 5px !important;
+  margin-left: 3px !important;
   margin-right: 5px !important;
 }
 
 .step2-member-email-group {
-  margin-right: 5px;
+  margin-right: 2px;
   font-weight: 400;
 }
 
