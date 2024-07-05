@@ -11,6 +11,10 @@
   margin: auto;
 }
 
+.login a:hover {
+  text-decoration: underline;
+}
+
 .login-title {
   font-size: 29px;
   padding: 62px 52px 30px;
@@ -27,7 +31,7 @@
   height: 36px;
   font-size: 12px;
   margin: 15px 0 0;
-  background-color: #fffcf1;
+  background-color: var(--color-bg);
   border: 1px solid black;
 }
 
@@ -47,7 +51,7 @@
   justify-content: space-between;
 }
 
-.login-find > a {
+.login-find a {
   color: black;
   font-size: 13px;
   margin: 10px;
@@ -69,7 +73,7 @@
   border: 1px solid black;
 }
 
-.login-sns-button > a {
+.login-sns-button a {
   color: black;
   padding: 10px 20px;
   font-size: 14px;
@@ -116,6 +120,10 @@
   border: 1px solid black;
 }
 
+.login-join-button a {
+  color: var(--color-black);
+}
+
 .login-description-box {
   margin-top: 20px;
 }
@@ -123,4 +131,244 @@
 .login-description {
   font-size: 13px;
   line-height: 1.6;
+}
+
+.login-find a,
+.login-sns-button a,
+.login-join-button a {
+  text-decoration: none;
+}
+
+/**************
+
+   IdFind
+
+***************/
+
+.idfind {
+  width: 400px;
+  height: 550px;
+  margin: auto;
+}
+.idfind-title {
+  margin: auto;
+  text-align: center;
+  width: 400px;
+  height: 121px;
+  color: var(--color-black);
+  font-size: 29px;
+  font-weight: 400;
+  padding: 62px 52px 30px;
+}
+
+.idfind-container {
+  width: 400px;
+  height: 537px;
+}
+
+.idfind-form-ul {
+  width: 386px;
+  height: 190px;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid rgb(213, 213, 213);
+}
+
+.idfind-form-group {
+  display: flex;
+  width: 386px;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+}
+
+.idfind-form-ul .idfind-form-group:first-child {
+  margin-top: 3px;
+}
+.idfind-form-label {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 46px;
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.idfind-select,
+.idfind-inputs,
+.idfind-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+}
+
+.idfind-select select,
+.idfind-input input {
+  width: 258px;
+  height: 36px;
+  margin-left: 20px;
+  background-color: var(--color-bg);
+  border: 1px solid black;
+}
+
+.idfind-select select {
+  padding: 0 20px 0px 11px;
+  font-size: 13px;
+  color: var(--color-black);
+}
+
+.idfind-inputs {
+  font-size: 12px;
+  font-weight: 400;
+  gap: 5px;
+}
+
+.idfind-inputs input {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+}
+
+.idfind-inputs input[type="radio"] {
+  appearance: none;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.idfind-inputs input[type="radio"]:checked {
+  border: 5px solid black;
+  background-color: white;
+}
+
+.idfind-btn {
+  width: 386px;
+  height: 35px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: 1px solid black;
+  margin-left: 7px;
+  margin-top: 10px;
+}
+
+/**************
+
+   PasswordFind
+
+***************/
+
+.password {
+  width: 400px;
+  height: 550px;
+  margin: auto;
+}
+.password-title {
+  margin: auto;
+  text-align: center;
+  width: 400px;
+  height: 121px;
+  color: var(--color-black);
+  font-size: 29px;
+  font-weight: 400;
+  letter-spacing: -0.2rem;
+  padding: 62px 52px 30px;
+}
+
+.password-container {
+  width: 400px;
+  height: 537px;
+}
+
+.password-form-ul {
+  width: 386px;
+  height: 239px;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid rgb(213, 213, 213);
+}
+
+.password-form-group {
+  display: flex;
+  width: 386px;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+}
+
+.password-form-ul .password-form-group:first-child {
+  margin-top: 3px;
+}
+.password-form-label {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 46px;
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.password-select,
+.password-inputs,
+.password-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+}
+
+.password-select select,
+.password-input input {
+  width: 258px;
+  height: 36px;
+  margin-left: 20px;
+  background-color: var(--color-bg);
+  border: 1px solid black;
+}
+
+.password-input-id input {
+  width: 166px;
+  height: 36px;
+}
+
+.password-select select {
+  padding: 0 20px 0px 11px;
+  font-size: 13px;
+  color: var(--color-black);
+}
+
+.password-inputs {
+  font-size: 12px;
+  font-weight: 400;
+  gap: 5px;
+}
+
+.password-inputs input {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+}
+
+.password-inputs input[type="radio"] {
+  appearance: none;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.password-inputs input[type="radio"]:checked {
+  border: 5px solid black;
+  background-color: white;
+}
+
+.password-btn {
+  width: 386px;
+  height: 35px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: 1px solid black;
+  margin-left: 7px;
+  margin-top: 10px;
 }

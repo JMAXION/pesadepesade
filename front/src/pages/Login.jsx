@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../css/login.css";
 
 export default function Login() {
@@ -31,8 +32,8 @@ export default function Login() {
             </li>
           </ul>
           <div className="login-find">
-            <a href="#">아이디찾기</a>
-            <a href="#">비밀번호찾기</a>
+            <Link to="/login/idfind"> 아이디찾기</Link>
+            <Link to="/login/passwordfind"> 비밀번호찾기</Link>
           </div>
           <div>
             <ul className="login-sns">
@@ -60,7 +61,7 @@ export default function Login() {
           <div>
             <ul className="login-join-box">
               <li className="login-join-button">
-                <a href="">회원가입</a>
+                <Link to="/signup"> 회원가입</Link>
               </li>
               <li className="login-join-button">
                 <a href="">비회원 주문조회</a>

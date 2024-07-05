@@ -27,27 +27,36 @@ export default function Signup1Step1() {
         </div>
         <form>
           <div>
+            {/* 전체 동의 */}
+
             <div className="step1-agreeall">
               <h3>전체 동의</h3>
-              <p>
-                <input className="step1-agreeall-checkbox" type="checkbox" />
-                <label className="step1-agreeall-label">
+              <div className="agreeall-checkbox-container">
+                <input id="check1" type="checkbox" />
+                <label for="check1">✔</label>
+                <p>
                   <strong>이용약관 및 개인정보수집 및 이용,</strong>
-                  <br />
-                  <strong> 쇼핑정보 수신(선택)에 모두 동의합니다.</strong>
-                  <br />
-                  <strong>
-                    이용약관 및 개인정보수집 및 이용에 모두 동의합니다.
-                  </strong>
-                </label>
+                </p>
+              </div>
+              <p>
+                <strong>쇼핑정보 수신(선택)에 모두 동의합니다.</strong>
+              </p>
+              <p className="agreeall-last-p">
+                <strong>
+                  이용약관 및 개인정보수집 및 이용에 모두 동의합니다.
+                </strong>
               </p>
             </div>
             <div>
               <div>
                 <div className="step1-agree">
-                  <div>
-                    <input type="checkbox" />
-                    <span> 이용약관 동의 (필수)</span>
+                  <div className="step1-agree-checkbox">
+                    <input id="check2" type="checkbox" />
+                    <label for="check2">✔</label>
+                    <span>
+                      이용약관 동의 <strong>(</strong>필수
+                      <strong>)</strong>
+                    </span>
                   </div>
                   <span>
                     <a href="#">전체보기</a>
@@ -69,9 +78,13 @@ export default function Signup1Step1() {
               </div>
               <div>
                 <div className="step1-agree">
-                  <div>
-                    <input type="checkbox" />
-                    <span> 개인정보처리방침동의 (필수)</span>
+                  <div className="step1-agree-checkbox">
+                    <input id="check3" type="checkbox" />
+                    <label for="check3">✔</label>
+                    <span>
+                      개인정보처리방침동의 <strong>(</strong>필수
+                      <strong>)</strong>
+                    </span>
                   </div>
                   <a href="#">전체보기</a>
                 </div>
@@ -92,17 +105,26 @@ export default function Signup1Step1() {
               <div>
                 <div className="step1-agree step1-agree-shop">
                   <input type="checkbox" />
-                  <span> 쇼핑정보 수신 동의 (선택)</span>
+                  <span>
+                    쇼핑정보 수신 동의 <strong>(</strong>선택
+                    <strong>)</strong>
+                  </span>
                 </div>
-                <div className="step1-agree-sns">
+                <div className="step1-agree-ad">
                   <ul>
                     <li>
                       <strong>SMS</strong>수신을 동의하십니까? &nbsp;
-                      <input type="checkbox" /> 동의함
+                      <div className="step1-ad-checkbox">
+                        <input id="check4" type="checkbox" />
+                        <label for="check4">✔</label> <span>동의함</span>
+                      </div>
                     </li>
                     <li>
                       <strong>이메일</strong>수신을 동의하십니까? &nbsp;
-                      <input type="checkbox" /> 동의함
+                      <div className="step1-ad-checkbox">
+                        <input id="check5" type="checkbox" />
+                        <label for="check5">✔</label> <span>동의함</span>
+                      </div>
                     </li>
                   </ul>
                 </div>

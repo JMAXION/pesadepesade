@@ -167,14 +167,13 @@ export default function SignupStep2() {
                 className="step2-gender-input"
                 type="radio"
                 name="gender"
-                checked
               />
               남자
               <input
                 className="step2-gender-input"
                 type="radio"
                 name="gender"
-              />{" "}
+              />
               여자
             </div>
           </div>

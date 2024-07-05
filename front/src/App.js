@@ -17,6 +17,9 @@ import QnaContent from "./pages/qna/QnaContent.jsx";
 import QnaWrite from "./pages/qna/QnaWrite.jsx";
 import QnaPassWord from "./pages/qna/QnaPassWord.jsx";
 import Cart from "./pages/Cart.jsx";
+import IdFind from "./pages/IdFind.jsx";
+import PasswordFind from "./pages/PasswordFind.jsx";
+import Signup from "./pages/Signup.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -33,6 +36,11 @@ export default function App() {
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
         { path: "/login", element: <Login /> },
+        { path: "/login/idfind", element: <IdFind /> },
+        { path: "/login/passwordfind", element: <PasswordFind /> },
+        { path: "/signup", element: <Signup /> },
+        { path: "/shop/all", element: <Shop /> },
+        { path: "/shop/parfum", element: <Shop /> },
         { path: "/notice", element: <Notice /> },
         { path: "/stocklist", element: <StockList /> },
         { path: "/journal", element: <Journal /> },
