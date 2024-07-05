@@ -15,6 +15,7 @@ import NoticeContent from "./pages/NoticeContent.jsx";
 import QnaList from "./pages/qna/QnaList.jsx";
 import QnaContent from "./pages/qna/QnaContent.jsx";
 import Cart from "./pages/Cart.jsx";
+import Upload from "./pages/Upload.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -38,6 +39,8 @@ export default function App() {
         { path: "/notice/1", element: <NoticeContent /> },
         { path: "/qna", element: <QnaList /> },
         { path: "/qna/qnaContent", element: <QnaContent /> },
+        { path: "/notice/1", element: <NoticeContent /> },
+        { path: "/upload", element: <Upload /> },
       ],
     },
   ]);
