@@ -1,11 +1,11 @@
 @import url("https://use.typekit.net/ppj4rln.css");
 
-body {
+#root {
   background-color: var(--color-bg);
 }
 
 :root {
-  --color-bg: rgb(254, 251, 239);
+  --color-bg: rgb(255, 251, 237);
   --color-black: #000;
   --color-white: #fff;
 }
@@ -19,7 +19,7 @@ body {
 .content {
   width: 1200px;
   height: auto;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   margin: auto;
   margin-bottom: 50px;
 }
