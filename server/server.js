@@ -11,6 +11,7 @@ import uploadRouter from "./router/uploadRouter.js";
 import categoryRouter from "./router/categoryRouter.js";
 import journalRouter from "./router/journalRouter.js";
 import deleteRouter from "./router/deleteRouter.js";
+import memberRouter from "./router/memberRouter.js";
 
 const server = express();
 const port = 8080;
@@ -30,6 +31,7 @@ server.use("/upload", uploadRouter);
 server.use("/delete", deleteRouter);
 server.use("/categories", categoryRouter);
 server.use("/journal", journalRouter);
+server.use("/member", memberRouter);
 
 server.listen(port, () => {
   console.log(`welcome ${port} server start`);

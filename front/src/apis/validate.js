@@ -62,11 +62,14 @@ export const validateCheckStep2 = (formData, refs) => {
   } else if (refs.userNameRef.current.value === "") {
     alert("이름을 입력해 주세요.");
     checkFlag = false;
-  } else if (refs.phoneNumber1Ref.current.value === "") {
+  } else if (refs.phoneNumber2Ref.current.value === "") {
     alert("휴대폰 가운데 자리를 입력해 주세요.");
     checkFlag = false;
-  } else if (refs.phoneNumber2Ref.current.value === "") {
+  } else if (refs.phoneNumber3Ref.current.value === "") {
     alert("휴대폰 뒷자리를 입력해 주세요.");
+    checkFlag = false;
+  } else if (!formData.emailId || !formData.emailDomain) {
+    alert("이메일을 입력해 주세요.");
     checkFlag = false;
   }
   return checkFlag;
@@ -90,6 +93,9 @@ export const passCheck = (refs) => {
 };
 
 export const changeEmailDomain = (e, refs, handleChange) => {
+  console.log(e.target.name);
+  console.log(e.target.value);
+
   const name = e.target.name;
   const value = e.target.value;
 

@@ -19,7 +19,7 @@ export default function Signup() {
     zipcode: "",
     address: "",
     detailAddress: "",
-    phoneNumber1: "",
+    phoneNumber1: "010",
     phoneNumber2: "",
     phoneNumber3: "",
     emailId: "",
