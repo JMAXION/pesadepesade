@@ -63,7 +63,7 @@ export default function Upload() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/upload",
+        "http://localhost:8080/admin/upload",
         formData,
         {
           headers: {
