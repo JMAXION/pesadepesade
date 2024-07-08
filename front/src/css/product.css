@@ -8,7 +8,7 @@ body {
   margin: 0 auto; /* 가운데 정렬 */
   padding: 20px;
   text-align: center;
-  background-color: red;
+  
   z-index: 1000;
 }
 
@@ -146,26 +146,35 @@ body {
   width: 1200px;
   margin: 0 auto;
 }
+.shop-wrapper {
+  display: flex;
+  flex-direction: column; /* 요소들을 세로로 정렬합니다 */
+  align-items: center; /* 요소들을 수평으로 중앙 정렬합니다 */
+}
 
 .filter-buttons {
   margin-left: 50%;
   transform: translateX(-12.5%);
 }
 
+.filter-buttons {
+  display: flex;
+  gap: 10px; /* 버튼들 사이의 간격을 조절합니다 */
+  margin-top: 250px; /* 필요에 따라 버튼들과 제품 리스트 사이의 간격을 조절합니다 */
+}
+
 .filter-buttons button {
-  /* Increase padding for larger buttons */
-  padding: 12px 20px; /* Adjust padding as needed for larger size */
-  margin-right: 15px; /* Adjust margin for spacing */
-  background-color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #f0f0f0;
   border: 1px solid #ccc;
   cursor: pointer;
-  font-size: 16px; /* Adjust font size for better readability */
 }
 
 .filter-buttons button.active {
   background-color: #007bff;
   color: #fff;
-  border-color: #007bff;
+  border: 1px solid #007bff;
 }
 
 .purchase-modal-container {

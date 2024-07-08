@@ -18,17 +18,12 @@ export default function Shop() {
           All
         </button>
         <button
-          onClick={() => handleChange("parfum")}
-          className={filter === "parfum" ? "active" : "shop-category"}
+          onClick={() => handleChange("jomalron")}
+          className={filter === "jomalron" ? "active" : "shop-category"}
         >
-          Parfum
+          jomalron
         </button>
-        <button
-          onClick={() => handleChange("candle")}
-          className={filter === "candle" ? "active" : "shop-category"}
-        >
-          Candle
-        </button>
+        {/* Add more buttons as needed */}
       </div>
 
       <div className="product-all-wrapper">
