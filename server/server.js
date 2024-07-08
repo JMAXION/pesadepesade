@@ -10,10 +10,7 @@ import cartRouter from "./router/cartRouter.js";
 import uploadRouter from "./router/uploadRouter.js";
 import categoryRouter from "./router/categoryRouter.js";
 import journalRouter from "./router/journalRouter.js";
-
-
-import uploadRouter from './router/uploadRouter.js'
-import deleteRouter from './router/deleteRouter.js'
+import deleteRouter from "./router/deleteRouter.js";
 
 const server = express();
 const port = 8080;

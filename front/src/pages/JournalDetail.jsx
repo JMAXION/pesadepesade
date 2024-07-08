@@ -32,6 +32,7 @@ export default function JournalDetail() {
   return (
     <div className="journal-detail">
       <SubTitle title={journal.jtitle} />
+      <img src={journal.dtitleimage} alt="" />
       <h3>{journal.ddate}</h3>
       <ul>
         <li>[BRAND STORY]</li>
@@ -46,27 +47,78 @@ export default function JournalDetail() {
           autoplay={{ delay: 8000, disableOnInteraction: false }}
           modules={[Pagination, Autoplay]}
         >
-          <SwiperSlide>
-            <img
-              src={journal.dcarouselimg1}
-              alt="이미지 1"
-              className="slider-image"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src={journal.dcarouselimg2}
-              alt="이미지 2"
-              className="slider-image"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src={journal.dcarouselimg3}
-              alt="이미지 3"
-              className="slider-image"
-            />
-          </SwiperSlide>
+          {journal.dcarouselimg1 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg1}
+                alt="이미지 1"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg2 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg2}
+                alt="이미지 2"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg3 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg3}
+                alt="이미지 3"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg4 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg4}
+                alt="이미지 4"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg5 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg5}
+                alt="이미지 5"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg6 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg6}
+                alt="이미지 6"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg7 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg7}
+                alt="이미지 7"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
+          {journal.dcarouselimg8 && (
+            <SwiperSlide>
+              <img
+                src={journal.dcarouselimg8}
+                alt="이미지 8"
+                className="slider-image"
+              />
+            </SwiperSlide>
+          )}
         </Swiper>
       </div>
       <div className="journal-detail-desc">
