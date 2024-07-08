@@ -43,7 +43,8 @@
 
 .journal-detail {
   width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
+  background-color: white;
 }
 .journal-detail-subtitle {
   text-align: center;
@@ -56,9 +57,17 @@
 }
 .journal-detail-desc {
   display: flex;
-  justify-content: center;
-  border: 1px solid red;
+  justify-content: space-between;
+  margin: 1rem 2rem;
 }
 .journal-detail-desc-img {
   width: 50%;
+}
+.journal-detail-desc-text {
+  width: 40%;
+  align-items: center;
+  margin: auto;
+}
+.journal-detail-editor {
+  margin: 2rem;
 }

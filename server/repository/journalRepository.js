@@ -23,7 +23,7 @@ ddetaildesc5,
 ddetaildesc6,
   j.jcategory, j.jtitle, j.jdesc, j.jimg
   from journal_detail_table d, journal_table j 
-  where d.jid = j.jid
+  where d.jid = j.jid and d.jid = ?
   `;
   return db.execute(sql, [id]).then((result) => result[0][0]);
 };

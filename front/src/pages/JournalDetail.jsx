@@ -12,7 +12,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 
 export default function JournalDetail() {
   const { id } = useParams();
-  const [journal, setJournal] = useState(null);
+  const [journal, setJournal] = useState();
   const url = `http://localhost:8080/journal/${id}`;
 
   useEffect(() => {
@@ -27,12 +27,16 @@ export default function JournalDetail() {
   if (!journal) {
     return <div>Loading...</div>;
   }
+  console.log("journaldetail-->", journal);
 
   return (
     <div className="journal-detail">
       <SubTitle title={journal.jtitle} />
       <h3>{journal.ddate}</h3>
-      <h4 className="journal-detail-subtitle">{journal.ddesc1}</h4>
+      <ul>
+        <li>[BRAND STORY]</li>
+        <h4 className="journal-detail-subtitle">{journal.ddesc1}</h4>
+      </ul>
       <div className="journal-slider">
         <Swiper
           spaceBetween={0}
@@ -71,11 +75,70 @@ export default function JournalDetail() {
           alt=""
           className="journal-detail-desc-img"
         />
-        <ul className="journal-detail-">
+        <ul className="journal-detail-desc-text">
           <li>{journal.ddetailtitle1}</li>
           <li>{journal.ddetaildesc1}</li>
         </ul>
       </div>
+      <div className="journal-detail-desc">
+        <ul className="journal-detail-desc-text">
+          <li>{journal.ddetailtitle2}</li>
+          <li>{journal.ddetaildesc2}</li>
+        </ul>
+        <img
+          src={journal.ddetailimg2}
+          alt=""
+          className="journal-detail-desc-img"
+        />
+      </div>
+      <div className="journal-detail-desc">
+        <img
+          src={journal.ddetailimg3}
+          alt=""
+          className="journal-detail-desc-img"
+        />
+        <ul className="journal-detail-desc-text">
+          <li>{journal.ddetailtitle3}</li>
+          <li>{journal.ddetaildesc3}</li>
+        </ul>
+      </div>
+      <div className="journal-detail-desc">
+        <ul className="journal-detail-desc-text">
+          <li>{journal.ddetailtitle4}</li>
+          <li>{journal.ddetaildesc4}</li>
+        </ul>
+        <img
+          src={journal.ddetailimg4}
+          alt=""
+          className="journal-detail-desc-img"
+        />
+      </div>
+      <div className="journal-detail-desc">
+        <img
+          src={journal.ddetailimg5}
+          alt=""
+          className="journal-detail-desc-img"
+        />
+        <ul className="journal-detail-desc-text">
+          <li>{journal.ddetailtitle5}</li>
+          <li>{journal.ddetaildesc5}</li>
+        </ul>
+      </div>
+      <div className="journal-detail-desc">
+        <ul className="journal-detail-desc-text">
+          <li>{journal.ddetailtitle6}</li>
+          <li>{journal.ddetaildesc6}</li>
+        </ul>
+        <img
+          src={journal.ddetailimg6}
+          alt=""
+          className="journal-detail-desc-img"
+        />
+      </div>
+      <ul className="journal-detail-editor">
+        <li>[EDITOR SAY]</li>
+        <li>{journal.ddesc2}</li>
+      </ul>
     </div>
   );
 }
