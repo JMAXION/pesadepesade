@@ -1,18 +1,13 @@
-import { db } from '../database/database_mysql80.js';
+import * as repository from '../repository/deleteRepository.js';
 
 export const deleteProduct = async (req, res) => {
-  const { pid } = req.params;
+  const pid = req.params.pid;
 
   try {
-    // pesade_product_image 테이블에서 해당 pid의 데이터 삭제
-    await db.execute('DELETE FROM pesade_product_image WHERE pid = ?', [pid]);
-
-    // pesade_product 테이블에서 해당 pid의 데이터 삭제
-    await db.execute('DELETE FROM pesade_product WHERE pid = ?', [pid]);
-
+    await repository.deleteProduct(pid);
     res.status(200).json({ success: true, message: 'Product deleted successfully' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Database error' });
+    console.error('Error deleting product:', error);
+    res.status(500).json({ success: false, message: 'Failed to delete product' });
   }
 };
