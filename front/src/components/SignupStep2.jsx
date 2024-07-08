@@ -3,16 +3,16 @@ import { useState, useRef } from "react";
 import DaumPostcode from "react-daum-postcode";
 import {
   validateCheckStep2,
-  /*   passCheck */
+  /*   passCheck, */
   changeEmailDomain,
 } from "../apis/validate";
 
-export default function SignupStep2(
+export default function SignupStep2({
   nextStep,
   formData,
   handleChange,
-  handleAddress
-) {
+  handleAddress,
+}) {
   const refs = {
     userIdRef: useRef(null),
     userPassRef: useRef(null),
@@ -100,13 +100,15 @@ export default function SignupStep2(
         {/* 기본정보 */}
         <div className="step2-titlearea">
           <h3>기본정보</h3>
-          <span>- 필수</span>
+          <span>* 필수</span>
         </div>
         <ul className="step2-ul">
           <li className="step2-member-li step2-member-li-id">
             <div className="step2-member-li-name">
               <span>*</span>
-              <p className="step2-member-id-p">아이디</p>
+              <p className="step2-member-id-p" style={{ textAlign: "left" }}>
+                아이디
+              </p>
             </div>
             <input
               className="step2-member-id-input"
@@ -195,6 +197,7 @@ export default function SignupStep2(
               className="step2-address-detail"
               type="text"
               name="detailAddress"
+              value={formData.detailAddress}
               onChange={handleChange}
               ref={refs.detailAddressRef}
               placeholder="나머지 주소(선택 입력 가능)"
@@ -224,12 +227,12 @@ export default function SignupStep2(
                 value={formData.phoneNumber1}
                 onChange={handleChange}
               >
-                <option>010</option>
-                <option>011</option>
-                <option>016</option>
-                <option>017</option>
-                <option>018</option>
-                <option>019</option>
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+                <option value="018">018</option>
+                <option value="019">019</option>
               </select>
               -
               <input
@@ -270,7 +273,7 @@ export default function SignupStep2(
                 className="step2-member-email"
                 type="text"
                 name="emailDomain"
-                value={handleChange}
+                value={formData.emailDomain}
                 onChange={handleChange}
                 ref={refs.emailDomainRef}
               />
@@ -327,7 +330,7 @@ export default function SignupStep2(
                 <input
                   className="step2-birthdate-input"
                   type="radio"
-                  name="birthdate"
+                  name="birthDate"
                   value="solar"
                   /*  checked={formData.birthdate === "solar"} */
                   onChange={handleChange}
@@ -336,7 +339,7 @@ export default function SignupStep2(
                 <input
                   className="step2-birthdate-input"
                   type="radio"
-                  name="birthdate"
+                  name="birthDate"
                   value="lunar"
                   /*  checked={formData.birthdate === "lunar"} */
                   onChange={handleChange}

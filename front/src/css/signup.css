@@ -555,14 +555,14 @@
   border: 1px solid var(--color-black);
 }
 
-.step2 [type="radio"] {
+.step2 input[type="radio"] {
   appearance: none;
   border: 1px solid black;
   border-radius: 50%;
   background-color: white;
 }
 
-.step2 [type="radio"]:checked {
+.step2 input[type="radio"]:checked {
   border: 5px solid black;
   background-color: white;
 }
@@ -598,6 +598,7 @@
   letter-spacing: -0.1rem;
   text-align: center;
   padding: 62px 52px 30px;
+  margin-top: 100px;
 }
 
 .step3-progress-bar {
