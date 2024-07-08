@@ -1,4 +1,4 @@
-import SubTitle from "../components/SubTitle";
+import SubTitle from "../../components/SubTitle";
 import { useState, useEffect } from "react";
 import axios from "axios";
 

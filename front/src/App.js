@@ -21,7 +21,8 @@ import Cart from "./pages/Cart.jsx";
 import IdFind from "./pages/IdFind.jsx";
 import PasswordFind from "./pages/PasswordFind.jsx";
 import Signup from "./pages/Signup.jsx";
-import Upload from "./pages/Upload.jsx";
+import Upload from "./pages/admin/Upload.jsx";
+import Delete from "./pages/admin/Delete.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -56,6 +57,7 @@ export default function App() {
         { path: "/qna/qnaContent", element: <QnaContent /> },
         { path: "/notice/1", element: <NoticeContent /> },
         { path: "/upload", element: <Upload /> },
+        { path: "/delete", element: <Delete /> },
       ],
     },
   ]);
