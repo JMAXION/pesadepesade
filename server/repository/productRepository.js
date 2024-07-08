@@ -4,9 +4,10 @@ export const getProduct = async(params)=>{
   console.log(params);
   let sql = '';
   if(params.type === 'all') {
-     sql = `select * from product_table
-            order by category desc`;
-  }else if(params.type === 'parfum'){
+     sql = `select *  from pesade_product p, pesade_category c 
+            where p.category_id = c.category_id
+            order  by c.category_name desc`;
+  }else if(params.type === 'pesade'){
     sql = `select * from product_table
           where category='parfum'
           order by category desc
