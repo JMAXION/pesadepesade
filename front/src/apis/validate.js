@@ -9,37 +9,38 @@ export const validateCheckStep1 = (nextStep, formData) => {
 
   if (!formData.terms && !formData.personal) {
     alert("약관에 동의해 주세요");
-    document.querySelector(".step1-terms").style.outline = "10px solid red";
-    document.querySelector(".step1-personal").style.outline = "10px solid red";
+    /*     document.getElementById("check2").style.border = "10px solid red";
+    document.getElementById("check3").style.border = "10px solid red"; */
   } else if (!formData.terms) {
     alert("이용 약관에 동의해 주세요");
-    document.querySelector(".step1-terms").style.outline = "10px solid red";
+    /*   document.getElementById("check2").style.border = "10px solid red"; */
   } else if (!formData.personal) {
     alert("개인정보처리방침에 동의해 주세요");
-    document.querySelector(".step1-personal").style.outline = "10px solid red";
+    /*  document.getElementById("check3").style.border = "10px solid red"; */
   } else {
     nextStep();
   }
 };
 
-export const handleFocus = (type) => {
+/* export const handleFocus = (type) => {
+  console.log("type ==>", type);
   if (type === "terms") {
-    document.querySelector(".step1-terms").style.outline = "none";
+    document.getElementById("check2").style.border = "none";
   } else if (type === "personal") {
-    document.querySelector(".step1-personal").style.outline = "none";
+    document.getElementById("check3").style.border = "none";
   } else if (type === "all") {
-    document.querySelector(".step1-terms").style.outline = "none";
-    document.querySelector(".step1-personal").style.outline = "none";
+    document.getElementById("check2").style.border = "none";
+    document.getElementById("check3").style.border = "none";
   }
 };
-
+ */
 /**
  *
  * Step2
  *
  */
 
-export const validateCheckStep2 = (formData, refs, nextStep) => {
+export const validateCheckStep2 = (formData, refs) => {
   let checkFlag = true;
 
   console.log("Ref=>", refs);

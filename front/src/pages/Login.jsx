@@ -14,7 +14,7 @@ export default function Login() {
                 className="login-input"
                 type="text"
                 name="userId"
-                placeholder="  ID"
+                placeholder="ID"
               />
             </li>
             <li>
@@ -22,7 +22,7 @@ export default function Login() {
                 className="login-input"
                 type="password"
                 name="userPass"
-                placeholder="  Password"
+                placeholder="Password"
               />
             </li>
             <li>

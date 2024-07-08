@@ -102,7 +102,7 @@ export default function SignupStep2(
           <h3>기본정보</h3>
           <span>- 필수</span>
         </div>
-        <ul>
+        <ul className="step2-ul">
           <li className="step2-member-li step2-member-li-id">
             <div className="step2-member-li-name">
               <span>*</span>
@@ -119,7 +119,7 @@ export default function SignupStep2(
             <button
               className="step2-idcheck-btn"
               type="button"
-              /*  onClick={handleIdCheck} */
+              /*     onClick={handleIdCheck} */
             >
               중복확인
             </button>
@@ -265,7 +265,7 @@ export default function SignupStep2(
                 onChange={handleChange}
                 ref={refs.emailIdRef}
               />
-              @
+              <span>@</span>
               <input
                 className="step2-member-email"
                 type="text"
@@ -302,7 +302,7 @@ export default function SignupStep2(
                 type="radio"
                 name="gender"
                 value="male"
-                checked={formData.gender === "male"}
+                /*   checked={formData.gender === "male"} */
                 onChange={handleChange}
               />
               남자
@@ -311,7 +311,7 @@ export default function SignupStep2(
                 type="radio"
                 name="gender"
                 value="female"
-                checked={formData.gender === "female"}
+                /*    checked={formData.gender === "female"} */
                 onChange={handleChange}
               />
               여자
@@ -329,7 +329,7 @@ export default function SignupStep2(
                   type="radio"
                   name="birthdate"
                   value="solar"
-                  checked={formData.birthdate === "solar"}
+                  /*  checked={formData.birthdate === "solar"} */
                   onChange={handleChange}
                 />
                 양력
@@ -338,14 +338,14 @@ export default function SignupStep2(
                   type="radio"
                   name="birthdate"
                   value="lunar"
-                  checked={formData.birthdate === "lunar"}
+                  /*  checked={formData.birthdate === "lunar"} */
                   onChange={handleChange}
                 />
                 음력
               </div>
             </div>
             <div className="step2-date-input">
-              <div>
+              <div className="step2-date">
                 <input
                   type="text"
                   name="year"
