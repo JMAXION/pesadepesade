@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/journal.css";
+import { Link } from "react-router-dom";
 
 export default function Journal() {
   const [journalList, setJournalList] = useState([]);
   const [iframeClass, setIframeClass] = useState("journal-iframe");
+  const url = "http://localhost:8080/journal";
 
   useEffect(() => {
-    axios
-      .get("/data/journal.json")
+    axios({
+      method: "post",
+      url: url,
+    })
       .then((res) => {
-        setJournalList(res.data || []);
+        setJournalList(res.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -48,17 +52,19 @@ export default function Journal() {
             {row.map((journal, index) => {
               const actualIndex = rowIndex * 3 + index;
               return journal.id ? (
-                <li key={actualIndex}>
-                  <div className="journal-content">
-                    <img
-                      src={journal.img}
-                      alt=""
-                      className="journal-content-image"
-                    />
-                    <p className="journal-content-title">{journal.title}</p>
-                    <p className="journal-content-desc">{journal.desc}</p>
-                  </div>
-                </li>
+                <Link to={`/journal/${journal.id}`} key={actualIndex}>
+                  <li>
+                    <div className="journal-content">
+                      <img
+                        src={journal.jimg}
+                        alt=""
+                        className="journal-content-image"
+                      />
+                      <p className="journal-content-title">{journal.jtitle}</p>
+                      <p className="journal-content-desc">{journal.jdesc}</p>
+                    </div>
+                  </li>
+                </Link>
               ) : (
                 <p key={`empty-${actualIndex}`}></p>
               );

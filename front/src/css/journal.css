@@ -40,3 +40,25 @@
   font-size: 0.8rem;
   margin: 0.5rem 0;
 }
+
+.journal-detail {
+  width: 1200px;
+  margin: 0 auto;
+}
+.journal-detail-subtitle {
+  text-align: center;
+}
+.journal-slider {
+  margin: 2rem auto;
+  width: 45%;
+  height: auto;
+  /* height: 100vh; */
+}
+.journal-detail-desc {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+}
+.journal-detail-desc-img {
+  width: 50%;
+}

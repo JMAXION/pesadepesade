@@ -10,6 +10,7 @@ import Login from "./pages/Login.jsx";
 import Notice from "./pages/Notice.jsx";
 import StockList from "./pages/StockList.jsx";
 import Journal from "./pages/Journal.jsx";
+import JournalDetail from "./pages/JournalDetail.jsx";
 import Press from "./pages/Press.jsx";
 import NoticeContent from "./pages/NoticeContent.jsx";
 import QnaList from "./pages/qna/QnaList.jsx";
@@ -46,6 +47,7 @@ export default function App() {
         { path: "/notice", element: <Notice /> },
         { path: "/stocklist", element: <StockList /> },
         { path: "/journal", element: <Journal /> },
+        { path: "/journal/:id", element: <JournalDetail /> },
         { path: "/press", element: <Press /> },
         { path: "/notice/1", element: <NoticeContent /> },
         { path: "/qna", element: <QnaList /> },

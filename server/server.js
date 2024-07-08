@@ -7,7 +7,10 @@ import qnaRouter from "./router/qnaRouter.js";
 import pressRouter from "./router/pressRouter.js";
 import stockRouter from "./router/stockRouter.js";
 import cartRouter from "./router/cartRouter.js";
-import categoryRouter from './router/categoryRouter.js'
+import uploadRouter from "./router/uploadRouter.js";
+import categoryRouter from "./router/categoryRouter.js";
+import journalRouter from "./router/journalRouter.js";
+
 
 import uploadRouter from './router/uploadRouter.js'
 import deleteRouter from './router/deleteRouter.js'
@@ -19,7 +22,7 @@ server.use(express.json());
 server.use(express.urlencoded());
 server.use(cors());
 server.use(bodyParser.json());
-server.use("/uploads", express.static("uploads")); 
+server.use("/uploads", express.static("uploads"));
 
 server.use("/product", productRouter);
 server.use("/qna", qnaRouter);
@@ -29,6 +32,7 @@ server.use("/cart", cartRouter);
 server.use("/upload", uploadRouter);
 server.use("/delete", deleteRouter);
 server.use("/categories", categoryRouter);
+server.use("/journal", journalRouter);
 
 server.listen(port, () => {
   console.log(`welcome ${port} server start`);

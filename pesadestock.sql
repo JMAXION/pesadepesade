@@ -9,6 +9,7 @@ sopentime VARCHAR(100)
 );
 
 select * from stock_table;
+select sid, sname, saddress, sphone, sopentime from stock_table;
 
 insert into stock_table(sname, saddress,sphone, sopentime) values(
 "하이츠 서교",
