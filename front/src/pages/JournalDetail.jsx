@@ -65,7 +65,17 @@ export default function JournalDetail() {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div></div>
+      <div className="journal-detail-desc">
+        <img
+          src={journal.ddetailimg1}
+          alt=""
+          className="journal-detail-desc-img"
+        />
+        <ul className="journal-detail-">
+          <li>{journal.ddetailtitle1}</li>
+          <li>{journal.ddetaildesc1}</li>
+        </ul>
+      </div>
     </div>
   );
 }

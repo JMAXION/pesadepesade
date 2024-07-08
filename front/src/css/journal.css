@@ -54,3 +54,11 @@
   height: auto;
   /* height: 100vh; */
 }
+.journal-detail-desc {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+}
+.journal-detail-desc-img {
+  width: 50%;
+}
