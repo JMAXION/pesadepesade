@@ -9,10 +9,9 @@ import stockRouter from "./router/stockRouter.js";
 import cartRouter from "./router/cartRouter.js";
 import categoryRouter from "./router/categoryRouter.js";
 import journalRouter from "./router/journalRouter.js";
+import adminRouter from './router/adminRouter.js';
 
 
-import uploadRouter from './router/uploadRouter.js'
-import deleteRouter from './router/deleteRouter.js'
 
 const server = express();
 const port = 8080;
@@ -28,10 +27,12 @@ server.use("/qna", qnaRouter);
 server.use("/press", pressRouter);
 server.use("/stock", stockRouter);
 server.use("/cart", cartRouter);
-server.use("/upload", uploadRouter);
-server.use("/delete", deleteRouter);
 server.use("/categories", categoryRouter);
 server.use("/journal", journalRouter);
+
+
+server.use("/admin", adminRouter);
+
 
 server.listen(port, () => {
   console.log(`welcome ${port} server start`);

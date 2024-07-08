@@ -1,5 +1,6 @@
+import * as repository from '../repository/adminRepository.js';
+import path from 'path';
 import multer from "multer";
-import path from "path";
 import { db } from "../database/database_mysql80.js";
 
 // 저장소 설정
@@ -84,4 +85,16 @@ export const uploadProduct = async (req, res) => {
       res.status(500).json({ success: false, message: 'Database error' });
     }
   });
+};
+
+export const deleteProduct = async (req, res) => {
+  const pid = req.params.pid;
+
+  try {
+    await repository.deleteProduct(pid);
+    res.status(200).json({ success: true, message: '제품 삭제 성공' });
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    res.status(500).json({ success: false, message: '제품 삭제 실패' });
+  }
 };

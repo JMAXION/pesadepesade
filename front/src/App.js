@@ -23,6 +23,7 @@ import PasswordFind from "./pages/PasswordFind.jsx";
 import Signup from "./pages/Signup.jsx";
 import Upload from "./pages/admin/Upload.jsx";
 import Delete from "./pages/admin/Delete.jsx";
+import Admin from "./pages/admin/Admin.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -56,8 +57,9 @@ export default function App() {
         { path: "/qna/qnaWrite", element: <QnaWrite /> },
         { path: "/qna/qnaContent", element: <QnaContent /> },
         { path: "/notice/1", element: <NoticeContent /> },
-        { path: "/upload", element: <Upload /> },
-        { path: "/delete", element: <Delete /> },
+        { path: "/admin", element: <Admin /> },
+        { path: "/admin/upload", element: <Upload /> },
+        { path: "/admin/delete", element: <Delete /> },
       ],
     },
   ]);

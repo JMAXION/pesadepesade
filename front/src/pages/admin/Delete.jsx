@@ -21,7 +21,7 @@ export default function DeleteProduct() {
 
   const handleDelete = async (pid) => {
     try {
-      await axios.delete(`http://localhost:8080/delete/${pid}`);
+      await axios.delete(`http://localhost:8080/admin/delete/${pid}`);
       setProducts(products.filter(product => product.pid !== pid));
       alert('상품 삭제 완료 !');
     } catch (error) {
