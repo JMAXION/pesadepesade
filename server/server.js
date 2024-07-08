@@ -7,8 +7,10 @@ import qnaRouter from "./router/qnaRouter.js";
 import pressRouter from "./router/pressRouter.js";
 import stockRouter from "./router/stockRouter.js";
 import cartRouter from "./router/cartRouter.js";
-import uploadRouter from './router/uploadRouter.js'
 import categoryRouter from './router/categoryRouter.js'
+
+import uploadRouter from './router/uploadRouter.js'
+import deleteRouter from './router/deleteRouter.js'
 
 const server = express();
 const port = 8080;
@@ -25,6 +27,7 @@ server.use("/press", pressRouter);
 server.use("/stock", stockRouter);
 server.use("/cart", cartRouter);
 server.use("/upload", uploadRouter);
+server.use("/delete", deleteRouter);
 server.use("/categories", categoryRouter);
 
 server.listen(port, () => {

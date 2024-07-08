@@ -17,9 +17,9 @@ export default function HomeCarousel() {
         autoplay={{ delay: 8000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay]}
       >
-        <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/05/30/ac069a771fb78612d41483046f585d07.jpg" alt="이미지 1" className="slider-image" /></SwiperSlide>
-        <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/05/30/6f67fafd15cb03a0654737a5dd47edb6.jpg" alt="이미지 2" className="slider-image" /></SwiperSlide>
-        <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/05/30/d0b4f235e7bc8a82c7e14e7077768b0d.jpg" alt="이미지 3" className="slider-image" /></SwiperSlide>
+        <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/f05764580a9e7069427b19ddf9f9602b.jpg" alt="이미지 1" className="slider-image" /></SwiperSlide>
+        <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/0b47ea5ffdbce5300879e083bb9ce272.jpg" alt="이미지 2" className="slider-image" /></SwiperSlide>
+        <SwiperSlide><img src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/0c096dae5a1c5622a304bb467d483ee4.jpg" alt="이미지 3" className="slider-image" /></SwiperSlide>
       </Swiper>
     </div>
   );
