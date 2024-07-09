@@ -9,7 +9,7 @@ import stockRouter from "./router/stockRouter.js";
 import cartRouter from "./router/cartRouter.js";
 import categoryRouter from "./router/categoryRouter.js";
 import journalRouter from "./router/journalRouter.js";
-import deleteRouter from "./router/deleteRouter.js";
+//import deleteRouter from "./router/deleteRouter.js";
 import memberRouter from "./router/memberRouter.js";
 import adminRouter from "./router/adminRouter.js";
 

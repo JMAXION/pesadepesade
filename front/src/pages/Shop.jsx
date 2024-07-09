@@ -3,6 +3,7 @@ import Product from "../components/Product";
 
 export default function Shop() {
   const [filter, setFilter] = useState("all");
+  const aname = ["jomalone", "channel", "bvgari", "gucci"];
 
   function handleChange(type) {
     setFilter(type);
@@ -17,13 +18,15 @@ export default function Shop() {
         >
           All
         </button>
-        <button
-          onClick={() => handleChange("jomalron")}
-          className={filter === "jomalron" ? "active" : "shop-category"}
-        >
-          jomalron
-        </button>
-        {/* Add more buttons as needed */}
+        {aname.map((item) => (
+          <button
+            key={item}
+            onClick={() => handleChange(item)}
+            className={filter === item ? "active" : "shop-category"}
+          >
+            {item}
+          </button>
+        ))}
       </div>
 
       <div className="product-all-wrapper">
