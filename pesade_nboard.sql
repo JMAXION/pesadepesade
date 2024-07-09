@@ -8,6 +8,7 @@ CREATE TABLE pesade_nboard (
     
     CONSTRAINT fk_pesade_nboard_user_id FOREIGN KEY (user_id) REFERENCES pesade_member(USER_ID)
 );
+drop table pesade_nboard;
 CREATE TABLE pesade_qboard (
     qid         INT AUTO_INCREMENT PRIMARY KEY,
     qtitle      VARCHAR(50) NOT NULL,
@@ -20,3 +21,4 @@ CREATE TABLE pesade_qboard (
     
     CONSTRAINT fk_pesade_qboard_user_id FOREIGN KEY (user_id) REFERENCES pesade_member(USER_ID)
 );
+drop table pesade_qboard;

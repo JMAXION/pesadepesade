@@ -6,35 +6,30 @@ export default function MyPage() {
   return (
     <div>
       <SubTitle title="mypage" />
-      <table border="1" className="mypage-table">
-        <thead>
-          <tr>
-            <th>입금전</th>
-            <th>배송준비중</th>
-            <th>배송중</th>
-            <th>배송완료</th>
-            <th>취소</th>
-            <th>교환</th>
-            <th>반품</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-        </tbody>
-      </table>
-      <li>
-        <p>Order & Shipping</p> <p>회원정보 수정</p> <p>Address</p> <p>Point</p>
-        <p>Coupon</p>
-      </li>
-      Board
+      <div>
+        <p>마이페이지</p>
+        <ul>
+          <li>쇼핑정보</li>
+          <li>주문내역 조회</li>
+          <li>취소/교환/반품 내역</li>
+        </ul>
+        <ul>
+          <li>혜택관리</li>
+          <li>쿠폰</li>
+          <li>적립금</li>
+        </ul>
+        <ul>
+          <li>회원정보</li>
+          <li>회원정보 수정</li>
+        </ul>
+        <ul>
+          <li>나의 게시글</li>
+          <li>1:1문의</li>
+          <li>상품문의</li>
+          <li>상품후기</li>
+        </ul>
+      </div>
+      <div></div>
     </div>
   );
 }
