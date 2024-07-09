@@ -27,6 +27,7 @@ import Admin from "./pages/admin/Admin.jsx";
 import NoticeWrite from "./pages/notice/NoticeWrite.jsx";
 import MyPage from "./pages/MyPage.jsx";
 
+import ShopProductDetail from "./pages/ProductDetail.jsx";
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -37,7 +38,7 @@ export default function App() {
         { path: "/about", element: <About /> },
         { path: "/shop", element: <Shop /> },
         { path: "/shop/all", element: <Shop /> },
-        { path: "/shop/parfum", element: <Shop /> },
+        { path: "/shop/detail/:pid", element: <ShopProductDetail /> },
         { path: "/cart", element: <Cart /> },
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
@@ -45,8 +46,7 @@ export default function App() {
         { path: "/login/idfind", element: <IdFind /> },
         { path: "/login/passwordfind", element: <PasswordFind /> },
         { path: "/signup", element: <Signup /> },
-        { path: "/shop/all", element: <Shop /> },
-        { path: "/shop/parfum", element: <Shop /> },
+
         { path: "/notice", element: <Notice /> },
         { path: "/notice/:nid", element: <NoticeContent /> },
         { path: "/notice/write", element: <NoticeWrite /> },

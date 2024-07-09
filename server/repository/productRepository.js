@@ -16,3 +16,19 @@ export const getProduct = async (params) => {
   }
   return db.execute(sql, [params.type]).then((result) => result[0]);
 };
+
+export const getItem = async (params) => {
+  const sql = `select pid,
+                      pname,
+                      pdetail,
+                      pscentdetail,
+                      pdesc,
+                      FORMAT(pprice,0) as pprice,
+                      category_id,
+                      pinfo,
+                      pnotice,
+                      pimage,
+                      pdetailimage from pesade_product
+                      where pid =  ?`
+return db.execute(sql, [params]).then((result) => result[0][0]);                
+}

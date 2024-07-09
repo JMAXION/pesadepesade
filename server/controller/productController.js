@@ -7,3 +7,13 @@ export async function getProduct(req, res, next) {
   res.json(products);
   // res.end(); // res.json()은 response를 종료하기 때문에 res.end()는 필요하지 않습니다.
 }
+
+
+export async function getItem(req, res, next) {
+ 
+  const params = req.params.pid;
+
+  const products = await repository.getItem(params);
+  res.json(products);
+  // res.end(); // res.json()은 response를 종료하기 때문에 res.end()는 필요하지 않습니다.
+}
