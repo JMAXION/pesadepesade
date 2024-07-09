@@ -5,22 +5,22 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function QnaWrite() {
+  const [isSecret, setIsSecret] = useState(false);
   const navigate = useNavigate();
-  const { isSecret } = qnaFormData;
 
   const [qnaFormData, setQnaFormData] = useState({
     qtitle: "",
     qcontent: "",
     qformPs: "",
-    isSecret: false,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setQnaFormData({ ...qnaFormData, [name]: value });
+    setQnaFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   console.log(qnaFormData);
+  console.log(`Is Secret: ${isSecret}`);
 
   /* 등록 */
   const url = "http://127.0.0.1:8080/qna/new";
@@ -29,7 +29,7 @@ export default function QnaWrite() {
     axios({
       method: "post",
       url: url,
-      data: qnaFormData,
+      data: { ...qnaFormData, isSecret },
     })
       .then((res) => {
         console.log(res.data.cnt);
@@ -83,22 +83,18 @@ export default function QnaWrite() {
                 <div className="qna-form-group-flex">
                   <input
                     type="radio"
-                    name="isSecret"
-                    value="false"
+                    name="secret"
+                    value="public"
                     checked={!isSecret}
-                    onChange={() =>
-                      setQnaFormData({ ...qnaFormData, isSecret: false })
-                    }
+                    onChange={() => setIsSecret(false)}
                   />
                   <p className="qna-form-group-flex type">공개글</p>
                   <input
                     type="radio"
-                    name="isSecret"
-                    value="true"
+                    name="secret"
+                    value="secret"
                     checked={isSecret}
-                    onChange={() =>
-                      setQnaFormData({ ...qnaFormData, isSecret: true })
-                    }
+                    onChange={() => setIsSecret(true)}
                   />
                   <p className="qna-form-group-flex type">비밀글</p>
                 </div>
@@ -113,7 +109,7 @@ export default function QnaWrite() {
                   <input
                     type="password"
                     name="qformPs"
-                    // value={qnaFormData.qformPs}
+                    value={qnaFormData.qformPs}
                     onChange={handleChange}
                     placeholder="숫자 4자리"
                     maxLength={4}

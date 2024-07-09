@@ -1,27 +1,27 @@
 import { db } from "../database/database_mysql80.js";
 
-/* qna 등록 */
+// qna 등록
 export const insert = async (qnaFormData) => {
   let result_rows = 0;
   let sql;
+  let params;
+
   if (qnaFormData.isSecret) {
     sql = `
-        INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qpassword, qdate, is_secret)
-        VALUES (?, 'test', ?, 0, ?, now(), TRUE)
-      `;
+      INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qpassword, qdate, is_secret)
+      VALUES (?, 'test', ?, 0, ?, now(), TRUE)
+    `;
+    params = [qnaFormData.qtitle, qnaFormData.qcontent, qnaFormData.qformPs];
   } else {
     sql = `
-        INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qdate, is_secret)
-        VALUES (?, 'test', ?, 0, now(), FALSE)
-      `;
+      INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qdate, is_secret)
+      VALUES (?, 'test', ?, 0, now(), FALSE)
+    `;
+    params = [qnaFormData.qtitle, qnaFormData.qcontent];
   }
 
   try {
-    const [result] = await db.execute(sql, [
-      qnaFormData.qtitle,
-      qnaFormData.qcontent,
-      qnaFormData.qformPs, // 비밀글인 경우에만
-    ]);
+    const [result] = await db.execute(sql, params);
     result_rows = result.affectedRows;
   } catch (error) {
     console.error(error);
@@ -66,23 +66,26 @@ export const detail = async (qid) => {
 export const updateHits = async (qid) => {
   let result_rows = 0;
   const sql = `
-  update pesade_qboard
-  set qhits = qhits+1
-  where qid = ?
-`;
+    UPDATE pesade_qboard
+    SET qhits = qhits + 1
+    WHERE qid = ?
+  `;
 
   try {
     const [result] = await db.execute(sql, [qid]);
-    console.log(result);
     result_rows = result.affectedRows;
-  } catch (error) {}
+    console.log(result_rows);
+  } catch (error) {
+    console.error(error);
+  }
+
   return { cnt: result_rows };
 };
 
 /* 다음글 보기 */
 export const getNext = async (qid) => {
   const sql = `
-      SELECT qtitle
+      SELECT qtitle, is_secret
       FROM pesade_qboard
       WHERE qid > ?
       ORDER BY qid ASC
@@ -94,11 +97,22 @@ export const getNext = async (qid) => {
 /* 이전글 보기 */
 export const getPrev = async (qid) => {
   const sql = `
-      SELECT qtitle
+      SELECT qtitle, is_secret
       FROM pesade_qboard
       WHERE qid < ?
       ORDER BY qid DESC
       LIMIT 1;
     `;
   return db.execute(sql, [qid]).then((result) => result[0]);
+};
+
+/* 비밀번호 확인 */
+export const checkPassword = async (qid) => {
+  const sql = `
+    SELECT qpassword
+    FROM pesade_qboard
+    WHERE qid = ?
+  `;
+  const [result] = await db.execute(sql, [qid]);
+  return result;
 };

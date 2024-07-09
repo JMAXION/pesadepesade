@@ -1,0 +1,108 @@
+import React, { useEffect, useState } from "react";
+import SubTitle from "../../components/SubTitle";
+import "../../css/notice.css";
+import pin from "../../svg/thumbtack-solid.svg";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+export default function Notice() {
+  const navigate = useNavigate();
+  const [ntcList, setNtcList] = useState([]);
+  const userId = "admin";
+
+  useEffect(() => {
+    const url = "http://localhost:8080/notice/list";
+    axios({
+      method: "get",
+      url: url,
+    })
+      .then((result) => {
+        const list = result.data;
+        console.log("Fetched list:", list); // 응답 데이터 구조 확인
+        setNtcList(list);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const handleUpdateNHits = (nid) => {
+    const url = "http://localhost:8080/notice/updateNhits";
+    try {
+      axios({
+        method: "post",
+        url: url,
+        data: { nid: nid },
+      }).then((result) => {
+        if (result.data.cnt === 1) navigate(`/notice/${nid}`);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <>
+      <div className="front">
+        <div className="content">
+          <SubTitle title="Notice" />
+          <div className="board">
+            <ul className="notice-list">
+              {ntcList.map((notice) => (
+                <li
+                  onClick={() => handleUpdateNHits(notice.nid)}
+                  key={notice.id}
+                  className="notice-list-category"
+                >
+                  {/* <hr className="notice-hr-stick" /> */}
+                  <Link to={`/notice/${notice.nid}`}>
+                    <p>
+                      <img src={pin} alt="pin" />
+                      <strong>{notice.ntitle}</strong>
+                    </p>
+                    <span>{userId}</span>
+                    <span>{notice.ndate}</span>
+                    <span>{notice.nhits}</span>
+                  </Link>
+                  <hr className="notice-hr" />
+                </li>
+              ))}
+              {/* <li className="notice-list-category">
+                <hr className="notice-hr-stick" />
+                <Link to="/notice/1">
+                  <p>
+                    <img src={pin} alt="pin" />
+                    <strong>페사드 한남 플래그십 임시 휴무 안내</strong>
+                  </p>
+                  <span>pesade</span>
+                  <span>2024-06-30</span>
+                  <span>조회 53</span>
+                </Link>
+                <hr className="notice-hr-stick" />
+              </li>
+              <li className="notice-list-category">
+                <p>
+                  <strong>페사드 한남 플래그십 임시 휴무 안내</strong>
+                </p>
+                <span>pesade</span>
+                <span>2024-06-30</span>
+                <span>조회 53</span>
+                <hr className="notice-hr" />
+              </li>
+              <li className="notice-list-category">
+                <p>
+                  <strong>페사드 한남 플래그십 임시 휴무 안내</strong>
+                </p>
+                <span>pesade</span>
+                <span>2024-06-30</span>
+                <span>조회 53</span>
+                <hr className="notice-hr" />
+              </li> */}
+              <button type="button">
+                <Link to={"/notice/write"}>공지작성</Link>
+              </button>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
