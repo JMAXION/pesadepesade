@@ -1,35 +1,6 @@
 import { db } from "../database/database_mysql80.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-/* 
-export const getLogin = async (userId, userPass) => {
-  let login_result = 0;
-  let login_token = "";
-
-  const sql = `
-  select count(user_id) cnt, any_value(user_pass) user_pass  
-         from shoppy_member 
-   	     where user_id = ?;
-  `;
-
-  try {
-    const [result] = await db.execute(sql, [userId]);
-    console.log("result -->>", result);
-
-    if (result[0].cnt === 1) {
-      const passCheck = bcrypt.compareSync(userPass, result[0].user_pass);
-      if (passCheck) login_result = 1;
-      //토큰 생성
-      login_token = jwt.sign({ userId: userId }, "cmVhY3QxMjM0Cgo=");
-    }
-  } catch (error) {
-    // console.log(error);
-  }
-  return {
-    cnt: login_result,
-    token: login_token,
-  };
-}; */
 
 export const getSignup = async (formData) => {
   console.log("formdata=>", formData);
@@ -72,9 +43,6 @@ export const getSignup = async (formData) => {
 
   `;
 
-  console.log("sql -->", sql);
-  console.log("params-->", params);
-
   try {
     const [result] = await db.execute(sql, params);
 
@@ -84,4 +52,33 @@ export const getSignup = async (formData) => {
     console.log(error);
   }
   return { cnt: result_rows };
+};
+
+export const getLogin = async (userId, userPass) => {
+  let login_result = 0;
+  let login_token = "";
+
+  const sql = `
+  select count(user_id) cnt, any_value(user_pass) user_pass
+      from pesade_member
+      where user_id = ?;
+  `;
+
+  try {
+    const [result] = await db.execute(sql, [userId]);
+    console.log("result=>>>>>>>", result);
+    if (result[0].cnt === 1) {
+      const passCheck = bcrypt.compareSync(userPass, result[0].user_pass);
+      if (passCheck) login_result = 1;
+
+      login_token = jwt.sign({ userId: userId }, "cmVhY3QxMjM0Cgo=");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  return {
+    cnt: login_result,
+    token: login_token,
+  };
 };

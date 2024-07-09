@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../css/login.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { /* getIsLogin, */ validationCheck } from "../modules/reduxMemberAxios";
+import { useEffect, useState, useRef } from "react";
+import { getIsLogin, validationCheck } from "../modules/reduxMemberAxios";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  /*  const userIdRef = useRef(null);
-  const userPassRef = useRef(null); */
+  const userIdRef = useRef(null);
+  const userPassRef = useRef(null);
   const [formData, setFormData] = useState({ userId: "", userPass: "" });
 
   const isLogin = useSelector((state) => state.member.isLogin);
@@ -25,27 +25,27 @@ export default function Login() {
     setFormData({ ...formData, [name]: value });
   };
 
-  /*   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validationCheck({ formData, userIdRef, userPassRef })) {
       dispatch(getIsLogin({ formData }));
     }
   };
- */
+
   return (
     <div className="content">
       <div className="login">
         <h2 className="login-title">Login</h2>
         <div className="login-title-kor">로그인</div>
-        <form /* onSubmit={handleSubmit} */>
+        <form onSubmit={handleSubmit}>
           <ul>
             <li>
               <input
                 className="login-input"
                 type="text"
                 name="userId"
-                /*   ref={userIdRef} */
+                ref={userIdRef}
                 value={formData.userId}
                 onChange={handleChange}
                 placeholder="ID"
@@ -56,7 +56,7 @@ export default function Login() {
                 className="login-input"
                 type="password"
                 name="userPass"
-                /*   ref={userPassRef} */
+                ref={userPassRef}
                 value={formData.userPass}
                 onChange={handleChange}
                 placeholder="Password"

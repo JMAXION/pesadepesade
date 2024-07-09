@@ -1,3 +1,8 @@
+import { setIsLogin } from "../reducers/memberReducer";
+import { axiosPost } from "./reduxAxios";
+import { jwtDecode } from "jwt-decode";
+import * as cookie from "../util/cookies.js";
+
 export const validationCheck = ({ formData, userIdRef, userPassRef }) => {
   let checkFlag = true;
 
@@ -13,7 +18,7 @@ export const validationCheck = ({ formData, userIdRef, userPassRef }) => {
   return checkFlag;
 };
 
-/* export function getIsLogin({ formData }) {
+export function getIsLogin({ formData }) {
   const url = "http://127.0.0.1:8080/member/login";
   const data = formData;
 
@@ -24,10 +29,11 @@ export const validationCheck = ({ formData, userIdRef, userPassRef }) => {
     if (cnt === 1) {
       cookie.setCookie("x-auth-jwt", loginResult.token);
       const userInfo = jwtDecode(loginResult.token);
-      localStorage.setItem("userInfo", JSOn.stringify(userInfo));
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
       dispatch(setIsLogin({ cnt }));
+    } else {
+      alert(loginResult.message || "Login failed");
     }
   };
 }
- */

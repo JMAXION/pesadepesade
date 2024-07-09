@@ -3,8 +3,6 @@ import { /* handleFocus, */ validateCheckStep1 } from "../apis/validate.js";
 import { Link } from "react-router-dom";
 
 export default function SignupStep1({ nextStep, formData, handleCheck }) {
-  console.log("리액트 넥스트", nextStep);
-
   return (
     <div className="content">
       <div className="step1">
