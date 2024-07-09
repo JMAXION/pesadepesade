@@ -63,3 +63,219 @@ CREATE TABLE pesade_member (
     signup_date DATETIME -- 회원가입 날짜
 );
 
+USE myshop2019;
+
+-- 현재 데이터베이스 확인
+SELECT DATABASE();
+
+-- 테이블 목록 확인
+SHOW TABLES;
+
+SHOW TABLES LIKE 'pesade%';
+
+
+
+
+drop table pesade_product;
+
+-- 회원 테이블
+CREATE TABLE pesade_member (
+    user_id VARCHAR(50) PRIMARY KEY, -- 사용자 아이디
+    user_pass VARCHAR(255) NOT NULL, -- 사용자 비밀번호
+    user_name VARCHAR(50) NOT NULL, -- 사용자 이름
+    zipcode CHAR(5), -- 우편번호
+    address VARCHAR(50), -- 주소
+    phone CHAR(13) NOT NULL, -- 전화번호
+    email VARCHAR(255), -- 이메일
+    gender ENUM('M', 'F') NOT NULL, -- 성별
+    bdate DATE NOT NULL, -- 생년월일
+    bdate_type ENUM('양력', '음력') NOT NULL, -- 생년월일 유형
+    signup_date DATETIME -- 회원가입 날짜
+);
+
+-- 카테고리 테이블
+CREATE TABLE pesade_category (
+    category_id INT AUTO_INCREMENT PRIMARY KEY, -- 카테고리 아이디
+    category_name VARCHAR(100) NOT NULL -- 카테고리 이름
+);
+drop table pesade_category;
+insert into pesade_category (category_name) values 
+('Le Labo'),
+('Diptyque');
+
+
+-- 상품 테이블
+CREATE TABLE pesade_product (
+    pid INT AUTO_INCREMENT PRIMARY KEY, -- 상품 아이디
+    pname VARCHAR(100) NOT NULL, -- 상품명
+    pdetail VARCHAR(255), -- 상품 디테일
+    pscentdetail VARCHAR(100), -- 상품 향 설명
+    pdesc TEXT, -- 상품 설명
+    pprice INT, -- 상품 가격
+    category_id INT, -- 카테고리 아이디
+    pinfo TEXT, -- 상품 info
+    pnotice TEXT, -- 공지
+    pimage VARCHAR(255), -- 대표 이미지
+    CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES pesade_category(category_id)
+);
+select * from pesade_product;
+select * from pesade_product_image;
+DELETE FROM pesade_product
+WHERE pid = 1;
+
+-- 상품 이미지 테이블
+CREATE TABLE pesade_product_image (
+    img_id INT AUTO_INCREMENT PRIMARY KEY, -- 이미지 아이디
+    pid INT, -- 상품 아이디
+    img_url VARCHAR(255) NOT NULL, -- 이미지 URL
+    img_type ENUM('main', 'detail') NOT NULL, -- 이미지 유형 (대표 이미지, 상세 이미지)
+    img_order INT NOT NULL, -- 이미지 순서
+    CONSTRAINT fk_product_image FOREIGN KEY (pid) REFERENCES pesade_product(pid)
+);
+
+-- 기프트 옵션 테이블
+CREATE TABLE pesade_gift_option (
+    pgid INT AUTO_INCREMENT PRIMARY KEY, -- 기프트 아이디
+    gift_option VARCHAR(50) NOT NULL -- 기프트 옵션
+);
+drop table pesade_gift_option;
+
+-- 초기 기프트 옵션 데이터 삽입
+INSERT INTO pesade_gift_option (gift_option) VALUES
+('#선택안함'),
+('#danke'),
+('#lovelovelove'),
+('#congratulations'),
+('#happy birthday');
+
+-- 게시판 테이블
+CREATE TABLE pesade_board (
+    bid INT AUTO_INCREMENT PRIMARY KEY, -- 게시물 아이디
+    btitle VARCHAR(255), -- 게시물 제목
+    bcontent TEXT, -- 게시물 내용
+    bhits INT DEFAULT 0, -- 게시물 조회수
+    bdate DATETIME, -- 게시물 작성일자
+    bwriter VARCHAR(50), -- 작성자
+    CONSTRAINT fk_board_writer FOREIGN KEY (bwriter) REFERENCES pesade_member(user_id)
+);
+
+-- 장바구니 테이블
+CREATE TABLE pesade_cart (
+    cid INT AUTO_INCREMENT PRIMARY KEY, -- 카트 아이디
+    user_id VARCHAR(50), -- 사용자 아이디
+    pid INT, -- 상품 아이디
+    qty INT, -- 수량
+    pgid INT, -- 기프트 아이디
+    cdate DATETIME, -- 장바구니 날짜
+    CONSTRAINT fk_cart_user FOREIGN KEY (user_id) REFERENCES pesade_member(user_id),
+    CONSTRAINT fk_cart_product FOREIGN KEY (pid) REFERENCES pesade_product(pid),
+    CONSTRAINT fk_cart_gift FOREIGN KEY (pgid) REFERENCES pesade_gift_option(pgid)
+);
+
+-- 주문 테이블
+CREATE TABLE pesade_order (
+    oid VARCHAR(15) PRIMARY KEY, -- 주문 번호
+    user_id VARCHAR(50), -- 사용자 아이디
+    total_price INT, -- 총 주문 금액
+    odate DATETIME, -- 주문 날짜
+    CONSTRAINT fk_order_user FOREIGN KEY (user_id) REFERENCES pesade_member(user_id)
+);
+
+-- 주문 상세 테이블
+CREATE TABLE pesade_order_detail (
+    od_id INT AUTO_INCREMENT PRIMARY KEY, -- 주문 상세 아이디
+    oid VARCHAR(15), -- 주문 번호
+    pid INT, -- 상품 아이디
+    qty INT, -- 수량
+    pprice INT, -- 상품 가격
+    CONSTRAINT fk_order_detail_order FOREIGN KEY (oid) REFERENCES pesade_order(oid),
+    CONSTRAINT fk_order_detail_product FOREIGN KEY (pid) REFERENCES pesade_product(pid)
+);
+
+-- 쿠폰 테이블
+CREATE TABLE pesade_coupon (
+    coupon_id INT AUTO_INCREMENT PRIMARY KEY, -- 쿠폰 번호
+    coupon_name VARCHAR(50), -- 쿠폰 이름
+    discount INT, -- 할인 금액
+    valid_from DATE, -- 발행 날짜
+    valid_until DATE -- 유효 날짜
+);
+
+-- 회원 쿠폰 테이블
+CREATE TABLE pesade_member_coupon (
+    user_id VARCHAR(50), -- 사용자 아이디
+    coupon_id INT, -- 쿠폰 번호
+    PRIMARY KEY (user_id, coupon_id),
+    CONSTRAINT fk_member_coupon_user FOREIGN KEY (user_id) REFERENCES pesade_member(user_id),
+    CONSTRAINT fk_member_coupon_coupon FOREIGN KEY (coupon_id) REFERENCES pesade_coupon(coupon_id)
+);
+
+CREATE TABLE pesade_nboard (
+    nid         INT AUTO_INCREMENT PRIMARY KEY,
+    ntitle      VARCHAR(50) NOT NULL,
+    user_id     VARCHAR(30) NOT NULL,
+    ncontent    VARCHAR(500) NOT NULL,
+    nhits       INT,
+    ndate       DATETIME,
+    
+    CONSTRAINT fk_pesade_nboard_user_id FOREIGN KEY (user_id) REFERENCES pesade_member(USER_ID)
+);
+use myshop2019;
+drop table pesade_product;
+CREATE TABLE pesade_product (
+    pid INT AUTO_INCREMENT PRIMARY KEY, -- 상품 아이디
+    pname VARCHAR(100) NOT NULL, -- 상품명
+    pdetail VARCHAR(255), -- 상품 디테일
+    pscentdetail VARCHAR(100), -- 상품 향 설명
+    pdesc TEXT, -- 상품 설명
+    pprice INT, -- 상품 가격
+    pgift_id INT, -- 기프트 아이디
+    category_id INT, -- 카테고리 아이디
+    pinfo TEXT, -- 상품 info
+    pnotice TEXT, -- 공지
+    pimage VARCHAR(255), -- 상품 이미지
+    pdetailimage VARCHAR(255), -- 상품 설명 이미지
+    CONSTRAINT fk_product_gift FOREIGN KEY (pgift_id) REFERENCES pesade_gift_option(pgid),
+    CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES pesade_category(category_id)
+);
+
+insert into pesade_product(pname, pdetail, pscentdetail, pdesc, pprice, pgift_id,category_id, pinfo, pnotice, pimage, pdetailimage)
+values('Veil Rose',
+'Eau de parfum 100ml',
+'Floral Woody',
+'사랑에 빠진 모습 뒤에 숨겨진 가장 솔직한 내면.\n장미와 제라늄의 우아하고 오묘한 조화가 따뜻하지만 신선한 느낌을 선사한다. 이어지는 매콤한 핑크페퍼와 패츌리가 화사함과 동시에 정돈된 분위기를 느끼게 한다.\n ',
+148500,
+null,
+1,
+'전성분\n변성알코올, 향료, 정제수, 피이지-40하이드로제네이티드캐스터오일, 벤질알코올, 시트랄, 시트로넬올, 유제놀, 파네솔, 제라니올, 리모넨, 리날룰',
+' 교환&반품에 대한 자세한 내용은 하단 Help 페이지에서 확인 가능합니다.\n
+* 선물포장 시, 쇼핑백은 M사이즈에 적합합니다.',
+'https://pesade.kr/web/product/medium/202407/b0068a58d313b28d9f624313eb2431ea.jpg',
+'https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/NNEditor/20240704/E18483E185A2E1848CE185B52023.jpg'
+);
+
+insert into pesade_product(pname, pdetail, pscentdetail, pdesc, pprice, pgift_id,category_id, pinfo, pnotice, pimage, pdetailimage)
+values('Veil Rose',
+'Eau de parfum 100ml',
+'Floral Woody',
+'사랑에 빠진 모습 뒤에 숨겨진 가장 솔직한 내면.\n장미와 제라늄의 우아하고 오묘한 조화가 따뜻하지만 신선한 느낌을 선사한다. 이어지는 매콤한 핑크페퍼와 패츌리가 화사함과 동시에 정돈된 분위기를 느끼게 한다.\n ',
+148500,
+null,
+2,
+'전성분\n변성알코올, 향료, 정제수, 피이지-40하이드로제네이티드캐스터오일, 벤질알코올, 시트랄, 시트로넬올, 유제놀, 파네솔, 제라니올, 리모넨, 리날룰',
+' 교환&반품에 대한 자세한 내용은 하단 Help 페이지에서 확인 가능합니다.\n
+* 선물포장 시, 쇼핑백은 M사이즈에 적합합니다.',
+'https://pesade.kr/web/product/medium/202407/b0068a58d313b28d9f624313eb2431ea.jpg',
+'https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/NNEditor/20240704/E18483E185A2E1848CE185B52023.jpg'
+);
+
+select *  from pesade_product p, pesade_category c 
+where p.category_id = c.category_id
+order  by c.category_name desc;
+
+CREATE TABLE pesade_category (
+    category_id INT AUTO_INCREMENT PRIMARY KEY, -- 카테고리 아이디
+    category_name VARCHAR(100) NOT NULL -- 카테고리 이름
+);
+
+insert into pesade_category(category_name) values('pesade');

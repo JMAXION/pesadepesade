@@ -93,11 +93,14 @@
   height: auto;
   /* height: 100vh; */
 }
+.journal-detail-main-desc {
+  margin: 0 auto;
+}
 .journal-detail-desc {
   width: 1000px;
   display: flex;
   justify-content: space-between;
-  margin: 1rem 2rem;
+  margin: 0 auto;
 }
 .journal-detail-desc-img {
   width: 50%;
@@ -109,6 +112,10 @@
   margin: auto;
 }
 .journal-detail-editor {
-  margin: 0 auto;
+  margin: 2rem auto;
   width: 1000px;
+}
+.journal-detail-editor li:last-child {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
 }

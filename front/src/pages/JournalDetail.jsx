@@ -91,45 +91,67 @@ export default function JournalDetail() {
             )}
           </Swiper>
         </div>
-        <div className="journal-detail-desc">
-          <img src={journal.dimg1} alt="" className="journal-detail-desc-img" />
-          <ul className="journal-detail-desc-text">
-            <li>{journal.dtitle1}</li>
-            <li>{journal.ddesc1}</li>
+        <div className="journal-detail-main-desc">
+          <div className="journal-detail-desc">
+            <img
+              src={journal.dimg1}
+              alt=""
+              className="journal-detail-desc-img"
+            />
+            <ul className="journal-detail-desc-text">
+              <li>{journal.dtitle1}</li>
+              <li>{journal.ddesc1}</li>
+            </ul>
+          </div>
+          <div className="journal-detail-desc">
+            <ul className="journal-detail-desc-text">
+              <li>{journal.dtitle2}</li>
+              <li>{journal.ddesc2}</li>
+            </ul>
+            <img
+              src={journal.dimg2}
+              alt=""
+              className="journal-detail-desc-img"
+            />
+          </div>
+          <div className="journal-detail-desc">
+            <img
+              src={journal.dimg3}
+              alt=""
+              className="journal-detail-desc-img"
+            />
+            <ul className="journal-detail-desc-text">
+              <li>{journal.dtitle3}</li>
+              <li>{journal.ddesc3}</li>
+            </ul>
+          </div>
+          <div className="journal-detail-desc">
+            <ul className="journal-detail-desc-text">
+              <li>{journal.dtitle4}</li>
+              <li>{journal.ddesc4}</li>
+            </ul>
+            <img
+              src={journal.dimg4}
+              alt=""
+              className="journal-detail-desc-img"
+            />
+          </div>
+          <div className="journal-detail-desc">
+            <img
+              src={journal.dimg5}
+              alt=""
+              className="journal-detail-desc-img"
+            />
+            <ul className="journal-detail-desc-text">
+              <li>{journal.dtitle5}</li>
+              <li>{journal.ddesc5}</li>
+            </ul>
+          </div>
+          <ul className="journal-detail-editor">
+            <li>[EDITOR SAY]</li>
+            <li>{journal.deditor}</li>
           </ul>
         </div>
-        <div className="journal-detail-desc">
-          <ul className="journal-detail-desc-text">
-            <li>{journal.dtitle2}</li>
-            <li>{journal.ddesc2}</li>
-          </ul>
-          <img src={journal.dimg2} alt="" className="journal-detail-desc-img" />
-        </div>
-        <div className="journal-detail-desc">
-          <img src={journal.dimg3} alt="" className="journal-detail-desc-img" />
-          <ul className="journal-detail-desc-text">
-            <li>{journal.dtitle3}</li>
-            <li>{journal.ddesc3}</li>
-          </ul>
-        </div>
-        <div className="journal-detail-desc">
-          <ul className="journal-detail-desc-text">
-            <li>{journal.dtitle4}</li>
-            <li>{journal.ddesc4}</li>
-          </ul>
-          <img src={journal.dimg4} alt="" className="journal-detail-desc-img" />
-        </div>
-        <div className="journal-detail-desc">
-          <img src={journal.dimg5} alt="" className="journal-detail-desc-img" />
-          <ul className="journal-detail-desc-text">
-            <li>{journal.dtitle5}</li>
-            <li>{journal.ddesc5}</li>
-          </ul>
-        </div>
-        <ul className="journal-detail-editor">
-          <li>[EDITOR SAY]</li>
-          <li>{journal.deditor}</li>
-        </ul>
       </div>
     </div>
   );

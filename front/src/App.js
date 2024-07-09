@@ -25,6 +25,7 @@ import Upload from "./pages/admin/Upload.jsx";
 import Delete from "./pages/admin/Delete.jsx";
 import Admin from "./pages/admin/Admin.jsx";
 import NoticeWrite from "./pages/notice/NoticeWrite.jsx";
+import MyPage from "./pages/MyPage.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -62,6 +63,7 @@ export default function App() {
         { path: "/admin", element: <Admin /> },
         { path: "/admin/upload", element: <Upload /> },
         { path: "/admin/delete", element: <Delete /> },
+        { path: "/mypage", element: <MyPage /> },
       ],
     },
   ]);
