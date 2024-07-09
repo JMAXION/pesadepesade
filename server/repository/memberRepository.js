@@ -1,4 +1,6 @@
-import { promises as fsPromise } from "fs";
+import { db } from "../database/database_mysql80.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 /* 
 export const getLogin = async (userId, userPass) => {
   let login_result = 0;
@@ -30,10 +32,16 @@ export const getLogin = async (userId, userPass) => {
 }; */
 
 export const getSignup = async (formData) => {
+  console.log("formdata=>", formData);
   let result_rows = 0;
+
+  let phone1 = formData.phoneNumber1;
+  let phone2 = formData.phoneNumber2;
+  let phone3 = formData.phoneNumber3;
+
   const params = [
     formData.userId,
-    bcrypt.hashSync(formData.userPass, 7).formData.userName,
+    bcrypt.hashSync(formData.userPass, 7),
     formData.userName,
     formData.zipcode,
     formData.address.concat("", formData.detailAddress),
@@ -46,28 +54,29 @@ export const getSignup = async (formData) => {
 
   const sql = `
   insert into pesade_member( 
-        user_id,
-        user_pass,
-        user_name,
-        zipcode,
-        address,
-        phone,
-        email,
-        gender,
-        bdate_type,
-        bdate,
-        signup_date
+                              user_id,
+                              user_pass,
+                              user_name,
+                              zipcode,
+                              address,
+                              phone,
+                              email,
+                              gender,
+                              bdate_type,
+                              bdate,
+                              signup_date
 
-      )
+  )
   
   values(?,?,?,?,?,?,?,?,?,?,now())
 
   `;
 
   console.log("sql -->", sql);
+  console.log("params-->", params);
 
   try {
-    const [result] = await db.execute(sql.params);
+    const [result] = await db.execute(sql, params);
 
     result_rows = result.affectedRows;
     console.log("rows -->", result.affectedRows);

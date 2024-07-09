@@ -3,9 +3,10 @@ import { useState, useRef } from "react";
 import DaumPostcode from "react-daum-postcode";
 import {
   validateCheckStep2,
-  /*   passCheck, */
+  passCheck,
   changeEmailDomain,
 } from "../apis/validate";
+import axios from "axios";
 
 export default function SignupStep2({
   nextStep,
@@ -27,8 +28,9 @@ export default function SignupStep2({
     emailIdRef: useRef(null),
     emailDomainRef: useRef(null),
   };
+
   console.log("리액트폼", formData);
-  console.log("리액트 넥스트", nextStep);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -58,6 +60,31 @@ export default function SignupStep2({
       setIsOpen(false);
       refs.detailAddressRef.current.value = "";
       refs.detailAddressRef.current.focus();
+    }
+  };
+
+  const handleSubmit = () => {
+    if (validateCheckStep2(formData, refs)) {
+      if (passCheck(refs)) {
+        console.log("submit->>", formData);
+
+        const url = "http://127.0.0.1:8080/member/signup";
+
+        axios({
+          method: "post",
+          url: url,
+          data: formData,
+        })
+          .then((res) => {
+            if (res.data.cnt === 1) {
+              alert("회원가입 성공");
+              nextStep();
+            } else {
+              alert("회원가입 실패");
+            }
+          })
+          .catch((error) => console.log(error));
+      }
     }
   };
 
@@ -377,7 +404,7 @@ export default function SignupStep2({
           <button
             className="step2-submit-btn"
             type="button"
-            onClick={() => validateCheckStep2(formData, refs, nextStep)}
+            onClick={handleSubmit}
           >
             가입하기
           </button>

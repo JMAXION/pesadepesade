@@ -1,5 +1,5 @@
 import * as repository from "../repository/memberRepository.js";
-
+/* 
 export const getLogin = async (req, res) => {
   const { userId, userPass } = req.body;
   const result = await repository.getLogin(userId, userPass);
@@ -7,7 +7,7 @@ export const getLogin = async (req, res) => {
   res.json(result);
   res.end();
 };
-
+ */
 export const getSignup = async (req, res) => {
   const formData = req.body;
   const result = await repository.getSignup(formData);

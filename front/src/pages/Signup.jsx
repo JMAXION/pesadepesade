@@ -31,8 +31,6 @@ export default function Signup() {
     day: "",
   });
 
-  console.log("스텝이 올라가야 함", step);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
