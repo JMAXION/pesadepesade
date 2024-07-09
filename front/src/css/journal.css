@@ -27,6 +27,10 @@
   gap: 4rem;
   margin-top: 2rem;
 }
+.journal-link {
+  color: black;
+  text-decoration: none;
+}
 
 .journal-content {
   text-align: left;
@@ -43,12 +47,19 @@
 
 .journal-detail {
   width: 1200px;
-  margin: 2rem auto;
+  margin: 6rem auto;
   background-color: white;
 }
-.journal-detail-subtitle {
-  text-align: center;
+.journal-detail-title {
+  border: 1px solid red;
 }
+.journal-detail-title-img {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
 .journal-slider {
   margin: 2rem auto;
   width: 45%;

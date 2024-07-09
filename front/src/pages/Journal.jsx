@@ -52,7 +52,11 @@ export default function Journal() {
             {row.map((journal, index) => {
               const actualIndex = rowIndex * 3 + index;
               return journal.id ? (
-                <Link to={`/journal/${journal.id}`} key={actualIndex}>
+                <Link
+                  to={`/journal/${journal.id}`}
+                  key={actualIndex}
+                  className="journal-link"
+                >
                   <li>
                     <div className="journal-content">
                       <img
