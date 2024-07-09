@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import GiftCard from "../components/GiftCard";
+import ProductInfo from "../components/ProductInfo";
 export default function ProductDetail (){
   let {pid} =useParams();
   const [item, setItem]= useState({})
@@ -28,6 +29,7 @@ export default function ProductDetail (){
             <div className="detail-pdesc">{item.pdesc}</div>
             <div className="detail-pprice">{item.pprice}krw</div>
             <GiftCard/>
+            <ProductInfo prop={item}/>
         </div>
 
         <div className="detail-div">
