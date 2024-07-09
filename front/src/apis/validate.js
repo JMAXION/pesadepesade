@@ -5,8 +5,6 @@
  */
 
 export const validateCheckStep1 = (nextStep, formData) => {
-  console.log("step==>> ", formData);
-
   if (!formData.terms && !formData.personal) {
     alert("약관에 동의해 주세요");
     /*     document.getElementById("check2").style.border = "10px solid red";
@@ -43,10 +41,6 @@ export const validateCheckStep1 = (nextStep, formData) => {
 export const validateCheckStep2 = (formData, refs) => {
   let checkFlag = true;
 
-  console.log("Ref=>", refs);
-  console.log("form=>", formData.userId);
-  console.log("form2=>", formData.userPass);
-
   if (!formData.userId) {
     alert("아이디를 입력해 주세요.");
     refs.userIdRef.current.focus();
@@ -72,6 +66,7 @@ export const validateCheckStep2 = (formData, refs) => {
     alert("이메일을 입력해 주세요.");
     checkFlag = false;
   }
+
   return checkFlag;
 };
 
