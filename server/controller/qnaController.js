@@ -42,3 +42,19 @@ export const getPrev = async (req, res) => {
   const result = await repository.getPrev(qid, isSecret);
   res.json(result);
 };
+
+/* qna pw 체크 */
+export const checkPassword = async (req, res) => {
+  const { qid, password } = req.body;
+
+  try {
+    const result = await repository.checkPassword(qid);
+    if (result.length > 0 && result[0].qpassword === password) {
+      res.json({ isValid: true });
+    } else {
+      res.json({ isValid: false });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

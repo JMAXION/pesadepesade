@@ -29,20 +29,24 @@ export default function QnaList() {
 
   const handleUpdateQHits = (qid, rno, isSecret) => {
     if (isSecret) {
-      navigate("/qna/password");
+      navigate(`/qna/password/${qid}/${rno}`);
     } else {
       const url = "http://localhost:8080/qna/updateQhits";
-      try {
-        axios({
-          method: "post",
-          url: url,
-          data: { qid: qid },
-        }).then((result) => {
-          if (result.data.cnt === 1) navigate(`/qna/${qid}/${rno}`);
+      axios({
+        method: "post",
+        url: url,
+        data: { qid: qid },
+      })
+        .then((result) => {
+          if (result.data.cnt === 1) {
+            navigate(`/qna/${qid}/${rno}`);
+          } else {
+            console.log("조회수 올리기 실패");
+          }
+        })
+        .catch((error) => {
+          console.error("조회수 업데이트 요청 실패:", error);
         });
-      } catch (error) {
-        console.error(error);
-      }
     }
   };
 
@@ -77,71 +81,73 @@ export default function QnaList() {
     <div className="front">
       <div className="content">
         <SubTitle title="Q&A" />
-        <div className="qna-list">
-          <ul>
-            {currentItems.map((list) => (
-              <li
-                key={list.qid}
-                onClick={() => {
-                  handleUpdateQHits(list.qid, list.rno, list.is_secret);
-                }}
-              >
-                <Link to={`/qna/${list.qid}/${list.rno}`}>
-                  <div className="qna-summary">
-                    <div className="qna-row top">
-                      <div className="qna-left">{list.rno}</div>
-                      <span>{userId}</span>
+        <div className="board">
+          <div className="qna-list">
+            <ul>
+              {currentItems.map((list) => (
+                <li
+                  key={list.qid}
+                  onClick={() => {
+                    handleUpdateQHits(list.qid, list.rno, list.is_secret);
+                  }}
+                >
+                  <Link to={`/qna/${list.qid}/${list.rno}`}>
+                    <div className="qna-summary">
+                      <div className="qna-row top">
+                        <div className="qna-left">{list.rno}</div>
+                        <span>{userId}</span>
+                      </div>
+                      <div className="qna-row bottom">
+                        <strong>
+                          {list.is_secret === 1 && (
+                            <img
+                              src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif"
+                              alt="비밀글"
+                            />
+                          )}
+                          <span className="subject-text">{list.qtitle}</span>
+                        </strong>
+                        <span>{list.qdate}</span>
+                      </div>
                     </div>
-                    <div className="qna-row bottom">
-                      <strong>
-                        {list.is_secret === 1 && (
-                          <img
-                            src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif"
-                            alt="비밀글"
-                          />
-                        )}
-                        <span className="subject-text">{list.qtitle}</span>
-                      </strong>
-                      <span>{list.qdate}</span>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="pagination">
-            {startPage > 1 && (
-              <button
-                className="page-button"
-                onClick={() => handlePageChange(startPage - 1)}
-              >
-                &lt;
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="pagination">
+              {startPage > 1 && (
+                <button
+                  className="page-button"
+                  onClick={() => handlePageChange(startPage - 1)}
+                >
+                  &lt;
+                </button>
+              )}
+              {pageNumbers.map((number) => (
+                <button
+                  key={number}
+                  className={`page-button ${
+                    currentPage === number ? "active" : ""
+                  }`}
+                  onClick={() => handlePageChange(number)}
+                >
+                  {number}
+                </button>
+              ))}
+              {endPage < totalPages && (
+                <button
+                  className="page-button"
+                  onClick={() => handlePageChange(endPage + 1)}
+                >
+                  &gt;
+                </button>
+              )}
+            </div>
+            <div className="qna-btn">
+              <button className="qna-btn-write" type="button">
+                <Link to="/qna/qnaWrite">Write</Link>
               </button>
-            )}
-            {pageNumbers.map((number) => (
-              <button
-                key={number}
-                className={`page-button ${
-                  currentPage === number ? "active" : ""
-                }`}
-                onClick={() => handlePageChange(number)}
-              >
-                {number}
-              </button>
-            ))}
-            {endPage < totalPages && (
-              <button
-                className="page-button"
-                onClick={() => handlePageChange(endPage + 1)}
-              >
-                &gt;
-              </button>
-            )}
-          </div>
-          <div className="qna-btn">
-            <button className="qna-btn-write" type="button">
-              <Link to="/qna/qnaWrite">Write</Link>
-            </button>
+            </div>
           </div>
         </div>
       </div>
