@@ -10,8 +10,10 @@ export default function QnaContent() {
   const [qna, setQna] = useState({});
   const [nextQna, setNextQna] = useState({});
   const [prevQna, setPrevQna] = useState({});
-  const [isSecret, setIsSecret] = useState(false); // 비밀글 여부 상태
   const navigate = useNavigate();
+  const [isSecret, setIsSecret] = useState(false); // 비밀글 여부 상태
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     const url = `http://localhost:8080/qna/${qid}`;
@@ -63,10 +65,71 @@ export default function QnaContent() {
   const prevRno = parseInt(rno) - 1;
   const nextRno = parseInt(rno) + 1;
 
-  // 비밀번호 입력 후 확인 함수
-  const handlePasswordSubmit = () => {
-    // 비밀번호가 맞으면 해당 페이지로 이동
-    navigate(`/qna/${qid}/${rno}`);
+  const handleNavigation = (targetQid, targetRno, isSecret) => {
+    if (isSecret) {
+      navigate(`/qna/password/${targetQid}/${targetRno}`);
+    } else {
+      navigate(`/qna/${targetQid}/${targetRno}`);
+    }
+  };
+
+  useEffect(() => {
+    const url = `http://localhost:8080/qna/comments/${qid}`;
+    axios({
+      method: "get",
+      url: url,
+    })
+      .then((result) => {
+        setComments(result.data);
+      })
+      .catch((error) => console.log(error));
+  }, [qid]);
+
+  const handleAddComment = () => {
+    const url = "http://localhost:8080/qna/comments";
+    const data = {
+      qid: String(qid),
+      user_id: userId,
+      comment_text: newComment,
+    };
+    axios({
+      method: "post",
+      data: data,
+      url: url,
+    }).then((result) => {
+      if (result.data.success) {
+        setComments([
+          {
+            comment_id: result.data.commentId,
+            user_id: userId,
+            comment_text: newComment,
+            created_at: new Date(),
+          },
+          ...comments,
+        ]);
+        setNewComment("");
+      } else {
+        console.error("Server error:", result.data.error);
+      }
+    });
+  };
+
+  const handleDeleteComment = (commentId) => {
+    const url = `http://localhost:8080/qna/comments/${commentId}`;
+    axios({
+      method: "delete",
+      url: url,
+    })
+      .then((result) => {
+        if (result.data.success) {
+          setComments(
+            comments.filter((comment) => comment.comment_id !== commentId)
+          );
+        } else {
+          console.error("Server error:", result.data.error);
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -90,7 +153,6 @@ export default function QnaContent() {
               {/* 비밀글일 경우 */}
               {isSecret ? (
                 <div className="qna-content-secret">
-                  <p>비밀글입니다. 비밀번호를 입력하세요.</p>
                   <Link to={`/qna/password/${qid}/${rno}`}>
                     <button className="qna-password-btn">비밀번호 입력</button>
                   </Link>
@@ -101,6 +163,33 @@ export default function QnaContent() {
                 </div>
               )}
             </div>
+            <div className="qna-comments">
+              <h4>댓글</h4>
+              <div className="comments-list">
+                {comments.map((comment) => (
+                  <div key={comment.comment_id} className="comment-item">
+                    <div className="comment-user">{comment.userId}</div>
+                    <div className="comment-text">{comment.comment_text}</div>
+                    <div className="comment-date">
+                      {new Date(comment.created_at).toLocaleString()}
+                    </div>
+                    <button
+                      onClick={() => handleDeleteComment(comment.comment_id)}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="comment-form">
+                <textarea
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder="댓글을 입력하세요"
+                />
+                <button onClick={handleAddComment}>댓글 추가</button>
+              </div>
+            </div>
             <div className="qna-foot">
               <Link to="/qna">
                 <div className="qna-content-btn">목록보기</div>
@@ -110,9 +199,17 @@ export default function QnaContent() {
               <li className="qna-prev">
                 <strong>이전글</strong>
                 {prevQna ? (
-                  <Link to={`/qna/${prevQid}/${prevRno}`}>
-                    <p>{prevQna.qtitle}</p>
-                  </Link>
+                  <p
+                    onClick={() =>
+                      handleNavigation(
+                        prevQid,
+                        prevRno,
+                        prevQna.is_secret === 1
+                      )
+                    }
+                  >
+                    {prevQna.qtitle}
+                  </p>
                 ) : (
                   <p>이전 글이 없습니다.</p>
                 )}
@@ -120,9 +217,17 @@ export default function QnaContent() {
               <li className="qna-next">
                 <strong>다음글</strong>
                 {nextQna ? (
-                  <Link to={`/qna/${nextQid}/${nextRno}`}>
-                    <p>{nextQna.qtitle}</p>
-                  </Link>
+                  <p
+                    onClick={() =>
+                      handleNavigation(
+                        nextQid,
+                        nextRno,
+                        nextQna.is_secret === 1
+                      )
+                    }
+                  >
+                    {nextQna.qtitle}
+                  </p>
                 ) : (
                   <p>다음 글이 없습니다.</p>
                 )}

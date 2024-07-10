@@ -47,9 +47,8 @@ export default function Footer() {
         </section>
         <section className="footer-info">
           <p>
-            주식회사 티비엘코퍼레이션 | Business License: 832-86-02239
-            <br className="mobile-only" />
-            CEO: 목영교 | 페사드 서울 용산구 이태원로49길 16
+            주식회사 티비엘코퍼레이션 | Business License: 832-86-02239 | CEO:
+            목영교 | 페사드 서울 용산구 이태원로49길 16
             <br />
             Mall Order License : 제 2023-서울용산-1237
             <a
@@ -58,7 +57,6 @@ export default function Footer() {
             >
               [사업자정보확인]
             </a>
-            <br className="mobile-only" />
             Customer care: 02-6956-0053
             <br className="mobile-only" />
             E-mail: <a href="mailto:info@pesade.kr">info@pesade.kr</a>

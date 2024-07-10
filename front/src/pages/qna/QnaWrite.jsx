@@ -7,6 +7,7 @@ import axios from "axios";
 export default function QnaWrite() {
   const [isSecret, setIsSecret] = useState(false);
   const navigate = useNavigate();
+  const [file, setFile] = useState(null); // 사진 파일 상태 추가
 
   const [qnaFormData, setQnaFormData] = useState({
     qtitle: "",
@@ -19,6 +20,10 @@ export default function QnaWrite() {
     setQnaFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   console.log(qnaFormData);
   console.log(`Is Secret: ${isSecret}`);
 
@@ -26,10 +31,22 @@ export default function QnaWrite() {
   const url = "http://127.0.0.1:8080/qna/new";
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("qtitle", qnaFormData.qtitle);
+    formData.append("qcontent", qnaFormData.qcontent);
+    formData.append("qformPs", qnaFormData.qformPs);
+    formData.append("isSecret", isSecret);
+    if (file) {
+      formData.append("file", file);
+    }
+
     axios({
       method: "post",
       url: url,
-      data: { ...qnaFormData, isSecret },
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     })
       .then((res) => {
         console.log(res.data.cnt);
@@ -49,7 +66,11 @@ export default function QnaWrite() {
   return (
     <div className="content">
       <SubTitle title="Q&A" />
-      <form className="qna-form" onSubmit={handleSubmit}>
+      <form
+        className="qna-form"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <table className="qna-form-table">
           <tbody>
             <tr className="qna-form-group">
@@ -78,6 +99,14 @@ export default function QnaWrite() {
               </td>
             </tr>
             <tr className="qna-form-group">
+              <td>
+                <label htmlFor="file">사진 업로드</label>
+              </td>
+              <td>
+                <input type="file" name="file" onChange={handleFileChange} />
+              </td>
+            </tr>
+            <tr className="qna-form-group">
               <td>비밀글설정</td>
               <td>
                 <div className="qna-form-group-flex">
@@ -100,7 +129,7 @@ export default function QnaWrite() {
                 </div>
               </td>
             </tr>
-            {isSecret && ( // 비밀글일 경우에만 비밀번호 입력 필드 보이기
+            {isSecret && (
               <tr className="qna-form-group">
                 <td>
                   <label htmlFor="qformPs">비밀번호</label>
