@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function Journal() {
   const [journalList, setJournalList] = useState([]);
   const [iframeClass, setIframeClass] = useState("journal-iframe");
+  const [filter, setFilter] = useState("all");
   const url = "http://localhost:8080/journal";
 
   useEffect(() => {
@@ -34,12 +35,14 @@ export default function Journal() {
     };
   }, []);
 
+  const optionChange = (value) => {
+    setFilter(value);
+  };
+
   const rows = [];
   for (let i = 0; i < journalList.length; i += 3) {
     rows.push(journalList.slice(i, i + 3));
   }
-
-  const updateContent = () => {};
 
   return (
     <div>
@@ -49,10 +52,10 @@ export default function Journal() {
         </video>
       </div>
       <div>
-        <select name="" id="mySelect" onChange={updateContent()}>
-          <option value="ALL">ALL</option>
-          <option value="BRAND">BRAND</option>
-          <option value="MOOD">MOOD</option>
+        <select name="" id="mySelect">
+          <option value="all">ALL</option>
+          <option value="brand">BRAND</option>
+          <option value="mood">MOOD</option>
         </select>
       </div>
       <div className="journal">
