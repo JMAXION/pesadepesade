@@ -17,7 +17,7 @@ CREATE TABLE pesade_qboard (
     qhits       INT,
     qpassword   CHAR(4),
     qdate       DATETIME,
-    is_secret   BOOLEAN NOT NULL DEFAULT FALSE, — 비밀글 여부 (기본값: 공개글)
+    is_secret   BOOLEAN NOT NULL DEFAULT FALSE, -- 비밀글 여부 (기본값: 공개글)
     
     CONSTRAINT fk_pesade_qboard_user_id FOREIGN KEY (user_id) REFERENCES pesade_member(USER_ID)
 );

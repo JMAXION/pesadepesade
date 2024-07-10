@@ -39,12 +39,40 @@ export default function Journal() {
     rows.push(journalList.slice(i, i + 3));
   }
 
+  const updateContent = () => {
+    const selectBox = document.getElementById("mySelect");
+    const contentDiv = document.getElementById("content");
+    const selectedValue = selectBox.value;
+
+    switch (selectedValue) {
+      case "ALL":
+        contentDiv.innerHTML = "옵션 1에 대한 내용입니다.";
+        break;
+      case "BRAND":
+        contentDiv.innerHTML = "옵션 2에 대한 내용입니다.";
+        break;
+      case "MOOD":
+        contentDiv.innerHTML = "옵션 3에 대한 내용입니다.";
+        break;
+      default:
+        contentDiv.innerHTML = "선택된 옵션에 따른 내용이 여기에 표시됩니다.";
+    }
+  };
+
   return (
     <div>
       <div className={iframeClass}>
         <video muted autoPlay loop className="journal-iframe-video">
           <source src="/video/pesade_video.mp4" type="video/mp4" />
         </video>
+      </div>
+      <div>
+        <select name="" id="mySelect" onChange={updateContent()}>
+          <option value="ALL">ALL</option>
+          <option value="BRAND">BRAND</option>
+          <option value="MOOD">MOOD</option>
+        </select>
+        <div id="content">선택된 옵션에 따른 내용이 여기에 표시됩니다.</div>
       </div>
       <div className="journal">
         {rows.map((row, rowIndex) => (
@@ -64,6 +92,7 @@ export default function Journal() {
                         alt=""
                         className="journal-content-image"
                       />
+                      <p>{journal.jcategory}</p>
                       <p className="journal-content-title">{journal.jtitle}</p>
                       <p className="journal-content-desc">{journal.jdesc}</p>
                     </div>

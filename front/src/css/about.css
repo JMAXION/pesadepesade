@@ -17,6 +17,7 @@
   width: 100%;
   z-index: 301; /* z-index 추가 */
   position: relative;
+  transition: opacity 1s ease, transform 1s ease;
 }
 .about-belief-img.scrolled {
   width: 100%;

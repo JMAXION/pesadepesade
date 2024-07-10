@@ -1,0 +1,75 @@
+.mypage {
+  display: flex;
+}
+.mypage-leftmenu {
+  position: fixed;
+  top: 12rem;
+  left: 0;
+  width: 200px; /* 원하는 너비로 설정 */
+  height: 100%;
+  overflow-y: auto; /* 메뉴가 길어질 경우 스크롤 가능하게 설정 */
+  padding: 20px; /* 원하는 패딩 설정 */
+}
+
+.mypage-rightmenu {
+  margin-left: 220px; /* left menu의 너비 + 여백 */
+  padding: 20px;
+  flex: 1; /* 남은 공간을 차지하도록 설정 */
+}
+.mypage-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  padding: 2rem 0;
+}
+.mypage-info-name {
+  margin-left: 2rem;
+}
+.mypage-info-name-highlight {
+  color: red;
+}
+.mypage-info-buy {
+  display: flex;
+  justify-content: left;
+  margin-top: 0.5rem;
+}
+.mypage-info-detail {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-right: 2rem;
+}
+.mypage-division-line {
+  background-color: black;
+  width: 100%;
+  height: 2px;
+  margin-top: 2rem;
+}
+.mypage-detail-info {
+  margin: 2rem 0;
+}
+.mypage-table {
+  width: 100%;
+  border: 1px solid black;
+  margin: 0.5rem 0;
+  padding: 1rem 0;
+  text-align: center;
+}
+.mypage-myscript {
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+}
+.mypage-myscript-detail {
+  border: 1px solid black;
+  width: 300px;
+  padding: 1rem;
+}
+.mypage-myscript-detail-title {
+  margin: 1rem 0;
+}
+.mypage-myscript-detail-answer {
+  display: flex;
+  gap: 1rem;
+}
