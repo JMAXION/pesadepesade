@@ -24,7 +24,7 @@ export default function Product({ name }) {
     if (productThumbnailRef.current && window.$ && $.fn.ripples) {
       $(productThumbnailRef.current).ripples({
         resolution: 256,
-        dropRadius: 30,
+        dropRadius: 20,
         perturbance: 0.04,
         zIndex: 9999
       });
@@ -53,7 +53,7 @@ export default function Product({ name }) {
   return (
     <div className="product-wrapper">
       <h1>{name}</h1>
-      <div className="product-thumbnail" ref={productThumbnailRef}>
+      <div className="product-thumbnail">
         <ul className="product-list">
           {item.map((obj, index) => (
             <li className="product-list-li" key={index}>
@@ -67,7 +67,7 @@ export default function Product({ name }) {
                   <button className="btn-text-cart" onClick={() => openModal(obj)}>Add to cart</button>
                 </div>
                 <div className="product-inner">
-                  <img src={obj.pimage} alt={obj.pname} />
+                  <img src={obj.pimage} alt={obj.pname} ref={productThumbnailRef} />
                 </div>
               </Link>
             </li>

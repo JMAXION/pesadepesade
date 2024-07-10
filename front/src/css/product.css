@@ -1,5 +1,9 @@
 body {
-  background-color: white;
+
+}
+
+#root{
+ 
 }
 .product-wrapper {
   position: relative;
@@ -8,8 +12,16 @@ body {
   margin: 0 auto; /* 가운데 정렬 */
   padding: 20px;
   text-align: center;
+  z-index: 2;
 
-  z-index: 1000;
+  /*  */
+   /*  background-image: url(https://i.postimg.cc/XvT12qdD/3.jpg);*/
+  background-size: cover;
+  background-position: 50% 0;
+  height: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .product-list {
@@ -18,6 +30,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   
+
+
 }
 
 .product-list-li {
@@ -41,13 +55,13 @@ body {
 
 .product-inner {
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
+  overflow: hidden;/* 포인터 커서 설정 */
 }
 
 .product-thumbnail {
   position: relative;
   overflow: hidden;
+ 
 }
 
 .product-thumbnail img {
@@ -55,6 +69,11 @@ body {
   height: auto;
   display: block;
   transition: transform 0.3s ease-out;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+
 }
 
 
@@ -143,10 +162,9 @@ body {
   -o-transition: all 0.7s ease;
 }
 
-.product-thumbnail.ripple .product-inner::after {
+.product-inner.ripples::after {
   transform: translate(-50%, -50%) scale(1);
 }
-
 .product-list-li {
   overflow: hidden; /* Ensure contents do not overflow */
   transition: transform 0.3s ease; /* Transition for smooth movement */
@@ -424,7 +442,7 @@ body {
 .detail-div:first-child{
   width:20%;
  position:absolute;
- top:85px;
+ bottom:1rem;
  padding:30px ;
 }
 
@@ -444,7 +462,7 @@ body {
 .detail-div:nth-child(2){
   position:absolute;
   font-size: 12px;
-  left:40%;
+  left:45%;
   transform: translateX(-50%);
   top:-50px;
  }
@@ -452,6 +470,7 @@ body {
 .detail-div:nth-child(3){
   position: absolute;
   right: 0;
+  bottom:15rem;
 }
 
 .detail-div img{
@@ -471,6 +490,12 @@ body {
 .detail-pprice{
   font-size: 1.5rem;
   padding-bottom: 20px;
+}
+
+.detail-pprice-right{
+  font-size: 1.8rem;
+  padding-bottom: 20px;
+  text-align: right;
 }
 
 .gift-wrapper{
@@ -523,3 +548,58 @@ transition: transform 0.3s ease;
   left:130px;
 }
 
+/*  */
+
+.product-notice, .product-info{
+  font-size: 12px;
+  color: #555555;
+}
+
+.select-msg-card{
+  width:100%;
+  line-height: 38px;
+  padding:0 10px;
+  height: 36px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #555555;
+  
+}
+
+.detail-add-cart{
+  margin-top: 1rem;
+  width:100%;
+  height:36px;
+  border:0;
+  font-size: 16px;
+  background-color: black;
+  color:white;
+}
+
+.detail-desc-wrapper{
+  width:100%;
+}
+
+.detail-desc-img{
+  display: block;
+  width:100%;
+  overflow: hidden;
+  justify-content: center;
+  object-fit: contain;
+  padding:30px;
+  margin: 0 auto;
+}
+
+.detail-desc-img img{
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.detail-desc-txt{
+  margin: 0 auto;
+  width:350px;
+  font-size: 14px;
+  color: #555555;
+  padding-top: 3rem;
+
+}
