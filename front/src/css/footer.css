@@ -10,6 +10,7 @@
   line-height: 1;
   background: #2d2d2d;
   text-align: center;
+  align-items: center;
   color: #f5f2ea;
   margin: 0;
 }
@@ -20,7 +21,7 @@
 
 .footer .logo {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   width: 100%;
 }
 
@@ -42,7 +43,7 @@
 }
 
 .footer-menu ul {
-  margin-right: 30px;
+  margin: auto;
 }
 .footer-menu ul li Link {
   font-size: 26px;
@@ -57,17 +58,21 @@
   line-height: 17px;
 }
 
+.footer-info p a {
+  margin: 0 5px;
+}
+
 .small-links ul li {
   display: inline-block;
 }
 
 .legal {
-  margin-bottom: 5px;
-  margin-right: 46px;
+  margin: auto;
 }
 
-.legal a {
+.legal li {
   font-size: 11px;
+  margin-left: 5px;
 }
 
 .footer-copyright {
@@ -88,7 +93,6 @@ footer section {
   margin: 40px 30px 0;
   font-size: 26px;
   font-weight: 900;
-  align-items: center;
 }
 
 .legal {
@@ -106,18 +110,19 @@ footer section {
 }
 
 .footer-info {
-  margin-bottom: 40px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .footer-info p {
+  text-align: center;
   font-size: 12px;
   line-height: 24px;
   font-weight: 600;
 }
 
 .social-media {
-  margin-bottom: 30px;
-  margin-right: 40px;
+  margin: auto;
 }
 
 .footer-copyright {

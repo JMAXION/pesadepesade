@@ -39,25 +39,7 @@ export default function Journal() {
     rows.push(journalList.slice(i, i + 3));
   }
 
-  const updateContent = () => {
-    const selectBox = document.getElementById("mySelect");
-    const contentDiv = document.getElementById("content");
-    const selectedValue = selectBox.value;
-
-    switch (selectedValue) {
-      case "ALL":
-        contentDiv.innerHTML = "옵션 1에 대한 내용입니다.";
-        break;
-      case "BRAND":
-        contentDiv.innerHTML = "옵션 2에 대한 내용입니다.";
-        break;
-      case "MOOD":
-        contentDiv.innerHTML = "옵션 3에 대한 내용입니다.";
-        break;
-      default:
-        contentDiv.innerHTML = "선택된 옵션에 따른 내용이 여기에 표시됩니다.";
-    }
-  };
+  const updateContent = () => {};
 
   return (
     <div>
@@ -72,7 +54,6 @@ export default function Journal() {
           <option value="BRAND">BRAND</option>
           <option value="MOOD">MOOD</option>
         </select>
-        <div id="content">선택된 옵션에 따른 내용이 여기에 표시됩니다.</div>
       </div>
       <div className="journal">
         {rows.map((row, rowIndex) => (

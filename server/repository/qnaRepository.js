@@ -116,3 +116,41 @@ export const checkPassword = async (qid) => {
   const [result] = await db.execute(sql, [qid]);
   return result;
 };
+
+/* 댓글 */
+export const getComments = async (qid) => {
+  const sql = `SELECT * 
+               FROM pesade_comments 
+               WHERE qid = ? 
+               ORDER BY created_at DESC`;
+  try {
+    const [rows] = await db.execute(sql, [qid]);
+    return rows;
+  } catch (error) {
+    console.error("Error fetching comments from DB:", error);
+    throw error;
+  }
+};
+
+export const addComment = async (qid, user_id, comment_text) => {
+  const sql = `INSERT INTO pesade_comments (qid, user_id, comment_text, created_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP)`;
+  try {
+    const [result] = await db.execute(sql, [qid, user_id, comment_text]);
+    if (result.affectedRows > 0) {
+      return { success: true, commentId: result.insertId };
+    } else {
+      return { success: false, error: "Failed to insert comment" };
+    }
+  } catch (error) {
+    console.error("Error inserting comment:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const deleteComment = async (commentId) => {
+  const sql = `
+  DELETE FROM pesade_comments WHERE comment_id = ?
+  `;
+  const [result] = await db.execute(sql, [commentId]);
+  return result.affectedRows > 0;
+};
