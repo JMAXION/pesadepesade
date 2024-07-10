@@ -1,7 +1,7 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getProduct = async (params) => {
-  console.log(params);
+  
   let sql = "";
   if (params.type === "all") {
     sql = `select *  from pesade_product p, pesade_category c 
@@ -31,4 +31,13 @@ export const getItem = async (params) => {
                       pdetailimage from pesade_product
                       where pid =  ?`
 return db.execute(sql, [params]).then((result) => result[0][0]);                
+}
+
+
+export const getGift = async (params) => {
+  const sql = `select pgid,
+                      gift_option
+                      from pesade_gift_option`
+                      
+return db.execute(sql, [params]).then((result) => result[0]);                
 }
