@@ -332,7 +332,7 @@ export default function SignupStep2({
                 type="radio"
                 name="gender"
                 value="male"
-                /*   checked={formData.gender === "male"} */
+                checked={formData.gender === "male"}
                 onChange={handleChange}
               />
               남자
@@ -341,7 +341,7 @@ export default function SignupStep2({
                 type="radio"
                 name="gender"
                 value="female"
-                /*    checked={formData.gender === "female"} */
+                checked={formData.gender === "female"}
                 onChange={handleChange}
               />
               여자
@@ -359,7 +359,7 @@ export default function SignupStep2({
                   type="radio"
                   name="birthDate"
                   value="solar"
-                  /*  checked={formData.birthdate === "solar"} */
+                  checked={formData.birthDate === "solar"}
                   onChange={handleChange}
                 />
                 양력
@@ -368,7 +368,7 @@ export default function SignupStep2({
                   type="radio"
                   name="birthDate"
                   value="lunar"
-                  /*  checked={formData.birthdate === "lunar"} */
+                  checked={formData.birthDate === "lunar"}
                   onChange={handleChange}
                 />
                 음력

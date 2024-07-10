@@ -25,7 +25,7 @@ export default function Signup() {
     emailId: "",
     emailDomain: "",
     gender: "",
-    birthDate: "",
+    birthDate: "solar",
     year: "",
     month: "",
     day: "",

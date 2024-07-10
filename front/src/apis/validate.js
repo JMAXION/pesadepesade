@@ -41,6 +41,7 @@ export const validateCheckStep1 = (nextStep, formData) => {
 export const validateCheckStep2 = (formData, refs) => {
   let checkFlag = true;
 
+  console.log("form", formData);
   if (!formData.userId) {
     alert("아이디를 입력해 주세요.");
     refs.userIdRef.current.focus();
