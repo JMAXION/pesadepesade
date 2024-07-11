@@ -84,7 +84,7 @@ export default function Login() {
                 </a>
               </li>
               <li className="login-sns-button">
-                <a className="login-sns-link" href="#">
+                <a className="login-sns-link">
                   <img
                     className="login-sns-image"
                     src="/memberimages/naver.png"

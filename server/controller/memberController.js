@@ -14,3 +14,11 @@ export const getLogin = async (req, res) => {
   res.json(result);
   res.end();
 };
+
+export const getIdCheck = async (req, res) => {
+  const { userId } = req.body;
+  const result = await repository.getIdCheck(userId);
+
+  res.json(result);
+  res.end();
+};

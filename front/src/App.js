@@ -28,6 +28,7 @@ import NoticeWrite from "./pages/notice/NoticeWrite.jsx";
 import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
+
 export default function App() {
   const router = createBrowserRouter([
     {
