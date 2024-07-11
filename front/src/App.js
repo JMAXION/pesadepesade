@@ -27,6 +27,7 @@ import Admin from "./pages/admin/Admin.jsx";
 import NoticeWrite from "./pages/notice/NoticeWrite.jsx";
 import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
+import MyPageBoard from "./pages/mypage/MyPageBoard.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
 export default function App() {
   const router = createBrowserRouter([
@@ -65,6 +66,7 @@ export default function App() {
         { path: "/admin/delete", element: <Delete /> },
         { path: "/mypage", element: <MyPage /> },
         { path: "/mypage/userinfo", element: <MyPageChangeInfo /> },
+        { path: "/mypage/myboard", element: <MyPageBoard /> },
       ],
     },
   ]);

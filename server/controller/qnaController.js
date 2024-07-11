@@ -72,16 +72,17 @@ export const getComments = async (req, res) => {
 };
 
 export const addComment = async (req, res) => {
-  const { qid, user_id, comment_text } = req.body;
+  const { qid, userId, comment_text } = req.body;
+  console.log(req.body);
 
-  if (!qid || !user_id || !comment_text) {
+  if (!qid || !userId || !comment_text) {
     return res
       .status(400)
       .json({ success: false, error: "Missing required parameters" });
   }
 
   try {
-    const result = await repository.addComment(qid, user_id, comment_text);
+    const result = await repository.addComment(qid, userId, comment_text);
     if (result.success) {
       res.status(200).json(result);
     } else {

@@ -3,15 +3,18 @@ import SubTitle from "../../components/SubTitle";
 import "../../css/board.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getUser, removeUser } from "../../util/localStorage";
 
 export default function QnaWrite() {
   const [isSecret, setIsSecret] = useState(false);
   const navigate = useNavigate();
+  const userId = getUser().userId;
 
   const [qnaFormData, setQnaFormData] = useState({
     qtitle: "",
     qcontent: "",
     qformPs: "",
+    user_id: userId,
   });
 
   const refs = {
@@ -40,6 +43,7 @@ export default function QnaWrite() {
       })
         .then((res) => {
           console.log(res.data.cnt);
+
           if (res.data.cnt === 1) {
             navigate("/qna");
           }

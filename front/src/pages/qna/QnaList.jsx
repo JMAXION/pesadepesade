@@ -3,6 +3,7 @@ import SubTitle from "../../components/SubTitle";
 import "../../css/board.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getUser } from "../../util/localStorage";
 
 export default function QnaList() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export default function QnaList() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const pagesToShow = 5; // 한 번에 보여줄 페이지 버튼 수
-  const userId = "test";
+  // const userId = getUser().userId;
 
   useEffect(() => {
     const url = "http://localhost:8080/qna/list";
@@ -95,7 +96,7 @@ export default function QnaList() {
                     <div className="qna-summary">
                       <div className="qna-row top">
                         <div className="qna-left">{list.rno}</div>
-                        <span>{userId}</span>
+                        <span>{list.user_id}</span>
                       </div>
                       <div className="qna-row bottom">
                         <strong>

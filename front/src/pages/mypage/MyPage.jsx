@@ -1,7 +1,7 @@
 import React from "react";
 import SubTitle from "../../components/SubTitle";
 import "../../css/mypage.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MyPage() {
   const navigate = useNavigate();
@@ -50,7 +50,9 @@ export default function MyPage() {
             <li>회원정보 수정</li>
           </ul>
           <ul>
-            <li>나의 게시글</li>
+            <Link to={"/mypage/myboard"}>
+              <li>나의 게시글</li>
+            </Link>
             <li>1:1문의</li>
             <li>상품문의</li>
             <li>상품후기</li>

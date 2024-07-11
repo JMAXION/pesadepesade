@@ -3,9 +3,11 @@ import SubTitle from "../../components/SubTitle";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../css/board.css";
 import axios from "axios";
+import { getUser } from "../../util/localStorage";
 
 export default function QnaContent() {
-  const userId = "test";
+  const userId = getUser().userId;
+
   const { qid, rno } = useParams();
   const [qna, setQna] = useState({});
   const [nextQna, setNextQna] = useState({});
@@ -14,6 +16,8 @@ export default function QnaContent() {
   const [isSecret, setIsSecret] = useState(false); // 비밀글 여부 상태
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+
+  console.log(userId);
 
   useEffect(() => {
     const url = `http://localhost:8080/qna/${qid}`;
@@ -86,32 +90,36 @@ export default function QnaContent() {
   }, [qid]);
 
   const handleAddComment = () => {
-    const url = "http://localhost:8080/qna/comments";
-    const data = {
-      qid: String(qid),
-      user_id: userId,
-      comment_text: newComment,
-    };
-    axios({
-      method: "post",
-      data: data,
-      url: url,
-    }).then((result) => {
-      if (result.data.success) {
-        setComments([
-          {
-            comment_id: result.data.commentId,
-            user_id: userId,
-            comment_text: newComment,
-            created_at: new Date(),
-          },
-          ...comments,
-        ]);
-        setNewComment("");
-      } else {
-        console.error("Server error:", result.data.error);
-      }
-    });
+    if (userId === null) alert("로그인 후 댓글을 입력해주세요");
+    else {
+      const url = "http://localhost:8080/qna/comments";
+      const data = {
+        qid: String(qid),
+        userId: userId,
+        comment_text: newComment,
+      };
+      console.log(data);
+      axios({
+        method: "post",
+        data: data,
+        url: url,
+      }).then((result) => {
+        if (result.data.success) {
+          setComments([
+            {
+              comment_id: result.data.commentId,
+              userId: userId,
+              comment_text: newComment,
+              created_at: new Date(),
+            },
+            ...comments,
+          ]);
+          setNewComment("");
+        } else {
+          console.error("Server error:", result.data.error);
+        }
+      });
+    }
   };
 
   const handleDeleteComment = (commentId) => {
@@ -141,7 +149,7 @@ export default function QnaContent() {
             <div className="qna-head">
               <h3>{qna.qtitle}</h3>
               <div className="qna-info">
-                <span>{userId}</span>
+                <span>{qna.user_id}</span>
               </div>
               <div className="qna-append">
                 <span>{qna.qdate}</span>

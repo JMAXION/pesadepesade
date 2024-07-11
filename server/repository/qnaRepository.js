@@ -9,15 +9,20 @@ export const insert = async (qnaFormData) => {
   if (qnaFormData.isSecret) {
     sql = `
       INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qpassword, qdate, is_secret)
-      VALUES (?, 'test', ?, 0, ?, now(), TRUE)
+      VALUES (?, ?, ?, 0, ?, now(), TRUE)
     `;
-    params = [qnaFormData.qtitle, qnaFormData.qcontent, qnaFormData.qformPs];
+    params = [
+      qnaFormData.qtitle,
+      qnaFormData.user_id,
+      qnaFormData.qcontent,
+      qnaFormData.qformPs,
+    ];
   } else {
     sql = `
       INSERT INTO pesade_qboard(qtitle, user_id, qcontent, qhits, qdate, is_secret)
-      VALUES (?, 'test', ?, 0, now(), FALSE)
+      VALUES (?, ?, ?, 0, now(), FALSE)
     `;
-    params = [qnaFormData.qtitle, qnaFormData.qcontent];
+    params = [qnaFormData.qtitle, qnaFormData.user_id, qnaFormData.qcontent];
   }
 
   try {
