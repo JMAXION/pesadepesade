@@ -78,13 +78,7 @@
   width: 290px;
   text-align: center;
   margin: 0 auto;
-  border: 1px solid red;
-}
-.mypage-infochange-title {
-  border: 1px solid orange;
-}
-.mypage-infochange-text {
-  border: 1px solid yellow;
+  margin-bottom: 2rem;
 }
 .mypage-infochange-passwordinput {
   display: flex;
@@ -94,6 +88,14 @@
   width: 230px;
   height: 36px;
   padding: 10px;
+}
+.mypage-infochange-main {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.mypage-infochange-icon {
+  width: 40px;
 }
 .mypage-infochange-button {
   height: 36px;
@@ -129,6 +131,11 @@
 .editprofile-table-inputsubsubsub {
   width: 107px;
   height: 36px;
+  margin-left: 6px;
+}
+.editprofile-table-inputsubsubsubsub {
+  width: 95px;
+  height: 36px;
   margin-right: 6px;
 }
 .editprofile-table-inputbutton {
@@ -147,4 +154,5 @@
   height: 36px;
   color: white;
   background-color: black;
+  margin: 1rem;
 }
