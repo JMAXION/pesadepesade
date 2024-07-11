@@ -31,9 +31,9 @@ export default function Upload() {
     fetchData();
   }, []);
 
-  const handleMainImagesChange = (e) => {
-    setMainImages([...mainImages, ...Array.from(e.target.files)]);
-  };
+  // const handleMainImagesChange = (e) => {
+  //   setMainImages([...mainImages, ...Array.from(e.target.files)]);
+  // };
 
   const handleDetailImagesChange = (e) => {
     setDetailImages([...detailImages, ...Array.from(e.target.files)]);
@@ -53,9 +53,9 @@ export default function Upload() {
     formData.append("categoryId", categoryId);
     formData.append("mainImage", mainImage);
 
-    mainImages.forEach((image, index) => {
-      formData.append("mainImages", image);
-    });
+    // mainImages.forEach((image, index) => {
+    //   formData.append("mainImages", image);
+    // });
 
     detailImages.forEach((image, index) => {
       formData.append("detailImages", image);
@@ -182,7 +182,7 @@ export default function Upload() {
                 required
               />
             </li>
-            <li>
+            {/* <li>
               <label>메인 이미지들</label>
               <input
                 type="file"
@@ -196,7 +196,7 @@ export default function Upload() {
                   <p key={index}>{image.name}</p>
                 ))}
               </div>
-            </li>
+            </li> */}
             <li>
               <label>상세 이미지들</label>
               <input
