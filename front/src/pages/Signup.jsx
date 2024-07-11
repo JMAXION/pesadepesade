@@ -84,7 +84,7 @@ export default function Signup() {
           handleAddress={handleAddress}
         />
       )}
-      {step === 3 && <SignupStep3 />}
+      {step === 3 && <SignupStep3 formData={formData} />}
     </div>
   );
 }

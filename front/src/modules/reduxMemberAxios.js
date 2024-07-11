@@ -1,4 +1,4 @@
-import { setIsLogin } from "../reducers/memberReducer";
+import { setIsLogin, setIsLogout } from "../reducers/memberReducer";
 import { axiosPost } from "./reduxAxios";
 import { jwtDecode } from "jwt-decode";
 import * as cookie from "../util/cookies.js";
@@ -35,5 +35,11 @@ export function getIsLogin({ formData }) {
     } else {
       alert(loginResult.message || "Login failed");
     }
+  };
+}
+
+export function getIsLogout() {
+  return (dispatch) => {
+    dispatch(setIsLogout());
   };
 }
