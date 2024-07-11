@@ -1,7 +1,7 @@
 import React from "react";
 import SubTitle from "../../components/SubTitle";
 
-export default function InfoChangeStep1() {
+export default function InfoChangeStep1({ nextstep }) {
   return (
     <div>
       <SubTitle title="회원 정보 수정" />
@@ -13,7 +13,9 @@ export default function InfoChangeStep1() {
         </p>
         <p className="mypage-infochange-passwordinput">
           <input type="password" className="mypage-infochange-input" />
-          <button className="mypage-infochange-button">확인</button>
+          <button className="mypage-infochange-button" onClick={nextstep}>
+            확인
+          </button>
         </p>
       </div>
     </div>

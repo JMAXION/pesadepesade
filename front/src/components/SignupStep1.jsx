@@ -1,8 +1,20 @@
 import "../css/signup.css";
 import { /* handleFocus, */ validateCheckStep1 } from "../apis/validate.js";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import TermsModal from "./signup/TermsModal.jsx";
+import PrivacyModal from "./signup/PrivacyModal.jsx";
 
 export default function SignupStep1({ nextStep, formData, handleCheck }) {
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+
+  const openTermsModal = () => setIsTermsModalOpen(true);
+  const closeTermsModal = () => setIsTermsModalOpen(false);
+
+  const openPrivacyModal = () => setIsPrivacyModalOpen(true);
+  const closePrivacyModal = () => setIsPrivacyModalOpen(false);
+
   return (
     <div className="content">
       <div className="step1">
@@ -27,10 +39,10 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
             <div className="step1-progress-name">가입완료</div>
           </div>
         </div>
+
         <form>
           <div>
             {/* 전체 동의 */}
-
             <div className="step1-agreeall">
               <h3>전체 동의</h3>
               <div className="agreeall-checkbox-container">
@@ -74,7 +86,12 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                     </span>
                   </div>
                   <span>
-                    <a href="#">전체보기</a>
+                    <p
+                      style={{ textDecoration: "underline" }}
+                      onClick={openTermsModal}
+                    >
+                      전체보기
+                    </p>
                   </span>
                 </div>
                 <textarea className="step1-textarea">
@@ -96,6 +113,13 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                   서비스를 이용하는 자를 말합니다.
                 </textarea>
               </div>
+
+              <TermsModal
+                isOpen={isTermsModalOpen}
+                onClose={closeTermsModal}
+                /*    content={"약관 내용을 여기에 넣으세요."} */
+              />
+
               <div>
                 <div className="step1-agree">
                   <div className="step1-agree-checkbox">
@@ -116,7 +140,12 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                       <strong>)</strong>
                     </span>
                   </div>
-                  <a href="#">전체보기</a>
+                  <p
+                    style={{ textDecoration: "underline" }}
+                    onClick={openPrivacyModal}
+                  >
+                    전체보기
+                  </p>
                 </div>
                 <textarea className="step1-textarea ">
                   1. 개인정보 수집목적 및 이용목적 가. 서비스 제공에 관한 계약
@@ -143,6 +172,13 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                   거부할 수 있으나 거부시 회원 가입이 불가능합니다.
                 </textarea>
               </div>
+
+              <PrivacyModal
+                isOpen={isPrivacyModalOpen}
+                onClose={closePrivacyModal}
+                /*    content={"약관 내용을 여기에 넣으세요."} */
+              />
+
               <div>
                 <div className="step1-agree step1-agree-shop">
                   <input

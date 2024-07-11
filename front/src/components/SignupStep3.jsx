@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../css/signup.css";
 
-export default function SignupStep3() {
+export default function SignupStep3({ formData }) {
   return (
     <div className="content">
       <div className="step3">
@@ -34,7 +34,7 @@ export default function SignupStep3() {
           <p className="step3-complete">회원가입이 완료되었습니다.</p>
           <p className="step3-member-info">
             <strong>
-              <span>test</span>
+              <span>{formData.userName}</span>
             </strong>
             님은&nbsp;
             <strong>[일반회원]</strong>&nbsp; 회원이십니다.
@@ -44,15 +44,17 @@ export default function SignupStep3() {
         <div className="step3-user-details">
           <div className="step3-user-detail">
             <p className="step3-detail-label">아이디</p>
-            <p className="step3-detail-value">test123</p>
+            <p className="step3-detail-value">{formData.userId}</p>
           </div>
           <div className="step3-user-detail">
             <p className="step3-detail-label step3-name-label">이 름</p>
-            <p className="step3-detail-value">test</p>
+            <p className="step3-detail-value">{formData.userName}</p>
           </div>
           <div className="step3-user-detail">
             <p className="step3-detail-label">이메일</p>
-            <p className="step3-detail-value">test123@test.com</p>
+            <p className="step3-detail-value">
+              {formData.emailId}@{formData.emailDomain}
+            </p>
           </div>
         </div>
 
