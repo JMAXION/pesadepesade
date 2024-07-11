@@ -43,7 +43,7 @@ console.log(userInfo.userId);
 
 
   function addOk(){
-    console.log(result);
+    console.log(result.msg);
     if(check.current.value === "0"){
       alert("기프트 카드를 선택해 주세요")
       return
@@ -87,7 +87,7 @@ console.log(userInfo.userId);
           <select className="select-msg-card" onClick={setSelect} onChange={(e)=>choiceSelect(e.target.value) }ref={check}>
             <option value="0">메세지카드</option>
             {giftCard.map((obj)=>(
-              <option value={obj.gift_option}>{obj.gift_option}</option>
+              <option value={obj.pgid}>{obj.gift_option}</option>
             ))}
           </select>
           {userInfo ?(<button type="button" className="detail-add-cart" onClick={addOk}>Add to cart</button>):

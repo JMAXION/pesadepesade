@@ -10,6 +10,7 @@ export default function Product({ name }) {
   const productThumbnailRef = useRef(null);
 
   const url = 'http://127.0.0.1:8080/product';
+  console.log('아이템',item);
 
   useEffect(() => {
     axios({
@@ -67,7 +68,7 @@ export default function Product({ name }) {
                   <button className="btn-text-cart" onClick={() => openModal(obj)}>Add to cart</button>
                 </div>
                 <div className="product-inner">
-                  <img src={obj.pimage} alt={obj.pname} ref={productThumbnailRef} />
+                  <img src={`http://localhost:8080/${obj.pimage}`} alt={obj.pname} ref={productThumbnailRef} />
                 </div>
               </Link>
             </li>
