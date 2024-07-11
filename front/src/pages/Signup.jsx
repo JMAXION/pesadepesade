@@ -57,6 +57,18 @@ export default function Signup() {
         smscheck: isChecked,
         emailcheck: isChecked,
       });
+    } else if (type === "smscheck") {
+      setFormData({
+        ...formData,
+        shop: isChecked,
+        smscheck: isChecked,
+      });
+    } else if (type === "emailcheck") {
+      setFormData({
+        ...formData,
+        shop: isChecked,
+        emailcheck: isChecked,
+      });
     } else {
       setFormData({ ...formData, [type]: !formData[type] });
     }
