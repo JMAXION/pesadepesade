@@ -44,3 +44,26 @@
   width: 100%;
   background-image: var(--color-bg);
 }
+
+
+.cart-go-shopping{
+  display: block;
+  margin: 0 auto;
+  width:232px;
+  height: 35px;
+  border:0;
+  padding:10px 20px;
+  font-size: 14px;
+  color:white;
+  background-color: black;
+  font-weight: 600;
+}
+
+.cart-go-shop-link{
+  text-decoration: none;
+}
+
+.cart-msg-option{
+  font-size: 14px;
+  color:#655555
+}

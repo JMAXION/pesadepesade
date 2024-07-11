@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/admin/delete.css";
 
+
 export default function DeleteProduct() {
   const [products, setProducts] = useState([]);
 
@@ -32,6 +33,7 @@ export default function DeleteProduct() {
     }
   };
 
+  console.log('tk',products);
   return (
     <div className="content">
       <SubTitle title="상품삭제" />
