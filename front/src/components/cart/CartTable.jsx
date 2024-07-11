@@ -67,7 +67,7 @@ export default function CartTable() {
             <tr key={item.id}>
               <td>
                 <img
-                  src={item.pimage}
+                  src={`http://127.0.0.1:8080/${item.pimage}`}
                   alt=""
                 />{" "}
               </td>
