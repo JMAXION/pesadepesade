@@ -29,7 +29,9 @@ export default function SignupStep2({
     emailDomainRef: useRef(null),
   };
 
-  console.log("리액트폼", formData);
+  const [isIdChecked, setIsIdChecked] = useState(false);
+  const [userIdError, setUserIdError] = useState(false);
+  const [userPassError, setUserPassError] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,7 +65,49 @@ export default function SignupStep2({
     }
   };
 
+  const validateUserId = () => {
+    if (!formData.userId || !/^[a-z0-9]{4,16}$/.test(formData.userId)) {
+      setUserIdError(true);
+      alert(
+        "아이디는 영문소문자 또는 숫자로 4자에서 16자 사이로 입력해 주세요."
+      );
+      refs.userIdRef.current.focus();
+      return false;
+    }
+    setUserIdError(false);
+    return true;
+  };
+
+  const validateUserPass = () => {
+    const passRegEx =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,16}$/;
+    if (!formData.userPass || !passRegEx.test(formData.userPass)) {
+      setUserPassError(true);
+      alert(
+        "비밀번호는 대소문자, 숫자, 특수문자 중 3가지 이상을 조합하여 8자에서 16자 사이로 입력해 주세요."
+      );
+      refs.userPassRef.current.focus();
+      return false;
+    }
+    setUserPassError(false);
+    return true;
+  };
+
   const handleSubmit = () => {
+    if (!validateUserId()) {
+      return;
+    }
+
+    if (!isIdChecked) {
+      alert("아이디 중복확인을 해주세요");
+      refs.userIdRef.current.focus();
+      return;
+    }
+
+    if (!validateUserPass()) {
+      return;
+    }
+
     if (validateCheckStep2(formData, refs)) {
       if (passCheck(refs)) {
         console.log("submit->>", formData);
@@ -85,6 +129,35 @@ export default function SignupStep2({
           })
           .catch((error) => console.log(error));
       }
+    }
+  };
+
+  const handleIdCheck = () => {
+    if (!validateUserId()) {
+      return;
+    }
+    if (refs.userIdRef.current.value == "") {
+      alert("아이디를 입력해 주세요");
+      refs.userIdRef.current.focus();
+    } else {
+      const url = "http://127.0.0.1:8080/member/idCheck";
+      const userId = refs.userIdRef.current.value;
+      axios({
+        method: "post",
+        url: url,
+        data: { userId: userId },
+      })
+        .then((res) => {
+          if (res.data.cnt === 1) {
+            alert("이미 사용중인 아이디입니다. 다시 입력해 주세요");
+            refs.userIdRef.current.focus();
+          } else {
+            alert("사용 가능한 아이디입니다.");
+            refs.userPassRef.current.focus();
+            setIsIdChecked(true);
+          }
+        })
+        .catch((error) => console.log(error));
     }
   };
 
@@ -145,14 +218,22 @@ export default function SignupStep2({
               onChange={handleChange}
               ref={refs.userIdRef}
             />
+
             <button
               className="step2-idcheck-btn"
               type="button"
-              /*     onClick={handleIdCheck} */
+              onClick={handleIdCheck}
             >
               중복확인
             </button>
           </li>
+
+          {userIdError && (
+            <div className="step2-error">
+              아이디는 영문소문자 또는 숫자로 4자에서 16자 사이로 입력해 주세요.
+            </div>
+          )}
+
           <li className="step2-member-li">
             <div className="step2-member-li-name">
               <span>*</span>
@@ -166,6 +247,14 @@ export default function SignupStep2({
               ref={refs.userPassRef}
             />
           </li>
+
+          {userPassError && (
+            <div className="step2-error">
+              비밀번호는 대소문자, 숫자, 특수문자 중 3가지 이상을 조합하여
+              8자에서 16자 사이로 입력해 주세요.
+            </div>
+          )}
+
           <li className="step2-member-li">
             <div className="step2-member-li-name">
               <span>*</span>
@@ -179,6 +268,7 @@ export default function SignupStep2({
               ref={refs.userPassCheckRef}
             />
           </li>
+
           <li className="step2-member-li">
             <div className="step2-member-li-name">
               <span>*</span>
@@ -192,6 +282,7 @@ export default function SignupStep2({
               ref={refs.userNameRef}
             />
           </li>
+
           <li className="step2-member-address">
             <div className="step2-member-address-box">
               <div className="step2-member-li-name ">
@@ -229,7 +320,6 @@ export default function SignupStep2({
               ref={refs.detailAddressRef}
               placeholder="나머지 주소(선택 입력 가능)"
             />
-
             {isOpen && (
               <div>
                 <DaumPostcode
@@ -242,6 +332,7 @@ export default function SignupStep2({
               </div>
             )}
           </li>
+
           <li className="step2-member-li">
             <div className="step2-member-li-name">
               <span>*</span>
@@ -253,6 +344,7 @@ export default function SignupStep2({
                 name="phoneNumber1"
                 value={formData.phoneNumber1}
                 onChange={handleChange}
+                style={{ padding: "10px" }}
               >
                 <option value="010">010</option>
                 <option value="011">011</option>
@@ -281,6 +373,7 @@ export default function SignupStep2({
               />
             </div>
           </li>
+
           <li className="step2-member-li step2-member-li-email">
             <div className="step2-member-li-name">
               <span>*</span>
@@ -307,6 +400,7 @@ export default function SignupStep2({
               <select
                 name="emailDomain"
                 onChange={(e) => changeEmailDomain(e, refs, handleChange)}
+                style={{ marginRight: "9px" }}
               >
                 <option value="self">직접입력</option>
                 <option value="naver.com">네이버</option>

@@ -102,3 +102,49 @@
   padding: 0 10px;
   background-color: black;
 }
+.profileedit {
+  border: 1px solid red;
+  width: 400px;
+  margin: 0 auto;
+}
+.editprofile-table {
+  margin: 0 auto;
+}
+.editprofile-table td {
+  padding: 7px 13px 6px;
+}
+.editprofile-table-inputmain {
+  width: 360px;
+  height: 36px;
+}
+.editprofile-table-inputsub {
+  width: 80px;
+  height: 36px;
+}
+.editprofile-table-inputsubsub {
+  width: 107px;
+  height: 36px;
+  margin-right: 4px;
+}
+.editprofile-table-inputsubsubsub {
+  width: 107px;
+  height: 36px;
+  margin-right: 6px;
+}
+.editprofile-table-inputbutton {
+  width: 73px;
+  height: 36px;
+  color: white;
+  background-color: black;
+}
+.profileedit-buttons {
+  align-items: center;
+  text-align: center;
+  margin: 2rem 0;
+}
+.profileedit-button {
+  width: 10rem;
+  height: 36px;
+  color: white;
+  background-color: black;
+}

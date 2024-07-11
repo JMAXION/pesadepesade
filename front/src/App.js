@@ -29,6 +29,7 @@ import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
 import MyPageBoard from "./pages/mypage/MyPageBoard.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
+
 export default function App() {
   const router = createBrowserRouter([
     {

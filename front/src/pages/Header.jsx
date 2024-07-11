@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/header.css";
 import Sidebar from "../components/header/Sidebar.jsx";
+import { useDispatch } from "react-redux";
+import { getIsLogout } from "../modules/reduxMemberAxios.js";
+import { getUser, removeUser } from "../util/localStorage";
 
 export default function Header({ isHome }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const userInfo = getUser();
+
   const [isTop, setIsTop] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(getIsLogout());
+    alert("로그아웃 되었습니다");
+    removeUser();
+    navigate("/");
+  };
 
   useEffect(() => {
     const checkScrollPosition = () => {
@@ -51,9 +66,17 @@ export default function Header({ isHome }) {
           ></Link>
         </div>
         <div className="header-right-menu">
-          <div>
-            <Link to={"/login"}>Login</Link>
-          </div>
+          {userInfo ? (
+            <div>
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div>
+              <Link to={"/login"}>Login</Link>
+            </div>
+          )}
           <div>
             <Link to={"/cart"}>Cart</Link>
           </div>

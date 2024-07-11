@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const getSignup = async (formData) => {
-  console.log("formdata=>", formData);
+  // console.log("formdata=>", formData);
   let result_rows = 0;
 
   let phone1 = formData.phoneNumber1;
@@ -47,7 +47,6 @@ export const getSignup = async (formData) => {
     const [result] = await db.execute(sql, params);
 
     result_rows = result.affectedRows;
-    console.log("rows -->", result.affectedRows);
   } catch (error) {
     console.log(error);
   }
@@ -66,7 +65,9 @@ export const getLogin = async (userId, userPass) => {
 
   try {
     const [result] = await db.execute(sql, [userId]);
-    console.log("result=>>>>>>>", result);
+
+    // console.log("result=>>>>>>>", result);
+
     if (result[0].cnt === 1) {
       const passCheck = bcrypt.compareSync(userPass, result[0].user_pass);
       if (passCheck) login_result = 1;
@@ -81,4 +82,12 @@ export const getLogin = async (userId, userPass) => {
     cnt: login_result,
     token: login_token,
   };
+};
+
+export const getIdCheck = async (userId) => {
+  const sql = `
+  select count(user_id) cnt from pesade_member where user_id = ?
+  `;
+
+  return await db.execute(sql, [userId]).then((result) => result[0][0]);
 };
