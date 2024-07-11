@@ -1,11 +1,37 @@
 import React from "react";
-import SubTitle from "../components/SubTitle";
-import "../css/mypage.css";
+import SubTitle from "../../components/SubTitle";
+import "../../css/mypage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function MyPage() {
+  const navigate = useNavigate();
   return (
     <div>
       <SubTitle title="mypage" />
+      <ul className="mypage-info">
+        <li className="mypage-info-name">
+          <p>
+            <span className="mypage-info-name-highlight">홍길동</span> 님은{" "}
+            <span className="mypage-info-name-highlight">기본 등급</span>
+            입니다.
+          </p>
+          <p className="mypage-info-buy">
+            <p>구매금액 0원</p>
+            <p>구매횟수 0건</p>
+          </p>
+        </li>
+        <li className="mypage-info-detail">
+          <li className="mypage-info-detail-grade">
+            <p>등급혜택 안내</p>
+            <p onClick={navigate("/mypage/userinfo")}>회원정보 수정</p>
+          </li>
+          <li className="mypage-info-detail-acoupon">
+            <p>사용 가능 적립금</p>
+            <p>보유중인 쿠폰</p>
+            <p>찜리스트</p>
+          </li>
+        </li>
+      </ul>
       <div className="mypage">
         <div className="mypage-leftmenu">
           <p>마이페이지</p>
@@ -31,30 +57,6 @@ export default function MyPage() {
           </ul>
         </div>
         <div className="mypage-rightmenu">
-          <ul className="mypage-info">
-            <li className="mypage-info-name">
-              <p>
-                <span className="mypage-info-name-highlight">홍길동</span> 님은{" "}
-                <span className="mypage-info-name-highlight">기본 등급</span>
-                입니다.
-              </p>
-              <p className="mypage-info-buy">
-                <p>구매금액 0원</p>
-                <p>구매횟수 0건</p>
-              </p>
-            </li>
-            <li className="mypage-info-detail">
-              <li className="mypage-info-detail-grade">
-                <p>등급혜택 안내</p>
-                <p>회원정보 수정</p>
-              </li>
-              <li className="mypage-info-detail-acoupon">
-                <p>사용 가능 적립금</p>
-                <p>보유중인 쿠폰</p>
-                <p>찜리스트</p>
-              </li>
-            </li>
-          </ul>
           <div className="mypage-division-line"></div>
           <ul className="mypage-detail-info">
             <li>

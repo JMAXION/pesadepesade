@@ -3,7 +3,7 @@
 }
 .mypage-leftmenu {
   position: fixed;
-  top: 12rem;
+  top: 22rem;
   left: 0;
   width: 200px; /* 원하는 너비로 설정 */
   height: 100%;
@@ -24,7 +24,7 @@
   padding: 2rem 0;
 }
 .mypage-info-name {
-  margin-left: 2rem;
+  margin-left: 14.8rem;
 }
 .mypage-info-name-highlight {
   color: red;
@@ -72,4 +72,33 @@
 .mypage-myscript-detail-answer {
   display: flex;
   gap: 1rem;
+}
+
+.mypage-infochange {
+  width: 290px;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+.mypage-infochange-title {
+  border: 1px solid orange;
+}
+.mypage-infochange-text {
+  border: 1px solid yellow;
+}
+.mypage-infochange-passwordinput {
+  display: flex;
+  justify-content: space-between;
+}
+.mypage-infochange-input {
+  width: 230px;
+  height: 36px;
+  padding: 10px;
+}
+.mypage-infochange-button {
+  height: 36px;
+  font-size: 12px;
+  color: white;
+  padding: 0 10px;
+  background-color: black;
 }
