@@ -30,7 +30,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter }).fields([
   { name: "mainImage", maxCount: 1 },
-  { name: "mainImages", maxCount: 10 },
+  // { name: "mainImages", maxCount: 10 },
   { name: "detailImages", maxCount: 10 },
 ]);
 
@@ -51,10 +51,10 @@ export const uploadProduct = async (req, res) => {
       notice,
     } = req.body;
     const mainImagePath = req.files.mainImage[0].path;
-    const mainImagePaths = req.files.mainImages.map((file, index) => ({
-      path: file.path,
-      order: index + 1,
-    }));
+    // const mainImagePaths = req.files.mainImages.map((file, index) => ({
+    //   path: file.path,
+    //   order: index + 1,
+    // }));
     const detailImagePaths = req.files.detailImages.map((file, index) => ({
       path: file.path,
       order: index + 1,
@@ -78,12 +78,12 @@ export const uploadProduct = async (req, res) => {
 
       const pid = result.insertId;
 
-      for (const { path, order } of mainImagePaths) {
-        await db.execute(
-          "INSERT INTO pesade_product_image (pid, img_url, img_type, img_order) VALUES (?, ?, 'main', ?)",
-          [pid, path, order]
-        );
-      }
+      // for (const { path, order } of mainImagePaths) {
+      //   await db.execute(
+      //     "INSERT INTO pesade_product_image (pid, img_url, img_type, img_order) VALUES (?, ?, 'main', ?)",
+      //     [pid, path, order]
+      //   );
+      // }
 
       for (const { path, order } of detailImagePaths) {
         await db.execute(
@@ -95,7 +95,7 @@ export const uploadProduct = async (req, res) => {
       res.status(200).json({
         success: true,
         mainImagePath,
-        mainImagePaths,
+        // mainImagePaths,
         detailImagePaths,
         productId: pid,
       });
