@@ -60,7 +60,10 @@ export default function MyPage() {
           <div className="mypage-division-line"></div>
           <ul className="mypage-detail-info">
             <li>
-              <p>나의 주문현황</p>
+              <p className="mypage-detail-myorder">
+                <p>나의 주문현황</p>
+                <p onClick={() => navigate("/mypage/order")}>확인하기</p>
+              </p>
               <table className="mypage-table">
                 <tr>
                   <td>미입금</td>

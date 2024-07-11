@@ -27,6 +27,7 @@ import Admin from "./pages/admin/Admin.jsx";
 import NoticeWrite from "./pages/notice/NoticeWrite.jsx";
 import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
+import MyPageOrder from "./pages/mypage/MyPageOrder.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
 
 export default function App() {
@@ -66,6 +67,7 @@ export default function App() {
         { path: "/admin/delete", element: <Delete /> },
         { path: "/mypage", element: <MyPage /> },
         { path: "/mypage/userinfo", element: <MyPageChangeInfo /> },
+        { path: "/mypage/order", element: <MyPageOrder /> },
       ],
     },
   ]);

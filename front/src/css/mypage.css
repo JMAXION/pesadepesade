@@ -80,9 +80,13 @@
   margin: 0 auto;
   margin-bottom: 2rem;
 }
+.mypage-infochange-title {
+  margin-bottom: 2rem;
+}
 .mypage-infochange-passwordinput {
   display: flex;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 .mypage-infochange-input {
   width: 230px;
@@ -93,6 +97,10 @@
   display: flex;
   justify-content: center;
   gap: 8px;
+}
+.mypage-detail-myorder {
+  display: flex;
+  justify-content: space-between;
 }
 .mypage-infochange-icon {
   width: 40px;
@@ -118,25 +126,35 @@
 .editprofile-table-inputmain {
   width: 360px;
   height: 36px;
+  background-color: rgb(255, 251, 237);
+  border: 1px solid black;
 }
 .editprofile-table-inputsub {
   width: 80px;
   height: 36px;
+  background-color: rgb(255, 251, 237);
+  border: 1px solid black;
 }
 .editprofile-table-inputsubsub {
   width: 107px;
   height: 36px;
   margin-right: 4px;
+  background-color: rgb(255, 251, 237);
+  border: 1px solid black;
 }
 .editprofile-table-inputsubsubsub {
   width: 107px;
   height: 36px;
   margin-left: 6px;
+  background-color: rgb(255, 251, 237);
+  border: 1px solid black;
 }
 .editprofile-table-inputsubsubsubsub {
   width: 95px;
   height: 36px;
   margin-right: 6px;
+  background-color: rgb(255, 251, 237);
+  border: 1px solid black;
 }
 .editprofile-table-inputbutton {
   width: 73px;
