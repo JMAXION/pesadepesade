@@ -4,20 +4,25 @@
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
   padding: 20px 49px;
   box-sizing: border-box;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   transition: background-color 0.3s, color 0.3s;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .header-top {
   background-color: inherit;
   color: #fcfaf1;
 }
+
 .header-top div a {
   text-decoration: none;
   color: #fcfaf1;
@@ -36,7 +41,7 @@
 .header-right-menu {
   display: flex;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 1.5rem;
 }
 
 .header-menu,
@@ -52,7 +57,9 @@
   align-items: center;
   height: 39px;
   width: 120px;
-  margin-left: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header-logo a {
@@ -71,6 +78,7 @@
 .logo-scrolled {
   background-image: url("../../public/image/pesade-logo.png");
 }
+
 /* 사이드바 */
 
 .drawer-content {

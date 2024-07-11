@@ -56,32 +56,34 @@ export default function Header({ isHome }) {
           isHome && isTop ? "header-top" : "header-scrolled"
         }`}
       >
-        <div className="header-menu" onClick={toggleDrawer(true)}>
-          Shop
-        </div>
-        <div className="header-logo">
-          <Link
-            to="/"
-            className={`${isHome && isTop ? "logo-top" : "logo-scrolled"}`}
-          ></Link>
-        </div>
-        <div className="header-right-menu">
-          {userInfo ? (
+        <div className="header-content">
+          <div className="header-menu" onClick={toggleDrawer(true)}>
+            Shop
+          </div>
+          <div className="header-logo">
+            <Link
+              to="/"
+              className={`${isHome && isTop ? "logo-top" : "logo-scrolled"}`}
+            ></Link>
+          </div>
+          <div className="header-right-menu">
+            {userInfo ? (
+              <>
+                <div onClick={handleLogout}><Link to={'/'}>Logout</Link></div>
+                <div>
+                  <Link to="/mypage">My Page</Link>
+                </div>
+              </>
+            ) : (
+              <div>
+                <Link to={"/login"}>Login</Link>
+              </div>
+            )}
             <div>
-              <button type="button" onClick={handleLogout}>
-                Logout
-              </button>
+              <Link to={"/cart"}>Cart</Link>
             </div>
-          ) : (
-            <div>
-              <Link to={"/login"}>Login</Link>
-            </div>
-          )}
-          <div>
-            <Link to={"/cart"}>Cart</Link>
           </div>
         </div>
-        <div className="sidebar-open" style={{ display: "none" }}></div>
       </div>
 
       <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
