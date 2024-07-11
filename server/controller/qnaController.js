@@ -102,3 +102,5 @@ export const deleteComment = async (req, res) => {
     res.status(400).json({ success: false, error: "Failed to delete comment" });
   }
 };
+
+/* uploadImage */
