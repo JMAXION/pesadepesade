@@ -29,6 +29,8 @@ import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
 import MyPageOrder from "./pages/mypage/MyPageOrder.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
+import IdRetrievalForm from "./components/member/IdRetrievalForm.jsx";
+import MemberIdFind from "./components/member/MemberIdFind.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -45,7 +47,7 @@ export default function App() {
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
         { path: "/login", element: <Login /> },
-        { path: "/login/idfind", element: <IdFind /> },
+        { path: "/login/memberidfind", element: <MemberIdFind /> },
         { path: "/login/passwordfind", element: <PasswordFind /> },
         { path: "/signup", element: <Signup /> },
 

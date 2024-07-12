@@ -361,6 +361,7 @@ export default function SignupStep2({
                 value={formData.phoneNumber2}
                 onChange={handleChange}
                 ref={refs.phoneNumber2Ref}
+                maxLength="4"
               />
               -
               <input
@@ -370,6 +371,7 @@ export default function SignupStep2({
                 value={formData.phoneNumber3}
                 onChange={handleChange}
                 ref={refs.phoneNumber3Ref}
+                maxLength="4"
               />
             </div>
           </li>
@@ -475,6 +477,7 @@ export default function SignupStep2({
                   name="year"
                   value={formData.year}
                   onChange={handleChange}
+                  maxLength="4"
                 />
                 년
                 <input
@@ -482,6 +485,7 @@ export default function SignupStep2({
                   name="month"
                   value={formData.month}
                   onChange={handleChange}
+                  maxLength="2"
                 />
                 월
                 <input
@@ -489,6 +493,7 @@ export default function SignupStep2({
                   name="day"
                   value={formData.day}
                   onChange={handleChange}
+                  maxLength="2"
                 />
                 일
               </div>
