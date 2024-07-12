@@ -198,14 +198,18 @@
 .myorder-select {
   display: flex;
   justify-content: left;
+  margin-bottom: 1rem;
 }
 .myorderselect-content {
   width: 800px;
   margin: 2rem auto;
 }
 .myorderdate {
-  width: 50px;
+  width: 60px;
+  border: 1px solid black;
+  background-color: transparent;
 }
 .myorderdate.active {
   background-color: black;
+  color: white;
 }

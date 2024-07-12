@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../../css/mypage.css";
 import SubTitle from "../../components/SubTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 export default function MyPageOrder() {
   const [activeButton, setActiveButton] = useState(1);
@@ -49,30 +51,77 @@ export default function MyPageOrder() {
             <ul className="myorder-select">
               <p>기간</p>
               <button
-                className={`myorderdate ${activeButton === 1 ? "active" : ""}`}
+                className={`myorderdate ${activeDate === 1 ? "active" : ""}`}
                 onClick={() => dateChange(1)}
               >
                 오늘
               </button>
               <button
-                className={`myorderdate ${activeButton === 2 ? "active" : ""}`}
+                className={`myorderdate ${activeDate === 2 ? "active" : ""}`}
                 onClick={() => dateChange(2)}
               >
                 1개월
               </button>
-              <button>3개월</button>
-              <button>6개월</button>
-              <button>기간설정</button>
+              <button
+                className={`myorderdate ${activeDate === 3 ? "active" : ""}`}
+                onClick={() => dateChange(3)}
+              >
+                3개월
+              </button>
+              <button
+                className={`myorderdate ${activeDate === 4 ? "active" : ""}`}
+                onClick={() => dateChange(4)}
+              >
+                6개월
+              </button>
+              <button
+                className={`myorderdate ${activeDate === 5 ? "active" : ""}`}
+                onClick={() => dateChange(5)}
+              >
+                기간설정
+              </button>
             </ul>
-            <p>취소/교환/반품 신청은 주문 완료일 기준 7일까지 가능합니다.</p>
+            <p>
+              <FontAwesomeIcon icon={faTriangleExclamation} />
+              취소/교환/반품 신청은 주문 완료일 기준 7일까지 가능합니다.
+            </p>
           </div>
         )}
         {activeButton === 2 && (
-          <div>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
-            dignissimos itaque ullam maxime eius, dolor eaque ipsam laborum rem
-            quod porro nemo distinctio nulla optio iste! Voluptatum sunt officia
-            asperiores?
+          <div className="myorderselect-content">
+            <ul className="myorder-select">
+              <p>기간</p>
+              <button
+                className={`myorderdate ${activeDate === 1 ? "active" : ""}`}
+                onClick={() => dateChange(1)}
+              >
+                오늘
+              </button>
+              <button
+                className={`myorderdate ${activeDate === 2 ? "active" : ""}`}
+                onClick={() => dateChange(2)}
+              >
+                1개월
+              </button>
+              <button
+                className={`myorderdate ${activeDate === 3 ? "active" : ""}`}
+                onClick={() => dateChange(3)}
+              >
+                3개월
+              </button>
+              <button
+                className={`myorderdate ${activeDate === 4 ? "active" : ""}`}
+                onClick={() => dateChange(4)}
+              >
+                6개월
+              </button>
+              <button
+                className={`myorderdate ${activeDate === 5 ? "active" : ""}`}
+                onClick={() => dateChange(5)}
+              >
+                기간설정
+              </button>
+            </ul>
           </div>
         )}
       </div>
