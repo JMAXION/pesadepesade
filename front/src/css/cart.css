@@ -44,3 +44,27 @@
   width: 100%;
   background-image: var(--color-bg);
 }
+.cart-qty-input {
+  width: 30px;
+  height: 23px;
+  padding: 0 7px;
+  border: 1px solid #ececec !important;
+  line-height: 23px;
+  background: none;
+  text-align: center;
+}
+.cart-qty-btn {
+  border: none;
+  background-color: inherit;
+}
+
+.cart-total {
+  text-align: right; 
+  padding: 15px;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -7,10 +7,12 @@ import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import memberReducer from "./reducers/memberReducer.js";
+import cartsReducer from "./reducers/cartsReducer.js";
 
 const store = configureStore({
   reducer: {
     member: memberReducer,
+    carts: cartsReducer
   },
 });
 

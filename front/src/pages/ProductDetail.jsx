@@ -16,8 +16,7 @@ export default function ProductDetail() {
   const [result, setResult] = useState({
     userId: userInfo.userId,
     pid: pid,
-    qty: 1,
-    msg: ''
+    pgid: "" 
   });
 
   useEffect(() => {
@@ -27,15 +26,15 @@ export default function ProductDetail() {
       .catch(error => console.error('Error fetching product detail:', error));
   }, [pid]);
 
-  function setSelect() {
+  useEffect(() => {
     const url = `http://127.0.0.1:8080/product/gift`;
-    axios.post(url, giftCard)
+    axios.post(url)
       .then(result => setGiftCard(result.data))
       .catch(error => console.error('Error setting gift card:', error));
-  }
+  }, []);
 
   function choiceSelect(e) {
-    setResult({ ...result, msg: e });
+    setResult({ ...result, pgid: e.target.value });
   }
 
   function addOk() {
@@ -75,10 +74,10 @@ export default function ProductDetail() {
         <div className="detail-div">
           <div className="detail-pprice-right">{item.pprice}krw</div>
           <div>
-            <select className="select-msg-card" onClick={setSelect} onChange={(e) => choiceSelect(e.target.value)} ref={check}>
+            <select className="select-msg-card" onChange={choiceSelect} ref={check}>
               <option value="0">메세지카드</option>
               {giftCard.map((obj) => (
-                <option key={obj.gift_option} value={obj.gift_option}>{obj.gift_option}</option>
+                <option key={obj.pgid} value={obj.pgid}>{obj.gift_option}</option>
               ))}
             </select>
             {userInfo ? (

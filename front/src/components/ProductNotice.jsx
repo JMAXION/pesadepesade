@@ -11,7 +11,7 @@ export default function ProductInfo({prop}){
   return (
     <div className="gift-wrapper">
       <div className={`gift-content ${isClick ? 'active' : ''}`} onClick={handleState}>
-        <span className="gift-your">Product info</span>
+        <span className="gift-your">Notice</span>
         <FontAwesomeIcon className={`gift-arrow ${isClick ? 'rotate' : ''}`} icon={faArrowRightLong} />
         {isClick && (
           <div className="gift-content-info">
