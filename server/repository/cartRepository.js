@@ -45,7 +45,7 @@ export const qtyIncrease = async (cid) => {
     const [result] = await db.execute(sql, [cid.cid]);
 
     result_rows = result.affectedRows;
-    console.log("rows -->", result.affectedRows);
+    
   } catch (error) {
     console.log(error);
   }
@@ -61,24 +61,14 @@ export const qtyDecrease = async (cid) => {
     const [result] = await db.execute(sql, [cid.cid]);
 
     result_rows = result.affectedRows;
-    console.log("rows -->", result.affectedRows);
+    
   } catch (error) {
     console.log(error);
   }
   return { cnt: result_rows };
 };
 
-/* import { db } from "../db/database_mysql.js";
-
-export const getCarts = async (userId) => {
-  const sql = `
-    SELECT ec.user_id, ec.cid, ec.pid, ec.qty, ec.cdate, ep.ptitle as title, ep.price, ep.image 
-    FROM ever_cart ec
-    JOIN ever_product ep ON ep.pid = ec.pid
-    WHERE ec.user_id = ?
-  `;
-  return db.execute(sql, [userId]).then((result) => result[0]);
-};
+/* 
 
 const cartCheck = async (items) => {
   const sql = `

@@ -18,6 +18,15 @@ export async function getItem(req, res, next) {
 
 }
 
+export async function getDetailImage(req, res, next) {
+ 
+  const params = req.params.pid;
+
+  const products = await repository.getDetailImage(params);
+  res.json(products);
+
+}
+
 
 export async function getGift(req, res, next) {
  
