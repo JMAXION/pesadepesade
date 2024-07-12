@@ -1,6 +1,5 @@
 import React from "react";
 import SubTitle from "../../components/SubTitle";
-import { faFortAwesome } from "@fortawesome/free-brands-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

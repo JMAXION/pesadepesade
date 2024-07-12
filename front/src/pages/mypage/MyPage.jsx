@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import SubTitle from "../../components/SubTitle";
 import "../../css/mypage.css";
 import { useNavigate } from "react-router-dom";
 
 export default function MyPage() {
   const navigate = useNavigate();
+  const [openSections, setOpenSections] = useState({
+    shoppingInfo: false,
+    benefits: false,
+    memberInfo: false,
+    myPosts: false,
+  });
+  const handleToggle = (section) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   return (
-    <div>
+    <div className="my-page">
       <SubTitle title="mypage" />
       <ul className="mypage-info">
         <li className="mypage-info-name">
@@ -23,37 +36,104 @@ export default function MyPage() {
         <li className="mypage-info-detail">
           <li className="mypage-info-detail-grade">
             <p>등급혜택 안내</p>
-            <p onClick={navigate("/mypage/userinfo")}>회원정보 수정</p>
+            <p
+              onClick={() => navigate("/mypage/userinfo")}
+              className="mypage-info-to-userinfo"
+            >
+              회원정보 수정
+            </p>
           </li>
           <li className="mypage-info-detail-acoupon">
             <p>사용 가능 적립금</p>
-            <p>보유중인 쿠폰</p>
-            <p>찜리스트</p>
+            <p
+              onClick={() => navigate("/mypage/coupon")}
+              className="mypage-info-to-userinfo"
+            >
+              보유중인 쿠폰
+            </p>
           </li>
         </li>
       </ul>
       <div className="mypage">
         <div className="mypage-leftmenu">
-          <p>마이페이지</p>
+          <p className="mypage-toggle-title">마이페이지</p>
           <ul>
-            <li>쇼핑정보</li>
-            <li>주문내역 조회</li>
-            <li>취소/교환/반품 내역</li>
+            <li
+              onClick={() => handleToggle("shoppingInfo")}
+              className="mypage-toggle"
+            >
+              쇼핑정보
+            </li>
+            {openSections.shoppingInfo && (
+              <>
+                <li
+                  className="mypage-toggle-detail"
+                  onClick={() => navigate("/mypage/order")}
+                >
+                  주문내역 조회
+                </li>
+                <li
+                  className="mypage-toggle-detail"
+                  onClick={() =>
+                    navigate("/mypage/order", { state: { number: "2" } })
+                  }
+                >
+                  취소/교환/반품 내역
+                </li>
+              </>
+            )}
           </ul>
           <ul>
-            <li>혜택관리</li>
-            <li>쿠폰</li>
-            <li>적립금</li>
+            <li
+              onClick={() => handleToggle("benefits")}
+              className="mypage-toggle"
+            >
+              혜택관리
+            </li>
+            {openSections.benefits && (
+              <>
+                <li
+                  className="mypage-toggle-detail"
+                  onClick={() => navigate("/mypage/coupon")}
+                >
+                  쿠폰
+                </li>
+                <li className="mypage-toggle-detail">적립금</li>
+              </>
+            )}
           </ul>
           <ul>
-            <li>회원정보</li>
-            <li>회원정보 수정</li>
+            <li
+              onClick={() => handleToggle("memberInfo")}
+              className="mypage-toggle"
+            >
+              회원정보
+            </li>
+            {openSections.memberInfo && (
+              <>
+                <li
+                  className="mypage-toggle-detail"
+                  onClick={() => navigate("/mypage/userinfo")}
+                >
+                  회원정보 수정
+                </li>
+              </>
+            )}
           </ul>
           <ul>
-            <li>나의 게시글</li>
-            <li>1:1문의</li>
-            <li>상품문의</li>
-            <li>상품후기</li>
+            <li
+              onClick={() => handleToggle("myPosts")}
+              className="mypage-toggle"
+            >
+              나의 게시글
+            </li>
+            {openSections.myPosts && (
+              <>
+                <li className="mypage-toggle-detail">1:1문의</li>
+                <li className="mypage-toggle-detail">상품문의</li>
+                <li className="mypage-toggle-detail">상품후기</li>
+              </>
+            )}
           </ul>
         </div>
         <div className="mypage-rightmenu">
@@ -62,7 +142,12 @@ export default function MyPage() {
             <li>
               <p className="mypage-detail-myorder">
                 <p>나의 주문현황</p>
-                <p onClick={() => navigate("/mypage/order")}>확인하기</p>
+                <p
+                  onClick={() => navigate("/mypage/order")}
+                  className="mypage-detail-check"
+                >
+                  전체보기
+                </p>
               </p>
               <table className="mypage-table">
                 <tr>

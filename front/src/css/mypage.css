@@ -1,9 +1,33 @@
+.my-page {
+  height: 1000px;
+}
 .mypage {
   display: flex;
 }
+.mypage-info-to-userinfo {
+  cursor: pointer;
+}
+.mypage-info-to-userinfo:hover {
+  color: red;
+}
+.mypage-toggle:hover {
+  color: red;
+  cursor: pointer;
+}
+.mypage-toggle-title {
+  font-size: 1.1rem;
+  border-bottom: 2px solid black;
+  margin-bottom: 0.5rem;
+}
+.mypage-toggle-detail {
+  font-weight: 400;
+  font-size: 0.8rem;
+  border-left: 1px dotted black;
+  cursor: pointer;
+}
 .mypage-leftmenu {
   position: fixed;
-  top: 22rem;
+  top: 19.5rem;
   left: 0;
   width: 200px; /* 원하는 너비로 설정 */
   height: 100%;
@@ -49,6 +73,9 @@
 .mypage-detail-info {
   margin: 2rem 0;
 }
+.mypage-detail-check {
+  cursor: pointer;
+}
 .mypage-table {
   width: 100%;
   border: 1px solid black;
@@ -73,7 +100,9 @@
   display: flex;
   gap: 1rem;
 }
-
+.mycoupon-icon {
+  margin-right: 0.2rem;
+}
 .mypage-infochange {
   width: 290px;
   text-align: center;
@@ -178,7 +207,6 @@
 .myorder {
   width: 1000px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 .myorder-title {
   display: flex;
@@ -199,17 +227,79 @@
   display: flex;
   justify-content: left;
   margin-bottom: 1rem;
+  font-weight: 500;
 }
 .myorderselect-content {
   width: 800px;
+  height: 400px;
   margin: 2rem auto;
+}
+.myorderselect-warning-text {
+  color: gray;
+  font-size: 0.7rem;
+}
+.myorder-selectbox {
+  background-color: transparent;
 }
 .myorderdate {
   width: 60px;
   border: 1px solid black;
   background-color: transparent;
+  margin-left: 0.3rem;
 }
 .myorderdate.active {
   background-color: black;
   color: white;
+}
+.myorder-orderlist {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 500;
+}
+.mycoupon {
+  width: 1000px;
+  margin: 0 auto;
+}
+.mycoupon-admin {
+  width: 800px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+.mycoupon-admin-title,
+.mycoupon-admin-warning {
+  margin: 1rem;
+}
+.mycoupon-admin-access {
+  margin: 1rem;
+}
+.mycoupon-admin-access input {
+  width: 650px;
+  height: 32px;
+}
+.mycoupon-admin-access button {
+  width: 100px;
+  height: 32px;
+  color: white;
+  background-color: black;
+}
+.mycoupon-admin-table {
+  width: 800px;
+  margin: 2rem auto;
+}
+.mycoupon-admin-table-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.mycoupon-admin-table-title {
+  color: white;
+  background-color: black;
+  text-align: left;
+  padding: 1rem;
+}
+.mycoupon-admin-table-tbody {
+  text-align: center;
+}
+.mycoupon-admin-table-tbody th,
+.mycoupon-admin-table-tbody td {
+  padding: 0.5rem 0;
 }

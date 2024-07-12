@@ -29,6 +29,7 @@ import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
 import MyPageOrder from "./pages/mypage/MyPageOrder.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
+import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -68,6 +69,7 @@ export default function App() {
         { path: "/mypage", element: <MyPage /> },
         { path: "/mypage/userinfo", element: <MyPageChangeInfo /> },
         { path: "/mypage/order", element: <MyPageOrder /> },
+        { path: "/mypage/coupon", element: <MyPageCoupon /> },
       ],
     },
   ]);

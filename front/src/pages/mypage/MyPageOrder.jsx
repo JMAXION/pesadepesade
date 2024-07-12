@@ -4,8 +4,8 @@ import SubTitle from "../../components/SubTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-export default function MyPageOrder() {
-  const [activeButton, setActiveButton] = useState(1);
+export default function MyPageOrder({ number }) {
+  const [activeButton, setActiveButton] = useState({ number });
   const [activeDate, setActiveDate] = useState(3);
 
   const clickChange = (index) => {
@@ -37,15 +37,17 @@ export default function MyPageOrder() {
           <div className="myorderselect-content">
             <ul className="myorder-select">
               <p>상태</p>
-              <select name="" id="">
-                <option value="">전체 주문처리과정</option>
-                <option value="">입금전</option>
-                <option value="">배송준비중</option>
-                <option value="">배송중</option>
-                <option value="">배송완료</option>
-                <option value="">취소</option>
-                <option value="">교환</option>
-                <option value="">반품</option>
+              <select name="" id="" className="myorder-selectbox">
+                <option value="" style={{ backgroundColor: "transparent" }}>
+                  전체 주문처리과정
+                </option>
+                <option value="undeposit">입금전</option>
+                <option value="ready">배송준비중</option>
+                <option value="shipping">배송중</option>
+                <option value="shipped">배송완료</option>
+                <option value="delete">취소</option>
+                <option value="exchange">교환</option>
+                <option value="cancel">반품</option>
               </select>
             </ul>
             <ul className="myorder-select">
@@ -81,10 +83,11 @@ export default function MyPageOrder() {
                 기간설정
               </button>
             </ul>
-            <p>
+            <p className="myorderselect-warning-text">
               <FontAwesomeIcon icon={faTriangleExclamation} />
               취소/교환/반품 신청은 주문 완료일 기준 7일까지 가능합니다.
             </p>
+            <p className="myorder-orderlist">주문 내역이 없습니다.</p>
           </div>
         )}
         {activeButton === 2 && (
@@ -122,6 +125,7 @@ export default function MyPageOrder() {
                 기간설정
               </button>
             </ul>
+            <p className="myorder-orderlist">주문 내역이 없습니다.</p>
           </div>
         )}
       </div>
