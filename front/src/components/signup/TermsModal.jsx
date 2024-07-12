@@ -1,14 +1,20 @@
 import React from "react";
 import "../../css/signup.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function TermsModal({ isOpen, onClose }) {
   if (!isOpen) return null;
+
   return (
-    <div onClick={onClose}>
+    <div className="signup-modal-content">
       <div className="step-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="step-modal-close" onClick={onClose}>
-          &times;
-        </button>
+        <div className="step-modal-title">
+          <p style={{ marginLeft: "430px" }}>이용약관</p>
+          <p style={{ fontSize: "20px" }} onClick={onClose}>
+            <FontAwesomeIcon icon={faX} />
+          </p>
+        </div>
         제1조(목적) 이 약관은 ㈜티비엘코퍼레이션(전자상거래 사업자)가 운영하는
         페사드 온라인 쇼핑몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련
         서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의

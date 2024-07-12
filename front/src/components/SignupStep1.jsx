@@ -17,6 +17,10 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
 
   return (
     <div className="content">
+      <TermsModal isOpen={isTermsModalOpen} onClose={closeTermsModal} />
+
+      <PrivacyModal isOpen={isPrivacyModalOpen} onClose={closePrivacyModal} />
+
       <div className="step1">
         <h2 className="step1-title">Sign up</h2>
         <div className="step1-progress-bar">
@@ -114,12 +118,6 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                 </textarea>
               </div>
 
-              <TermsModal
-                isOpen={isTermsModalOpen}
-                onClose={closeTermsModal}
-                /*    content={"약관 내용을 여기에 넣으세요."} */
-              />
-
               <div>
                 <div className="step1-agree">
                   <div className="step1-agree-checkbox">
@@ -172,12 +170,6 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                   거부할 수 있으나 거부시 회원 가입이 불가능합니다.
                 </textarea>
               </div>
-
-              <PrivacyModal
-                isOpen={isPrivacyModalOpen}
-                onClose={closePrivacyModal}
-                /*    content={"약관 내용을 여기에 넣으세요."} */
-              />
 
               <div>
                 <div className="step1-agree step1-agree-shop">

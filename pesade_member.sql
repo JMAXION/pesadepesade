@@ -1,3 +1,4 @@
+-- 회원 테이블
 CREATE TABLE pesade_member (
     user_id VARCHAR(50) PRIMARY KEY, -- 사용자 아이디
     user_pass VARCHAR(255) NOT NULL, -- 사용자 비밀번호

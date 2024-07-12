@@ -1,15 +1,20 @@
 import React from "react";
 import "../../css/signup.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function TermsModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div onClick={onClose}>
+    <div className="signup-modal-content">
       <div className="step-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="step-modal-close" onClick={onClose}>
-          &times;
-        </button>
+        <div className="step-modal-title">
+          <p style={{ marginLeft: "410px" }}>개인정보처리방침</p>
+          <p style={{ fontSize: "20px" }} onClick={onClose}>
+            <FontAwesomeIcon icon={faX} />
+          </p>
+        </div>
         1. 개인정보 수집목적 및 이용목적 가. 서비스 제공에 관한 계약 이행 및
         서비스 제공에 따른 요금정산
         <br />

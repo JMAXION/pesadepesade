@@ -174,3 +174,38 @@
   background-color: black;
   margin: 1rem;
 }
+
+.myorder {
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+.myorder-title {
+  display: flex;
+  justify-content: center;
+}
+.myorderbutton {
+  background-color: transparent;
+  width: 400px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.myorderbutton.active {
+  color: white;
+  background-color: black;
+}
+.myorder-select {
+  display: flex;
+  justify-content: left;
+}
+.myorderselect-content {
+  width: 800px;
+  margin: 2rem auto;
+}
+.myorderdate {
+  width: 50px;
+}
+.myorderdate.active {
+  background-color: black;
+}
