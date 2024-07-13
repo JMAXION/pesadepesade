@@ -37,11 +37,15 @@ export default function Footer() {
         <section className="small-links legal">
           <ul>
             <a>
-              <li>Terms of service</li>
+              <Link to="/serviceterm">
+                <li>Terms of service</li>
+              </Link>
             </a>
             <li>|</li>
             <a>
-              <li>Privacy policy</li>
+              <Link to="/privatepolicy">
+                <li>Privacy policy</li>
+              </Link>
             </a>
           </ul>
         </section>

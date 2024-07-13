@@ -1,0 +1,30 @@
+.serviceterm {
+  width: 960px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 1rem;
+}
+.serviceterm ul {
+  margin-bottom: 1rem;
+}
+.serviceterm ul p {
+  margin-bottom: 0.2rem;
+}
+.privatepolicy {
+  width: 960px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 1rem;
+}
+.privatepolicy ul {
+  margin-bottom: 1rem;
+}
+.privatepolicy ul p {
+  margin-bottom: 0.2rem;
+}

@@ -75,6 +75,7 @@
 }
 .mypage-detail-check {
   cursor: pointer;
+  color: gray;
 }
 .mypage-table {
   width: 100%;

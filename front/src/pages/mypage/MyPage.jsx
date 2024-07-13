@@ -44,7 +44,7 @@ export default function MyPage() {
             </p>
           </li>
           <li className="mypage-info-detail-acoupon">
-            <p>사용 가능 적립금</p>
+            {/* <p>사용 가능 적립금</p> */}
             <p
               onClick={() => navigate("/mypage/coupon")}
               className="mypage-info-to-userinfo"
@@ -68,14 +68,16 @@ export default function MyPage() {
               <>
                 <li
                   className="mypage-toggle-detail"
-                  onClick={() => navigate("/mypage/order")}
+                  onClick={() =>
+                    navigate("/mypage/order", { state: { buttonNumber: "1" } })
+                  }
                 >
                   주문내역 조회
                 </li>
                 <li
                   className="mypage-toggle-detail"
                   onClick={() =>
-                    navigate("/mypage/order", { state: { number: "2" } })
+                    navigate("/mypage/order", { state: { buttonNumber: "2" } })
                   }
                 >
                   취소/교환/반품 내역
@@ -143,7 +145,9 @@ export default function MyPage() {
               <p className="mypage-detail-myorder">
                 <p>나의 주문현황</p>
                 <p
-                  onClick={() => navigate("/mypage/order")}
+                  onClick={() =>
+                    navigate("/mypage/order", { state: { buttonNumber: "1" } })
+                  }
                   className="mypage-detail-check"
                 >
                   전체보기

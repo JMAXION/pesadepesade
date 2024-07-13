@@ -3,11 +3,14 @@ import "../../css/mypage.css";
 import SubTitle from "../../components/SubTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
 
-export default function MyPageOrder({ number }) {
-  const [activeButton, setActiveButton] = useState({ number });
+export default function MyPageOrder() {
+  const location = useLocation();
+  const buttonNumber = location.state.buttonNumber || 1;
+  const [activeButton, setActiveButton] = useState(buttonNumber);
   const [activeDate, setActiveDate] = useState(3);
-
+  console.log("button-->", buttonNumber);
   const clickChange = (index) => {
     setActiveButton(index);
   };
