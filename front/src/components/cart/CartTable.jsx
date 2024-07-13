@@ -1,92 +1,67 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { getUser } from '../../util/localStorage.js';
+import { Link } from "react-router-dom";
 
-export default function CartTable() {
-  
-  const userInfo = getUser();
-  const [cartItems, setCartItems] = useState([]);  
-  const [tp, setTp] = useState(0);
-  const url = `http://127.0.0.1:8080/cart`;
-
-  useEffect(() => {
-    axios({
-      method: "POST",
-      url: url,
-      data: { userId: userInfo.userId }
-    }).then(result => {
-      
-      setCartItems(result.data);
-    }).catch(error => {
-      console.error(error);
-    });
-  }, [userInfo]); 
-
-  const increase = (index) => {
-    const url = `http://127.0.0.1:8080/cart/qtyincrease`
-    axios({
-      method:'POST',
-      url :url,
-      data : {cid : cartItems[index].cid}
-    }).then(result => {if(result.data.cnt === 1){
-      console.log("증가")
-    }}) 
-
-    
-  };
- 
-
-
-
-  const decrease = (index) => {
-    if(cartItems[index].qty === 1) return
-    const url = `http://127.0.0.1:8080/cart/qtydecrease`
-    axios({
-      method:'POST',
-      url :url,
-      data : {cid : cartItems[index].cid}
-    }).then(result => {if(result.data.cnt === 1){
-      console.log("감소")
-    }}) 
-  };
+export default function CartTable({ cartList }) {
+  console.log("쌈@뽕한 카트리스트", cartList);
+  const totalPrice = cartList.reduce(
+    (acc, item) => acc + item.qty * item.pprice,
+    0
+  );
 
   return (
     <div className="cart-table">
       <table className="cart-table-area">
         <thead>
           <tr>
-            <th className="cart-product">product</th>
-            <th className="cart-product-desc"></th>
-            <th className="cart-qty">quantity</th>
-            <th className="cart-price">price</th>
-            <th className="cart-remove">remove</th>
+            <th className="cart-product">Product</th>
+            <th className="cart-product-desc">Description</th>
+            <th className="cart-qty">Quantity</th>
+            <th className="cart-price">Price</th>
+            <th className="cart-remove">Remove</th>
           </tr>
         </thead>
         <tbody>
-          {cartItems && cartItems.map((item, index) => (
-            <tr key={item.id}>
+          {cartList.map((item) => (
+            <tr key={item.cid}>
               <td>
-                <img
-                  src={`http://127.0.0.1:8080/${item.pimage}`}
-                  alt=""
-                />{" "}
+                <Link to={`/shop/detail/${item.pid}`}>
+                  <img
+                    src={`http://localhost:8080/${item.pimage}`}
+                    alt={item.pname}
+                  />
+                </Link>
               </td>
-              <td>{item.pname}{item.pdetail}<br/><span className="cart-msg-option">[옵션 - {item.gift_option}]</span></td>
-             
               <td>
                 <div>
-                  <button onClick={() => decrease(index)}>-</button>
-                  <input type="number" name="" id="" value={item.qty} readOnly />
-                  <button onClick={() => increase(index)}>+</button>
+                  <p>{item.pname}</p>
+                  <p>{item.pdetail}</p>
+                  <p>[옵션: {item.gift_option}]</p>
                 </div>
               </td>
-              <td>{item.price}</td>
+              <td>
+                <div>
+                  <button className="cart-qty-btn">-</button>
+                  <input
+                    className="cart-qty-input"
+                    type="number"
+                    value={item.qty}
+                  />
+                  <button className="cart-qty-btn">+</button>
+                </div>
+              </td>
+              <td>{item.pprice.toLocaleString()}krw</td>
               <td>
                 <span className="cart-remove-e">Remove</span>
               </td>
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={5} className="cart-total">
+              Total : {totalPrice.toLocaleString()} krw
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );

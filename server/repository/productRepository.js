@@ -1,7 +1,6 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getProduct = async (params) => {
-  
   let sql = "";
   if (params.type === "all") {
     sql = `select *  from pesade_product p, pesade_category c 
@@ -16,8 +15,6 @@ export const getProduct = async (params) => {
   }
   return db.execute(sql, [params.type]).then((result) => result[0]);
 };
-
-
 
 export const getItem = async (params) => {
   // 제품 정보를 가져오는 쿼리
@@ -56,22 +53,20 @@ export const getItem = async (params) => {
     // 제품 정보와 이미지 URL을 병합
     const productWithImages = {
       ...product,
-      pdetailimage: images.map(image => image.pdetailimage)
+      pdetailimage: images.map((image) => image.pdetailimage),
     };
 
     return productWithImages;
   } catch (error) {
-    console.error('Error fetching product data:', error);
+    console.error("Error fetching product data:", error);
     throw error;
   }
 };
 
-
-
 export const getGift = async (params) => {
   const sql = `select pgid,
                       gift_option
-                      from pesade_gift_option`
-                      
-return db.execute(sql, [params]).then((result) => result[0]);                
-}
+                      from pesade_gift_option`;
+
+  return db.execute(sql, [params]).then((result) => result[0]);
+};

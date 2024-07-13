@@ -16,26 +16,27 @@ export default function ProductDetail() {
   const [result, setResult] = useState({
     userId: userInfo.userId,
     pid: pid,
-    qty: 1,
-    msg: ''
+    pgid: "",
   });
 
   useEffect(() => {
     const url = `http://127.0.0.1:8080/product/detail/${pid}`;
-    axios.get(url)
-      .then(result => setItem(result.data))
-      .catch(error => console.error('Error fetching product detail:', error));
+    axios
+      .get(url)
+      .then((result) => setItem(result.data))
+      .catch((error) => console.error("Error fetching product detail:", error));
   }, [pid]);
 
-  function setSelect() {
+  useEffect(() => {
     const url = `http://127.0.0.1:8080/product/gift`;
-    axios.post(url, giftCard)
-      .then(result => setGiftCard(result.data))
-      .catch(error => console.error('Error setting gift card:', error));
-  }
+    axios
+      .post(url)
+      .then((result) => setGiftCard(result.data))
+      .catch((error) => console.error("Error setting gift card:", error));
+  }, []);
 
   function choiceSelect(e) {
-    setResult({ ...result, msg: e });
+    setResult({ ...result, pgid: e.target.value });
   }
 
   function addOk() {
@@ -46,16 +47,13 @@ export default function ProductDetail() {
 
     alert("장바구니에 담겼습니다");
     const url = `http://127.0.0.1:8080/cart/add`;
-    axios.post(url, result)
-      .then(result => {
-        if (result.data.cnt === 1) {
-          alert("result OK");
-        }
-      });
+    axios.post(url, result).then((result) => {
+      if (result.data.cnt === 1) {
+        alert("result OK");
+      }
+    });
   }
 
-  console.log('[item]',item);
-  console.log('[item.detail]',item.pdetailimage);
   return (
     <>
       <div className="detail-wrapper">
@@ -77,30 +75,44 @@ export default function ProductDetail() {
         <div className="detail-div">
           <div className="detail-pprice-right">{item.pprice}krw</div>
           <div>
-            <select className="select-msg-card" onClick={setSelect} onChange={(e) => choiceSelect(e.target.value)} ref={check}>
+            <select
+              className="select-msg-card"
+              onChange={choiceSelect}
+              ref={check}
+            >
               <option value="0">메세지카드</option>
               {giftCard.map((obj) => (
-                <option key={obj.gift_option} value={obj.gift_option}>{obj.gift_option}</option>
+                <option key={obj.pgid} value={obj.pgid}>
+                  {obj.gift_option}
+                </option>
               ))}
             </select>
             {userInfo ? (
-              <button type="button" className="detail-add-cart" onClick={addOk}>Add to cart</button>
+              <button type="button" className="detail-add-cart" onClick={addOk}>
+                Add to cart
+              </button>
             ) : (
-              <Link to="/login"><button type="button" className="detail-add-cart">Add to cart</button></Link>
+              <Link to="/login">
+                <button type="button" className="detail-add-cart">
+                  Add to cart
+                </button>
+              </Link>
             )}
           </div>
         </div>
       </div>
 
       <div className="detail-desc-wrapper">
-        {item.pdetailimage?.map((url, index) => ( //옵셔널 체이닝 ..객체 데이터 유효성 검사하기 위해 item.pdetailimage && item.pdetailimage 사용
-          <div key={index} className="detail-desc-img">
-            <img src={`http://localhost:8080/${url}`} alt={`Detail ${index + 1}`} />
-          </div>
-        ))}
-        <div className="detail-desc-txt">
-          {item.pdesc}
-        </div>
+        {item.pdetailimage &&
+          item.pdetailimage.map((url, index) => (
+            <div key={index} className="detail-desc-img">
+              <img
+                src={`http://localhost:8080/${url}`}
+                alt={`Detail ${index + 1}`}
+              />
+            </div>
+          ))}
+        <div className="detail-desc-txt">{item.pdesc}</div>
       </div>
     </>
   );

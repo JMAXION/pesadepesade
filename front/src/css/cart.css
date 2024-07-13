@@ -44,26 +44,27 @@
   width: 100%;
   background-image: var(--color-bg);
 }
-
-
-.cart-go-shopping{
-  display: block;
-  margin: 0 auto;
-  width:232px;
-  height: 35px;
-  border:0;
-  padding:10px 20px;
-  font-size: 14px;
-  color:white;
-  background-color: black;
-  font-weight: 600;
+.cart-qty-input {
+  width: 30px;
+  height: 23px;
+  padding: 0 7px;
+  border: 1px solid #ececec !important;
+  line-height: 23px;
+  background: none;
+  text-align: center;
+}
+.cart-qty-btn {
+  border: none;
+  background-color: inherit;
 }
 
-.cart-go-shop-link{
-  text-decoration: none;
+.cart-total {
+  text-align: right;
+  padding: 15px;
 }
 
-.cart-msg-option{
-  font-size: 14px;
-  color:#655555
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
