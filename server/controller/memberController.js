@@ -22,3 +22,11 @@ export const getIdCheck = async (req, res) => {
   res.json(result);
   res.end();
 };
+
+export const getIdFind = async (req, res) => {
+  const formData = req.body;
+  const result = await repository.getIdFind(formData);
+
+  res.json(result);
+  res.end();
+};

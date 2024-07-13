@@ -91,7 +91,7 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                   </div>
                   <span>
                     <p
-                      style={{ textDecoration: "underline" }}
+                      style={{ textDecoration: "underline", cursor: "pointer" }}
                       onClick={openTermsModal}
                     >
                       전체보기
@@ -139,7 +139,7 @@ export default function SignupStep1({ nextStep, formData, handleCheck }) {
                     </span>
                   </div>
                   <p
-                    style={{ textDecoration: "underline" }}
+                    style={{ textDecoration: "underline", cursor: "pointer" }}
                     onClick={openPrivacyModal}
                   >
                     전체보기

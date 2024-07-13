@@ -91,3 +91,28 @@ export const getIdCheck = async (userId) => {
 
   return await db.execute(sql, [userId]).then((result) => result[0][0]);
 };
+
+export const getIdFind = async (formData) => {
+  console.log("아이디 찾기 디비", formData);
+
+  let sql = "";
+  let result = "";
+  if (formData.type == "useremail") {
+    sql = `
+  SELECT user_id FROM pesade_member
+    WHERE user_name = ? AND email = ?    
+  `;
+    result = await db.execute(sql, formData.userName, formData.email);
+  } else if (formData.type == "userphone") {
+    sql = `
+    SELECT user_id FROM pesade_member
+    WHERE user_name = ? AND phone = ?    
+    `;
+    result = await db.execute(sql, formData.userName, formData.phone);
+  }
+
+  console.log("리절트1", result);
+  console.log("리절트2", result[0]);
+  console.log("리절트3", result[0][0]);
+  return result[0] ? result[0] : null;
+};

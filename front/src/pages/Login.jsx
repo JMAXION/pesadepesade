@@ -69,7 +69,7 @@ export default function Login() {
             </li>
           </ul>
           <div className="login-find">
-            <Link to="/login/idfind"> 아이디찾기</Link>
+            <Link to="/login/memberidfind"> 아이디찾기</Link>
             <Link to="/login/passwordfind"> 비밀번호찾기</Link>
           </div>
           <div>

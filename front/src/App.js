@@ -32,6 +32,8 @@ import ShopProductDetail from "./pages/ProductDetail.jsx";
 import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 import ServiceTerm from "./pages/ServiceTerm.jsx";
 import PrivatePolicy from "./pages/PrivatePolicy.jsx";
+import IdRetrievalForm from "./components/member/IdRetrievalForm.jsx";
+import MemberIdFind from "./components/member/MemberIdFind.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -48,7 +50,7 @@ export default function App() {
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
         { path: "/login", element: <Login /> },
-        { path: "/login/idfind", element: <IdFind /> },
+        { path: "/login/memberidfind", element: <MemberIdFind /> },
         { path: "/login/passwordfind", element: <PasswordFind /> },
         { path: "/signup", element: <Signup /> },
 

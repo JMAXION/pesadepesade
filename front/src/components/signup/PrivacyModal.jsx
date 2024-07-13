@@ -11,7 +11,7 @@ export default function TermsModal({ isOpen, onClose }) {
       <div className="step-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="step-modal-title">
           <p style={{ marginLeft: "410px" }}>개인정보처리방침</p>
-          <p style={{ fontSize: "20px" }} onClick={onClose}>
+          <p style={{ fontSize: "20px", cursor: "pointer" }} onClick={onClose}>
             <FontAwesomeIcon icon={faX} />
           </p>
         </div>

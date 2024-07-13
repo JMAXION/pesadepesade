@@ -213,6 +213,7 @@
   color: #707070;
   border: 1px solid var(--color-black);
   position: relative;
+  cursor: pointer;
 }
 
 .step1 input[type="checkbox"]:checked + label {
@@ -279,22 +280,6 @@
   color: var(--color-white);
 }
 
-/* .step-modal-close {
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  right: 0px;
-  top: 0px;
-  width: 60px;
-  height: 40px;
-  z-index: 1000;
-  font-size: 20px;
-  font-weight: 500;
-  border: 1px solid var(--color-bg);
-  background-color: var(--color-bg);
-}
- */
 /**************
 
     SignupStep2
@@ -457,6 +442,7 @@
   height: 30px;
   font-size: 10px;
   margin-right: 10px;
+  cursor: pointer;
   background-color: black;
   color: white;
 }
@@ -496,6 +482,7 @@
   margin-left: 10px;
   background-color: #000;
   color: white;
+  cursor: pointer;
 }
 
 .step2-address-basic,
@@ -585,6 +572,7 @@
   height: 20px;
   border: 1px solid rgb(228, 228, 229);
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .step2-date-input {
@@ -620,6 +608,7 @@
   color: #ffffff;
   font-size: 15px;
   margin-top: 10px;
+  cursor: pointer;
 }
 .step2 button {
   border: 1px solid var(--color-black);
@@ -808,6 +797,7 @@
   margin-top: 10px;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
   background-color: var(--color-bg);
   border: 1px solid var(--color-black);
 }

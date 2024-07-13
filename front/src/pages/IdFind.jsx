@@ -1,12 +1,21 @@
+import { Link } from "react-router-dom";
 import "../css/login.css";
 import { useState } from "react";
 
-export default function IdFind() {
-  const [selectedMethod, setSelectedMethod] = useState("email");
+export default function IdFind({
+  nextStep,
+  formData,
+  handleChange,
+  handlePhoneChange,
+}) {
+  const [selectedMethod, setSelectedMethod] = useState("useremail");
 
   const handleRadioChange = (event) => {
     setSelectedMethod(event.target.value);
+    handleChange({ target: { name: "type", value: event.target.value } });
   };
+
+  console.log("formData==>", formData);
 
   return (
     <div className="content">
@@ -28,16 +37,16 @@ export default function IdFind() {
                 <input
                   type="radio"
                   name="authenticationMethod"
-                  value="email"
-                  checked={selectedMethod === "email"}
+                  value="useremail"
+                  checked={selectedMethod === "useremail"}
                   onChange={handleRadioChange}
                 />
                 이메일
                 <input
                   type="radio"
                   name="authenticationMethod"
-                  value="phone"
-                  checked={selectedMethod === "phone"}
+                  value="userphone"
+                  checked={selectedMethod === "userphone"}
                   onChange={handleRadioChange}
                 />
                 휴대폰번호
@@ -46,32 +55,66 @@ export default function IdFind() {
             <li className="idfind-form-group">
               <p className="idfind-form-label">이름</p>
               <div className="idfind-input">
-                <input />
+                <input
+                  type="text"
+                  name="userName"
+                  value={formData.userName}
+                  onChange={handleChange}
+                />
               </div>
             </li>
-            {selectedMethod === "email" && (
+            {selectedMethod === "useremail" && (
               <li className="idfind-form-group">
                 <p className="idfind-form-label">이메일</p>
                 <div className="idfind-input">
-                  <input />
+                  <input
+                    type="text"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </div>
               </li>
             )}
 
-            {selectedMethod === "phone" && (
+            {selectedMethod === "userphone" && (
               <li className="idfind-form-group">
                 <p className="idfind-form-label">휴대폰번호</p>
                 <div className="idfind-input">
                   <div className="idfind-phone-input">
-                    <input />-
-                    <input />-
-                    <input />
+                    <input
+                      type="text"
+                      name="phoneNumber1"
+                      value={formData.phoneNumber1}
+                      onChange={handlePhoneChange}
+                      maxLength="3"
+                    />
+                    -
+                    <input
+                      type="text"
+                      name="phoneNumber2"
+                      value={formData.phoneNumber2}
+                      onChange={handlePhoneChange}
+                      maxLength="4"
+                    />
+                    -
+                    <input
+                      type="text"
+                      name="phoneNumber3"
+                      value={formData.phoneNumber3}
+                      onChange={handlePhoneChange}
+                      maxLength="4"
+                    />
                   </div>
                 </div>
               </li>
             )}
           </ul>
-          <button className="idfind-btn" type="button">
+          <button
+            className="idfind-btn"
+            type="button"
+            onClick={() => nextStep(formData)}
+          >
             확인
           </button>
         </form>
