@@ -15,4 +15,6 @@ CREATE TABLE pesade_member (
 
 
 use myshop2019;
+
+
 drop table pesade_member;

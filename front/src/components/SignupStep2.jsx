@@ -251,6 +251,7 @@ export default function SignupStep2({
           {userPassError && (
             <div className="step2-error">
               비밀번호는 대소문자, 숫자, 특수문자 중 3가지 이상을 조합하여
+              <br />
               8자에서 16자 사이로 입력해 주세요.
             </div>
           )}

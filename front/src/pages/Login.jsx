@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { getIsLogin, validationCheck } from "../modules/reduxMemberAxios";
 
+// import { setIsLogin /* , setIsLogout  */ } from "../reducers/memberReducer";
+// import { axiosPost } from "../modules/reduxAxios.js";
+// import { jwtDecode } from "jwt-decode";
+// import * as cookie from "../util/cookies.js";
+
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +24,56 @@ export default function Login() {
       navigate("/");
     }
   }, [isLogin]);
+
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init("8cf58becad913cbb691911f7434ea551");
+      console.log(window.Kakao.isInitialized()); // SDK 초기화 여부 확인
+    }
+  }, []);
+
+  const handleKakaoLogin = () => {
+    if (!window.Kakao.isInitialized()) return;
+
+    window.Kakao.Auth.login({
+      success: (authObj) => {
+        console.log(authObj); // 인증 객체
+
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          success: (res) => {
+            console.log(res);
+
+            /*  dispatch(getIsLogin(res)); */
+          },
+          fail: (error) => {
+            console.error(error);
+          },
+        });
+      },
+      fail: (err) => {
+        console.error(err);
+      },
+    });
+  };
+
+  /*   const handleKakaoLoginRequest = async (accessToken) => {
+    const url = "http://127.0.0.1:8080/member/kakaoLogin";
+    const data = { accessToken };
+
+    const loginResult = await axiosPost({ url, data });
+    const cnt = loginResult.cnt;
+
+    if (cnt === 1) {
+      cookie.setCookie("x-auth-jwt", loginResult.token);
+      const userInfo = jwtDecode(loginResult.token);
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+      dispatch(setIsLogin({ cnt }));
+    } else {
+      alert(loginResult.message || "Login failed");
+    }
+  }; */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,7 +130,11 @@ export default function Login() {
           <div>
             <ul className="login-sns">
               <li className="login-sns-button">
-                <a className="login-sns-link" href="#">
+                <a
+                  className="login-sns-link"
+                  href="#"
+                  onClick={handleKakaoLogin}
+                >
                   <img
                     className="login-sns-image"
                     src="/memberimages/kakao.png"
