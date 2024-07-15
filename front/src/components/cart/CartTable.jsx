@@ -1,11 +1,45 @@
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import { useEffect, useState } from "react";
+export default function CartTable({ cartList,userId }) {
 
-export default function CartTable({ cartList }) {
-  console.log("쌈@뽕한 카트리스트", cartList);
-  const totalPrice = cartList.reduce(
-    (acc, item) => acc + item.qty * item.pprice,
+  const [cartcontent, setCartcontent] = useState([])
+  const totalPrice = cartcontent.reduce(
+    (acc, item) => acc +  item.pprice,
     0
   );
+  useEffect(()=>{
+    const url = `http://127.0.0.1:8080/cart`
+    axios({
+      method:'POST',
+      url:url,
+      data : {userId:userId}
+    }).then(result=> setCartcontent(result.data))
+  })
+
+  function decrease(index){
+    const url = `http://127.0.0.1:8080/cart/qtydecrease`
+    axios({
+      method:'POST',
+      url : url,
+      data : {cid:cartList[index].cid}
+
+    }).then(result => {if(result.data.cnt === 1){
+      console.log("감소");
+    }})
+  }
+
+  function increase(index){
+    const url = `http://127.0.0.1:8080/cart/qtyincrease`
+    axios({
+      method:'POST',
+      url : url,
+      data : {cid:cartList[index].cid}
+
+    }).then(result => {if(result.data.cnt === 1){
+      console.log("증가");
+    }})
+  }
 
   return (
     <div className="cart-table">
@@ -20,7 +54,7 @@ export default function CartTable({ cartList }) {
           </tr>
         </thead>
         <tbody>
-          {cartList.map((item) => (
+          {cartcontent.map((item,index) => (
             <tr key={item.cid}>
               <td>
                 <Link to={`/shop/detail/${item.pid}`}>
@@ -39,13 +73,13 @@ export default function CartTable({ cartList }) {
               </td>
               <td>
                 <div>
-                  <button className="cart-qty-btn">-</button>
+                  <button className="cart-qty-btn" onClick={()=>decrease(index)}>-</button>
                   <input
                     className="cart-qty-input"
                     type="number"
                     value={item.qty}
                   />
-                  <button className="cart-qty-btn">+</button>
+                  <button className="cart-qty-btn" onClick={()=>increase(index)}>+</button>
                 </div>
               </td>
               <td>{item.pprice.toLocaleString()}krw</td>

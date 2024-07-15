@@ -1,6 +1,7 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getCarts = async (userId) => {
+
   const sql = `
     SELECT 
         pc.user_id, 
@@ -11,7 +12,7 @@ export const getCarts = async (userId) => {
         pp.pdetail, 
         pg.gift_option, 
         pc.qty, 
-        pp.pprice
+       pp.pprice*pc.qty as pprice
     FROM 
         pesade_cart pc
     JOIN 
@@ -54,10 +55,10 @@ export const addCart = async (addList) => {
     const [result] = await db.execute(sql, [cartResultRow.cid]);
     result_rows = result.affectedRows;
   } else {
-    const params = [addList.userId, addList.pid, addList.pgid];
+    const params = [addList.userId, addList.pid, addList.pgid, addList.qty];
     const sql = `
-    INSERT INTO pesade_cart (user_id, pid, pgid, cdate) 
-    VALUES (?, ?, ?, NOW())
+    INSERT INTO pesade_cart (user_id, pid, pgid, cdate,qty) 
+    VALUES (?, ?, ?, NOW(), ?)
     `;
     const [result] = await db.execute(sql, params);
     result_rows = result.affectedRows;
