@@ -1,18 +1,15 @@
-import IdFind from "../../pages/IdFind";
-import IdRetrievalForm from "./IdRetrievalForm";
+import PasswordFind from "../../pages/PasswordFind";
+import PasswordRetrievalForm from "./PasswordRetrievalForm";
 import { useState } from "react";
-import axios from "axios";
 
-export default function MemberIdFind() {
+export default function MemberPasswordFind() {
   const [step, setStep] = useState(1);
 
-  const [idResult, setIdResult] = useState(null);
-
   const [formData, setFormData] = useState({
+    userId: "",
     userName: "",
-    phone: "",
     email: "",
-    type: "useremail",
+    phone: "",
     phoneNumber1: "",
     phoneNumber2: "",
     phoneNumber3: "",
@@ -39,38 +36,21 @@ export default function MemberIdFind() {
     });
   };
 
-  const handleIdFind = () => {
-    const url = "http://127.0.0.1:8080/member/idfind";
-
-    axios({
-      method: "post",
-      url: url,
-      data: formData,
-    })
-      .then((res) => {
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          setIdResult(res.data);
-          setStep(2);
-        }
-      })
-      .catch((error) => console.log(error));
-  };
+  console.log("passwordform==>", formData);
+  console.log("passwordnext ==>", nextStep);
 
   return (
     <div className="content">
       {step === 1 && (
-        <IdFind
+        <PasswordFind
           nextStep={nextStep}
           formData={formData}
           handleChange={handleChange}
           handlePhoneChange={handlePhoneChange}
-          handleIdFind={handleIdFind}
         />
       )}
       {step === 2 && (
-        <IdRetrievalForm formData={formData} idResult={idResult} />
+        <PasswordRetrievalForm nextStep={nextStep} formData={formData} />
       )}
     </div>
   );

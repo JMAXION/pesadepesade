@@ -7,6 +7,8 @@ import Shop from "./pages/Shop.jsx";
 import Contact from "./pages/Contact.jsx";
 import Help from "./pages/Help.jsx";
 import Login from "./pages/Login.jsx";
+import MemberIdFind from "./components/member/MemberIdFind.jsx";
+import MemberPasswordFind from "./components/member/MemberPasswordFind.jsx";
 import Notice from "./pages/notice/Notice.jsx";
 import StockList from "./pages/StockList.jsx";
 import Journal from "./pages/Journal.jsx";
@@ -18,8 +20,6 @@ import QnaContent from "./pages/qna/QnaContent.jsx";
 import QnaWrite from "./pages/qna/QnaWrite.jsx";
 import QnaPassWord from "./pages/qna/QnaPassWord.jsx";
 import Cart from "./pages/Cart.jsx";
-import IdFind from "./pages/IdFind.jsx";
-import PasswordFind from "./pages/PasswordFind.jsx";
 import Signup from "./pages/Signup.jsx";
 import Upload from "./pages/admin/Upload.jsx";
 import Delete from "./pages/admin/Delete.jsx";
@@ -32,8 +32,6 @@ import ShopProductDetail from "./pages/ProductDetail.jsx";
 import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 import ServiceTerm from "./pages/ServiceTerm.jsx";
 import PrivatePolicy from "./pages/PrivatePolicy.jsx";
-import IdRetrievalForm from "./components/member/IdRetrievalForm.jsx";
-import MemberIdFind from "./components/member/MemberIdFind.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -51,7 +49,10 @@ export default function App() {
         { path: "/help", element: <Help /> },
         { path: "/login", element: <Login /> },
         { path: "/login/memberidfind", element: <MemberIdFind /> },
-        { path: "/login/passwordfind", element: <PasswordFind /> },
+        {
+          path: "/login/memberpasswordfind",
+          element: <MemberPasswordFind />,
+        },
         { path: "/signup", element: <Signup /> },
 
         { path: "/notice", element: <Notice /> },

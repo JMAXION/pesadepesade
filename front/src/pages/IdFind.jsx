@@ -3,10 +3,10 @@ import "../css/login.css";
 import { useState } from "react";
 
 export default function IdFind({
-  nextStep,
   formData,
   handleChange,
   handlePhoneChange,
+  handleIdFind,
 }) {
   const [selectedMethod, setSelectedMethod] = useState("useremail");
 
@@ -113,7 +113,9 @@ export default function IdFind({
           <button
             className="idfind-btn"
             type="button"
-            onClick={() => nextStep(formData)}
+            onClick={() => {
+              handleIdFind();
+            }}
           >
             확인
           </button>
