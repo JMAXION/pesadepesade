@@ -1,7 +1,7 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getCarts = async (userId) => {
-  const sql =`
+  const sql = `
     SELECT 
         pc.user_id, 
         pc.cid, 
@@ -20,12 +20,10 @@ export const getCarts = async (userId) => {
         pesade_gift_option pg ON pc.pgid = pg.pgid
     WHERE 
         pc.user_id = ?
-  `
+  `;
 
   return db.execute(sql, [userId]).then((result) => result[0]);
 };
-
-
 
 const cartCheck = async (addList) => {
   const sql = `
@@ -33,13 +31,16 @@ const cartCheck = async (addList) => {
     FROM pesade_cart
     WHERE pid = ? AND pgid = ? AND user_id = ?
   `;
-  const [rows] = await db.execute(sql, [addList.pid, addList.pgid, addList.userId]);
+  const [rows] = await db.execute(sql, [
+    addList.pid,
+    addList.pgid,
+    addList.userId,
+  ]);
 
   return rows;
 };
 
 export const addCart = async (addList) => {
-
   let result_rows = 0;
 
   const cartResult = await cartCheck(addList);
@@ -53,11 +54,7 @@ export const addCart = async (addList) => {
     const [result] = await db.execute(sql, [cartResultRow.cid]);
     result_rows = result.affectedRows;
   } else {
-    const params = [
-      addList.userId,
-      addList.pid,
-      addList.pgid
-    ];
+    const params = [addList.userId, addList.pid, addList.pgid];
     const sql = `
     INSERT INTO pesade_cart (user_id, pid, pgid, cdate) 
     VALUES (?, ?, ?, NOW())
@@ -65,12 +62,11 @@ export const addCart = async (addList) => {
     const [result] = await db.execute(sql, params);
     result_rows = result.affectedRows;
   }
-  
-    console.log('장바구니체크1',cartResult);
-    console.log('장바구니체크2',cartResult[0]);
+
+  console.log("장바구니체크1", cartResult);
+  console.log("장바구니체크2", cartResult[0]);
   return { cnt: result_rows };
 };
-<<<<<<< HEAD
 
 export const qtyIncrease = async (cid) => {
   let result_rows = 0;
@@ -81,7 +77,6 @@ export const qtyIncrease = async (cid) => {
     const [result] = await db.execute(sql, [cid.cid]);
 
     result_rows = result.affectedRows;
-    
   } catch (error) {
     console.log(error);
   }
@@ -97,7 +92,6 @@ export const qtyDecrease = async (cid) => {
     const [result] = await db.execute(sql, [cid.cid]);
 
     result_rows = result.affectedRows;
-    
   } catch (error) {
     console.log(error);
   }
@@ -174,5 +168,3 @@ export const deleteItems = async (userId, items) => {
   );
   return result;
 }; */
-=======
->>>>>>> origin/lim

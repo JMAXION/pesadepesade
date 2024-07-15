@@ -116,3 +116,10 @@ export const getIdFind = async (formData) => {
   console.log("리절트3", result[0][0]);
   return result[0] ? result[0] : null;
 };
+
+/* export const getUserByKakaoId = async (kakaoId) => {
+  const sql = `SELECT * FROM pesade_member WHERE kakao_id = ?`;
+  const [result] = await db.execute(sql, [kakaoId]);
+  return result[0]; 
+};
+ */

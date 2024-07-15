@@ -30,3 +30,24 @@ export const getIdFind = async (req, res) => {
   res.json(result);
   res.end();
 };
+
+/* export const getKakaoLogin = async (req, res) => {
+  const { accessToken } = req.body;
+
+  try {
+    const { data } = await axios.get("https://kapi.kakao.com/v2/user/me", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const userId = data.id; 
+  
+
+    res.json({ cnt: 1, token: "generated_jwt_token" }); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ cnt: 0, message: "Login failed" });
+  }
+};
+ */
