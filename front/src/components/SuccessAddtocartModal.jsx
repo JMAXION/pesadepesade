@@ -25,7 +25,7 @@ export default function SuccessAddtocartModal({ closeModal,prop,tp, choice}) {
         <ul>
         <li>{prop.pname} x {choice.qty}개</li>
         <li>총 금액 : {tp.toLocaleString()}원</li>
-        <li><img className="cart-result-img" src={prop.pimage} alt="" /></li>
+        <li><img className="cart-result-img" src={`http://127.0.0.1:8080/${prop.pimage}`} alt="" /></li>
 
         <li><button className="modal-keep-shopping" onClick={handleCloseModal}>계속 쇼핑하기</button></li>
         <Link to="/cart"><li><button className="modal-go-cart" >장바구니로 가기</button></li></Link>

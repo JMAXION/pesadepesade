@@ -58,7 +58,7 @@ export default function Product({ name }) {
         <ul className="product-list">
           {item.map((obj, index) => (
             <li className="product-list-li" key={index}>
-              <Link to={`/shop/detail/${obj.pid}`}>
+              
                 <div className="product-description">
                   <strong className="product-name">
                     <span>{obj.pname}</span>
@@ -76,14 +76,16 @@ export default function Product({ name }) {
                     Add to cart
                   </button>
                 </div>
+              
                 <div className="product-inner">
+                <Link to={`/shop/detail/${obj.pid}`}>
                   <img
                     src={`http://localhost:8080/${obj.pimage}`}
                     alt={obj.pname}
                     ref={productThumbnailRef}
                   />
-                </div>
               </Link>
+                </div>
             </li>
           ))}
         </ul>

@@ -17,6 +17,7 @@ export default function ProductDetail() {
     userId: userInfo.userId,
     pid: pid,
     pgid: "",
+    qty:1
   });
 
   useEffect(() => {

@@ -3,12 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getUser } from '../util/localStorage.js';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 import SuccessAddtocartModal from './SuccessAddtocartModal.jsx';
+
 
 export default function AddToCartModal({ product, closeModal }) {
   const userInfo = getUser();
   const history = useNavigate();
   const [choice, setChoice] = useState({
+    //addList.userId, addList.pid, addList.pgid, addList.qty
+    userId : userInfo? userInfo.userId:'',
+    pid : product.pid,
     productName: '',
     messageCard: '[-필수]Options',
     qty: 1, // Initialize qty to 1 instead of 0
@@ -67,8 +72,14 @@ export default function AddToCartModal({ product, closeModal }) {
   };
 
   const handleAddToCart = () => {
-    if (!userInfo) {
+    const url = `http://127.0.0.1:8080/cart/add`;
+    if (userInfo) {
       openSuccessModal(); // userInfo가 없으면 SuccessAddtocartModal을 엽니다.
+      axios({
+        method:"POST",
+        url:url,
+        data : {userId:choice.userId, pid:product.pid, pgid:choice.messageCard, qty:choice.qty} 
+      })
     } else {
       history('/login'); // userInfo가 있으면 로그인 페이지로 이동합니다.
     }
@@ -88,11 +99,11 @@ export default function AddToCartModal({ product, closeModal }) {
         <label htmlFor="message-card" className="msg-card">메세지카드
           <select id="message-card" className="purchase-select" onChange={(e) => handleSelect(e.target.value)}>
             <option value="0">[-필수]Options</option>
-            <option value="#선택안함">#선택안함</option>
-            <option value="#danke">#danke</option>
-            <option value="#lovelovelove">#lovelovelove</option>
-            <option value="#congratulations">#congratulations</option>
-            <option value="#happy birthday">#happy birthday</option>
+            <option value="1">#선택안함</option>
+            <option value="2">#danke</option>
+            <option value="3">#lovelovelove</option>
+            <option value="4">#congratulations</option>
+            <option value="5">#happy birthday</option>
           </select>
         </label>
         <label htmlFor="check-qty" className="purchase-qty-label">

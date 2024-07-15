@@ -15,7 +15,7 @@ export default function ProductInfo({prop}){
         <FontAwesomeIcon className={`gift-arrow ${isClick ? 'rotate' : ''}`} icon={faArrowRightLong} />
         {isClick && (
           <div className="gift-content-info">
-            <div className="product-info">{prop.pinfo}</div>
+            <div className="product-info" style={{ whiteSpace: 'pre-wrap' }} >{prop.pinfo}</div>
           </div>
         )}
       </div>
