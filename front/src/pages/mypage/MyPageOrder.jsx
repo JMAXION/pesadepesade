@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/mypage.css";
 import SubTitle from "../../components/SubTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,13 +7,12 @@ import { useLocation } from "react-router-dom";
 
 export default function MyPageOrder() {
   const location = useLocation();
-  const buttonNumber = location.state.buttonNumber || 1;
-  const [activeButton, setActiveButton] = useState(buttonNumber);
+  const [activeButton, setActiveButton] = useState(1);
   const [activeDate, setActiveDate] = useState(3);
-  console.log("button-->", buttonNumber);
   const clickChange = (index) => {
     setActiveButton(index);
   };
+
   const dateChange = (index) => {
     setActiveDate(index);
   };
@@ -87,8 +86,8 @@ export default function MyPageOrder() {
               </button>
             </ul>
             <p className="myorderselect-warning-text">
-              <FontAwesomeIcon icon={faTriangleExclamation} />
-              취소/교환/반품 신청은 주문 완료일 기준 7일까지 가능합니다.
+              <FontAwesomeIcon icon={faTriangleExclamation} /> 취소/교환/반품
+              신청은 주문 완료일 기준 7일까지 가능합니다.
             </p>
             <p className="myorder-orderlist">주문 내역이 없습니다.</p>
           </div>
@@ -128,7 +127,12 @@ export default function MyPageOrder() {
                 기간설정
               </button>
             </ul>
-            <p className="myorder-orderlist">주문 내역이 없습니다.</p>
+
+            <p className="myorderselect-warning-text">
+              <FontAwesomeIcon icon={faTriangleExclamation} /> 취소/교환/반품
+              신청은 주문 완료일 기준 7일까지 가능합니다.
+            </p>
+            <p className="myorder-orderlist">취소/교환/반품 내역이 없습니다.</p>
           </div>
         )}
       </div>

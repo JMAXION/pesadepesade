@@ -31,6 +31,13 @@ export const getIdFind = async (req, res) => {
   res.end();
 };
 
+export const changeInfo = async (req, res) => {
+  const formData = req.body;
+  const result = await repository.changeInfo(formData);
+  res.json(result);
+  res.end();
+};
+
 /* export const getKakaoLogin = async (req, res) => {
   const { accessToken } = req.body;
 

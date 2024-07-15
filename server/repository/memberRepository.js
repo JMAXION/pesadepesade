@@ -117,6 +117,27 @@ export const getIdFind = async (formData) => {
   return result[0] ? result[0] : null;
 };
 
+export const changeInfo = async (formData) => {
+  console.log("폼데이터-->", formData);
+  const sql = `
+  select 
+  user_id, 
+  user_pass, 
+  user_name, 
+  zipcode, 
+  address, 
+  phone, 
+  email, 
+  gender, 
+  bdate_type, 
+  bdate 
+  from pesade_member 
+  where user_pass =?
+  `;
+
+  return await db.execute(sql, [userPass]).then((result) => result[0][0]);
+};
+
 /* export const getUserByKakaoId = async (kakaoId) => {
   const sql = `SELECT * FROM pesade_member WHERE kakao_id = ?`;
   const [result] = await db.execute(sql, [kakaoId]);

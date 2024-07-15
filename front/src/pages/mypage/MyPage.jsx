@@ -68,20 +68,18 @@ export default function MyPage() {
               <>
                 <li
                   className="mypage-toggle-detail"
-                  onClick={() =>
-                    navigate("/mypage/order", { state: { buttonNumber: "1" } })
-                  }
+                  onClick={() => navigate("/mypage/order")}
                 >
                   주문내역 조회
                 </li>
-                <li
+                {/*                 <li
                   className="mypage-toggle-detail"
                   onClick={() =>
                     navigate("/mypage/order", { state: { buttonNumber: "2" } })
                   }
                 >
                   취소/교환/반품 내역
-                </li>
+                </li> */}
               </>
             )}
           </ul>
@@ -100,7 +98,7 @@ export default function MyPage() {
                 >
                   쿠폰
                 </li>
-                <li className="mypage-toggle-detail">적립금</li>
+                {/* <li className="mypage-toggle-detail">적립금</li> */}
               </>
             )}
           </ul>
