@@ -20,3 +20,89 @@
 .admin-link:hover {
   background-color: #e9e9e9;
 }
+
+/* 전체 컨테이너 스타일링 */
+.admin-upload-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-back-button {
+  display: block;
+  width: 100px;
+  margin: 35px auto;
+  padding: 10px 15px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.admin-back-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* 제목 스타일링 */
+.admin-upload-title,
+.admin-upload-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 폼 스타일링 */
+.admin-upload-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-upload-ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-upload-li {
+  margin-bottom: 15px;
+}
+
+/* 라벨 스타일링 */
+.admin-upload-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* 인풋 및 텍스트 에어리어 스타일링 */
+.admin-upload-input,
+.admin-upload-textarea,
+.admin-upload-select,
+.admin-upload-file {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.admin-upload-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* 버튼 스타일링 */
+.admin-upload-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.admin-upload-button:hover {
+  background-color: #0056b3;
+}

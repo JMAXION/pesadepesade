@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import SubTitle from "../components/SubTitle";
 import CartTable from "../components/cart/CartTable";
 import "../css/cart.css";
@@ -10,15 +10,14 @@ export default function Cart() {
   const userId = getUser()?.userId; // Using optional chaining to safely access userId
   const cartList = useSelector((state) => state.carts.list);
   const dispatch = useDispatch();
-
-  console.log("User ID:", userId);
+  console.log("카트", cartList);
+  console.log("dd;", userId);
 
   useEffect(() => {
     if (userId) {
-      dispatch(cartListAxios({ userId }))
-        .catch(error => {
-          console.error("Error fetching cart list:", error);
-        });
+      dispatch(cartListAxios({ userId })).catch((error) => {
+        console.error("Error fetching cart list:", error);
+      });
     }
   }, [userId, dispatch]);
 

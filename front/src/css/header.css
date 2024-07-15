@@ -86,6 +86,8 @@
   background-color: var(--color-black);
   height: 100%;
   padding: 20px 50px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .drawer-content * {
@@ -119,10 +121,6 @@
   width: 100%;
 }
 
-.drawer-content li {
-  padding: 5px 0;
-}
-
 /* 사이드바의 사이드메뉴 */
 
 .drawer-subcategory {
@@ -132,10 +130,11 @@
 .drawer-subcategory ul {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.7s ease-out;
+  transition: all 0.7s ease-out;
   background-color: inherit;
   padding-bottom: 12px;
   margin: 0;
+  padding: 0;
   list-style: none;
 }
 
@@ -195,4 +194,86 @@
   background-color: inherit;
   border: none;
   cursor: pointer;
+}
+.header-menu-icon {
+  display: none;
+  font-size: 22px;
+}
+
+.logo-top-m {
+  background-image: url("https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/wJk/img/common/pesade-logo-white.png");
+}
+.mobile-cart {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header-right-menu-react,
+  .header-menu span {
+    display: none;
+  }
+
+  .header-menu-icon {
+    display: block;
+  }
+
+  .drawer-content {
+    padding: 20px 0;
+  }
+
+  .drawer-content,
+  .MuiPaper-root {
+    width: 100%;
+  }
+
+  .drawer-content * {
+    text-align: center;
+  }
+
+  .drawer-controller {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 60px;
+    padding: 0 20px;
+  }
+
+  .drawer-close-button {
+    left: 30px;
+    top: 10px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .mobile-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 120px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mobile-logo p {
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .mobile-cart {
+    display: block;
+    margin-left: auto;
+  }
+  .mobile-cart a {
+    display: block;
+    font-size: 22px;
+    margin-left: auto;
+    text-decoration: none;
+  }
 }

@@ -4,8 +4,7 @@
 
 .main-slider {
   width: 100%;
-  height: auto;
-  /* height: 100vh; */
+  max-height: 100vh;
 }
 
 .slider-image {
