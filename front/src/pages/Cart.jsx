@@ -10,7 +10,7 @@ export default function Cart() {
   const userId = getUser().userId;
   const cartList = useSelector((state) => state.carts.list);
   const dispatch = useDispatch();
-
+  console.log('카트',cartList);
   console.log("dd;", userId);
 
   useEffect(() => {

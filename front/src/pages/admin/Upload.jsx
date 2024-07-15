@@ -1,6 +1,7 @@
 import SubTitle from "../../components/SubTitle";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Upload() {
   const [title, setTitle] = useState("");
@@ -31,7 +32,7 @@ export default function Upload() {
     fetchData();
   }, []);
 
-  // const handleMainImagesChange = (e) => {
+    // const handleMainImagesChange = (e) => {
   //   setMainImages([...mainImages, ...Array.from(e.target.files)]);
   // };
 
@@ -83,83 +84,94 @@ export default function Upload() {
   };
 
   return (
-    <div className="content">
+    <div className="admin-upload-content">
       <SubTitle title="업로드" />
       <div>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            <li>
-              <label>상품명</label>
+        <Link to="/admin" className="admin-back-button">
+          돌아가기
+        </Link>
+        <form onSubmit={handleSubmit} className="admin-upload-form">
+          <ul className="admin-upload-ul">
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상품명</label>
               <input
                 type="text"
                 name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                className="admin-upload-input"
                 required
               />
             </li>
-            <li>
-              <label>상품 디테일</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상품 디테일</label>
               <input
                 type="text"
                 name="detail"
                 value={detail}
                 onChange={(e) => setDetail(e.target.value)}
+                className="admin-upload-input"
                 required
               />
             </li>
-            <li>
-              <label>상품 향 설명</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상품 향 설명</label>
               <input
                 type="text"
                 name="scentDetail"
                 value={scentDetail}
                 onChange={(e) => setScentDetail(e.target.value)}
+                className="admin-upload-input"
                 required
               />
             </li>
-            <li>
-              <label>상품 설명</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상품 설명</label>
               <textarea
                 name="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                className="admin-upload-textarea"
                 required
               ></textarea>
             </li>
-            <li>
-              <label>상품 가격</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상품 가격</label>
               <input
                 type="text"
                 name="price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                className="admin-upload-input"
                 required
               />
             </li>
-            <li>
-              <label>상품 정보</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상품 정보</label>
               <textarea
                 name="info"
                 value={info}
                 onChange={(e) => setInfo(e.target.value)}
+                className="admin-upload-textarea"
                 required
               ></textarea>
             </li>
-            <li>
-              <label>공지</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">공지</label>
               <textarea
                 name="notice"
                 value={notice}
                 onChange={(e) => setNotice(e.target.value)}
+                className="admin-upload-textarea"
                 required
               ></textarea>
             </li>
-            <li>
-              <label>브랜드</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">브랜드</label>
               <select
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
+                className="admin-upload-select"
                 required
               >
                 <option value="">브랜드를 선택하세요</option>
@@ -173,36 +185,23 @@ export default function Upload() {
                 ))}
               </select>
             </li>
-            <li>
-              <label>대표 이미지</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">대표 이미지</label>
               <input
                 type="file"
                 name="mainImage"
                 onChange={(e) => setMainImage(e.target.files[0])}
+                className="admin-upload-file"
                 required
               />
             </li>
-            {/* <li>
-              <label>메인 이미지들</label>
-              <input
-                type="file"
-                name="mainImages"
-                onChange={handleMainImagesChange}
-                multiple
-                required
-              />
-              <div>
-                {mainImages.map((image, index) => (
-                  <p key={index}>{image.name}</p>
-                ))}
-              </div>
-            </li> */}
-            <li>
-              <label>상세 이미지들</label>
+            <li className="admin-upload-li">
+              <label className="admin-upload-label">상세 이미지들</label>
               <input
                 type="file"
                 name="detailImages"
                 onChange={handleDetailImagesChange}
+                className="admin-upload-file"
                 multiple
                 required
               />
@@ -212,8 +211,8 @@ export default function Upload() {
                 ))}
               </div>
             </li>
-            <li>
-              <button type="submit">등록완료</button>
+            <li className="admin-upload-li">
+              <button type="submit" className="admin-upload-button">등록완료</button>
             </li>
           </ul>
         </form>

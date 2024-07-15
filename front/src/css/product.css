@@ -485,6 +485,7 @@ body {
 .detail-pdesc{
   width:24rem;
   padding-bottom: 20px;
+  font-size: 12px;
 }
 
 .detail-pprice{
@@ -553,6 +554,7 @@ transition: transform 0.3s ease;
 .product-notice, .product-info{
   font-size: 12px;
   color: #555555;
+  overflow: auto
 }
 
 .select-msg-card{

@@ -2,6 +2,7 @@ import SubTitle from "../../components/SubTitle";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/admin/delete.css";
+import { Link } from "react-router-dom";
 
 
 export default function DeleteProduct() {
@@ -37,6 +38,9 @@ export default function DeleteProduct() {
   return (
     <div className="content">
       <SubTitle title="상품삭제" />
+      <Link to="/admin" className="admin-back-button">
+          돌아가기
+        </Link>
       <ul className="delete-ul">
         {products.map((product) => (
           <li key={product.pid} className="delete-li">

@@ -1,6 +1,7 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getCarts = async (userId) => {
+
   const sql = `
     SELECT 
         pc.user_id, 

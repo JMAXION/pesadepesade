@@ -2,7 +2,7 @@ import React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Link } from "react-router-dom";
 
-export default function Sidebar({ drawerOpen, toggleDrawer }) {
+export default function Sidebar({ drawerOpen, toggleDrawer, userInfo ,handleLogout}) {
   return (
     <SwipeableDrawer
       anchor="left"
@@ -21,6 +21,13 @@ export default function Sidebar({ drawerOpen, toggleDrawer }) {
             className="drawer-close-button"
             onClick={toggleDrawer(false)}
           ></button>
+
+            <div className="mobile-logo">
+              <p className="logo-top-m"></p>
+            </div>
+            <div className="mobile-cart" onClick={toggleDrawer(false)} >
+            <Link to={"/cart"}>Cart</Link>
+            </div>
         </div>
         <div className="drawer-list">
           <ul>
@@ -77,11 +84,24 @@ export default function Sidebar({ drawerOpen, toggleDrawer }) {
                 press
               </Link>
             </li>
+            {userInfo ? (
+            <>
+                <li>
+                  <Link to='/mypage'  onClick={toggleDrawer(false)}>Mypage</Link>
+                </li>
+                <li onClick={handleLogout}>
+                  <Link to={'/'} onClick={toggleDrawer(false)} >Logout</Link>
+                </li>
+            </>
+            ) : (
+
             <li>
               <Link to="/login" onClick={toggleDrawer(false)}>
                 login
               </Link>
             </li>
+            )
+            }
           </ul>
         </div>
       </div>

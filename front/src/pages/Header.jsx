@@ -5,6 +5,8 @@ import Sidebar from "../components/header/Sidebar.jsx";
 import { useDispatch } from "react-redux";
 import { getIsLogout } from "../modules/reduxMemberAxios.js";
 import { getUser, removeUser } from "../util/localStorage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header({ isHome }) {
   const dispatch = useDispatch();
@@ -58,7 +60,8 @@ export default function Header({ isHome }) {
       >
         <div className="header-content">
           <div className="header-menu" onClick={toggleDrawer(true)}>
-            Shop
+          <FontAwesomeIcon icon={faBars} className="header-menu-icon"/>
+            <span>Shop</span>
           </div>
           <div className="header-logo">
             <Link
@@ -69,13 +72,13 @@ export default function Header({ isHome }) {
           <div className="header-right-menu">
             {userInfo ? (
               <>
-                <div onClick={handleLogout}><Link to={'/'}>Logout</Link></div>
-                <div>
+                <div onClick={handleLogout} className="header-right-menu-react"><Link to={'/'}>Logout</Link></div>
+                <div  className="header-right-menu-react">
                   <Link to="/mypage">My Page</Link>
                 </div>
               </>
             ) : (
-              <div>
+              <div  className="header-right-menu-react">
                 <Link to={"/login"}>Login</Link>
               </div>
             )}
@@ -86,7 +89,7 @@ export default function Header({ isHome }) {
         </div>
       </div>
 
-      <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
+      <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} userInfo={userInfo} handleLogout={handleLogout}/>
     </>
   );
 }
