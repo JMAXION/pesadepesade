@@ -42,7 +42,7 @@ export default function Sidebar({ drawerOpen, toggleDrawer, userInfo ,handleLogo
           <span>shop</span>
           <ul>
             <li style={{ transitionDelay: "0s" }}>
-              <a>all</a>
+              <Link to={'/shop'}>all</Link>
             </li>
             <li style={{ transitionDelay: "0.1s" }}>
               <a>향수1</a>
