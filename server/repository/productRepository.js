@@ -1,6 +1,7 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getProduct = async (params) => {
+
   let sql = "";
   if (params.type === "all") {
     sql = `select *  from pesade_product p, pesade_category c 
