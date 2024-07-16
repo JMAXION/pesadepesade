@@ -425,12 +425,12 @@
 
 .password-container {
   width: 400px;
-  height: 537px;
+  height: auto;
 }
 
 .password-form-ul {
   width: 386px;
-  height: 239px;
+  height: auto;
   margin: auto;
   margin-top: 10px;
   border: 1px solid rgb(213, 213, 213);
@@ -539,10 +539,69 @@
   background-color: white;
 }
 
+/**************
+
+  PasswordRetrievalForm
+
+***************/
+.passwordretrievalform-box {
+  width: 386px;
+  height: auto;
+  margin: auto;
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px 5px 20px 5px;
+  border: 1px solid rgb(213, 213, 213);
+}
+
+.passwordretrievalform-box > p {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.passwordretrievalform-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.passwordretrievalform-div p {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 120px;
+  height: 42px;
+  font-weight: 400;
+}
+.passwordretrievalform-div input {
+  width: 200px;
+  height: 36px;
+  padding: 10px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-black);
+}
+
+.passwordretrievalform-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 200px;
+}
+
+.passwordretrievalform-btn {
+  margin: auto;
+  margin-top: 10px;
+  width: 386px;
+  height: 36px;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+
 .login,
 .idfind,
 .idretrievalform,
-.password {
+.password,
+.passwordretrievalform {
   animation: slide-in-right 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 

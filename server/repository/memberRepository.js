@@ -93,49 +93,31 @@ export const getIdCheck = async (userId) => {
 };
 
 export const getIdFind = async (formData) => {
-  console.log("아이디 찾기 디비", formData);
-
   let sql = "";
   let result = "";
   if (formData.type == "useremail") {
     sql = `
-  SELECT user_id FROM pesade_member
+  SELECT user_id, email, signup_date FROM pesade_member
     WHERE user_name = ? AND email = ?    
   `;
-    result = await db.execute(sql, formData.userName, formData.email);
+    result = await db.execute(sql, [formData.userName, formData.email]);
   } else if (formData.type == "userphone") {
     sql = `
-    SELECT user_id FROM pesade_member
+    SELECT user_id, email, signup_date FROM pesade_member
     WHERE user_name = ? AND phone = ?    
     `;
-    result = await db.execute(sql, formData.userName, formData.phone);
+    result = await db.execute(sql, [formData.userName, formData.phone]);
   }
 
-  console.log("리절트1", result);
-  console.log("리절트2", result[0]);
-  console.log("리절트3", result[0][0]);
-  return result[0] ? result[0] : null;
-};
-
-export const changeInfo = async (formData) => {
-  console.log("폼데이터-->", formData);
-  const sql = `
-  select 
-  user_id, 
-  user_pass, 
-  user_name, 
-  zipcode, 
-  address, 
-  phone, 
-  email, 
-  gender, 
-  bdate_type, 
-  bdate 
-  from pesade_member 
-  where user_pass =?
-  `;
-
-  return await db.execute(sql, [userPass]).then((result) => result[0][0]);
+  if (result[0] && result[0].length > 0) {
+    return {
+      user_id: result[0][0].user_id,
+      email: result[0][0].email,
+      signup_date: result[0][0].signup_date,
+    };
+  } else {
+    return { error: "사용자를 찾을 수 없습니다" };
+  }
 };
 
 /* export const getUserByKakaoId = async (kakaoId) => {

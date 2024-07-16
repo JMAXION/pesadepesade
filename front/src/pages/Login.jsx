@@ -28,7 +28,7 @@ export default function Login() {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init("8cf58becad913cbb691911f7434ea551");
-      console.log(window.Kakao.isInitialized()); // SDK 초기화 여부 확인
+      console.log(window.Kakao.isInitialized());
     }
   }, []);
 
@@ -37,7 +37,7 @@ export default function Login() {
 
     window.Kakao.Auth.login({
       success: (authObj) => {
-        console.log(authObj); // 인증 객체
+        console.log(authObj);
 
         window.Kakao.API.request({
           url: "/v2/user/me",
@@ -125,7 +125,7 @@ export default function Login() {
           </ul>
           <div className="login-find">
             <Link to="/login/memberidfind"> 아이디찾기</Link>
-            <Link to="/login/passwordfind"> 비밀번호찾기</Link>
+            <Link to="/login/memberpasswordfind"> 비밀번호찾기</Link>
           </div>
           <div>
             <ul className="login-sns">

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import "../../css/login.css";
-import { data } from "jquery";
 
-export default function IdRetrievalForm({ formData }) {
+export default function IdRetrievalForm({ formData, idResult }) {
+  console.log("idresult==>", idResult);
+
   return (
     <div className="content">
       <div className="idretrievalform">
@@ -17,19 +18,23 @@ export default function IdRetrievalForm({ formData }) {
         <div className="idretrieval-details">
           <div className="idretrieval-user">
             <p className="idretrieval-label">이 름</p>
-            <p className="idretrieval-value">김혜림</p>
+            <p className="idretrieval-value">{formData.userName}</p>
           </div>
           <div className="idretrieval-user">
             <p className="idretrieval-label">이메일</p>
             <p className="idretrieval-value">
-              <strong>test@gmail.com</strong>
+              <strong>{idResult.email}</strong>
             </p>
           </div>
         </div>
         <div className="idretrieval-options">
           <input type="radio" checked />
           <p>
-            test****** (개인회원, <strong>2024-06-24</strong> 가입)
+            {idResult.user_id} (개인회원,
+            <strong>
+              {new Date(idResult.signup_date).toLocaleDateString()}
+            </strong>
+            가입)
           </p>
         </div>
         <div className="idretrieval-button">
