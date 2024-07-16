@@ -11,7 +11,8 @@ export default function QnaList() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const pagesToShow = 5; // 한 번에 보여줄 페이지 버튼 수
-  // const userId = getUser().userId;
+  const userId = getUser();
+  const user = userId ? userId.userId : null;
 
   useEffect(() => {
     const url = "http://localhost:8080/qna/list";
@@ -77,6 +78,12 @@ export default function QnaList() {
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
+
+  const handleWrite = () => {
+    if (user === null) alert("로그인 후 사용해주세요");
+    else navigate("/qna/qnaWrite");
+    return;
+  };
 
   return (
     <div className="front">
@@ -145,8 +152,12 @@ export default function QnaList() {
               )}
             </div>
             <div className="qna-btn">
-              <button className="qna-btn-write" type="button">
-                <Link to="/qna/qnaWrite">Write</Link>
+              <button
+                className="qna-btn-write"
+                type="button"
+                onClick={handleWrite}
+              >
+                Write
               </button>
             </div>
           </div>

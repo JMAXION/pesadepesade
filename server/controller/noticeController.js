@@ -25,3 +25,30 @@ export const updateHits = async (req, res) => {
   const result = await repository.updateHits(nid);
   res.json(result);
 };
+
+export const getUpdate = async (req, res) => {
+  const notice = req.body;
+  console.log(notice);
+  const result = await repository.getUpdate(notice);
+  res.json(result);
+};
+
+export const deleteNotice = async (req, res) => {
+  const nid = req.body.nid;
+
+  if (!nid) {
+    return res.status(400).json({ error: "qid is required" });
+  }
+
+  try {
+    const success = await repository.deleteNotice(nid);
+    if (success) {
+      res.json({ cnt: 1 });
+    } else {
+      res.status(404).json({ error: "No record found with that qid" });
+    }
+  } catch (error) {
+    console.error("Error deleting record:", error);
+    res.status(500).json({ error: "Database error" });
+  }
+};

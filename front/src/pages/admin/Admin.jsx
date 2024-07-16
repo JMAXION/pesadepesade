@@ -13,6 +13,9 @@ export default function Admin() {
         <Link to="/admin/delete" className="admin-link">
           삭제
         </Link>
+        <Link to="/admin/board" className="admin-link">
+          공지 수정 및 삭제
+        </Link>
       </div>
     </div>
   );

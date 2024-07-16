@@ -3,7 +3,7 @@ import SubTitle from "../../components/SubTitle";
 import "../../css/board.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getUser, removeUser } from "../../util/localStorage";
+import { getUser } from "../../util/localStorage";
 
 export default function QnaWrite() {
   const [isSecret, setIsSecret] = useState(false);
@@ -69,10 +69,20 @@ export default function QnaWrite() {
       alert("내용을 입력해주세요");
       refs.qcontentRef.current.focus();
       checkFlag = false;
-    } else if (isSecret && refs.qformPsRef.current.value === "") {
-      alert("비밀번호를 입력해주세요");
-      refs.qformPsRef.current.focus();
-      checkFlag = false;
+    } else if (isSecret) {
+      const password = refs.qformPsRef.current.value;
+      if (password === "") {
+        alert("비밀번호를 입력해주세요");
+        refs.qformPsRef.current.focus();
+        checkFlag = false;
+      } else {
+        const isValid = /^\d{4}$/.test(password);
+        if (!isValid) {
+          alert("숫자 4자리를 입력해주세요.");
+          refs.qformPsRef.current.focus();
+          checkFlag = false;
+        }
+      }
     }
     return checkFlag;
   };

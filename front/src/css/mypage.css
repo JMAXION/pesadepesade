@@ -1,6 +1,13 @@
 .mypage {
   display: flex;
+  list-style-type: none;
 }
+
+.mypage a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
 .mypage-leftmenu {
   position: fixed;
   top: 22rem;

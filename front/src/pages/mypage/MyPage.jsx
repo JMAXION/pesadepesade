@@ -50,10 +50,10 @@ export default function MyPage() {
             <li>회원정보 수정</li>
           </ul>
           <ul>
+            <li>나의 게시글</li>
             <Link to={"/mypage/myboard"}>
-              <li>나의 게시글</li>
+              <li>1:1문의</li>
             </Link>
-            <li>1:1문의</li>
             <li>상품문의</li>
             <li>상품후기</li>
           </ul>

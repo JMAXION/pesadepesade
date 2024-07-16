@@ -49,6 +49,36 @@ export const list = async () => {
   return db.execute(sql).then((result) => result[0]);
 };
 
+export const myList = async (userId) => {
+  const sql = `
+    select  row_number() over(order by qdate asc) as rno,
+            qid, 
+            qtitle, 
+            user_id,
+            left(qdate,10) as qdate,
+             is_secret
+    from pesade_qboard
+    where user_id = ?
+  `;
+  return db.execute(sql, [userId]).then((result) => result[0]);
+};
+
+/* qna 수정 */
+export const getUpdate = async (qna) => {
+  let result_rows = 0;
+  const params = [qna.qtitle, qna.qcontent, qna.qid];
+  const sql = `
+                update pesade_qboard set qtitle = ?, qcontent = ?
+                where qid = ?`;
+  try {
+    const [result] = await db.execute(sql, params);
+    result_rows = result.affectedRows;
+  } catch (error) {
+    console.log(error);
+  }
+  return { cnt: result_rows };
+};
+
 /* qna detail */
 
 export const detail = async (qid) => {
@@ -157,5 +187,13 @@ export const deleteComment = async (commentId) => {
   DELETE FROM pesade_comments WHERE comment_id = ?
   `;
   const [result] = await db.execute(sql, [commentId]);
+  return result.affectedRows > 0;
+};
+
+export const deleteQna = async (qid) => {
+  const sql = `
+  DELETE FROM pesade_qboard WHERE qid = ?
+  `;
+  const [result] = await db.execute(sql, [qid]);
   return result.affectedRows > 0;
 };
