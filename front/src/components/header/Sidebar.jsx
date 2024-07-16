@@ -26,7 +26,7 @@ export default function Sidebar({ drawerOpen, toggleDrawer, userInfo ,handleLogo
               <p className="logo-top-m"></p>
             </div>
             <div className="mobile-cart" onClick={toggleDrawer(false)} >
-            <Link to={"/cart"}>Cart</Link>
+              <Link to={"/cart"}>Cart</Link>
             </div>
         </div>
         <div className="drawer-list">
@@ -40,7 +40,7 @@ export default function Sidebar({ drawerOpen, toggleDrawer, userInfo ,handleLogo
         </div>
         <div className="drawer-subcategory">
           <span>shop</span>
-          <ul>
+          <ul  onClick={toggleDrawer(false)}>
             <li style={{ transitionDelay: "0s" }}>
               <Link to={'/shop'}>all</Link>
             </li>
