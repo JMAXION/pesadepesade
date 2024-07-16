@@ -45,9 +45,9 @@ export default function Sidebar({
         </div>
         <div className="drawer-subcategory">
           <span>shop</span>
-          <ul>
+          <ul  onClick={toggleDrawer(false)}>
             <li style={{ transitionDelay: "0s" }}>
-              <a>all</a>
+              <Link to={'/shop'}>all</Link>
             </li>
             <li style={{ transitionDelay: "0.1s" }}>
               <a>향수1</a>
