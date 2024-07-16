@@ -80,8 +80,10 @@ export default function QnaList() {
   }
 
   const handleWrite = () => {
-    if (user === null) alert("로그인 후 사용해주세요");
-    else navigate("/qna/qnaWrite");
+    if (user === null) {
+      alert("로그인 후 사용해주세요");
+      navigate("/login");
+    } else navigate("/qna/qnaWrite");
     return;
   };
 

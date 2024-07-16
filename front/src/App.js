@@ -65,7 +65,6 @@ export default function App() {
         { path: "/qna/qnaWrite", element: <QnaWrite /> },
         { path: "/qna/qnaContent", element: <QnaContent /> },
         { path: "/qna/update/:qid/:rno", element: <QnaUpdate /> },
-        { path: "/notice/1", element: <NoticeContent /> },
         { path: "/admin", element: <Admin /> },
         { path: "/admin/upload", element: <Upload /> },
         { path: "/admin/delete", element: <Delete /> },

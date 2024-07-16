@@ -13,12 +13,16 @@ export default function NoticeContent() {
   const [notice, setNotice] = useState({});
 
   useEffect(() => {
+    console.log(nid);
     const url = `http://localhost:8080/notice/${nid}`;
     axios({
       method: "get",
       url: url,
     })
-      .then((result) => setNotice(result.data))
+      .then((result) => {
+        console.log(result.data); // 응답 데이터 구조 확인
+        setNotice(result.data);
+      })
       .catch((error) => console.log(error));
   }, [nid]);
 

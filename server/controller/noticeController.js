@@ -6,7 +6,6 @@ export const insert = async (req, res) => {
   console.log(ntcFormData);
   const result = await repository.insert(ntcFormData);
   res.json(result);
-  console.log(result);
 };
 
 export const list = async (req, res) => {
@@ -16,8 +15,21 @@ export const list = async (req, res) => {
 
 export const detail = async (req, res) => {
   const { nid } = req.params;
-  const result = await repository.detail(nid);
-  res.json(result);
+
+  if (!nid) {
+    return res.status(400).json({ error: "nid parameter is required" });
+  }
+
+  try {
+    const result = await repository.detail(nid);
+    if (!result) {
+      return res.status(404).json({ error: "Notice not found" });
+    }
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 };
 
 export const updateHits = async (req, res) => {

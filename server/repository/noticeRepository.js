@@ -48,6 +48,7 @@ export const list = async () => {
   }
   return rows;
 };
+
 // notice detail
 export const detail = async (nid) => {
   const sql = `
