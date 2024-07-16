@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SubTitle from "../../components/SubTitle";
 import "../../css/mypage.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MyPage() {
   const navigate = useNavigate();
@@ -129,7 +129,9 @@ export default function MyPage() {
             </li>
             {openSections.myPosts && (
               <>
-                <li className="mypage-toggle-detail">1:1문의</li>
+                <Link to={"/mypage/myboard"}>
+                  <li className="mypage-toggle-detail">1:1문의</li>
+                </Link>
                 <li className="mypage-toggle-detail">상품문의</li>
                 <li className="mypage-toggle-detail">상품후기</li>
               </>

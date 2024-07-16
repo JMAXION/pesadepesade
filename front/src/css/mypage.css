@@ -3,6 +3,7 @@
 }
 .mypage {
   display: flex;
+  list-style-type: none;
 }
 .mypage-info-to-userinfo {
   cursor: pointer;
@@ -27,6 +28,12 @@
   color: red;
   cursor: pointer;
 }
+
+.mypage a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
 .mypage-leftmenu {
   position: fixed;
   top: 19.5rem;

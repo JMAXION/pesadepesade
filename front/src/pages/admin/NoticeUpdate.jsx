@@ -1,57 +1,54 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SubTitle from "../../components/SubTitle";
-import { useNavigate } from "react-router-dom";
+import "../../css/notice.css";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { getUser } from "../../util/localStorage";
 
-export default function NoticeWrite() {
-  const userId = getUser();
-  const user = userId ? userId.userId : null;
-
+export default function NoticeContent() {
+  const { nid } = useParams();
   const navigate = useNavigate();
+  const [notice, setNotice] = useState({});
 
-  const [ntcFormData, setNtcFormData] = useState({
-    ntitle: "",
-    ncontent: "",
-    user_id: user,
-  });
+  useEffect(() => {
+    const url = `http://localhost:8080/notice/${nid}`;
+    axios({
+      method: "get",
+      url: url,
+    })
+      .then((result) => setNotice(result.data))
+      .catch((error) => console.log(error));
+  }, [nid]);
 
-  /* 등록 */
-  const url = "http://127.0.0.1:8080/notice/write";
-  const handleSubmit = (e) => {
+  const handleUpdateSubmit = (e) => {
     e.preventDefault();
+    const url = "http://127.0.0.1:8080/notice/update";
     axios({
       method: "post",
       url: url,
-      data: ntcFormData,
+      data: notice,
     })
-      .then((res) => {
-        if (res.data.cnt === 1) {
+      .then((result) => {
+        if (result.data.cnt === 1) {
           navigate("/notice");
-        } else {
-          alert("관리자만 작성할 수 있습니다");
         }
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((error) => console.log(error));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNtcFormData((prevData) => ({ ...prevData, [name]: value }));
+    setNotice({ ...notice, [name]: value });
   };
 
-  const handlePrev = () => {
-    navigate("/notice");
+  const handleNavigate = (type) => {
+    type === "notice" ? navigate("/notice") : navigate(`/notice/${nid}`);
   };
 
   return (
     <div className="front">
       <div className="content">
         <SubTitle title="Notice (admin)" />
-        <form className="qna-form" onSubmit={handleSubmit}>
+        <form className="qna-form">
           <table className="qna-form-table">
             <tbody>
               <tr className="qna-form-group">
@@ -62,7 +59,7 @@ export default function NoticeWrite() {
                   <input
                     type="text"
                     name="ntitle"
-                    value={ntcFormData.ntitle}
+                    value={notice.ntitle}
                     onChange={handleChange}
                   />
                 </td>
@@ -74,7 +71,7 @@ export default function NoticeWrite() {
                 <td>
                   <textarea
                     name="ncontent"
-                    value={ntcFormData.ncontent}
+                    value={notice.ncontent}
                     onChange={handleChange}
                   />
                 </td>
@@ -82,8 +79,10 @@ export default function NoticeWrite() {
             </tbody>
           </table>
           <div className="qna-form-group-btn">
-            <button type="submit">등록</button>
-            <button type="button" onClick={handlePrev}>
+            <button type="submit" onClick={handleUpdateSubmit}>
+              수정
+            </button>
+            <button type="button" onClick={() => handleNavigate("notice")}>
               취소
             </button>
           </div>

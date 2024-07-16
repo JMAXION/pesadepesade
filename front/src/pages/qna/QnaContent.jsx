@@ -3,9 +3,11 @@ import SubTitle from "../../components/SubTitle";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../css/board.css";
 import axios from "axios";
+import { getUser } from "../../util/localStorage";
 
 export default function QnaContent() {
-  const userId = "test";
+  const userId = getUser();
+  const user = userId ? userId.userId : null;
   const { qid, rno } = useParams();
   const [qna, setQna] = useState({});
   const [nextQna, setNextQna] = useState({});
@@ -86,12 +88,18 @@ export default function QnaContent() {
   }, [qid]);
 
   const handleAddComment = () => {
+    if (user === null) {
+      alert("로그인 후 댓글을 입력해주세요");
+      return;
+    }
+
     const url = "http://localhost:8080/qna/comments";
     const data = {
       qid: String(qid),
-      user_id: userId,
+      userId: user,
       comment_text: newComment,
     };
+    console.log(data);
     axios({
       method: "post",
       data: data,
@@ -101,7 +109,7 @@ export default function QnaContent() {
         setComments([
           {
             comment_id: result.data.commentId,
-            user_id: userId,
+            userId: user,
             comment_text: newComment,
             created_at: new Date(),
           },
@@ -114,19 +122,43 @@ export default function QnaContent() {
     });
   };
 
-  const handleDeleteComment = (commentId) => {
+  const handleDeleteComment = (commentId, commentUserId) => {
+    // 댓글 삭제 시 댓글 작성자와 현재 사용자 비교
+    if (!userId || commentUserId !== userId.userId) {
+      alert("자신이 작성한 댓글만 삭제할 수 있습니다.");
+      return;
+    }
+
     const url = `http://localhost:8080/qna/comments/${commentId}`;
-    axios({
-      method: "delete",
-      url: url,
-    })
-      .then((result) => {
-        if (result.data.success) {
+    axios
+      .delete(url)
+      .then((response) => {
+        if (response.data.success) {
           setComments(
             comments.filter((comment) => comment.comment_id !== commentId)
           );
         } else {
-          console.error("Server error:", result.data.error);
+          console.error("Server error:", response.data.error);
+        }
+      })
+      .catch((error) => console.error("Error deleting comment:", error));
+  };
+
+  const handleNavigate = (type) => {
+    navigate(`/qna/${type}/${qna.qid}/${rno}`);
+  };
+
+  const handleDelete = () => {
+    const url = "http://127.0.0.1:8080/qna/delete";
+    axios({
+      method: "delete",
+      url: url,
+      data: { qid: qid },
+    })
+      .then((result) => {
+        if (result.data.cnt === 1) {
+          alert("게시물을 삭제하시겠습니까?");
+          navigate("/qna");
         }
       })
       .catch((error) => console.log(error));
@@ -141,7 +173,7 @@ export default function QnaContent() {
             <div className="qna-head">
               <h3>{qna.qtitle}</h3>
               <div className="qna-info">
-                <span>{userId}</span>
+                <span>{qna.user_id}</span>
               </div>
               <div className="qna-append">
                 <span>{qna.qdate}</span>
@@ -150,17 +182,23 @@ export default function QnaContent() {
               </div>
             </div>
             <div className="qna-body">
-              {/* 비밀글일 경우 */}
-              {isSecret ? (
-                <div className="qna-content-secret">
-                  <Link to={`/qna/password/${qid}/${rno}`}>
-                    <button className="qna-password-btn">비밀번호 입력</button>
-                  </Link>
-                </div>
+              <div className="qna-content">
+                <p>{qna.qcontent}</p>
+              </div>
+              {userId && userId.userId === qna.user_id ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigate("update")}
+                  >
+                    수정
+                  </button>
+                  <button type="button" onClick={handleDelete}>
+                    삭제
+                  </button>
+                </>
               ) : (
-                <div className="qna-content">
-                  <p>{qna.qcontent}</p>
-                </div>
+                <p>작성자만 수정할 수 있습니다</p>
               )}
             </div>
             <div className="qna-comments">
@@ -168,13 +206,15 @@ export default function QnaContent() {
               <div className="comments-list">
                 {comments.map((comment) => (
                   <div key={comment.comment_id} className="comment-item">
-                    <div className="comment-user">{comment.userId}</div>
+                    <div className="comment-user">{comment.user_id}</div>
                     <div className="comment-text">{comment.comment_text}</div>
                     <div className="comment-date">
                       {new Date(comment.created_at).toLocaleString()}
                     </div>
                     <button
-                      onClick={() => handleDeleteComment(comment.comment_id)}
+                      onClick={() =>
+                        handleDeleteComment(comment.comment_id, comment.user_id)
+                      }
                     >
                       삭제
                     </button>

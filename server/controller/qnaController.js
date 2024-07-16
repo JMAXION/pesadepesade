@@ -13,6 +13,24 @@ export const list = async (req, res) => {
   res.json(result);
 };
 
+export const myList = async (req, res) => {
+  const { userId } = req.params; // 또는 req.query 등에서 userId를 가져올 수 있습니다.
+  try {
+    const result = await repository.myList(userId);
+    res.json(result);
+  } catch (error) {
+    console.error("Error fetching Q&A list:", error);
+  }
+};
+
+/* 게시물 수정 */
+export const getUpdate = async (req, res) => {
+  const qna = req.body;
+  console.log(qna);
+  const result = await repository.getUpdate(qna);
+  res.json(result);
+};
+
 /* qna detail */
 export const detail = async (req, res) => {
   const { qid } = req.params;
@@ -72,16 +90,15 @@ export const getComments = async (req, res) => {
 };
 
 export const addComment = async (req, res) => {
-  const { qid, user_id, comment_text } = req.body;
+  const { qid, userId, comment_text } = req.body;
+  console.log(req.body);
 
-  if (!qid || !user_id || !comment_text) {
-    return res
-      .status(400)
-      .json({ success: false, error: "Missing required parameters" });
+  if (!qid || !userId || !comment_text) {
+    return res.status(400).json({ success: false, error: "error" });
   }
 
   try {
-    const result = await repository.addComment(qid, user_id, comment_text);
+    const result = await repository.addComment(qid, userId, comment_text);
     if (result.success) {
       res.status(200).json(result);
     } else {
@@ -99,8 +116,27 @@ export const deleteComment = async (req, res) => {
   if (success) {
     res.json({ success: true });
   } else {
-    res.status(400).json({ success: false, error: "Failed to delete comment" });
+    res.status(400).json({ success: false, error: "error" });
   }
 };
 
-/* uploadImage */
+/* 게시물 삭제 */
+export const deleteQna = async (req, res) => {
+  const qid = req.body.qid;
+
+  if (!qid) {
+    return res.status(400).json({ error: "qid is required" });
+  }
+
+  try {
+    const success = await repository.deleteQna(qid);
+    if (success) {
+      res.json({ cnt: 1 });
+    } else {
+      res.status(404).json({ error: "No record found with that qid" });
+    }
+  } catch (error) {
+    console.error("Error deleting record:", error);
+    res.status(500).json({ error: "Database error" });
+  }
+};

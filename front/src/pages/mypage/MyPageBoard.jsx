@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import SubTitle from "../../components/SubTitle";
-import "../../css/board.css";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 import { getUser } from "../../util/localStorage";
 
-export default function QnaList() {
+export default function MyPageBoard() {
   const navigate = useNavigate();
   const [qnaList, setQnaList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const pagesToShow = 5; // 한 번에 보여줄 페이지 버튼 수
-  const userId = getUser();
-  const user = userId ? userId.userId : null;
+  const userId = getUser().userId;
 
   useEffect(() => {
-    const url = "http://localhost:8080/qna/list";
+    const url = `http://localhost:8080/qna/mylist/${userId}`;
     axios({
       method: "get",
       url: url,
@@ -27,7 +25,7 @@ export default function QnaList() {
         setQnaList(sortedList);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [userId]);
 
   const handleUpdateQHits = (qid, rno, isSecret) => {
     if (isSecret) {
@@ -79,18 +77,10 @@ export default function QnaList() {
     pageNumbers.push(i);
   }
 
-  const handleWrite = () => {
-    if (user === null) {
-      alert("로그인 후 사용해주세요");
-      navigate("/login");
-    } else navigate("/qna/qnaWrite");
-    return;
-  };
-
   return (
     <div className="front">
       <div className="content">
-        <SubTitle title="Q&A" />
+        <SubTitle title="MY Q&A" />
         <div className="board">
           <div className="qna-list">
             <ul>
@@ -105,7 +95,7 @@ export default function QnaList() {
                     <div className="qna-summary">
                       <div className="qna-row top">
                         <div className="qna-left">{list.rno}</div>
-                        <span>{list.user_id}</span>
+                        <span>{userId}</span>
                       </div>
                       <div className="qna-row bottom">
                         <strong>
@@ -154,12 +144,8 @@ export default function QnaList() {
               )}
             </div>
             <div className="qna-btn">
-              <button
-                className="qna-btn-write"
-                type="button"
-                onClick={handleWrite}
-              >
-                Write
+              <button className="qna-btn-write" type="button">
+                <Link to="/qna/qnaWrite">Write</Link>
               </button>
             </div>
           </div>

@@ -8,7 +8,6 @@ import axios from "axios";
 export default function Notice() {
   const navigate = useNavigate();
   const [ntcList, setNtcList] = useState([]);
-  const userId = "admin";
 
   useEffect(() => {
     const url = "http://localhost:8080/notice/list";
@@ -58,47 +57,13 @@ export default function Notice() {
                       <img src={pin} alt="pin" />
                       <strong>{notice.ntitle}</strong>
                     </p>
-                    <span>{userId}</span>
+                    <span>{notice.user_id}</span>
                     <span>{notice.ndate}</span>
                     <span>{notice.nhits}</span>
                   </Link>
                   <hr className="notice-hr" />
                 </li>
               ))}
-              {/* <li className="notice-list-category">
-                <hr className="notice-hr-stick" />
-                <Link to="/notice/1">
-                  <p>
-                    <img src={pin} alt="pin" />
-                    <strong>페사드 한남 플래그십 임시 휴무 안내</strong>
-                  </p>
-                  <span>pesade</span>
-                  <span>2024-06-30</span>
-                  <span>조회 53</span>
-                </Link>
-                <hr className="notice-hr-stick" />
-              </li>
-              <li className="notice-list-category">
-                <p>
-                  <strong>페사드 한남 플래그십 임시 휴무 안내</strong>
-                </p>
-                <span>pesade</span>
-                <span>2024-06-30</span>
-                <span>조회 53</span>
-                <hr className="notice-hr" />
-              </li>
-              <li className="notice-list-category">
-                <p>
-                  <strong>페사드 한남 플래그십 임시 휴무 안내</strong>
-                </p>
-                <span>pesade</span>
-                <span>2024-06-30</span>
-                <span>조회 53</span>
-                <hr className="notice-hr" />
-              </li> */}
-              <button type="button">
-                <Link to={"/notice/write"}>공지작성</Link>
-              </button>
             </ul>
           </div>
         </div>
