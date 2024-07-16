@@ -1,4 +1,4 @@
-import { getCookie, removeCookie } from "./cookies";
+import { getCookie, removeCookie } from "./cookies.js";
 
 export const getUser = () => {
   let userInfo =

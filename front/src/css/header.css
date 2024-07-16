@@ -195,7 +195,7 @@
   border: none;
   cursor: pointer;
 }
-.header-menu-icon{
+.header-menu-icon {
   display: none;
   font-size: 22px;
 }
@@ -266,16 +266,14 @@
     width: 100%;
   }
 
-  
   .mobile-cart {
     display: block;
     margin-left: auto;
   }
-  .mobile-cart a{
+  .mobile-cart a {
     display: block;
     font-size: 22px;
     margin-left: auto;
     text-decoration: none;
   }
-  
 }

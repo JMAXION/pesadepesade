@@ -32,7 +32,7 @@ export default function Upload() {
     fetchData();
   }, []);
 
-    // const handleMainImagesChange = (e) => {
+  // const handleMainImagesChange = (e) => {
   //   setMainImages([...mainImages, ...Array.from(e.target.files)]);
   // };
 
@@ -212,7 +212,9 @@ export default function Upload() {
               </div>
             </li>
             <li className="admin-upload-li">
-              <button type="submit" className="admin-upload-button">등록완료</button>
+              <button type="submit" className="admin-upload-button">
+                등록완료
+              </button>
             </li>
           </ul>
         </form>

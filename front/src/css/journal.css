@@ -119,3 +119,9 @@
   margin-bottom: 2rem;
   padding-bottom: 2rem;
 }
+.journal-selectbox {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  margin-top: 1rem;
+}

@@ -28,8 +28,24 @@ export const getIdFind = async (req, res) => {
   const result = await repository.getIdFind(formData);
 
   res.json(result);
-  res.end();
+  // res.end();
 };
+
+// export const getIdFind = async (req, res) => {
+//   try {
+//     const formData = req.body;
+//     const result = await repository.getIdFind(formData);
+
+//     if (result.error) {
+//       res.status(404).json(result);
+//     } else {
+//       res.json(result);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "서버 내부 오류" });
+//   }
+// };
 
 /* export const getKakaoLogin = async (req, res) => {
   const { accessToken } = req.body;

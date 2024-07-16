@@ -13,6 +13,7 @@ body {
   width: 980px;
   margin: auto;
 }
+
 .qna-list a {
   text-decoration: none;
   color: var(--color-black);

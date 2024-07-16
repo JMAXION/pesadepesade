@@ -29,9 +29,9 @@
 }
 
 .admin-back-button {
-  display: block; 
+  display: block;
   width: 100px;
-  margin: 35px auto; 
+  margin: 35px auto;
   padding: 10px 15px;
   border: 1px solid #007bff;
   border-radius: 5px;
@@ -46,9 +46,9 @@
   border-color: #0056b3;
 }
 
-
 /* 제목 스타일링 */
-.admin-upload-title, .admin-upload-subtitle {
+.admin-upload-title,
+.admin-upload-subtitle {
   text-align: center;
   margin-bottom: 20px;
 }

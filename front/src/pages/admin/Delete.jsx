@@ -4,7 +4,6 @@ import axios from "axios";
 import "../../css/admin/delete.css";
 import { Link } from "react-router-dom";
 
-
 export default function DeleteProduct() {
   const [products, setProducts] = useState([]);
 
@@ -34,13 +33,13 @@ export default function DeleteProduct() {
     }
   };
 
-  console.log('tk',products);
+  console.log("tk", products);
   return (
     <div className="content">
       <SubTitle title="상품삭제" />
       <Link to="/admin" className="admin-back-button">
-          돌아가기
-        </Link>
+        돌아가기
+      </Link>
       <ul className="delete-ul">
         {products.map((product) => (
           <li key={product.pid} className="delete-li">

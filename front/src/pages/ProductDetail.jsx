@@ -17,6 +17,7 @@ export default function ProductDetail() {
     userId: userInfo.userId,
     pid: pid,
     pgid: "",
+    qty: 1,
   });
 
   useEffect(() => {
@@ -61,7 +62,9 @@ export default function ProductDetail() {
           <h2>{item.pname}</h2>
           <p>{item.pdetail}</p>
           <div className="detail-pscentdetail">{item.pscentdetail}</div>
-          <div className="detail-pdesc"   style={{ whiteSpace: 'pre-wrap'}}>{item.pdesc}</div>
+          <div className="detail-pdesc" style={{ whiteSpace: "pre-wrap" }}>
+            {item.pdesc}
+          </div>
           <div className="detail-pprice">{item.pprice}krw</div>
           <GiftCard />
           <ProductInfo prop={item} />

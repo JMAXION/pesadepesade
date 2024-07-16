@@ -1,9 +1,7 @@
 body {
-
 }
 
-#root{
- 
+#root {
 }
 .product-wrapper {
   position: relative;
@@ -15,7 +13,7 @@ body {
   z-index: 2;
 
   /*  */
-   /*  background-image: url(https://i.postimg.cc/XvT12qdD/3.jpg);*/
+  /*  background-image: url(https://i.postimg.cc/XvT12qdD/3.jpg);*/
   background-size: cover;
   background-position: 50% 0;
   height: 100%;
@@ -29,9 +27,6 @@ body {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  
-
-
 }
 
 .product-list-li {
@@ -42,26 +37,24 @@ body {
   transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
 
-
-.product-list-li a{
+.product-list-li a {
   text-decoration: none;
-  color: #302d2b
+  color: #302d2b;
 }
 
 .product-list-li a:visited {
   text-decoration: none;
-  color: #302d2b
+  color: #302d2b;
 }
 
 .product-inner {
   position: relative;
-  overflow: hidden;/* 포인터 커서 설정 */
+  overflow: hidden; /* 포인터 커서 설정 */
 }
 
 .product-thumbnail {
   position: relative;
   overflow: hidden;
- 
 }
 
 .product-thumbnail img {
@@ -73,18 +66,20 @@ body {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0.9;
-
 }
 
-
 .product-inner::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 300%; /* Adjust as needed */
   height: 300%; /* Adjust as needed */
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 80%
+  );
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.5s ease-out;
   pointer-events: none;
@@ -95,7 +90,7 @@ body {
   top: -100%; /* Start above the container */
   /* left: -75px; */
   width: 100%;
-  height: 479px;
+  height: 370px;
   padding: 21px 72px 0;
   text-align: center;
   min-height: 161px;
@@ -175,7 +170,7 @@ body {
 }
 
 .product-list-li:not(:hover) .product-description {
-  top: -100%; /* Return to initial position when not hovered */
+  top: -50%; /* Return to initial position when not hovered */
 }
 .product-list-li:hover .product-inner {
   transition: all 0.7s ease;
@@ -200,8 +195,8 @@ body {
 .filter-buttons {
   margin-left: 50%;
   transform: translateX(-12.5%);
-  margin:0 auto;
-  margin-top:5rem;
+  margin: 0 auto;
+  margin-top: 5rem;
 }
 
 .filter-buttons {
@@ -419,189 +414,179 @@ body {
   border: 1px solid #ccc;
 }
 
-
-.detail-wrapper{
-  
+.detail-wrapper {
   display: flex;
   flex-wrap: wrap;
   padding: 450px 52px;
   align-items: flex-end;
-  gap:10em;
+  gap: 10em;
   max-width: 1920px !important;
   margin: 0 auto 200px;
-  position:relative;
+  position: relative;
 }
 
-.detail-div:not(:first-child){
+.detail-div:not(:first-child) {
   width: 33.2%;
-  padding:30px;
-  
-
-
+  padding: 30px;
 }
-.detail-div:first-child{
-  width:20%;
- position:absolute;
- bottom:1rem;
- padding:30px ;
+.detail-div:first-child {
+  width: 20%;
+  position: absolute;
+  bottom: 1rem;
+  padding: 30px;
 }
 
-.detail-div:first-child h2{
+.detail-div:first-child h2 {
   font-size: 3rem;
- }
+}
 
- .detail-div:first-child p{
+.detail-div:first-child p {
   font-size: 1.3rem;
   padding-bottom: 42px;
- }
+}
 
- .detail-pscentdetail {
+.detail-pscentdetail {
   margin-bottom: 42px;
- }
+}
 
-.detail-div:nth-child(2){
-  position:absolute;
+.detail-div:nth-child(2) {
+  position: absolute;
   font-size: 12px;
-  left:45%;
+  left: 45%;
   transform: translateX(-50%);
-  top:-50px;
- }
+  top: -50px;
+}
 
-.detail-div:nth-child(3){
+.detail-div:nth-child(3) {
   position: absolute;
   right: 0;
-  bottom:15rem;
+  bottom: 15rem;
 }
 
-.detail-div img{
+.detail-div img {
   position: absolute;
-  top:150px;
-  
-  width:600px;
+  top: 150px;
+
+  width: 600px;
   height: 790px;
-  
 }
 
-.detail-pdesc{
-  width:24rem;
+.detail-pdesc {
+  width: 24rem;
   padding-bottom: 20px;
   font-size: 12px;
 }
 
-.detail-pprice{
+.detail-pprice {
   font-size: 1.5rem;
   padding-bottom: 20px;
 }
 
-.detail-pprice-right{
+.detail-pprice-right {
   font-size: 1.8rem;
   padding-bottom: 20px;
   text-align: right;
 }
 
-.gift-wrapper{
+.gift-wrapper {
   border-top: 1px solid black;
-  width:25rem;
+  width: 25rem;
   padding: top 5px;
 }
 
-.gift-arrow{
-float:right;
-margin-right: 20px;
-margin-top: 5px;
-transition: transform 0.3s ease;
+.gift-arrow {
+  float: right;
+  margin-right: 20px;
+  margin-top: 5px;
+  transition: transform 0.3s ease;
 }
 
 .gift-arrow.rotate {
   transform: rotate(90deg); /* Rotate arrow icon when active */
 }
 
-.gift-content{
+.gift-content {
   cursor: pointer;
   transition: height 0.3s ease; /* Smooth transition for height change */
   overflow: hidden; /* Hide overflow content */
-  padding:9px;
+  padding: 9px;
 }
 
 .gift-content.active {
   height: 250px; /* Adjust the height as per your design */
 }
 
-
-.gift-content-info{
+.gift-content-info {
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
 }
 
-
-.gift-content-info img{
+.gift-content-info img {
   width: 100px;
   height: 100px;
-  position:absolute;
-  top:415px;
-
+  position: absolute;
+  top: 415px;
 }
 
-.gift-desc{
+.gift-desc {
   position: absolute;
-  
-  left:130px;
+
+  left: 130px;
 }
 
 /*  */
 
-.product-notice, .product-info{
+.product-notice,
+.product-info {
   font-size: 12px;
   color: #555555;
-  overflow: auto
+  overflow: auto;
 }
 
-.select-msg-card{
-  width:100%;
+.select-msg-card {
+  width: 100%;
   line-height: 38px;
-  padding:0 10px;
+  padding: 0 10px;
   height: 36px;
   font-size: 1.1rem;
   font-weight: 600;
   color: #555555;
-  
 }
 
-.detail-add-cart{
+.detail-add-cart {
   margin-top: 1rem;
-  width:100%;
-  height:36px;
-  border:0;
+  width: 100%;
+  height: 36px;
+  border: 0;
   font-size: 16px;
   background-color: black;
-  color:white;
+  color: white;
 }
 
-.detail-desc-wrapper{
-  width:100%;
+.detail-desc-wrapper {
+  width: 100%;
 }
 
-.detail-desc-img{
+.detail-desc-img {
   display: block;
-  width:100%;
+  width: 100%;
   overflow: hidden;
   justify-content: center;
   object-fit: contain;
-  padding:30px;
+  padding: 30px;
   margin: 0 auto;
 }
 
-.detail-desc-img img{
+.detail-desc-img img {
   margin-left: 50%;
   transform: translateX(-50%);
 }
 
-.detail-desc-txt{
+.detail-desc-txt {
   margin: 0 auto;
-  width:350px;
+  width: 350px;
   font-size: 14px;
   color: #555555;
   padding-top: 3rem;
-
 }

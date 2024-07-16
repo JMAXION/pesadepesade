@@ -60,7 +60,7 @@ export default function Header({ isHome }) {
       >
         <div className="header-content">
           <div className="header-menu" onClick={toggleDrawer(true)}>
-          <FontAwesomeIcon icon={faBars} className="header-menu-icon"/>
+            <FontAwesomeIcon icon={faBars} className="header-menu-icon" />
             <span>Shop</span>
           </div>
           <div className="header-logo">
@@ -72,13 +72,15 @@ export default function Header({ isHome }) {
           <div className="header-right-menu">
             {userInfo ? (
               <>
-                <div onClick={handleLogout} className="header-right-menu-react"><Link to={'/'}>Logout</Link></div>
-                <div  className="header-right-menu-react">
+                <div onClick={handleLogout} className="header-right-menu-react">
+                  <Link to={"/"}>Logout</Link>
+                </div>
+                <div className="header-right-menu-react">
                   <Link to="/mypage">My Page</Link>
                 </div>
               </>
             ) : (
-              <div  className="header-right-menu-react">
+              <div className="header-right-menu-react">
                 <Link to={"/login"}>Login</Link>
               </div>
             )}
@@ -89,7 +91,12 @@ export default function Header({ isHome }) {
         </div>
       </div>
 
-      <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} userInfo={userInfo} handleLogout={handleLogout}/>
+      <Sidebar
+        drawerOpen={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        userInfo={userInfo}
+        handleLogout={handleLogout}
+      />
     </>
   );
 }

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/journal.css";
 import { Link } from "react-router-dom";
+import SubTitle from "../components/SubTitle";
 
 export default function Journal() {
   const [journalList, setJournalList] = useState([]);
+  const [filteredJournalList, setFilteredJournalList] = useState([]);
   const [iframeClass, setIframeClass] = useState("journal-iframe");
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("ALL");
   const url = "http://localhost:8080/journal";
 
   useEffect(() => {
@@ -16,6 +18,7 @@ export default function Journal() {
     })
       .then((res) => {
         setJournalList(res.data);
+        setFilteredJournalList(res.data); // 초기에는 전체 리스트를 설정
       })
       .catch((error) => console.log(error));
   }, []);
@@ -35,13 +38,23 @@ export default function Journal() {
     };
   }, []);
 
-  const optionChange = (value) => {
-    setFilter(value);
+  useEffect(() => {
+    if (filter === "ALL") {
+      setFilteredJournalList(journalList);
+    } else {
+      setFilteredJournalList(
+        journalList.filter((journal) => journal.jcategory === filter)
+      );
+    }
+  }, [filter, journalList]);
+
+  const handleOptionChange = (event) => {
+    setFilter(event.target.value);
   };
 
   const rows = [];
-  for (let i = 0; i < journalList.length; i += 3) {
-    rows.push(journalList.slice(i, i + 3));
+  for (let i = 0; i < filteredJournalList.length; i += 3) {
+    rows.push(filteredJournalList.slice(i, i + 3));
   }
 
   return (
@@ -51,14 +64,21 @@ export default function Journal() {
           <source src="/video/pesade_video.mp4" type="video/mp4" />
         </video>
       </div>
-      <div>
-        <select name="" id="mySelect">
-          <option value="all">ALL</option>
-          <option value="brand">BRAND</option>
-          <option value="mood">MOOD</option>
-        </select>
-      </div>
       <div className="journal">
+        <SubTitle title="Journal" />
+        <div>
+          <select
+            name=""
+            id="mySelect"
+            onChange={handleOptionChange}
+            value={filter}
+            className="journal-selectbox"
+          >
+            <option value="ALL">ALL</option>
+            <option value="BRAND">BRAND</option>
+            <option value="MOOD">MOOD</option>
+          </select>
+        </div>
         {rows.map((row, rowIndex) => (
           <ul key={rowIndex} className="journal-contents">
             {row.map((journal, index) => {

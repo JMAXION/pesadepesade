@@ -10,7 +10,7 @@ export const getCarts = async (req, res) => {
 
 export const addCart = async (req, res) => {
   const addList = req.body;
-
+  console.log(addList);
   const addItem = await repository.addCart(addList);
   res.json(addItem);
 };

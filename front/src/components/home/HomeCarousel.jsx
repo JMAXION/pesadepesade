@@ -1,12 +1,12 @@
 import React from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import { Pagination, Autoplay } from "swiper/modules";
 
-export default function HomeCarousel({images}) {
+export default function HomeCarousel({ images }) {
   return (
     <div className="main-slider">
       <Swiper
@@ -19,9 +19,14 @@ export default function HomeCarousel({images}) {
       >
         {images.map((src, index) => (
           <SwiperSlide key={index}>
-            <img src={src} alt={`이미지 ${index + 1}`} className="slider-image" />
+            <img
+              src={src}
+              alt={`이미지 ${index + 1}`}
+              className="slider-image"
+            />
           </SwiperSlide>
-        ))}</Swiper>
+        ))}
+      </Swiper>
     </div>
   );
 }
