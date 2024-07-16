@@ -33,3 +33,50 @@
   width: 100%;
   overflow: hidden;
 }
+.slider-wrapper{
+  width: 100%;
+  margin:0 auto;
+  position: relative;
+/*     background-image: url(https://img.wkorea.com/w/2019/03/style_5c9f627a133f9-539x700.jpg) !important;
+    background-size: cover;
+    background-position: 50% 0;
+    height: 100%;
+    object-fit: cover;
+    text-align: center; */
+  margin: 0;
+  padding: 0;
+}
+
+
+.slick-slider{
+ width: 100%;
+ position: absolute;
+ left:50%;
+ transform: translateX(-50%);
+ padding: 0 !important;
+}
+.slick-prev{
+  z-index:1;
+  left:10% !important;
+}
+.slick-next{
+  right:10% !important;
+}
+
+.image-container img{
+  width:530px;
+  object-fit: cover;
+  margin-right:10px;
+
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+ 
+}
+
+.ripple-img{
+
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/home.css";
 import HomeCarousel from "../components/home/HomeCarousel";
-
+import HomeSlider  from '../components/home/HomeSlider'
 export default function Home() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -38,6 +38,7 @@ export default function Home() {
   return (
     <div className="home-content">
       <HomeCarousel images={images} />
+      <HomeSlider/>
       <div>
         <img src={subImg} alt="메인 이미지" className="home-sub-img" />
       </div>

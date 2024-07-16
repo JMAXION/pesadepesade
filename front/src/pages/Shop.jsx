@@ -3,7 +3,7 @@ import Product from "../components/Product";
 
 export default function Shop() {
   const [filter, setFilter] = useState("all");
-  const aname = ["jomalone", "channel", "bvgari", "gucci"];
+  const aname = ["jomalone", "channel", "bvgari", "gucci","diol"];
 
   function handleChange(type) {
     setFilter(type);
