@@ -3,7 +3,7 @@ import * as repository from "../repository/productRepository.js";
 export async function getProduct(req, res, next) {
   const params = req.body;
   const products = await repository.getProduct(params);
-  console.log(products);
+
   res.json(products);
 }
 

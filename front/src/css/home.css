@@ -37,12 +37,7 @@
   width: 100%;
   margin:0 auto;
   position: relative;
-/*     background-image: url(https://img.wkorea.com/w/2019/03/style_5c9f627a133f9-539x700.jpg) !important;
-    background-size: cover;
-    background-position: 50% 0;
-    height: 100%;
-    object-fit: cover;
-    text-align: center; */
+
   margin: 0;
   padding: 0;
 }
@@ -77,6 +72,3 @@
  
 }
 
-.ripple-img{
-
-}

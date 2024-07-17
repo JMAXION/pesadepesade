@@ -9,12 +9,14 @@ import { getUser } from "../util/localStorage.js";
 
 export default function ProductDetail() {
   let { pid } = useParams();
-  const userInfo = getUser();
+  const userInfo = getUser()
+  const user = userInfo? userInfo.userId : null
+
   const check = useRef();
   const [item, setItem] = useState({});
   const [giftCard, setGiftCard] = useState([]);
   const [result, setResult] = useState({
-    userId: userInfo.userId,
+    userId: user,
     pid: pid,
     pgid: "",
     qty: 1,
