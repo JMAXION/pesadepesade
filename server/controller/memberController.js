@@ -31,21 +31,43 @@ export const getIdFind = async (req, res) => {
   // res.end();
 };
 
-// export const getIdFind = async (req, res) => {
-//   try {
-//     const formData = req.body;
-//     const result = await repository.getIdFind(formData);
+export const getPasswordFind = async (req, res) => {
+  const formData = req.body;
+  const result = await repository.getPasswordFind(formData);
 
-//     if (result.error) {
-//       res.status(404).json(result);
-//     } else {
-//       res.json(result);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "서버 내부 오류" });
-//   }
-// };
+  res.json(result);
+
+  /*   try {
+    const result = await repository.getPasswordFind(formData); // repository에서 결과 가져오기
+    res.status(200).json(result); // 성공적인 응답
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: error.message }); // 오류 메시지 반환
+  } */
+};
+
+export const getUpdatePassword = async (req, res) => {
+  const { userId, newPassword } = req.body;
+  const result = await repository.getUpdatePassword(userId, newPassword);
+
+  res.json(result);
+  res.end();
+
+  /* 
+  if (!userId || !newPassword) {
+    return res
+      .status(400)
+      .json({ message: "userId 또는 newPassword가 필요합니다." });
+  }
+
+  try {
+    await getUpdatePassword(userId, newPassword);
+    res.status(200).json({ message: "비밀번호가 성공적으로 변경되었습니다." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "서버 오류가 발생했습니다." });
+  } */
+};
 
 /* export const getKakaoLogin = async (req, res) => {
   const { accessToken } = req.body;
