@@ -32,6 +32,7 @@ const cartCheck = async (addList) => {
     FROM pesade_cart
     WHERE pid = ? AND pgid = ? AND user_id = ?
   `;
+  
   const [rows] = await db.execute(sql, [
     addList.pid,
     addList.pgid,
