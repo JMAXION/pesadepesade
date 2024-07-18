@@ -16,6 +16,6 @@ CREATE TABLE pesade_member (
 
 use myshop2019;
 
-
+select user_id, user_pass, user_name, zipcode, address, phone, email, gender, bdate_type, bdate from pesade_member where user_pass = ;
 
 drop table pesade_member;
