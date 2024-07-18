@@ -16,14 +16,15 @@ export const addCart = async (req, res) => {
   res.json(addItem);
 };
 
-export const qtyIncrease = async (req, res) => {
-  const cid = req.body;
-  const qtyList = await repository.qtyIncrease(cid);
-  res.json(qtyList);
-};
+export const updateCartItem = async (req, res)=>{
+  const { cid, newQty } = req.body;
+  const result = await repository.updateCartItem({ cid, newQty });
+  res.json({ success: result.affectedRows > 0 });
+}
 
-export const qtyDecrease = async (req, res) => {
-  const cid = req.body;
-  const qtyList = await repository.qtyDecrease(cid);
-  res.json(qtyList);
-};
+export const removeCartItem = async (req, res) => {
+  const { cid } = req.body;
+  console.log('장바구니아디',cid);
+  const result = await repository.removeCartItem(cid)
+  res.json(result)
+}

@@ -11,7 +11,8 @@ export const getCarts = async (userId) => {
         pp.pdetail, 
         pg.gift_option, 
         pc.qty, 
-       pp.pprice*pc.qty as pprice
+        pp.pprice,
+        pp.pprice * pc.qty as tprice
     FROM 
         pesade_cart pc
     JOIN 
@@ -64,40 +65,53 @@ export const addCart = async (addList) => {
     result_rows = result.affectedRows;
   }
 
-  console.log("장바구니체크1", cartResult);
-  console.log("장바구니체크2", cartResult[0]);
   return { cnt: result_rows };
 };
 
-export const qtyIncrease = async (cid) => {
-  let result_rows = 0;
-  const sql = `update pesade_cart set qty = qty+1
-                where cid = ?`;
 
-  try {
-    const [result] = await db.execute(sql, [cid.cid]);
+export const updateCartItem = async (item) => {
+  const sql = `UPDATE pesade_cart SET qty = ? WHERE cid = ?`;
+  const [result] = await db.execute(sql, [item.newQty, item.cid]);
 
-    result_rows = result.affectedRows;
-  } catch (error) {
-    console.log(error);
-  }
-  return { cnt: result_rows };
+  return { affectedRows: result.affectedRows };
 };
 
-export const qtyDecrease = async (cid) => {
-  let result_rows = 0;
-  const sql = `update pesade_cart set qty = qty-1
-                where cid = ?`;
+export const removeCartItem = async (cid) => {
+  const sql = `delete from pesade_cart where cid = ?`
+  
+  const [result] = await db.execute(sql, [cid]);
+  return { affectedRows: result.affectedRows };
+}
 
-  try {
-    const [result] = await db.execute(sql, [cid.cid]);
+// export const qtyIncrease = async (cid) => {
+//   let result_rows = 0;
+//   const sql = `update pesade_cart set qty = qty+1
+//                 where cid = ?`;
 
-    result_rows = result.affectedRows;
-  } catch (error) {
-    console.log(error);
-  }
-  return { cnt: result_rows };
-};
+//   try {
+//     const [result] = await db.execute(sql, [cid.cid]);
+
+//     result_rows = result.affectedRows;
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return { cnt: result_rows };
+// };
+
+// export const qtyDecrease = async (cid) => {
+//   let result_rows = 0;
+//   const sql = `update pesade_cart set qty = qty-1
+//                 where cid = ?`;
+
+//   try {
+//     const [result] = await db.execute(sql, [cid.cid]);
+
+//     result_rows = result.affectedRows;
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return { cnt: result_rows };
+// };
 
 /* 
 

@@ -36,6 +36,7 @@ import ShopProductDetail from "./pages/ProductDetail.jsx";
 import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 import ServiceTerm from "./pages/ServiceTerm.jsx";
 import PrivatePolicy from "./pages/PrivatePolicy.jsx";
+import Order from "./pages/Order.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -83,6 +84,7 @@ export default function App() {
         { path: "/serviceterm", element: <ServiceTerm /> },
         { path: "/privatepolicy", element: <PrivatePolicy /> },
         { path: "/mypage/myboard", element: <MyPageBoard /> },
+        { path: "/order", element: <Order /> },
       ],
     },
   ]);

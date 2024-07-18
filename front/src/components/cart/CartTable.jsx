@@ -1,45 +1,39 @@
 import { Link } from "react-router-dom";
-import axios from 'axios'
-import { useEffect, useState } from "react";
-export default function CartTable({ cartList,userId }) {
+import { useDispatch, useSelector } from "react-redux";
+import { updateCartItemAxios, removeCartItemAxios  } from "../../modules/reducerCartsAxios";
 
-  const [cartcontent, setCartcontent] = useState([])
-  const totalPrice = cartcontent.reduce(
-    (acc, item) => acc +  item.pprice,
-    0
+export default function CartTable() {
+  const dispatch = useDispatch();
+  const cartList = useSelector((state) => state.carts.list);
+
+  const totalPrice = cartList.reduce(
+    (acc, item) => acc + (item.pprice * item.qty), 0
   );
-  useEffect(()=>{
-    const url = `http://127.0.0.1:8080/cart`
-    axios({
-      method:'POST',
-      url:url,
-      data : {userId:userId}
-    }).then(result=> setCartcontent(result.data))
-  })
 
-  function decrease(index){
-    const url = `http://127.0.0.1:8080/cart/qtydecrease`
-    axios({
-      method:'POST',
-      url : url,
-      data : {cid:cartList[index].cid}
+  //  수량 제한 1 ~ 200을 지키는 수량 계산기, delta는 변화하는 값 
+  const calcQty = (qty, delta) => Math.max(1, Math.min(qty + delta, 200));
 
-    }).then(result => {if(result.data.cnt === 1){
-      console.log("감소");
-    }})
-  }
+  // 리덕스로 해당하는 cid에 새로운 수량을 전송
+  const updateQuantity = (cid, newQty) => {
+    dispatch(updateCartItemAxios({ cid, newQty }));
+  };
 
-  function increase(index){
-    const url = `http://127.0.0.1:8080/cart/qtyincrease`
-    axios({
-      method:'POST',
-      url : url,
-      data : {cid:cartList[index].cid}
+  // 
+  const decrease = (cid, qty) => updateQuantity(cid, calcQty(qty, -1));
+  const increase = (cid, qty) => updateQuantity(cid, calcQty(qty, 1));
+  const handleInputChange = (cid, value) => updateQuantity(cid, calcQty(Number(value), 0));
 
-    }).then(result => {if(result.data.cnt === 1){
-      console.log("증가");
-    }})
-  }
+  const removeItem = (cid, pname, pdetail, giftOption) => {
+    const confirmMsg = `
+            ${pname}
+            ${pdetail}
+            [옵션: ${giftOption}]\n\n
+      이 상품을 장바구니에서 제거 하시겠습니까?
+    `;
+    if (window.confirm(confirmMsg)) {
+      dispatch(removeCartItemAxios(cid));
+    }
+  };
 
   return (
     <div className="cart-table">
@@ -54,7 +48,7 @@ export default function CartTable({ cartList,userId }) {
           </tr>
         </thead>
         <tbody>
-          {cartcontent.map((item,index) => (
+          {cartList.map((item) => (
             <tr key={item.cid}>
               <td>
                 <Link to={`/shop/detail/${item.pid}`}>
@@ -73,18 +67,26 @@ export default function CartTable({ cartList,userId }) {
               </td>
               <td>
                 <div>
-                  <button className="cart-qty-btn" onClick={()=>decrease(index)}>-</button>
+                  <button className="cart-qty-btn" onClick={() => decrease(item.cid, item.qty)}>-</button>
                   <input
                     className="cart-qty-input"
                     type="number"
                     value={item.qty}
+                    onChange={(e) => handleInputChange(item.cid, e.target.value)}
                   />
-                  <button className="cart-qty-btn" onClick={()=>increase(index)}>+</button>
+                  <button className="cart-qty-btn" onClick={() => increase(item.cid, item.qty)}>+</button>
                 </div>
               </td>
-              <td>{item.pprice.toLocaleString()}krw</td>
+              <td> 
+                <li>{item.pprice.toLocaleString()} krw</li>
+                {item.qty === 1 ? null : <li>Sub:{(item.pprice * item.qty).toLocaleString()} krw</li>}
+              </td>
+
               <td>
-                <span className="cart-remove-e">Remove</span>
+              <span
+                  className="cart-remove-e"
+                  onClick={() => removeItem(item.cid, item.pname, item.pdetail, item.gift_option)}
+                >Remove</span>
               </td>
             </tr>
           ))}
@@ -92,7 +94,7 @@ export default function CartTable({ cartList,userId }) {
         <tfoot>
           <tr>
             <td colSpan={5} className="cart-total">
-              Total : {totalPrice.toLocaleString()} krw
+              Total: {totalPrice.toLocaleString()} krw
             </td>
           </tr>
         </tfoot>
