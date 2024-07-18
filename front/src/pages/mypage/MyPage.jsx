@@ -129,7 +129,10 @@ export default function MyPage() {
             </li>
             {openSections.myPosts && (
               <>
-                <Link to={"/mypage/myboard"}>
+                <Link
+                  to={"/mypage/myboard"}
+                  className="mypage-toggle-detail-link"
+                >
                   <li className="mypage-toggle-detail">1:1문의</li>
                 </Link>
                 <li className="mypage-toggle-detail">상품문의</li>
