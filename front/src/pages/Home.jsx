@@ -28,6 +28,10 @@ export default function Home() {
     "https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/08b427bb5bdcd849fb95045a0daca7c2.jpg",
   ];
 
+  const showProduct = [
+    12, 14, 25
+  ]
+
   const images = isMobile ? mobileImages : desktopImages;
 
   const desktopImages2 =
