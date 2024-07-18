@@ -95,6 +95,7 @@ export default function Product({ name }) {
                     ref={productThumbnailRef}
                   />
                 </Link>
+                <p  className="product-category-name"> {obj.category_name} </p>
               </div>
             </li>
           ))}
@@ -103,7 +104,7 @@ export default function Product({ name }) {
 
       {/* Pagination */}
       <Pagination
-        className="pagination"
+        className="product-pagination"
         current={currentPage}
         total={items.length}
         pageSize={itemsPerPage}

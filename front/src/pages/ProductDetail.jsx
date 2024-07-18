@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import GiftCard from "../components/GiftCard";
 import ProductInfo from "../components/ProductInfo";
 import ProductNotice from "../components/ProductNotice";
-import { Link } from "react-router-dom";
 import { getUser } from "../util/localStorage.js";
+import SuccessAddtocartModal from '../components/SuccessAddtocartModal.jsx';
 
 export default function ProductDetail() {
   let { pid } = useParams();
-  const userInfo = getUser()
-  const user = userInfo? userInfo.userId : null
+  const userInfo = getUser();
+  const user = userInfo ? userInfo.userId : null;
 
   const check = useRef();
   const [item, setItem] = useState({});
@@ -21,6 +21,9 @@ export default function ProductDetail() {
     pgid: "",
     qty: 1,
   });
+  const [resultOk, setResultOk] = useState(false);
+  const [showModal, setShowModal] = useState(false); // 모달의 표시 여부 상태
+  const navigate = useNavigate(); // useHistory 훅을 사용하여 history 객체에 접근
 
   useEffect(() => {
     const url = `http://127.0.0.1:8080/product/detail/${pid}`;
@@ -52,10 +55,16 @@ export default function ProductDetail() {
     const url = `http://127.0.0.1:8080/cart/add`;
     axios.post(url, result).then((result) => {
       if (result.data.cnt === 1) {
-        alert("result OK");
+        setResultOk(true); // 결과 상태 업데이트
+        setShowModal(true); // 모달 표시
       }
     });
   }
+
+  const closeModal = () => {
+    setShowModal(false); // 모달 닫기
+    navigate('/shop'); // 모달 닫기 후 홈페이지로 이동
+  };
 
   return (
     <>
@@ -93,9 +102,14 @@ export default function ProductDetail() {
               ))}
             </select>
             {userInfo ? (
-              <button type="button" className="detail-add-cart" onClick={addOk}>
-                Add to cart
-              </button>
+              <>
+                <button type="button" className="detail-add-cart" onClick={addOk}>
+                  Add to cart
+                </button>
+                {resultOk && (
+                  <SuccessAddtocartModal choice={result} closeModal={closeModal} />
+                )}
+              </>
             ) : (
               <Link to="/login">
                 <button type="button" className="detail-add-cart">
