@@ -1,7 +1,6 @@
 import { db } from "../database/database_mysql80.js";
 
 export const getCarts = async (userId) => {
-
   const sql = `
     SELECT 
         pc.user_id, 
@@ -32,6 +31,7 @@ const cartCheck = async (addList) => {
     FROM pesade_cart
     WHERE pid = ? AND pgid = ? AND user_id = ?
   `;
+
   const [rows] = await db.execute(sql, [
     addList.pid,
     addList.pgid,

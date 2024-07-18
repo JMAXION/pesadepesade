@@ -124,40 +124,49 @@ export const getPasswordFind = async (formData) => {
   let sql = "";
   let result = "";
 
-  // // 입력값 유효성 검사
-  /*  // 입력값 유효성 검사
-  if (
-    !formData.userId ||
-    !formData.userName ||
-    (formData.type === "useremail" && !formData.email) ||
-    (formData.type === "userphone" && !formData.phone)
-  ) {
-    return {
-      error: "모든 필드를 올바르게 입력하세요.",
-    };
+  // 입력값 유효성 검사
+  if (!formData.userId) {
+    return { error: "아이디를 입력하세요." };
   }
-  너는 지금 모든 값들의 에러를 하나로 반환하고 있는데 
-  나는 모든 값들의 에러도 필요하고 
-  다른 에러 반환 값도 필요해 
-  예시로 아이디와 일치하지 않는 이름이면 
-  전송키를 눌렀을때 
-  alert 창에 그러니까 error에 해당하는 아이디에 일치하는 이름이 없습니다
-  와 같은 에러가 뜨면 좋겠어 
-  이름 만 틀리면 이름 
-  이메일만 틀리면 이메일 이렇게
 
-  내 생각에는 이걸 switch 문으로 만들면 될 거 같은데 가능해?
-  이게 안 되면 너가 다른 방식을 말해줘 try 문이든 switch 문이든
+  if (!formData.userName) {
+    return { error: "이름을 입력하세요." };
+  }
 
+  if (formData.type === "useremail" && !formData.email) {
+    return { error: "이메일을 입력하세요." };
+  }
 
+  if (formData.type === "userphone" && !formData.phone) {
+    return { error: "전화번호를 입력하세요." };
+  }
 
- */
+  // DB와 입력된 값 비교
+  const userCheckSql = `
+    SELECT * FROM pesade_member WHERE user_id = ?
+  `;
+  const userCheck = await db.execute(userCheckSql, [formData.userId]);
+
+  if (!userCheck[0] || userCheck[0].length === 0) {
+    return { error: "아이디가 존재하지 않습니다." };
+  }
+
+  const user = userCheck[0][0];
+
+  if (user.user_name !== formData.userName) {
+    return { error: "아이디와 일치하는 이름이 없습니다." };
+  }
+
   if (formData.type === "useremail") {
+    if (user.email !== formData.email) {
+      return { error: "아이디와 일치하는 이메일이 없습니다." };
+    }
+
     sql = `
-    SELECT user_id FROM pesade_member 
-    WHERE user_id = ?
-      AND user_name = ?
-      AND email = ?
+      SELECT user_id FROM pesade_member 
+      WHERE user_id = ?
+        AND user_name = ?
+        AND email = ?
     `;
     result = await db.execute(sql, [
       formData.userId,
@@ -165,11 +174,15 @@ export const getPasswordFind = async (formData) => {
       formData.email,
     ]);
   } else if (formData.type === "userphone") {
+    if (user.phone !== formData.phone) {
+      return { error: "아이디와 일치하는 전화번호가 없습니다." };
+    }
+
     sql = `
-    SELECT user_id FROM pesade_member
-    WHERE user_id = ?
-      AND user_name = ?
-      AND phone = ?
+      SELECT user_id FROM pesade_member
+      WHERE user_id = ?
+        AND user_name = ?
+        AND phone = ?
     `;
     result = await db.execute(sql, [
       formData.userId,
@@ -177,20 +190,18 @@ export const getPasswordFind = async (formData) => {
       formData.phone,
     ]);
   }
+
   if (result[0] && result[0].length > 0) {
     return {
       user_id: result[0][0].user_id,
     };
   } else {
-    return { error: "사용자를 찾을 수 없습니다" };
+    return { error: "사용자를 찾을 수 없습니다." };
   }
 };
 
 export const getUpdatePassword = async (userId, newPassword) => {
   const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-  console.log("1", hashedPassword);
-  console.log("2", userId.user_id);
 
   const sql = `
     UPDATE pesade_member

@@ -26,12 +26,12 @@ const SimpleSlider = () => {
       }
     };
   }, [sliderWrapperRef]);
-
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const url = `http://127.0.0.1:8080/product`;
-        const response = await axios.post(url, { type: "diol" });
+        const response = await axios.post(url, { type: "dior" });
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -52,12 +52,12 @@ const SimpleSlider = () => {
   };
 
   return (
-    <div className="slider-wrapper " ref={sliderWrapperRef} style={{backgroundImage: 'none'}}>
+    <div className="slider-wrapper " ref={sliderWrapperRef} >
       <Slider {...settings} className="ripple-effect">
         {products.map(product => (
           <div key={product.pid}>
             <Link to={`/shop/detail/${product.pid}`}>
-            <div className="image-container">
+            <div className="image-container ripple"  >
               <img src={`http://127.0.0.1:8080/${product.pimage}`} alt={product.name} />
             </div>
             </Link>
