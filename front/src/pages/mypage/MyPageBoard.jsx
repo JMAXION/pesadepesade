@@ -19,7 +19,6 @@ export default function MyPageBoard() {
       url: url,
     })
       .then((result) => {
-        // 데이터를 rno 값에 따라 내림차순으로 정렬
         const sortedList = result.data.sort((a, b) => b.rno - a.rno);
         console.log(sortedList);
         setQnaList(sortedList);

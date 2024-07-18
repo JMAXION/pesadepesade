@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import SubTitle from "../../components/SubTitle";
 import "../../css/mypage.css";
 import { Link, useNavigate } from "react-router-dom";
+import { getUser } from "../../util/localStorage";
 
 export default function MyPage() {
+  const userId = getUser().userId;
   const navigate = useNavigate();
   const [openSections, setOpenSections] = useState({
     shoppingInfo: false,
@@ -24,7 +26,7 @@ export default function MyPage() {
       <ul className="mypage-info">
         <li className="mypage-info-name">
           <p>
-            <span className="mypage-info-name-highlight">홍길동</span> 님은{" "}
+            <span className="mypage-info-name-highlight">{userId}</span> 님은{" "}
             <span className="mypage-info-name-highlight">기본 등급</span>
             입니다.
           </p>
@@ -180,14 +182,9 @@ export default function MyPage() {
               <li className="mypage-myscript-detail">
                 <p className="mypage-myscript-detail-title">1:1문의</p>
                 <p className="mypage-myscript-detail-answer">
-                  <p>
-                    <p>답변대기</p>
-                    <p>답변완료</p>
-                  </p>
-                  <p>
-                    <p>0</p>
-                    <p>0</p>
-                  </p>
+                  <Link to={"/mypage/myboard"}>
+                    <p>문의내역</p>
+                  </Link>
                 </p>
               </li>
               <li className="mypage-myscript-detail">
