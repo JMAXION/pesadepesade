@@ -15,8 +15,6 @@ export default function IdFind({
     handleChange({ target: { name: "type", value: event.target.value } });
   };
 
-  console.log("formData==>", formData);
-
   return (
     <div className="content">
       <div className="idfind">
