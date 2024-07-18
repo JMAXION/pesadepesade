@@ -1,11 +1,13 @@
 import "../../css/login.css";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function PasswordRetrievalForm({ idResult }) {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userPassError, setUserPassError] = useState(false);
+  const navigate = useNavigate();
 
   const validateUserPass = (password) => {
     const passRegEx =
@@ -37,9 +39,6 @@ export default function PasswordRetrievalForm({ idResult }) {
       newPassword: newPassword,
     };
 
-    console.log("idresult==>", idResult);
-    console.log("보내는 데이터:", data);
-
     axios({
       method: "post",
       url: url,
@@ -48,11 +47,11 @@ export default function PasswordRetrievalForm({ idResult }) {
       .then((res) => {
         if (res.data.error) {
           alert(res.data.error);
-          console.log("res==========>", res.data);
         } else {
           alert("비밀번호가 성공적으로 업데이트되었습니다.");
           setNewPassword("");
           setConfirmPassword("");
+          navigate("/login");
         }
       })
       .catch((error) => console.log(error));

@@ -44,6 +44,7 @@ export default function SignupStep2({
     pageBgColor: "#FFFFF",
     postcodeTextColor: "#C05850",
     emphTextColor: "#222222",
+    top: "100px",
   };
   const postCodeStyle = {
     width: "360px",
@@ -162,7 +163,7 @@ export default function SignupStep2({
   };
 
   return (
-    <div className="content">
+    <div className="content step2-content">
       <div className="step2">
         <h2 className="step2-title">회원가입</h2>
 
@@ -324,7 +325,7 @@ export default function SignupStep2({
             {isOpen && (
               <div>
                 <DaumPostcode
-                  className="postmodal"
+                  className="postmodal step2-postmodal"
                   theme={themeObj}
                   style={postCodeStyle}
                   onComplete={completeHandler}

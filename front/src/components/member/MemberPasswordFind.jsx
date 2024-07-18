@@ -51,7 +51,6 @@ export default function MemberPasswordFind() {
       .then((res) => {
         if (res.data.error) {
           alert(res.data.error);
-          console.log("res==========>", res.data);
         } else {
           setIdResult(res.data);
           setStep(2);
@@ -59,8 +58,6 @@ export default function MemberPasswordFind() {
       })
       .catch((error) => console.log(error));
   };
-
-  console.log("passwordform==>", formData);
 
   return (
     <div className="content">
