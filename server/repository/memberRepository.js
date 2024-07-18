@@ -120,6 +120,97 @@ export const getIdFind = async (formData) => {
   }
 };
 
+export const getPasswordFind = async (formData) => {
+  let sql = "";
+  let result = "";
+
+  // 입력값 유효성 검사
+  if (!formData.userId) {
+    return { error: "아이디를 입력하세요." };
+  }
+
+  if (!formData.userName) {
+    return { error: "이름을 입력하세요." };
+  }
+
+  if (formData.type === "useremail" && !formData.email) {
+    return { error: "이메일을 입력하세요." };
+  }
+
+  if (formData.type === "userphone" && !formData.phone) {
+    return { error: "전화번호를 입력하세요." };
+  }
+
+  // DB와 입력된 값 비교
+  const userCheckSql = `
+    SELECT * FROM pesade_member WHERE user_id = ?
+  `;
+  const userCheck = await db.execute(userCheckSql, [formData.userId]);
+
+  if (!userCheck[0] || userCheck[0].length === 0) {
+    return { error: "아이디가 존재하지 않습니다." };
+  }
+
+  const user = userCheck[0][0];
+
+  if (user.user_name !== formData.userName) {
+    return { error: "아이디와 일치하는 이름이 없습니다." };
+  }
+
+  if (formData.type === "useremail") {
+    if (user.email !== formData.email) {
+      return { error: "아이디와 일치하는 이메일이 없습니다." };
+    }
+
+    sql = `
+      SELECT user_id FROM pesade_member 
+      WHERE user_id = ?
+        AND user_name = ?
+        AND email = ?
+    `;
+    result = await db.execute(sql, [
+      formData.userId,
+      formData.userName,
+      formData.email,
+    ]);
+  } else if (formData.type === "userphone") {
+    if (user.phone !== formData.phone) {
+      return { error: "아이디와 일치하는 전화번호가 없습니다." };
+    }
+
+    sql = `
+      SELECT user_id FROM pesade_member
+      WHERE user_id = ?
+        AND user_name = ?
+        AND phone = ?
+    `;
+    result = await db.execute(sql, [
+      formData.userId,
+      formData.userName,
+      formData.phone,
+    ]);
+  }
+
+  if (result[0] && result[0].length > 0) {
+    return {
+      user_id: result[0][0].user_id,
+    };
+  } else {
+    return { error: "사용자를 찾을 수 없습니다." };
+  }
+};
+
+export const getUpdatePassword = async (userId, newPassword) => {
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  const sql = `
+    UPDATE pesade_member
+    SET user_pass = ?
+    WHERE user_id = ?
+    `;
+  return await db.execute(sql, [hashedPassword, userId.user_id]);
+};
+
 /* export const getUserByKakaoId = async (kakaoId) => {
   const sql = `SELECT * FROM pesade_member WHERE kakao_id = ?`;
   const [result] = await db.execute(sql, [kakaoId]);
