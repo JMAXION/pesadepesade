@@ -1,11 +1,12 @@
 .header {
   z-index: 300;
+  min-width: 340px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  padding: 20px 49px;
+  padding: 20px 42px;
   box-sizing: border-box;
   font-size: 1.3rem;
   transition: background-color 0.3s, color 0.3s;

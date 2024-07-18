@@ -22,3 +22,14 @@ export async function axiosPost({ url, data }) {
   }
   return result;
 }
+
+export async function axiosDelete({ url, data }) {
+  let result = null;
+
+  try {
+    result = await axios.delete(url, { data }).then((res) => res.data);
+  } catch (error) {
+    console.log(error);
+  }
+  return result;
+}

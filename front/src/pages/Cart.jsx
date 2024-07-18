@@ -5,13 +5,13 @@ import "../css/cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { cartListAxios } from "../modules/reducerCartsAxios.js";
 import { getUser } from "../util/localStorage";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const userId = getUser()?.userId; // Using optional chaining to safely access userId
   const cartList = useSelector((state) => state.carts.list);
   const dispatch = useDispatch();
-  console.log("카트", cartList);
-  console.log("dd;", userId);
+
 
   useEffect(() => {
     if (userId) {
@@ -19,15 +19,25 @@ export default function Cart() {
         console.error("Error fetching cart list:", error);
       });
     }
-  }, [userId, dispatch]);
+  }, [userId, cartList.qty]);
+  
 
+  
   return (
     <div className="content">
       <SubTitle title="Cart" />
-      {!cartList ? (
-        <h4 className="cart-empty">Empty</h4>
+      {cartList.length == 0 ? (
+        <>
+          <h4 className="cart-empty">Empty</h4>
+          <Link to={'/shop'}>Continue Shopping</Link>
+        </>
       ) : (
-        <CartTable cartList={cartList} userId={userId} />
+        <>
+          <CartTable />
+          <Link to={'/shop'}>Continue Shopping</Link> <br/>
+          <Link to={'/order'}>Place Order</Link>
+        </>
+        
       )}
     </div>
   );
