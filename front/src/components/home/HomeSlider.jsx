@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const SimpleSlider = () => {
   const [products, setProducts] = useState([]);
   const sliderWrapperRef = useRef(null);
-
+  const parfumNumber = [27,28,29,30,31,32] //pesade Number 27~32
   useEffect(() => {
     if (sliderWrapperRef.current) {
       $(sliderWrapperRef.current).ripples({
@@ -27,18 +27,17 @@ const SimpleSlider = () => {
     };
   }, [sliderWrapperRef]);
   
+  const url = `http://127.0.0.1:8080/product`;
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const url = `http://127.0.0.1:8080/product`;
-        const response = await axios.post(url, { type: "dior" });
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchProducts();
+    axios({
+      method:'POST',
+      url:url,
+      data:{type:'all'}
+    }).then(result => {
+      const filteredProducts = result.data.filter(item => parfumNumber.includes(item.pid));
+        setProducts(filteredProducts);
+     
+    })
   }, []);
 
   const settings = {

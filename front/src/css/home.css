@@ -58,10 +58,16 @@
   right:10% !important;
 }
 
-.image-container img{
+.image-container {
   width:530px;
-  object-fit: cover;
+  min-height: 530px;
   margin-right:10px;
+}
+
+.image-container img{
+  width:340px;
+  min-height: 630px;
+  object-fit:scale-down;
 
 }
 
