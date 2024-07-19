@@ -12,7 +12,7 @@ CREATE TABLE pesade_member (
     bdate VARCHAR(50), -- 생년월일
     signup_date DATETIME -- 회원가입 날짜
 );
-
+select * from pesade_member;
 
 use myshop2019;
 

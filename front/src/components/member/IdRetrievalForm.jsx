@@ -41,7 +41,10 @@ export default function IdRetrievalForm({ formData, idResult }) {
           <Link to="/login">
             <div className="idretrieval-login">로그인</div>
           </Link>
-          <Link to="/login/passwordfind">
+          <Link
+            to="/login/member
+          passwordfind"
+          >
             <div className="idretrieval-passwordfind">비밀번호 찾기</div>
           </Link>
         </div>
