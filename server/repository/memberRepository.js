@@ -142,28 +142,28 @@ export const getPasswordFind = async (formData) => {
   }
 
   // DB와 입력된 값 비교
-  const userCheckSql = `
-    SELECT * FROM pesade_member WHERE user_id = ?
-  `;
-  const userCheck = await db.execute(userCheckSql, [formData.userId]);
+  // const userCheckSql = `
+  //   SELECT count(*) as cnt FROM pesade_member WHERE user_id = ?
+  // `;
+  // const userCheck = await db.execute(userCheckSql, [formData.userId]);
+  // console.log("유저체크", userCheck[0][0]);
+  // if (!userCheck[0] || userCheck[0].length === 0) {
+  //   return { error: "아이디가 존재하지 않습니다." };
+  // }
 
-  if (!userCheck[0] || userCheck[0].length === 0) {
-    return { error: "아이디가 존재하지 않습니다." };
-  }
+  // const user = userCheck[0][0];
 
-  const user = userCheck[0][0];
-
-  if (user.user_name !== formData.userName) {
-    return { error: "아이디와 일치하는 이름이 없습니다." };
-  }
+  // if (!user.cnt === 1) {
+  //   return { error: "아이디와 일치하는 이름이 없습니다." };
+  // }
 
   if (formData.type === "useremail") {
-    if (user.email !== formData.email) {
+    /*  if (user.email !== formData.email) {
       return { error: "아이디와 일치하는 이메일이 없습니다." };
     }
-
+ */
     sql = `
-      SELECT user_id FROM pesade_member 
+      SELECT count(*) as cnt FROM pesade_member 
       WHERE user_id = ?
         AND user_name = ?
         AND email = ?
@@ -179,7 +179,7 @@ export const getPasswordFind = async (formData) => {
     }
 
     sql = `
-      SELECT user_id FROM pesade_member
+      SELECT count(*) as cnt FROM pesade_member
       WHERE user_id = ?
         AND user_name = ?
         AND phone = ?
@@ -190,14 +190,15 @@ export const getPasswordFind = async (formData) => {
       formData.phone,
     ]);
   }
-
-  if (result[0] && result[0].length > 0) {
-    return {
-      user_id: result[0][0].user_id,
-    };
-  } else {
-    return { error: "사용자를 찾을 수 없습니다." };
-  }
+  console.log("f리절트", result[0][0]);
+  return result;
+  // if (result.cnt === 1) {
+  //   return {
+  //     result,
+  //   };
+  // } else {
+  //   return { error: "사용자를 찾을 수 없습니다." };
+  // }
 };
 
 export const getUpdatePassword = async (userId, newPassword) => {
@@ -209,6 +210,30 @@ export const getUpdatePassword = async (userId, newPassword) => {
     WHERE user_id = ?
     `;
   return await db.execute(sql, [hashedPassword, userId.user_id]);
+};
+
+export const getSendMail = async (userId, verificationCode) => {
+  try {
+    // userId가 pesade_member 테이블에 존재하는지 확인
+    const userCheckSql =
+      "SELECT COUNT(*) AS count FROM pesade_member WHERE user_id = ?";
+    const [userCheckResult] = await db.execute(userCheckSql, [userId]);
+
+    if (userCheckResult[0].count === 0) {
+      throw new Error(
+        `User ID ${userId} does not exist in pesade_member table.`
+      );
+    }
+
+    // 이메일 인증 코드 저장
+    const sql = `
+      INSERT INTO email_verification (user_id, code)
+      VALUES (?, ?)
+    `;
+    return await db.execute(sql, [userId, verificationCode]);
+  } catch (error) {
+    throw new Error(`Failed to save verification code: ${error.message}`);
+  }
 };
 
 /* export const getUserByKakaoId = async (kakaoId) => {

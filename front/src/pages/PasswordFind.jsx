@@ -6,7 +6,6 @@ export default function PasswordFind({
   formData,
   handleChange,
   handlePhoneChange,
-  handlePasswordFind,
 }) {
   const [selectedMethod, setSelectedMethod] = useState("useremail");
   const [time, setTime] = useState(180);
@@ -18,23 +17,41 @@ export default function PasswordFind({
     handleChange({ target: { name: "type", value: event.target.value } });
   };
 
+  const handlePasswordFind = () => {
+    const url = "http://127.0.0.1:8080/member/passwordfind";
+
+    axios({
+      method: "post",
+      url: url,
+      data: formData,
+    })
+      .then((res) => {
+        if (res.data.cnt) {
+          setShowAccreditation(true);
+          setTime(180);
+        } else {
+          alert("사용자를 찾을 수 없습니다.");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
   const handleAccreditationClick = async () => {
-    setShowAccreditation(true);
-    setTime(180);
-    if (selectedMethod === "useremail") {
-      try {
-        const response = await axios.post(
-          "http://127.0.0.1:8080/member/sendmail",
-          {
-            email: formData.email,
-          }
-        );
-        console.log("Email sent: ", response.data);
-        alert("인증번호를 전송하였습니다. 이메일을 확인해 주세요.");
-      } catch (error) {
-        console.error("Error sending email: ", error);
-      }
-    }
+    handlePasswordFind();
+    // if (selectedMethod === "useremail") {
+    //   try {
+    //     const response = await axios.post(
+    //       "http://127.0.0.1:8080/member/sendmail",
+    //       {
+    //         userId: formData.userId,
+    //         email: formData.email,
+    //       }
+    //     );
+    //     console.log("Email sent: ", response.data);
+    //     alert("인증번호를 전송하였습니다. 이메일을 확인해 주세요.");
+    //   } catch (error) {
+    //     console.error("Error sending email: ", error);
+    //   }
+    // }
   };
 
   useEffect(() => {
@@ -64,13 +81,12 @@ export default function PasswordFind({
 
       if (response.data.success) {
         alert("인증 성공! 새로운 비밀번호를 입력하세요.");
-        setShowAccreditation(false); // 인증 UI 감춤
-        handlePasswordFind();
+        setShowAccreditation(false);
       } else {
         alert("인증 실패. 다시 시도해주세요.");
       }
     } catch (error) {
-      console.error("Error verifying code: ", error);
+      console.error("Error verifying code인증번호코드: ", error);
     }
   };
 
