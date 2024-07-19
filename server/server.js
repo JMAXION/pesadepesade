@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-// import bodyParser from "body-parser";
 
 import productRouter from "./router/productRouter.js";
 import qnaRouter from "./router/qnaRouter.js";
@@ -16,12 +15,8 @@ import adminRouter from "./router/adminRouter.js";
 const server = express();
 const port = 8080;
 
-// const bodyParser = require("body-parser");
-
 server.use(express.json());
-server.use(express.urlencoded());
 server.use(cors());
-// server.use(bodyParser.json());
 server.use(express.urlencoded({ extended: true }));
 server.use("/uploads", express.static("uploads"));
 // server.use("/uploadsQnaImg", express.static("uploadsQnaImg"));

@@ -1,5 +1,6 @@
 import "../css/login.css";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function PasswordFind({
   formData,
@@ -10,15 +11,30 @@ export default function PasswordFind({
   const [selectedMethod, setSelectedMethod] = useState("useremail");
   const [time, setTime] = useState(180);
   const [showAccreditation, setShowAccreditation] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
 
   const handleRadioChange = (event) => {
     setSelectedMethod(event.target.value);
     handleChange({ target: { name: "type", value: event.target.value } });
   };
 
-  const handleAccreditationClick = () => {
+  const handleAccreditationClick = async () => {
     setShowAccreditation(true);
     setTime(180);
+    if (selectedMethod === "useremail") {
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8080/member/sendmail",
+          {
+            email: formData.email,
+          }
+        );
+        console.log("Email sent: ", response.data);
+        alert("인증번호를 전송하였습니다. 이메일을 확인해 주세요.");
+      } catch (error) {
+        console.error("Error sending email: ", error);
+      }
+    }
   };
 
   useEffect(() => {
@@ -37,6 +53,30 @@ export default function PasswordFind({
     return `${minutes}:${secs < 10 ? `0${secs}` : secs}`;
   };
 
+  const handleVerifyCode = async () => {
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8080/member/verifycode",
+        {
+          verificationCode: verificationCode,
+        }
+      );
+
+      if (response.data.success) {
+        alert("인증 성공! 새로운 비밀번호를 입력하세요.");
+        setShowAccreditation(false); // 인증 UI 감춤
+        handlePasswordFind();
+      } else {
+        alert("인증 실패. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      console.error("Error verifying code: ", error);
+    }
+  };
+
+  const handleVerificationCodeChange = (event) => {
+    setVerificationCode(event.target.value);
+  };
   // console.log("nextddd ==>", nextStep);
 
   return (
@@ -164,7 +204,11 @@ export default function PasswordFind({
                 <p className="password-form-label">인증번호</p>
                 <div className="password-input">
                   <div className="password-phone-input">
-                    <input style={{ width: "190px" }} />
+                    <input
+                      style={{ width: "190px" }}
+                      value={verificationCode}
+                      onChange={handleVerificationCodeChange}
+                    />
                     <p style={{ color: "red", fontWeight: "300" }}>
                       {formatTime(time)}
                     </p>
@@ -177,7 +221,7 @@ export default function PasswordFind({
           <button
             className="password-btn"
             type="button"
-            onClick={handlePasswordFind}
+            onClick={handleVerifyCode}
           >
             확인
           </button>
