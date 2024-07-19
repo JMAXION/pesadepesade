@@ -36,7 +36,7 @@ import ShopProductDetail from "./pages/ProductDetail.jsx";
 import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 import ServiceTerm from "./pages/ServiceTerm.jsx";
 import PrivatePolicy from "./pages/PrivatePolicy.jsx";
-
+import ReviewWrite from "./pages/reviews/ReviewWrite.jsx";
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -48,6 +48,8 @@ export default function App() {
         { path: "/shop", element: <Shop /> },
         { path: "/shop/all", element: <Shop /> },
         { path: "/shop/detail/:pid", element: <ShopProductDetail /> },
+        // { path: "/shop/detail/:pid/:rid", element: <ReviewContent /> },
+        { path: "/shop/detail/reviewWrite", element: <ReviewWrite /> },
         { path: "/cart", element: <Cart /> },
         { path: "/contact", element: <Contact /> },
         { path: "/help", element: <Help /> },
