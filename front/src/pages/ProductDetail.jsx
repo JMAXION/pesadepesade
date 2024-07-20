@@ -6,13 +6,12 @@ import ProductInfo from "../components/ProductInfo";
 import ProductNotice from "../components/ProductNotice";
 import { getUser } from "../util/localStorage.js";
 import SuccessAddtocartModal from "../components/SuccessAddtocartModal.jsx";
+import Review from "../components/Review.jsx";
 
 export default function ProductDetail() {
   let { pid } = useParams();
   const userInfo = getUser();
   const user = userInfo ? userInfo.userId : null;
-  // const [reviewList, setReviewList] = useState([]);
-  // const [expandedItems, setExpandedItems] = useState([]);
 
   const check = useRef();
   const [item, setItem] = useState({});
@@ -147,47 +146,7 @@ export default function ProductDetail() {
             </div>
           ))}
         <div className="detail-desc-txt">{item.pdesc}</div>
-        <div>
-          <p>review</p>
-          <ul>
-            <li>
-              <div className="qna-summary">
-                <div className="qna-row top">
-                  <div className="qna-left">1</div>
-                  <span>test</span>
-                </div>
-                <div className="qna-row bottom">
-                  <strong>
-                    <span className="subject-text">리뷰글입니다!!!!</span>
-                  </strong>
-                  <span>2024.07.18</span>
-                </div>
-                {/* {expandedItems.includes("1") && (
-                  <div className="qna-detail">
-                    <p>여기에 세부 내용이 들어갑니다...</p>
-                  </div>
-                )} */}
-                <hr />
-              </div>
-            </li>
-            <li>
-              <div className="qna-summary">
-                <div className="qna-row top">
-                  <div className="qna-left">1</div>
-                  <span>test</span>
-                </div>
-                <div className="qna-row bottom">
-                  <strong>
-                    <span className="subject-text">리뷰글입니다!!!!</span>
-                  </strong>
-                  <span>2024.07.18</span>
-                </div>
-                <hr />
-              </div>
-            </li>
-          </ul>
-          <button type="button">write</button>
-        </div>
+        <Review />
       </div>
     </>
   );
