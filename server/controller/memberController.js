@@ -53,8 +53,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: "946cf122004ad1",
-    pass: "73c32e5c3f204f",
+    user: "178e04a947fd9b",
+    pass: "96aca9032bf2b2",
   },
 });
 
@@ -82,10 +82,10 @@ export const getSendMail = async (req, res) => {
 
   // 이메일 전송을 위한 내용 설정
   const content = {
-    from: "info@pesade_project.kr",
+    from: "pesade@pesade_project.kr",
     to: email,
     subject: "인증번호",
-    text: `인증번호는 ${verificationCode} 입니다.`,
+    text: `[인증번호:${verificationCode}] pesade 인증번호입니다.`,
   };
 
   try {
@@ -124,23 +124,13 @@ export const getVerifycode = async (req, res) => {
   }
 };
 
-/* export const getKakaoLogin = async (req, res) => {
+export const getKakaoLogin = async (req, res) => {
   const { accessToken } = req.body;
+  const loginResult = await kakaoLogin(accessToken);
 
-  try {
-    const { data } = await axios.get("https://kapi.kakao.com/v2/user/me", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const userId = data.id; 
-  
-
-    res.json({ cnt: 1, token: "generated_jwt_token" }); 
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ cnt: 0, message: "Login failed" });
+  if (loginResult.cnt === 1) {
+    res.status(200).json(loginResult);
+  } else {
+    res.status(401).json({ message: loginResult.message });
   }
 };
- */

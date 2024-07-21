@@ -11,6 +11,6 @@ router.post("/passwordfind", controller.getPasswordFind);
 router.post("/updatepassword", controller.getUpdatePassword);
 router.post("/sendmail", controller.getSendMail);
 router.post("/verifycode", controller.getVerifycode);
-/* router.post("/kakaoLogin", controller.getKakaoLogin); */
+router.post("/kakaoLogin", controller.getKakaoLogin);
 
 export default router;

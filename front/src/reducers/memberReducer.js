@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLogin: false,
+  userInfo: null,
 };
 
 const memberReducer = createSlice({
@@ -11,13 +12,19 @@ const memberReducer = createSlice({
     setIsLogin(state, action) {
       if (action.payload.cnt === 1) {
         state.isLogin = true;
+        state.userInfo = action.payload.userInfo;
       }
     },
-    setIsLogout(state, action) {
+    setIsLogout(state) {
       state.isLogin = false;
+      state.userInfo = null;
+    },
+    setUserInfo(state, action) {
+      state.userInfo = action.payload;
+      state.isLogin = true;
     },
   },
 });
 
-export const { setIsLogin, setIsLogout } = memberReducer.actions;
+export const { setIsLogin, setIsLogout, setUserInfo } = memberReducer.actions;
 export default memberReducer.reducer;

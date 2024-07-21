@@ -37,21 +37,21 @@ export default function PasswordFind({
   };
   const handleAccreditationClick = async () => {
     handlePasswordFind();
-    // if (selectedMethod === "useremail") {
-    //   try {
-    //     const response = await axios.post(
-    //       "http://127.0.0.1:8080/member/sendmail",
-    //       {
-    //         userId: formData.userId,
-    //         email: formData.email,
-    //       }
-    //     );
-    //     console.log("Email sent: ", response.data);
-    //     alert("인증번호를 전송하였습니다. 이메일을 확인해 주세요.");
-    //   } catch (error) {
-    //     console.error("Error sending email: ", error);
-    //   }
-    // }
+    if (selectedMethod === "useremail") {
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8080/member/sendmail",
+          {
+            userId: formData.userId,
+            email: formData.email,
+          }
+        );
+        console.log("Email sent: ", response.data);
+        alert("인증번호를 전송하였습니다. 이메일을 확인해 주세요.");
+      } catch (error) {
+        console.error("Error sending email: ", error);
+      }
+    }
   };
 
   useEffect(() => {

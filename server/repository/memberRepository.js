@@ -124,7 +124,6 @@ export const getPasswordFind = async (formData) => {
   let sql = "";
   let result = "";
 
-  // 입력값 유효성 검사
   if (!formData.userId) {
     return { error: "아이디를 입력하세요." };
   }
@@ -141,27 +140,7 @@ export const getPasswordFind = async (formData) => {
     return { error: "전화번호를 입력하세요." };
   }
 
-  // DB와 입력된 값 비교
-  // const userCheckSql = `
-  //   SELECT count(*) as cnt FROM pesade_member WHERE user_id = ?
-  // `;
-  // const userCheck = await db.execute(userCheckSql, [formData.userId]);
-  // console.log("유저체크", userCheck[0][0]);
-  // if (!userCheck[0] || userCheck[0].length === 0) {
-  //   return { error: "아이디가 존재하지 않습니다." };
-  // }
-
-  // const user = userCheck[0][0];
-
-  // if (!user.cnt === 1) {
-  //   return { error: "아이디와 일치하는 이름이 없습니다." };
-  // }
-
   if (formData.type === "useremail") {
-    /*  if (user.email !== formData.email) {
-      return { error: "아이디와 일치하는 이메일이 없습니다." };
-    }
- */
     sql = `
       SELECT count(*) as cnt FROM pesade_member 
       WHERE user_id = ?
@@ -190,15 +169,8 @@ export const getPasswordFind = async (formData) => {
       formData.phone,
     ]);
   }
-  console.log("f리절트", result[0][0]);
+
   return result;
-  // if (result.cnt === 1) {
-  //   return {
-  //     result,
-  //   };
-  // } else {
-  //   return { error: "사용자를 찾을 수 없습니다." };
-  // }
 };
 
 export const getUpdatePassword = async (userId, newPassword) => {
