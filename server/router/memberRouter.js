@@ -1,6 +1,7 @@
 import express from "express";
 import * as controller from "../controller/memberController.js";
 
+//1
 const router = express.Router();
 
 router.post("/signup", controller.getSignup);

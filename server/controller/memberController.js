@@ -1,6 +1,8 @@
 import * as repository from "../repository/memberRepository.js";
 import nodemailer from "nodemailer";
 
+//1
+
 export const getSignup = async (req, res) => {
   const formData = req.body;
   const result = await repository.getSignup(formData);
