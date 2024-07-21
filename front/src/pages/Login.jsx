@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from "react";
 import { getIsLogin, validationCheck } from "../modules/reduxMemberAxios";
 import { setUserInfo } from "../reducers/memberReducer";
 
-//1
 // import { setIsLogin /* , setIsLogout  */ } from "../reducers/memberReducer";
 // import { axiosPost } from "../modules/reduxAxios.js";
 // import { jwtDecode } from "jwt-decode";

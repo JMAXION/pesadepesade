@@ -7,7 +7,6 @@ import { axiosPost } from "./reduxAxios";
 import { jwtDecode } from "jwt-decode";
 import * as cookie from "../util/cookies.js";
 
-//1
 export const validationCheck = ({ formData, userIdRef, userPassRef }) => {
   let checkFlag = true;
 

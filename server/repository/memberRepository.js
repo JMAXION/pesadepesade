@@ -2,8 +2,6 @@ import { db } from "../database/database_mysql80.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-//1
-
 export const getSignup = async (formData) => {
   // console.log("formdata=>", formData);
   let result_rows = 0;
