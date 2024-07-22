@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function PasswordRetrievalForm({ idResult }) {
+export default function PasswordRetrievalForm({ formData }) {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userPassError, setUserPassError] = useState(false);
@@ -35,10 +35,10 @@ export default function PasswordRetrievalForm({ idResult }) {
     const url = "http://127.0.0.1:8080/member/updatepassword";
 
     const data = {
-      userId: idResult,
+      userId: formData.userId,
       newPassword: newPassword,
     };
-
+    console.log("프론트", data);
     axios({
       method: "post",
       url: url,

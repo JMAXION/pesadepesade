@@ -40,7 +40,7 @@ export default function MemberPasswordFind() {
     });
   };
 
-  const handlePasswordFind = () => {
+  /*   const handlePasswordFind = () => {
     const url = "http://127.0.0.1:8080/member/passwordfind";
 
     axios({
@@ -57,7 +57,7 @@ export default function MemberPasswordFind() {
         }
       })
       .catch((error) => console.log(error));
-  };
+  }; */
 
   return (
     <div className="content">
@@ -67,11 +67,14 @@ export default function MemberPasswordFind() {
           formData={formData}
           handleChange={handleChange}
           handlePhoneChange={handlePhoneChange}
-          handlePasswordFind={handlePasswordFind}
         />
       )}
       {step === 2 && (
-        <PasswordRetrievalForm formData={formData} idResult={idResult} />
+        <PasswordRetrievalForm
+          nextStep={nextStep}
+          formData={formData}
+          idResult={idResult}
+        />
       )}
     </div>
   );

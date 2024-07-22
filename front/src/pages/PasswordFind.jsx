@@ -3,14 +3,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function PasswordFind({
+  nextStep,
   formData,
   handleChange,
   handlePhoneChange,
 }) {
   const [selectedMethod, setSelectedMethod] = useState("useremail");
-  const [time, setTime] = useState(180);
+  const [time, setTime] = useState(0);
   const [showAccreditation, setShowAccreditation] = useState(false);
   const [verificationCode, setVerificationCode] = useState("");
+
+  useEffect(() => {
+    if (time > 0) {
+      const timer = setInterval(() => {
+        setTime(time - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [time]);
 
   const handleRadioChange = (event) => {
     setSelectedMethod(event.target.value);
@@ -18,26 +29,34 @@ export default function PasswordFind({
   };
 
   const handlePasswordFind = () => {
-    const url = "http://127.0.0.1:8080/member/passwordfind";
-
-    axios({
-      method: "post",
-      url: url,
-      data: formData,
-    })
-      .then((res) => {
-        if (res.data.cnt) {
-          setShowAccreditation(true);
-          setTime(180);
-        } else {
-          alert("사용자를 찾을 수 없습니다.");
-        }
+    if (formData.userId === "") {
+      alert("아이디를 입력해 주세요");
+    } else if (formData.userName === "") {
+      alert("이름을 입력해 주세요.");
+    } else if (formData.email === "") {
+      alert("이메일을 입력해 주세요.");
+    } else {
+      const url = "http://127.0.0.1:8080/member/passwordfind";
+      axios({
+        method: "post",
+        url: url,
+        data: formData,
       })
-      .catch((error) => console.log(error));
+        .then((res) => {
+          if (res.data.cnt) {
+            setShowAccreditation(true);
+            setTime(180);
+          } else {
+            alert("사용자를 찾을 수 없습니다.");
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   };
+
   const handleAccreditationClick = async () => {
-    handlePasswordFind();
     if (selectedMethod === "useremail") {
+      handlePasswordFind();
       try {
         const response = await axios.post(
           "http://127.0.0.1:8080/member/sendmail",
@@ -51,18 +70,10 @@ export default function PasswordFind({
       } catch (error) {
         console.error("Error sending email: ", error);
       }
+    } else if (selectedMethod === "userphone") {
+      //휴대폰으로 찾기
     }
   };
-
-  useEffect(() => {
-    if (time > 0) {
-      const timer = setInterval(() => {
-        setTime(time - 1);
-      }, 1000);
-
-      return () => clearInterval(timer);
-    }
-  }, [time]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -71,29 +82,31 @@ export default function PasswordFind({
   };
 
   const handleVerifyCode = async () => {
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8080/member/verifycode",
-        {
-          verificationCode: verificationCode,
-        }
-      );
+    const url = "http://127.0.0.1:8080/member/verifycode";
 
-      if (response.data.success) {
-        alert("인증 성공! 새로운 비밀번호를 입력하세요.");
-        setShowAccreditation(false);
-      } else {
-        alert("인증 실패. 다시 시도해주세요.");
-      }
-    } catch (error) {
-      console.error("Error verifying code인증번호코드: ", error);
-    }
+    axios({
+      method: "post",
+      url: url,
+      data: {
+        verificationCode: verificationCode,
+        userId: formData.userId,
+      },
+    })
+      .then((res) => {
+        if (res.data === verificationCode) {
+          alert("인증 성공 ! 새로운 비밀번호를 입력하세요");
+          nextStep();
+        } else {
+          alert("인증 실패.다시 시도해 주세요");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleVerificationCodeChange = (event) => {
     setVerificationCode(event.target.value);
   };
-  // console.log("nextddd ==>", nextStep);
+  console.log("nextddd ==>", nextStep);
 
   return (
     <div className="content">

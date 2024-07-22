@@ -181,12 +181,11 @@ export const getUpdatePassword = async (userId, newPassword) => {
     SET user_pass = ?
     WHERE user_id = ?
     `;
-  return await db.execute(sql, [hashedPassword, userId.user_id]);
+  return await db.execute(sql, [hashedPassword, userId]);
 };
 
 export const getSendMail = async (userId, verificationCode) => {
   try {
-    // userId가 pesade_member 테이블에 존재하는지 확인
     const userCheckSql =
       "SELECT COUNT(*) AS count FROM pesade_member WHERE user_id = ?";
     const [userCheckResult] = await db.execute(userCheckSql, [userId]);
@@ -197,7 +196,6 @@ export const getSendMail = async (userId, verificationCode) => {
       );
     }
 
-    // 이메일 인증 코드 저장
     const sql = `
       INSERT INTO email_verification (user_id, code)
       VALUES (?, ?)
@@ -208,9 +206,29 @@ export const getSendMail = async (userId, verificationCode) => {
   }
 };
 
-/* export const getUserByKakaoId = async (kakaoId) => {
+export const getVerifycode = async (userId) => {
+  const sql = ` SELECT code
+    FROM email_verification
+    WHERE user_id = ?
+    ORDER BY created_at DESC
+    LIMIT 1`;
+
+  try {
+    const [rows] = await db.execute(sql, [userId]);
+
+    if (rows.length > 0) {
+      return rows[0]?.code;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error executing query:", error);
+    throw error;
+  }
+};
+
+export const getKakaoLogin = async (kakaoId) => {
   const sql = `SELECT * FROM pesade_member WHERE kakao_id = ?`;
   const [result] = await db.execute(sql, [kakaoId]);
-  return result[0]; 
+  return result[0];
 };
- */

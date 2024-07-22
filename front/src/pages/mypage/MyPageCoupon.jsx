@@ -51,7 +51,10 @@ export default function MyPageCoupon() {
       <div className="mycoupon-admin">
         <p className="mycoupon-admin-title">쿠폰인증번호 등록하기</p>
         <li className="mycoupon-admin-access">
-          <input type="text" />
+          <input
+            type="text"
+            style={{ padding: "10px", backgroundColor: "rgb(255, 251, 237)" }}
+          />
           <button>쿠폰번호인증</button>
         </li>
         <li className="mycoupon-admin-warning">

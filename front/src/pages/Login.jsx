@@ -5,10 +5,10 @@ import { useEffect, useState, useRef } from "react";
 import { getIsLogin, validationCheck } from "../modules/reduxMemberAxios";
 import { setUserInfo } from "../reducers/memberReducer";
 
-// import { setIsLogin /* , setIsLogout  */ } from "../reducers/memberReducer";
-// import { axiosPost } from "../modules/reduxAxios.js";
-// import { jwtDecode } from "jwt-decode";
-// import * as cookie from "../util/cookies.js";
+import { setIsLogin /* , setIsLogout  */ } from "../reducers/memberReducer";
+import { axiosPost } from "../modules/reduxAxios.js";
+import { jwtDecode } from "jwt-decode";
+import * as cookie from "../util/cookies.js";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -52,8 +52,10 @@ export default function Login() {
               nickname: res.properties.nickname,
             };
 
-            /*        dispatch(setUserInfo(userInfo)); // 사용자 정보를 리덕스 상태에 저장
-            dispatch(getIsLogin({ formData: userInfo })); // 로그인 상태 업데이트 */
+            dispatch(setUserInfo(userInfo)); // 사용자 정보를 리덕스 상태에 저장
+            dispatch(getIsLogin({ formData: userInfo })); // 로그인 상태 업데이트
+
+            handleKakaoLoginRequest(authObj.access_token); // 여기에서 호출
           },
           fail: (error) => {
             console.error(error);
@@ -66,7 +68,7 @@ export default function Login() {
     });
   };
 
-  /*   const handleKakaoLoginRequest = async (accessToken) => {
+  const handleKakaoLoginRequest = async (accessToken) => {
     const url = "http://127.0.0.1:8080/member/kakaoLogin";
     const data = { accessToken };
 
@@ -82,7 +84,7 @@ export default function Login() {
     } else {
       alert(loginResult.message || "Login failed");
     }
-  }; */
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
