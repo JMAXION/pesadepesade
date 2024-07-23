@@ -76,7 +76,9 @@ export default function Header({ isHome }) {
                   <Link to={"/"}>Logout</Link>
                 </div>
                 <div className="header-right-menu-react">
-                  <Link to="/mypage">My Page</Link>
+                  <Link to={userInfo.userId === "admin" ? "/admin" : "/mypage"}>
+                    {userInfo.userId === "admin" ? "Admin" : "My Page"}
+                  </Link>
                 </div>
               </>
             ) : (
@@ -84,6 +86,7 @@ export default function Header({ isHome }) {
                 <Link to={"/login"}>Login</Link>
               </div>
             )}
+
             <div>
               <Link to={"/cart"}>Cart</Link>
             </div>
