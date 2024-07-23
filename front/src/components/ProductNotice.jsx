@@ -11,16 +11,16 @@ export default function ProductInfo({ prop }) {
   return (
     <div className="gift-wrapper">
       <div
-        className={`gift-content ${isClick ? "active" : ""}`}
+        className={`gift-content  ${isClick ? "active" : ""}`}
         onClick={handleState}
       >
-        <span className="gift-your">Notice</span>
+        <span className="gift-your ">Notice</span>
         <FontAwesomeIcon
           className={`gift-arrow ${isClick ? "rotate" : ""}`}
           icon={faArrowRightLong}
         />
         {isClick && (
-          <div className="gift-content-info">
+          <div className="gift-content-info poor-story-regular">
             <div className="product-notice" style={{ whiteSpace: "pre-wrap" }}>
               {prop.pnotice}
             </div>
