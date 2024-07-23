@@ -79,8 +79,8 @@ export default function ProductDetail() {
         <div className="detail-div">
           <h2>{item.pname}</h2>
           <p>{item.pdetail}</p>
-          <div className="detail-pscentdetail">{item.pscentdetail}</div>
-          <div className="detail-pdesc" style={{ whiteSpace: "pre-wrap" }}>
+          <div className="detail-pscentdetail ">{item.pscentdetail}</div>
+          <div className="detail-pdesc poor-story-regular" style={{ whiteSpace: "pre-wrap;" }}>
             {item.pdesc}
           </div>
           <div className="detail-pprice">{item.pprice}krw</div>

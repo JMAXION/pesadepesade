@@ -541,7 +541,7 @@ body {
   width: 100px;
   height: 100px;
   position: absolute;
-  top: calc(56%);
+  top: calc(43%);
 }
 
 .gift-desc {
@@ -556,7 +556,10 @@ body {
 .product-info {
   font-size: 12px;
   color: #555555;
-  overflow: auto;
+  height: 182px;
+  overflow-y: scroll;
+
+
 }
 
 .select-msg-card {
@@ -701,4 +704,11 @@ body {
 
 .product-category-name{
   color: #555555;
+}
+
+.poor-story-regular {
+  font-family: "Poor Story", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size:1.2rem;
 }

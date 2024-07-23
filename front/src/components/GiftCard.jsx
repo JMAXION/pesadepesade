@@ -16,7 +16,7 @@ export default function GiftCard() {
         <span className="gift-your">For your Gift</span>
         <FontAwesomeIcon className={`gift-arrow ${isClick ? 'rotate' : ''}`} icon={faArrowRightLong} />
         {isClick && (
-          <div className="gift-content-info">
+          <div className="gift-content-info poor-story-regular">
             <img
               src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/wJk/img/detail/message_card.png"
               alt=""
