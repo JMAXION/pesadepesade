@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 // 파일 필터링
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname);
-  if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png" && ext !== '.webp') {
+  if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png" && ext !== ".webp") {
     return cb(new Error("Only images are allowed"), false);
   }
   cb(null, true);
