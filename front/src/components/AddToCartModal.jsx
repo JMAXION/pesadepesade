@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getUser } from '../util/localStorage.js';
@@ -10,6 +10,7 @@ import SuccessAddtocartModal from './SuccessAddtocartModal.jsx';
 export default function AddToCartModal({ product, closeModal }) {
   const userInfo = getUser();
   const history = useNavigate();
+  const validationCheck = useRef(null)
   const [choice, setChoice] = useState({
     //addList.userId, addList.pid, addList.pgid, addList.qty
     userId : userInfo? userInfo.userId:'',
@@ -25,7 +26,7 @@ export default function AddToCartModal({ product, closeModal }) {
   // choice.qty가 변경될 때마다 tp 값을 계산하여 업데이트합니다.
   useEffect(() => {
     setTp(choice.qty * product.pprice);
-  }, [choice.qty, product.pprice]);
+  }, [choice.qty, product.pprice,choice]);
 
   function handleSelect(e) {
     if (e === '0') {
@@ -37,6 +38,7 @@ export default function AddToCartModal({ product, closeModal }) {
       });
       setTp(0); // tp 값을 0으로 초기화합니다.
       alert("필수 선택 항목 입니다");
+      return
     } else {
       setChoice({ ...choice, messageCard: e, productName: product.pname });
     }
@@ -72,6 +74,10 @@ export default function AddToCartModal({ product, closeModal }) {
   };
 
   const handleAddToCart = () => {
+    if(validationCheck.current.value === "0"){
+      alert("필수 선택 사항 입니다!")
+      return
+    }
     const url = `http://127.0.0.1:8080/cart/add`;
     if (userInfo) {
       openSuccessModal(); // userInfo가 없으면 SuccessAddtocartModal을 엽니다.
@@ -97,7 +103,7 @@ export default function AddToCartModal({ product, closeModal }) {
           {product.pdetail}
         </h3>
         <label htmlFor="message-card" className="msg-card">메세지카드
-          <select id="message-card" className="purchase-select" onChange={(e) => handleSelect(e.target.value)}>
+          <select id="message-card" className="purchase-select" onChange={(e) => handleSelect(e.target.value) } ref={validationCheck}>
             <option value="0">[-필수]Options</option>
             <option value="1">#선택안함</option>
             <option value="2">#danke</option>

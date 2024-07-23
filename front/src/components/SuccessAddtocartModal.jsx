@@ -23,7 +23,7 @@ export default function SuccessAddtocartModal({ closeModal, prop, tp, choice }) 
       }
     };
     fetchData();
-  }, [choice.userId]);
+  }, [choice.userId,cart]);
 
   console.log(cart);
   
