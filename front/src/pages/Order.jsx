@@ -64,6 +64,7 @@ export default function Order() {
   const total = calculateTotalPrice(orderItem);
 
   console.log("최종값", total);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -169,7 +170,6 @@ export default function Order() {
     console.log("orderprice-->", price);
     setCouponPrice(price);
   };
-  let totalprice = "";
   const handleDetailsToggle = () => {
     // 추가: 세부 내용 토글 함수
     setIsDetailsOpen(!isDetailsOpen);
@@ -401,10 +401,18 @@ export default function Order() {
           <div className="order-coupon">
             <div>
               <span>쿠폰 할인</span>
-              <span>0 krw</span>
-              <button type="button">쿠폰 적용</button>
+              <span>{couponPrice}krw</span>
+              <button type="button" onClick={() => openModal()}>
+                쿠폰 적용
+              </button>
             </div>
-            <p>보유 쿠폰: 1개</p>
+            <p>보유 쿠폰: {coupons.length}개</p>
+            {isModalOpen && (
+              <OrderCouponModal
+                onClose={closeModal}
+                couponDiscount={couponDiscount}
+              />
+            )}
           </div>
           <div className="order-point">
             <div>
