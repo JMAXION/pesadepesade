@@ -62,11 +62,13 @@ p,
 }
 
 .order-addressform input {
-  margin-left: 25px;
-  width: 770px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  width: 774px;
   height: 42px;
   background: none;
   border: 1px solid #999;
+  padding: 10px;
 }
 
 .order-addressform .zipcode {
@@ -75,4 +77,100 @@ p,
 
 .order-address label {
   margin: 0 5px;
+}
+
+.order-receiver input {
+  margin-left: 6.5px;
+  margin-bottom: 20px;
+  width: 774px;
+  height: 42px;
+  background: none;
+  border: 1px solid #999;
+}
+
+.order-phonenumber input {
+  margin: 0 9px;
+  width: auto;
+  height: 42px;
+  background: none;
+  border: 1px solid #999;
+  margin-bottom: 10px;
+}
+
+.order-phonenumber input:nth-child(1) {
+  margin-left: 10px;
+}
+
+.order-email {
+  width: 898px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #999;
+}
+
+.order-email input {
+  width: 200px;
+  height: 42px;
+  background: none;
+  border: 1px solid #999;
+}
+
+.order-email .first {
+  margin-left: 19px;
+}
+
+.order-email .at {
+  margin: 0 5px;
+  border: none;
+}
+
+.order-page .order-product {
+  border-bottom: 1px solid #999;
+}
+
+.order-page tbody img {
+  width: 100px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.order-page tbody td {
+  font-size: 14px;
+}
+
+.order-page tbody td p {
+  margin-bottom: 2px;
+}
+
+.order-page tbody td p:nth-last-child(1) {
+  margin: 20px 0;
+  margin-left: 15px;
+  color: red;
+}
+
+.order-coupon {
+  border-bottom: 1px solid #999;
+}
+
+.order-coupon p {
+  margin: 5px 0 20px 808px;
+  font-size: 12px;
+}
+
+.order-coupon div {
+  height: 42px;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.order-coupon div span:nth-child(2) {
+  margin-left: 680px;
+}
+
+.order-coupon div button {
+  width: 70px;
+  height: 40px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  background: none;
+  border: 1px solid #999;
 }
