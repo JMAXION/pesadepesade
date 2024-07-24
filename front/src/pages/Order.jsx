@@ -10,9 +10,10 @@ import OrderCouponModal from "../components/order/OrderCouponModal.jsx";
 export default function Order() {
   const location = useLocation();
   const { orderItem } = location.state || { orderItem: [] };
-  //   console.log("넘어오는 값", orderItem);
+  console.log("넘어오는 값", orderItem);
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [couponPrice, setCouponPrice] = useState();
   const coupons = [
     {
       id: 1,
@@ -47,6 +48,17 @@ export default function Order() {
       },
     },
   ];
+  const calculateTotalPrice = (items) => {
+    if (!Array.isArray(items)) {
+      console.error("items is not an array:", items);
+      return 0;
+    }
+    return items.reduce((acc, item) => acc + (item.tprice || 0), 0);
+  };
+
+  const total = calculateTotalPrice(orderItem);
+
+  console.log("최종값", total);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -111,6 +123,11 @@ export default function Order() {
     }
   };
 
+  const couponDiscount = (price) => {
+    console.log("orderprice-->", price);
+    setCouponPrice(price);
+  };
+  let totalprice = "";
   return (
     <div className="front">
       <div className="order-page">
@@ -251,7 +268,7 @@ export default function Order() {
           <div className="order-coupon">
             <div>
               <span>쿠폰 할인</span>
-              <span>0 krw</span>
+              <span>{couponPrice}</span>
               <button
                 type="button"
                 onClick={() => {
@@ -263,7 +280,12 @@ export default function Order() {
             </div>
             <p>보유 쿠폰: {coupons.length}개</p>
           </div>
-          {isModalOpen && <OrderCouponModal onClose={closeModal} />}
+          {isModalOpen && (
+            <OrderCouponModal
+              onClose={closeModal}
+              couponDiscount={couponDiscount}
+            />
+          )}
           <div>
             <p>Point</p>
             <input type="text" />
@@ -285,7 +307,7 @@ export default function Order() {
           <p className="order-subcontent">결제정보</p>
           <div>
             <span>주문상품</span>
-            <span>25,000 krw</span>
+            <span>{total} krw</span>
           </div>
           <div>
             <span>배송비</span>
@@ -293,11 +315,11 @@ export default function Order() {
           </div>
           <div>
             <span>할인/부가결제</span>
-            <span>-0 krw</span>
+            <span>-{couponPrice}krW</span>
           </div>
           <div>
             <p className="order-subcontent">최종 결제 금액</p>
-            <span>25,000 krw</span>
+            <span> krw</span>
           </div>
         </div>
         <div className="order-payment">
@@ -357,7 +379,7 @@ export default function Order() {
           </div>
         </div>
         <div>
-          <button type="button">25,000 krw 결제하기</button>
+          <button type="button">{total}krw 결제하기</button>
         </div>
       </div>
     </div>

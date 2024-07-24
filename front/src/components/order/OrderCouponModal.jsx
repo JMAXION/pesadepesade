@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function OrderCouponModal({ onClose }) {
+export default function OrderCouponModal({ onClose, couponDiscount }) {
   const modalRef = useRef();
   const [fadeOut, setFadeOut] = useState(false);
   const [showDetail, setShowDetail] = useState(null);
@@ -20,7 +20,7 @@ export default function OrderCouponModal({ onClose }) {
         purchaseAmount: "제한없음",
         paymentMethod: "제한없음",
         benefit: "3000 krw 할인",
-        discountRate: "3,000 krw",
+        discountRate: "3,000",
         accumulationRate: "-",
         deposit: "-",
         validity: "발급일로부터 90일 이내",
@@ -65,6 +65,7 @@ export default function OrderCouponModal({ onClose }) {
   const handleCouponUse = (price) => {
     setCouponPrice(price);
     console.log(price);
+    couponDiscount(price);
   };
   return (
     <div className="modal-overlay">
@@ -116,7 +117,7 @@ export default function OrderCouponModal({ onClose }) {
                         <p>구매금액 : {coupon.details.purchaseAmount}</p>
                         <p>결제수단 : {coupon.details.paymentMethod}</p>
                         <p>쿠폰혜택 : {coupon.details.benefit}</p>
-                        <p>할인액(률) : {coupon.details.discountRate}</p>
+                        <p>할인액(률) : {coupon.details.discountRate}krw</p>
                         <p>적립액(률) : {coupon.details.accumulationRate}</p>
                         <p>예치금 : {coupon.details.deposit}</p>
                         <p>사용가능 기간 : {coupon.details.validity}</p>
