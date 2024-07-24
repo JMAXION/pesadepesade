@@ -1,0 +1,78 @@
+.order-page {
+  margin: auto;
+  width: 900px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.order-page img {
+  width: 100px;
+}
+
+.order-page .order-header {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 25p;
+  height: 60px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.order-page .order-header span {
+  font-size: 18px;
+  line-height: 50px;
+}
+
+.order-page .order-header svg {
+  padding-top: 22px;
+  margin: 0 20px;
+}
+
+.order-page .order-subtitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  padding: 15px;
+  border-bottom: 1px solid black;
+}
+.order-page .order-subcontent {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 10px 0 0;
+  padding: 15px;
+}
+
+.order-page span,
+p,
+.order-page tbody td th {
+  margin-left: 15px;
+}
+
+.order-address {
+  margin-left: 15px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.order-addressform {
+  margin-left: 15px;
+}
+
+.order-addressform input {
+  margin-left: 25px;
+  width: 770px;
+  height: 42px;
+  background: none;
+  border: 1px solid #999;
+}
+
+.order-addressform .zipcode {
+  width: 300px;
+}
+
+.order-address label {
+  margin: 0 5px;
+}
