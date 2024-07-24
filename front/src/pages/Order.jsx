@@ -333,7 +333,7 @@ export default function Order() {
           <tbody className="order-price">
             <div>
               <th>주문상품</th>
-              <td>25,000 krw</td>
+              <td>{total} krw</td>
             </div>
             <div>
               <th>배송비</th>
@@ -342,12 +342,12 @@ export default function Order() {
             <div>
               <th>할인/부가결제</th>
               <td>
-                <span>-0</span> krw
+                <span>-{couponPrice}</span> krw
               </td>
             </div>
             <div>
               <p className="order-subcontent">최종 결제 금액</p>
-              <span>25,000 krw</span>
+              <span>{total} krw</span>
             </div>
           </tbody>
         </div>
