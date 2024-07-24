@@ -359,9 +359,21 @@ export default function Order() {
           <tr className="order-email">
             <th>이메일 *</th>
             <td>
-              <input type="text" className="order-email first" />
+              <input
+                type="text"
+                className="order-email first"
+                value={orderFormData.emailId}
+                onChange={handleChange}
+                name="emailId"
+              />
               <span className="order-email at">@</span>
-              <input type="text" className="order-email domain" />
+              <input
+                type="text"
+                className="order-email domain"
+                value={orderFormData.emailDomain}
+                onChange={handleChange}
+                name="emailDomain"
+              />
             </td>
           </tr>
         </tbody>
