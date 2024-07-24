@@ -396,7 +396,6 @@ export default function InfoChangeStep2() {
         <p className="profileedit-buttons">
           <button className="profileedit-button">Edit Account</button>
           <button className="profileedit-button">Delete Account</button>
-          <button className="profileedit-button">Cancel</button>
         </p>
       </div>
     </div>
