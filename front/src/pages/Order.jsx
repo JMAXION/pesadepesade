@@ -71,7 +71,9 @@ export default function Order() {
     <div className="front">
       <div className="order-page">
         <div className="order-header">
-          <FontAwesomeIcon icon={faChevronLeft} />
+          <Link to={"/cart"}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </Link>
           <span>pesade</span>
           <FontAwesomeIcon icon={faUser} />
         </div>
@@ -84,7 +86,6 @@ export default function Order() {
             <input
               id="sameaddr0"
               name="sameaddr"
-              value="M"
               type="radio"
               autocomplete="off"
             />
@@ -92,7 +93,6 @@ export default function Order() {
             <input
               id="sameaddr1"
               name="sameaddr"
-              value="F"
               type="radio"
               autocomplete="off"
             />
@@ -102,7 +102,7 @@ export default function Order() {
         <tbody>
           <td>
             <div>
-              <div>
+              <div className="order-receiver">
                 <span>받는 사람 *</span>
                 <input type="text" />
               </div>
@@ -158,15 +158,16 @@ export default function Order() {
                 </div>
               )}
             </div>
-            <div>
+            <div className="order-phonenumber">
               <span>전화번호 *</span>
               <input type="text" />-
               <input type="text" />-
               <input type="text" />
             </div>
-            <div>
+            <div className="order-email">
               <span>이메일 *</span>
-              <input type="text" />@
+              <input type="text" className="order-email first" />
+              <span className="order-email at">@</span>
               <input type="text" />
             </div>
           </td>
@@ -176,33 +177,39 @@ export default function Order() {
             <th>주문상품</th>
           </p>
         </div>
-        <tbody>
-          {orderItem.map((item) => (
-            <tr key={item.cid}>
-              <td>
-                <Link to={`/shop/detail/${item.pid}`}>
-                  <img
-                    src={`http://localhost:8080/${item.pimage}`}
-                    alt={item.pname}
-                  />
-                </Link>
-              </td>
-              <td>
-                <div>
-                  <p>{item.pname}</p>
-                  <p>{item.pdetail}</p>
-                  <p>[옵션: {item.gift_option}]</p>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <div className="order-coupon">
+        <div className="order-product">
+          <tbody>
+            {orderItem.map((item) => (
+              <tr key={item.cid}>
+                <td>
+                  <Link to={`/shop/detail/${item.pid}`}>
+                    <img
+                      src={`http://localhost:8080/${item.pimage}`}
+                      alt={item.pname}
+                    />
+                  </Link>
+                </td>
+                <td>
+                  <div>
+                    <p>{item.pname}</p>
+                    <p>{item.pdetail}</p>
+                    <p>[옵션: {item.gift_option}]</p>
+                    <p>수량: {item.qty} 개</p>
+                    <p>{item.pprice * item.qty} krw</p>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </div>
+        <div>
           <p className="order-subcontent">할인/부가결제</p>
-          <div>
-            <p>쿠폰 할인</p>
-            <p>0 krw</p>
-            <button type="button">쿠폰 적용</button>
+          <div className="order-coupon">
+            <div>
+              <span>쿠폰 할인</span>
+              <span>0 krw</span>
+              <button type="button">쿠폰 적용</button>
+            </div>
             <p>보유 쿠폰: 1개</p>
           </div>
           <div>
