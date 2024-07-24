@@ -15,7 +15,7 @@ export const getSignup = async (formData) => {
     bcrypt.hashSync(formData.userPass, 7),
     formData.userName,
     formData.zipcode,
-    formData.address.concat("", formData.detailAddress),
+    formData.address.concat(" / ", formData.detailAddress),
     phone1.concat("-", phone2, "-", phone3),
     formData.emailId.concat("@", formData.emailDomain),
     formData.gender,

@@ -7,7 +7,7 @@ export const createOrder = async (req, res) => {
 }
 
 export const getUserInfo = async (req, res) => {
-     const userId = req.body.user_id;
+     const userId = req.params.userId; 
      const result =  await repository.getUserInfo(userId);
      res.json(result);
 };
