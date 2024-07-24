@@ -174,3 +174,46 @@ p,
   background: none;
   border: 1px solid #999;
 }
+
+/* 모달 스타일 */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+  z-index: 1001;
+}
+
+/* 페이드 아웃 애니메이션 */
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+.admincoupon-admin-table {
+  width: 700px;
+  margin: 2rem auto;
+}
+.admincoupon-admin-table-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admincoupon-admin-table-title {
+  color: white;
+  background-color: black;
+  text-align: left;
+  padding: 1rem;
+}
+.admincoupon-admin-table-tbody {
+  text-align: center;
+}
+.admincoupon-admin-table-tbody th,
+.admincoupon-admin-table-tbody td {
+  padding: 0.5rem 0;
+}

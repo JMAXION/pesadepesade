@@ -5,12 +5,56 @@ import DaumPostcode from "react-daum-postcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import OrderCouponModal from "../components/order/OrderCouponModal.jsx";
 
 export default function Order() {
   const location = useLocation();
   const { orderItem } = location.state || { orderItem: [] };
   //   console.log("넘어오는 값", orderItem);
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const coupons = [
+    {
+      id: 1,
+      name: "회원가입 쿠폰",
+      discount: "3000 krw",
+      details: {
+        number: "1",
+        purchaseAmount: "제한없음",
+        paymentMethod: "제한없음",
+        benefit: "3000 krw 할인",
+        discountRate: "3,000 krw",
+        accumulationRate: "-",
+        deposit: "-",
+        validity: "발급일로부터 90일 이내",
+        applicableProducts: "전체상품",
+      },
+    },
+    {
+      id: 2,
+      name: "생일 쿠폰",
+      discount: "5000 krw",
+      details: {
+        number: "2",
+        purchaseAmount: "제한없음",
+        paymentMethod: "제한없음",
+        benefit: "5000 krw 할인",
+        discountRate: "5,000 krw",
+        accumulationRate: "500 krw",
+        deposit: "-",
+        validity: "발급일로부터 90일 이내",
+        applicableProducts: "전체상품",
+      },
+    },
+  ];
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const handleAddress = (e) => {
     setOrderFormData({
       ...orderFormData,
@@ -208,10 +252,18 @@ export default function Order() {
             <div>
               <span>쿠폰 할인</span>
               <span>0 krw</span>
-              <button type="button">쿠폰 적용</button>
+              <button
+                type="button"
+                onClick={() => {
+                  openModal();
+                }}
+              >
+                쿠폰 적용
+              </button>
             </div>
-            <p>보유 쿠폰: 1개</p>
+            <p>보유 쿠폰: {coupons.length}개</p>
           </div>
+          {isModalOpen && <OrderCouponModal onClose={closeModal} />}
           <div>
             <p>Point</p>
             <input type="text" />
