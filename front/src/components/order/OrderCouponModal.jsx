@@ -36,7 +36,7 @@ export default function OrderCouponModal({ onClose, couponDiscount }) {
         purchaseAmount: "제한없음",
         paymentMethod: "제한없음",
         benefit: "5000 krw 할인",
-        discountRate: "5,000 krw",
+        discountRate: "5,000",
         accumulationRate: "500 krw",
         deposit: "-",
         validity: "발급일로부터 90일 이내",
