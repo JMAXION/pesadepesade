@@ -18,7 +18,7 @@ export default function Order() {
   console.log("넘어오는 값", orderItem);
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [couponPrice, setCouponPrice] = useState();
+  const [couponPrice, setCouponPrice] = useState(0);
   const coupons = [
     {
       id: 1,
@@ -473,12 +473,12 @@ export default function Order() {
             <div>
               <th>할인/부가결제</th>
               <td>
-                <span>-0</span> krw
+                <span>-{couponPrice}</span> krw
               </td>
             </div>
             <div>
               <p className="order-subcontent">최종 결제 금액</p>
-              <span>25,000 krw</span>
+              <span>totalPrice - 할인부가결제값 krw</span>
             </div>
           </tbody>
         </div>
