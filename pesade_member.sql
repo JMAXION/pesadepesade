@@ -1,8 +1,13 @@
+-- Active: 1721638797191@@127.0.0.1@3306@myshop2019
 
 USE myshop2019;
 SELECT DATABASE();
 
+ select user_pass from pesade_member where user_id ='blue10' and user_pass = 'blue10@@';
+ select * from pesade_member where user_id = 'blue10';
 
+select * from pesade_member;
+  delete  from pesade_member where user_id = 'a123'
 
 -- 회원 테이블
 CREATE TABLE pesade_member (

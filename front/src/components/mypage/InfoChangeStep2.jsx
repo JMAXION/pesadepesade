@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SubTitle from "../SubTitle";
 import DaumPostcode from "react-daum-postcode";
+import { getUser } from "../../util/localStorage";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function InfoChangeStep2() {
+  const userId = getUser().userId;
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    userId: "",
     userPass: "",
     userPassCheck: "",
     userName: "",
@@ -17,16 +20,13 @@ export default function InfoChangeStep2() {
     phoneNumber3: "",
     emailId: "",
     emailDomain: "",
-    phoneNumber1: "010",
-    phoneNumber2: "",
     gender: "",
-    birthDate: "solar",
+    birthDate: "",
     year: "",
     month: "",
     day: "",
   });
   const refs = {
-    userIdRef: useRef(null),
     userPassRef: useRef(null),
     userPassCheckRef: useRef(null),
     userNameRef: useRef(null),
@@ -39,6 +39,10 @@ export default function InfoChangeStep2() {
     emailIdRef: useRef(null),
     emailDomainRef: useRef(null),
   };
+
+  useEffect(() => {
+    handleUserData();
+  }, [userId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,7 +68,7 @@ export default function InfoChangeStep2() {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-  //---- DaumPostcode 관련 디자인 및 이벤트 시작 ----//
+
   const themeObj = {
     bgColor: "#FFFFFF",
     pageBgColor: "#FFFFFF",
@@ -95,6 +99,133 @@ export default function InfoChangeStep2() {
     }
   };
 
+  const handleUserData = async () => {
+    const url = "http://127.0.0.1:8080/mypage/userdata";
+
+    try {
+      const res = await axios.post(url, { userId });
+      if (res.data) {
+        const user = res.data[0] || {};
+
+        const phone = user.phone ? user.phone.split("-") : ["010", "", ""];
+        const [phoneNumber1, phoneNumber2, phoneNumber3] = phone;
+
+        const bdate = user.bdate && user.bdate.split("년");
+        const year = bdate[0] || "";
+        const month = bdate[1]?.split("월")[0] || "";
+        const day = bdate[1]?.split("월")[1]?.split("일")[0] || "";
+
+        const splitAddress = (fullAddress) => {
+          if (!fullAddress) return { basicAddress: "", detailAddress: "" };
+          const basicAddress = fullAddress.split(" ").slice(0, -2).join(" ");
+          const detailAddress = fullAddress.split(" ").slice(-2).join(" ");
+          return { basicAddress, detailAddress };
+        };
+
+        const { basicAddress, detailAddress } = splitAddress(user.address);
+
+        setFormData({
+          userPass: "",
+          userPassCheck: "",
+          userName: user.user_name || "",
+          zipcode: user.zipcode || "",
+          address: basicAddress || "",
+          detailAddress: detailAddress || "",
+          phoneNumber1: phoneNumber1 || "010",
+          phoneNumber2: phoneNumber2 || "",
+          phoneNumber3: phoneNumber3 || "",
+          emailId: user.email ? user.email.split("@")[0] : "",
+          emailDomain: user.email ? user.email.split("@")[1] : "",
+          gender: user.gender || "",
+          birthDate: user.bdate_type || "",
+          year: year || "",
+          month: month || "",
+          day: day || "",
+        });
+      } else {
+        alert("유저 데이터를 불러올 수 없습니다.");
+      }
+    } catch (error) {
+      alert("유저 데이터를 불러오는 중 오류가 발생했습니다.");
+    }
+  };
+
+  // const handleUserData = async () => {
+  //   const url = "http://127.0.0.1:8080/mypage/userdata";
+
+  //   await axios({
+  //     method: "post",
+  //     url: url,
+  //     data: { userId },
+  //   }).then((res) => {
+  //     if (res.data) {
+  //       setUserData(res.data);
+
+  //       const user = userData.length > 0 ? userData[0] : {};
+
+  //       const phone = user.phone ? user.phone.split("-") : ["010", "", ""];
+  //       const [phoneNumber1, phoneNumber2, phoneNumber3] = phone;
+
+  //       const bdate = user.bdate
+  //         ? user.bdate
+  //             .split("년")
+  //             .filter((part) => part !== "")
+  //             .map((part) => part.trim())
+  //         : ["", "", ""];
+  //       const year = bdate[0] || "";
+  //       const month = bdate[1]?.split("월")[0] || "";
+  //       const day = bdate[1]?.split("월")[1]?.split("일")[0] || "";
+
+  //       const splitAddress = (fullAddress) => {
+  //         if (!fullAddress) return { basicAddress: "", detailAddress: "" };
+  //         const basicAddress = fullAddress.split(" ").slice(0, -2).join(" ");
+  //         const detailAddress = fullAddress.split(" ").slice(-2).join(" ");
+  //         return { basicAddress, detailAddress };
+  //       };
+
+  //       const { basicAddress, detailAddress } = splitAddress(user.address);
+
+  //       setFormData({
+  //         /*   userId: user.user_id || "", */
+  //         userPass: "",
+  //         userPassCheck: "",
+  //         userName: user.user_name || "",
+  //         zipcode: user.zipcode || "",
+  //         address: basicAddress || "",
+  //         detailAddress: detailAddress || "",
+  //         phoneNumber1: phoneNumber1 || "010",
+  //         phoneNumber2: phoneNumber2 || "",
+  //         phoneNumber3: phoneNumber3 || "",
+  //         emailId: user.email ? user.email.split("@")[0] : "",
+  //         emailDomain: user.email ? user.email.split("@")[1] : "",
+  //         gender: user.gender || "",
+  //         birthDate: user.bdate_type || "",
+  //         year: year || "",
+  //         month: month || "",
+  //         day: day || "",
+  //       });
+  //     } else {
+  //       setUserData([]);
+  //       alert("유저 데이터를 불러올 수 없습니다.");
+  //     }
+  //   });
+  // };
+
+  const handleDeleteUserData = () => {
+    const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
+    axios({
+      method: "post",
+      url: url,
+      data: userId,
+    }).then((res) => {
+      if (res.data === 0) {
+        alert("회원 탈퇴가 완료되었습니다.");
+      } else {
+        alert("틀림");
+      }
+    });
+  };
+
   return (
     <div className="content">
       <div className="editprofile">
@@ -107,24 +238,10 @@ export default function InfoChangeStep2() {
                 type="text"
                 className="editprofile-table-inputmain"
                 name="userId"
-                value={formData.userId}
-                onChange={handleChange}
-                ref={refs.userIdRef}
+                value={userId}
+                disabled
               />
             </td>
-          </tr>
-          <tr>
-            {/*      <td>현재 비밀번호</td>
-            <td>
-              <input
-                type="password"
-                className="editprofile-table-inputmain"
-                name="userPass"
-                value={formData.userPass}
-                onChange={handleChange}
-                ref={refs.userPassRef}
-              />
-            </td> */}
           </tr>
           <tr>
             <td>새 비밀번호</td>
@@ -146,7 +263,7 @@ export default function InfoChangeStep2() {
                 type="password"
                 className="editprofile-table-inputmain"
                 name="userPassCheck"
-                value={formData.usePassCheck}
+                value={formData.userPassCheck}
                 onChange={handleChange}
                 ref={refs.userPassCheckRef}
               />
@@ -395,8 +512,12 @@ export default function InfoChangeStep2() {
 
         <p className="profileedit-buttons">
           <button className="profileedit-button">Edit Account</button>
-          <button className="profileedit-button">Delete Account</button>
-          <button className="profileedit-button">Cancel</button>
+          <button className="profileedit-button" onClick={handleDeleteUserData}>
+            Delete Account
+          </button>
+          <Link to={"/mypage"}>
+            <button className="profileedit-button">Cancel</button>
+          </Link>
         </p>
       </div>
     </div>

@@ -26,7 +26,7 @@ export default function MyPageChangeInfo() {
 
   return (
     <div>
-      {step === 1 && <InfoChangeStep1 nextstep={nextStep} />}
+      {step === 1 && <InfoChangeStep1 nextStep={nextStep} />}
       {step === 2 && <InfoChangeStep2 />}
     </div>
   );
