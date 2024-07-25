@@ -3,11 +3,15 @@ import "../css/home.css";
 import HomeCarousel from "../components/home/HomeCarousel";
 import HomeSlider from "../components/home/HomeSlider";
 export default function Home() {
+  const [isTablet, setIsTablet] = useState(window.innerWidth <= 1024);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile2, setIsMobile2] = useState(window.innerWidth <= 640);
 
   useEffect(() => {
     const handleResize = () => {
+      setIsTablet(window.innerWidth <= 1024);
       setIsMobile(window.innerWidth <= 768);
+      setIsMobile2(window.innerWidth <= 640);
     };
 
     window.addEventListener("resize", handleResize);
@@ -15,7 +19,6 @@ export default function Home() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
   const desktopImages = [
     "https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/f05764580a9e7069427b19ddf9f9602b.jpg",
     "https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/0b47ea5ffdbce5300879e083bb9ce272.jpg",
@@ -28,21 +31,19 @@ export default function Home() {
     "https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/08b427bb5bdcd849fb95045a0daca7c2.jpg",
   ];
 
-  const showProduct = [
-    12, 14, 25
-  ]
-
   const images = isMobile ? mobileImages : desktopImages;
 
   const desktopImages2 =
     "https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/7d3e4352abe3e449a4d06046f579fa55.jpg";
   const mobileImages2 =
     "https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/web/upload/category/editor/2024/07/05/5bb901c3902a972c22b1293db90a91b3.jpg";
+
   const subImg = isMobile ? mobileImages2 : desktopImages2;
+
   return (
     <div className="home-content">
       <HomeCarousel images={images} />
-      <HomeSlider />
+      <HomeSlider isTablet={isTablet} isMobile2={isMobile2}/>
       <div>
         <img src={subImg} alt="메인 이미지" className="home-sub-img" />
       </div>
