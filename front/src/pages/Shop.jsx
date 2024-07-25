@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../components/Product";
+import { useParams } from "react-router-dom";
 
 export default function Shop() {
+  const { category } = useParams();
   const [filter, setFilter] = useState("all");
   const aname = ["jomalone", "pesade", "bvgari", "gucci","dior"];
+
+  useEffect(() => {
+    setFilter(category || "all");
+  }, [category]);
 
   function handleChange(type) {
     setFilter(type);

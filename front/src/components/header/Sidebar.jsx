@@ -8,6 +8,9 @@ export default function Sidebar({
   userInfo,
   handleLogout,
 }) {
+
+  const aname = ["jomalone", "pesade", "bvgari", "gucci", "dior"];
+
   return (
     <SwipeableDrawer
       anchor="left"
@@ -49,10 +52,12 @@ export default function Sidebar({
             <li style={{ transitionDelay: "0s" }}>
               <Link to={'/shop'}>all</Link>
             </li>
-            <li style={{ transitionDelay: "0.1s" }}>
-              <a>향수1</a>
-            </li>
-            <li style={{ transitionDelay: "0.2s" }}>
+            {aname.map((item, index) => (
+              <li key={index} style={{ transitionDelay: `${0.1 * (index + 1)}s` }}>
+                <Link to={`/shop/${item}`}>{item}</Link>
+              </li>
+            ))}
+            {/* <li style={{ transitionDelay: "0.2s" }}>
               <a>향수2</a>
             </li>
             <li style={{ transitionDelay: "0.3s" }}>
@@ -69,7 +74,7 @@ export default function Sidebar({
             </li>
             <li style={{ transitionDelay: "0.7s" }}>
               <a>향수7</a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="drawer-list">
