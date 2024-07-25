@@ -15,7 +15,6 @@ import { getUser } from "../util/localStorage";
 export default function Order() {
   const location = useLocation();
   const { orderItem } = location.state || { orderItem: [] };
-  console.log("넘어오는 값", orderItem);
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponPrice, setCouponPrice] = useState(0);
@@ -39,7 +38,7 @@ export default function Order() {
     {
       id: 2,
       name: "생일 쿠폰",
-      discount: "5000 krw",
+      discount: "5000 krw", 
       details: {
         number: "2",
         purchaseAmount: "제한없음",
@@ -53,6 +52,9 @@ export default function Order() {
       },
     },
   ];
+
+
+
   const calculateTotalPrice = (items) => {
     if (!Array.isArray(items)) {
       console.error("items is not an array:", items);
@@ -61,9 +63,8 @@ export default function Order() {
     return items.reduce((acc, item) => acc + (item.tprice || 0), 0);
   };
 
-  const total = calculateTotalPrice(orderItem);
 
-  console.log("최종값", total);
+  const total = calculateTotalPrice(orderItem);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -75,8 +76,6 @@ export default function Order() {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false); // 추가: 세부 내용 토글 상태
   const userId = getUser()?.userId;
 
-  console.log("아디", userId);
-  // 이름, 주소, 전화번호, 이메일
   const totalPrice = orderItem.reduce(
     (acc, item) => acc + item.pprice * item.qty,
     0
@@ -170,11 +169,13 @@ export default function Order() {
     console.log("orderprice-->", price);
     setCouponPrice(price);
   };
+
   const handleDetailsToggle = () => {
     // 추가: 세부 내용 토글 함수
     setIsDetailsOpen(!isDetailsOpen);
   };
 
+  //회원 정보 서버에서 불러오기
   const fetchMemberInfo = async () => {
     try {
       const response = await fetch(
@@ -187,6 +188,7 @@ export default function Order() {
     }
   };
 
+  //불러온 주소와 번호를 나누기
   const originMemberInfo = async () => {
     const memberInfo = await fetchMemberInfo();
     if (!memberInfo) return;
@@ -206,10 +208,12 @@ export default function Order() {
     });
   };
 
+  // 회원정보와 동일 클릭
   const handleSameAddressClick = async () => {
     await originMemberInfo();
   };
 
+  // 새 배송지: 직접입력
   const handleNewAddressClick = () => {
     setOrderFormData({
       userName: "",
@@ -224,11 +228,13 @@ export default function Order() {
     });
   };
 
+  // 첫 랜더링시 회원정보 불러우기
   useEffect(() => {
     if (userId) {
       originMemberInfo();
     }
   }, [userId]);
+
 
   return (
     <div className="front">
