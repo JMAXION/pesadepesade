@@ -73,7 +73,7 @@ export default function OrderCouponModal({ onClose, couponDiscount }) {
         <p>쿠폰내역 확인</p>
         <div className="admincoupon-admin-table">
           <table border={1} className="admincoupon-admin-table-table">
-            <thead>
+            <thead className="admincoupon-admin-table-table-thead">
               <tr>
                 <th colSpan={5} className="admincoupon-admin-table-title">
                   마이쿠폰 목록(총 {coupons.length}장)
@@ -82,18 +82,24 @@ export default function OrderCouponModal({ onClose, couponDiscount }) {
             </thead>
             <tbody className="admincoupon-admin-table-tbody">
               <tr>
-                <th>쿠폰명</th>
-                <th>할인</th>
-                <th>적립</th>
-                <th>상세</th>
-                <th>적용하기</th>
+                <th className="admincoupon-admin-table-tbody-th">쿠폰명</th>
+                <th className="admincoupon-admin-table-tbody-th">할인</th>
+                <th className="admincoupon-admin-table-tbody-th">적립</th>
+                <th className="admincoupon-admin-table-tbody-th">상세</th>
+                <th className="admincoupon-admin-table-tbody-th">적용하기</th>
               </tr>
               {coupons.map((coupon) => (
                 <React.Fragment key={coupon.id}>
                   <tr>
-                    <td>{coupon.name}</td>
-                    <td>{coupon.discount}</td>
-                    <td>{coupon.details.accumulationRate}</td>
+                    <td className="admincoupon-admin-table-tbody-td">
+                      {coupon.name}
+                    </td>
+                    <td className="admincoupon-admin-table-tbody-td">
+                      {coupon.discount}
+                    </td>
+                    <td className="admincoupon-admin-table-tbody-td">
+                      {coupon.details.accumulationRate}
+                    </td>
                     <td
                       className="admincoupon-admin-table-detail"
                       onClick={() => handleDetailClick(coupon.id)}

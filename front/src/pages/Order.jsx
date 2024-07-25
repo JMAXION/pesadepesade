@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/order.css";
 import DaumPostcode from "react-daum-postcode";
+import OrderCouponModal from "../components/order/OrderCouponModal.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -9,7 +10,6 @@ import {
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import OrderCouponModal from "../components/order/OrderCouponModal.jsx";
 import { getUser } from "../util/localStorage";
 
 export default function Order() {
@@ -411,14 +411,14 @@ export default function Order() {
         <div>
           <p className="order-subcontent">할인/부가결제</p>
           <div className="order-coupon">
-            <div>
+            <div className="order-coupon-div">
               <span>쿠폰 할인</span>
               <span>{couponPrice}krw</span>
               <button type="button" onClick={() => openModal()}>
                 쿠폰 적용
               </button>
             </div>
-            <p>보유 쿠폰: {coupons.length}개</p>
+            <p className="order-coupon-p">보유 쿠폰: {coupons.length}개</p>
             {isModalOpen && (
               <OrderCouponModal
                 onClose={closeModal}
