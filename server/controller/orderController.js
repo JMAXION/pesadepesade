@@ -5,6 +5,14 @@ export const createOrder = async (req, res) => {
      const result = await repository.createOrder(orderInfo)
      res.json(result)
 }
+export const orderDetail = async (req, res) => {
+     const orderInfo = req.body;
+     const result = await repository.orderDetail(orderInfo)
+     res.json(result)
+}
+
+
+
 
 export const getUserInfo = async (req, res) => {
      const userId = req.params.userId; 
