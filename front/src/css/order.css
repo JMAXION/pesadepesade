@@ -323,6 +323,12 @@ tbody .order-phonenumber input {
   background: var(--color-black);
   color: var(--color-white);
 }
+
+.order-result{
+  margin-top: 10rem;
+  text-align: center;
+}
+
 @keyframes fadeOut {
   to {
     opacity: 0;

@@ -11,18 +11,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { getUser } from "../util/localStorage";
-
+import axios from 'axios'
+import { setUserInfo } from "../reducers/memberReducer.js";
 export default function Order() {
   const location = useLocation();
   const { orderItem } = location.state || { orderItem: [] };
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponPrice, setCouponPrice] = useState(0);
+  const userInfo = getUser()
   const coupons = [
     {
       id: 1,
       name: "회원가입 쿠폰",
-      discount: "3000 krw",
+      discount: 3000,
       details: {
         number: "1",
         purchaseAmount: "제한없음",
@@ -38,7 +40,7 @@ export default function Order() {
     {
       id: 2,
       name: "생일 쿠폰",
-      discount: "5000 krw", 
+      discount: 5000, 
       details: {
         number: "2",
         purchaseAmount: "제한없음",
@@ -52,15 +54,55 @@ export default function Order() {
       },
     },
   ];
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth();
+  month = month + 1;
+  if (month < 10) month = "0" + month;
 
+  let day = today.getDate();
+  if (day < 10) day = "0" + day;
+  let hour = today.getHours();
+  let minute = today.getMinutes();
 
+  const orderNumber =
+    year + "" + month + "" + day + userInfo.userId + hour + "" + minute;
+
+    const totalPrice = orderItem.reduce(
+      (acc, item) => acc + item.pprice * item.qty -couponPrice,
+      0
+    );
+
+    const [orderFormData, setOrderFormData] = useState({
+      userName: "",
+      zipcode: "",
+      address: "",
+      detailAddress: "",
+      phoneNumber1: "",
+      phoneNumber2: "",
+      phoneNumber3: "",
+      emailId: "",
+      emailDomain: "",
+    });
+
+    const [orderInfo, setOrderInfo] =useState({
+      orderNumber : orderNumber,
+      userId : userInfo.userId,
+      totalPrice : totalPrice,
+      zipcode :'',
+      address : '',
+      detailAddress : ''
+  
+    })
+
+ 
 
   const calculateTotalPrice = (items) => {
     if (!Array.isArray(items)) {
       console.error("items is not an array:", items);
       return 0;
     }
-    return items.reduce((acc, item) => acc + (item.tprice || 0), 0);
+    return items.reduce((acc, item) => acc + (item.tprice || 0), 0)-couponPrice;
   };
 
 
@@ -76,22 +118,9 @@ export default function Order() {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false); // 추가: 세부 내용 토글 상태
   const userId = getUser()?.userId;
 
-  const totalPrice = orderItem.reduce(
-    (acc, item) => acc + item.pprice * item.qty,
-    0
-  );
 
-  const [orderFormData, setOrderFormData] = useState({
-    userName: "",
-    zipcode: "",
-    address: "",
-    detailAddress: "",
-    phoneNumber1: "",
-    phoneNumber2: "",
-    phoneNumber3: "",
-    emailId: "",
-    emailDomain: "",
-  });
+
+
 
   const handleAddress = (e) => {
     setOrderFormData({
@@ -153,6 +182,7 @@ export default function Order() {
       zipcode: zonecode,
       address: address,
     }));
+ 
   };
 
   const closeHandler = (state) => {
@@ -206,6 +236,11 @@ export default function Order() {
       emailId: memberInfo.email.split("@")[0] || "",
       emailDomain: memberInfo.email.split("@")[1] || "",
     });
+
+    setOrderInfo({...orderInfo,   zipcode: memberInfo.zipcode,
+                                  address: addressParts[0] || "",
+                                  detailAddress: addressParts[1] || "",
+    })
   };
 
   // 회원정보와 동일 클릭
@@ -233,7 +268,21 @@ export default function Order() {
     if (userId) {
       originMemberInfo();
     }
-  }, [userId]);
+  }, [userId,couponPrice,totalPrice,orderFormData]);
+
+
+  const order = () => {
+    const url = `http://127.0.0.1:8080/order/create`
+    axios({
+      method:"POST",
+      url : url,
+      data : orderInfo
+    }).then(result => { if(result.data.cnt === 1){
+      alert("insert ok")
+    }}
+
+    )
+  }
 
 
   return (
@@ -484,7 +533,7 @@ export default function Order() {
             </div>
             <div>
               <p className="order-subcontent">최종 결제 금액</p>
-              <span>totalPrice - 할인부가결제값 krw</span>
+              <span>{totalPrice} - {couponPrice} = {totalPrice-couponPrice}  krw</span>
             </div>
           </tbody>
         </div>
@@ -568,7 +617,9 @@ export default function Order() {
           </div>
         </div>
         <div className="order-final">
-          <button type="button">{totalPrice} krw 결제하기</button>
+        <Link to="/orderok" state={{ orderInfo,orderItem }}>
+            <button type="button" onClick={order}>{totalPrice} krw 결제하기</button>
+        </Link>
         </div>
       </div>
     </div>
