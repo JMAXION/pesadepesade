@@ -8,6 +8,20 @@ SELECT DATABASE();
 
 select * from pesade_member;
   delete  from pesade_member where user_id = 'a123'
+ 
+  UPDATE pesade_member
+      SET user_pass = '', 
+          user_name = '', 
+          zipcode = '11111', 
+          address = '', 
+          phone = '',
+          email = '', 
+          gender = '', 
+          bdate_type = '', 
+          bdate = ''
+      WHERE user_id = 'test5'
+
+
 
 -- 회원 테이블
 CREATE TABLE pesade_member (

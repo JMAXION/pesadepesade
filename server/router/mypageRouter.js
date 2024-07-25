@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/passconfirm", controller.getPassConfirm);
 router.post("/userdata", controller.getUserData);
+router.post("/updateuserdata", controller.getUpdateUserData);
 router.post("/deleteuserdata", controller.getDeleteUserData);
 
 export default router;

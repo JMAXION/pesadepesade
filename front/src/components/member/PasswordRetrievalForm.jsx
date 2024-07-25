@@ -38,7 +38,7 @@ export default function PasswordRetrievalForm({ formData }) {
       userId: formData.userId,
       newPassword: newPassword,
     };
-    console.log("프론트", data);
+
     axios({
       method: "post",
       url: url,
