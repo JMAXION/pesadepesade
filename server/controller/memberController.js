@@ -46,7 +46,7 @@ export const getUpdatePassword = async (req, res) => {
   res.end();
 };
 
-const verificationCodes = {}; // email을 키로, 인증번호를 값으로 하는 객체
+const verificationCodes = {};
 
 const transporter = nodemailer.createTransport({
   // host: "smtp.gmail.com",
@@ -112,7 +112,7 @@ export const getVerifycode = async (req, res) => {
 export const getKakaoLogin = async (req, res) => {
   const { accessToken } = req.body;
   const result = await repository.getKakaoLogin(accessToken);
-  console.log("zk카카오엑토큰", accessToken);
+
   res.json(result);
   res.end();
 

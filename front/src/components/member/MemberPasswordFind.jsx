@@ -40,25 +40,6 @@ export default function MemberPasswordFind() {
     });
   };
 
-  /*   const handlePasswordFind = () => {
-    const url = "http://127.0.0.1:8080/member/passwordfind";
-
-    axios({
-      method: "post",
-      url: url,
-      data: formData,
-    })
-      .then((res) => {
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          setIdResult(res.data);
-          setStep(2);
-        }
-      })
-      .catch((error) => console.log(error));
-  }; */
-
   return (
     <div className="content">
       {step === 1 && (
