@@ -99,7 +99,6 @@ export default function QnaContent() {
       userId: user,
       comment_text: newComment,
     };
-    console.log(data);
     axios({
       method: "post",
       data: data,
@@ -109,9 +108,9 @@ export default function QnaContent() {
         setComments([
           {
             comment_id: result.data.commentId,
-            userId: user,
+            user_id: user, // 여기서 user_id를 제대로 설정
             comment_text: newComment,
-            created_at: new Date(),
+            created_at: new Date().toISOString(), // ISO 형식으로 설정
           },
           ...comments,
         ]);
@@ -123,7 +122,6 @@ export default function QnaContent() {
   };
 
   const handleDeleteComment = (commentId, commentUserId) => {
-    // 댓글 삭제 시 댓글 작성자와 현재 사용자 비교
     if (!userId || commentUserId !== userId.userId) {
       alert("자신이 작성한 댓글만 삭제할 수 있습니다.");
       return;
@@ -186,32 +184,40 @@ export default function QnaContent() {
                 <p>{qna.qcontent}</p>
               </div>
               {userId && userId.userId === qna.user_id ? (
-                <>
+                <div className="qna-content-btn">
                   <button
+                    className="qna-content-btn update"
                     type="button"
                     onClick={() => handleNavigate("update")}
                   >
                     수정
                   </button>
-                  <button type="button" onClick={handleDelete}>
+                  <button
+                    className="qna-content-btn delete"
+                    type="button"
+                    onClick={handleDelete}
+                  >
                     삭제
                   </button>
-                </>
+                </div>
               ) : (
                 <p>작성자만 수정할 수 있습니다</p>
               )}
             </div>
             <div className="qna-comments">
-              <h4>댓글</h4>
+              <h4 className="qna-comments h4">댓글</h4>
               <div className="comments-list">
                 {comments.map((comment) => (
                   <div key={comment.comment_id} className="comment-item">
                     <div className="comment-user">{comment.user_id}</div>
-                    <div className="comment-text">{comment.comment_text}</div>
-                    <div className="comment-date">
-                      {new Date(comment.created_at).toLocaleString()}
+                    <div className="comment-body">
+                      <div className="comment-text">{comment.comment_text}</div>
+                      <div className="comment-date">
+                        {new Date(comment.created_at).toLocaleString()}
+                      </div>
                     </div>
                     <button
+                      className="comment-btn"
                       onClick={() =>
                         handleDeleteComment(comment.comment_id, comment.user_id)
                       }
@@ -223,16 +229,24 @@ export default function QnaContent() {
               </div>
               <div className="comment-form">
                 <textarea
+                  className="qna-comments textarea"
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="댓글을 입력하세요"
                 />
-                <button onClick={handleAddComment}>댓글 추가</button>
+                <div className="qna-comments-btn">
+                  <button
+                    className="qna-comments-btn button"
+                    onClick={handleAddComment}
+                  >
+                    댓글 추가
+                  </button>
+                </div>
               </div>
             </div>
             <div className="qna-foot">
               <Link to="/qna">
-                <div className="qna-content-btn">목록보기</div>
+                <div className="qna-link-list">목록보기</div>
               </Link>
             </div>
             <ul className="qna-page">
