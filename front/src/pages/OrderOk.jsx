@@ -9,10 +9,17 @@ export default function OrderOk() {
     console.log(orderItem);
     return (
         <div className="order-result">
-            <h1>주문이 완료되었습니다.</h1>
-            <ul>
-                <li>주문번호 : {orderInfo.orderNumber}</li>
-            </ul>
+            <div className="order-result-header">
+                주문 완료
+            </div>
+            <div className="order-result-ok">
+                <p>고객님의 주문이</p>
+                <p>정상적으로 완료되었습니다.</p>
+            </div>
+            <div className="order-number-price">
+                <span>주문번호</span> <span>{orderInfo.orderNumber}</span>
+            </div>
+           
 
             <ul>
             {orderItem.map((obj)=>(
