@@ -84,15 +84,15 @@ export default function Order() {
       emailId: "",
       emailDomain: "",
     });
-
+    
     const [orderInfo, setOrderInfo] =useState({
       orderNumber : orderNumber,
       userId : userInfo.userId,
       totalPrice : totalPrice,
       zipcode :'',
       address : '',
-      detailAddress : ''
-  
+      detailAddress : '',
+      orderItem:orderItem
     })
 
  
@@ -272,17 +272,39 @@ export default function Order() {
 
 
   const order = () => {
-    const url = `http://127.0.0.1:8080/order/create`
+    const url1 = `http://127.0.0.1:8080/order/create`;
+    const url2 = `http://127.0.0.1:8080/order/orderdetail`;
+  
+    // 첫 번째 axios 호출
     axios({
-      method:"POST",
-      url : url,
-      data : orderInfo
-    }).then(result => { if(result.data.cnt === 1){
-      alert("insert ok")
-    }}
-
-    )
-  }
+      method: "POST",
+      url: url1,
+      data: orderInfo
+    })
+    .then(result => {
+      if (result.data.cnt === 1) {
+        alert("insert ok");
+      }
+    })
+    .catch(error => {
+      console.error('Error in first axios call:', error);
+    });
+  
+    // 두 번째 axios 호출
+    axios({
+      method: "POST",
+      url: url2,
+      data: orderInfo
+    })
+    .then(result => {
+      if (result.data.cnt === 1) {
+        alert("insert ok2");
+      }
+    })
+    .catch(error => {
+      console.error('Error in second axios call:', error);
+    });
+  };
 
 
   return (
