@@ -14,7 +14,6 @@ export default function Product({ name }) {
   const productThumbnailRef = useRef(null);
 
   const url = "http://127.0.0.1:8080/product";
-  console.log("아이템", items);
 
   useEffect(() => {
     axios({
@@ -65,7 +64,7 @@ export default function Product({ name }) {
 
   return (
     <div className="product-wrapper">
-      <h1>{name}</h1>
+      <h1 className="product-category">{name}</h1>
       <div className="product-thumbnail">
         <ul className="product-list">
           {currentItems.map((obj, index) => (
@@ -90,27 +89,28 @@ export default function Product({ name }) {
               <div className="product-inner">
                 <Link to={`/shop/detail/${obj.pid}`}>
                   <img
+                    className="product-inner-img"
                     src={`http://localhost:8080/${obj.pimage}`}
                     alt={obj.pname}
                     ref={productThumbnailRef}
                   />
                 </Link>
-                <p  className="product-category-name"> {obj.category_name} </p>
+                <p className="product-category-name"> {obj.category_name} </p>
               </div>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Pagination */}
-      <Pagination
-        className="product-pagination"
-        current={currentPage}
-        total={items.length}
-        pageSize={itemsPerPage}
-        onChange={handlePageChange}
-      />
 
+      {/* Pagination */}
+        <Pagination
+          className="product-pagination"
+          current={currentPage}
+          total={items.length}
+          pageSize={itemsPerPage}
+          onChange={handlePageChange}
+        />
       {/* Modal component */}
       {selectedProduct && (
         <AddToCartModal product={selectedProduct} closeModal={closeModal} />

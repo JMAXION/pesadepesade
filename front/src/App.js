@@ -49,6 +49,7 @@ export default function App() {
         { path: "/about", element: <About /> },
         { path: "/shop", element: <Shop /> },
         { path: "/shop/all", element: <Shop /> },
+        { path: "/shop/:category", element: <Shop /> },
         { path: "/shop/detail/:pid", element: <ShopProductDetail /> },
         // { path: "/shop/detail/:pid/:rid", element: <ReviewContent /> },
         { path: "/shop/detail/reviewWrite", element: <ReviewWrite /> },
