@@ -13,6 +13,7 @@ import journalRouter from "./router/journalRouter.js";
 import memberRouter from "./router/memberRouter.js";
 import adminRouter from "./router/adminRouter.js";
 import orderRouter from "./router/orderRouter.js";
+import mypageRouter from "./router/mypageRouter.js";
 
 const server = express();
 const port = 8080;
@@ -34,6 +35,7 @@ server.use("/order", orderRouter);
 server.use("/categories", categoryRouter);
 server.use("/journal", journalRouter);
 server.use("/member", memberRouter);
+server.use("/mypage", mypageRouter);
 
 server.use("/admin", adminRouter);
 

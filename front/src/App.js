@@ -37,7 +37,7 @@ import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 import ServiceTerm from "./pages/ServiceTerm.jsx";
 import PrivatePolicy from "./pages/PrivatePolicy.jsx";
 import Order from "./pages/Order.jsx";
-
+import OrderOk from './pages/OrderOk.jsx'
 import ReviewWrite from "./pages/reviews/ReviewWrite.jsx";
 export default function App() {
   const router = createBrowserRouter([
@@ -88,6 +88,7 @@ export default function App() {
         { path: "/privatepolicy", element: <PrivatePolicy /> },
         { path: "/mypage/myboard", element: <MyPageBoard /> },
         { path: "/order", element: <Order /> },
+        { path: "/orderok", element: <OrderOk/>}
       ],
     },
   ]);

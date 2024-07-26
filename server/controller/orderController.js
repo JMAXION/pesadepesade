@@ -1,8 +1,8 @@
 import * as repository from '../repository/orderRepository.js';
 
 export const createOrder = async (req, res) => {
-     const params = req.body;
-     const result = await repository.createOrder(params)
+     const orderInfo = req.body;
+     const result = await repository.createOrder(orderInfo)
      res.json(result)
 }
 

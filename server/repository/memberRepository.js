@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const getSignup = async (formData) => {
-  // console.log("formdata=>", formData);
   let result_rows = 0;
 
   let phone1 = formData.phoneNumber1;

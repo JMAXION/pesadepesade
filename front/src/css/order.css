@@ -172,12 +172,12 @@ tbody .order-phonenumber input {
   border-bottom: 1px solid #999;
 }
 
-.order-coupon p {
+.order-coupon-p {
   margin: 5px 0 20px 808px;
   font-size: 12px;
 }
 
-.order-coupon div {
+.order-coupon-div {
   height: 42px;
   font-size: 16px;
   line-height: 30px;
@@ -323,6 +323,18 @@ tbody .order-phonenumber input {
   background: var(--color-black);
   color: var(--color-white);
 }
+
+.order-result{
+  margin-top: 10rem;
+  text-align: center;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
 /* 모달 배경을 어둡게 만드는 오버레이 */
 .modal-overlay {
   position: fixed;
@@ -352,12 +364,6 @@ tbody .order-phonenumber input {
   animation: fadeOut 0.5s forwards;
 }
 
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
 .admincoupon-admin-table {
   width: 700px;
   margin: 2rem auto;
@@ -365,6 +371,9 @@ tbody .order-phonenumber input {
 .admincoupon-admin-table-table {
   width: 100%;
   border-collapse: collapse;
+}
+.admincoupon-admin-table-table-thead {
+  background-color: black;
 }
 .admincoupon-admin-table-title {
   color: white;
@@ -375,7 +384,8 @@ tbody .order-phonenumber input {
 .admincoupon-admin-table-tbody {
   text-align: center;
 }
-.admincoupon-admin-table-tbody th,
-.admincoupon-admin-table-tbody td {
+.admincoupon-admin-table-tbody-th,
+.admincoupon-admin-table-tbody-td {
   padding: 0.5rem 0;
+  background-color: white;
 }
