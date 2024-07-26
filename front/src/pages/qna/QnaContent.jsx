@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../css/board.css";
 import axios from "axios";
 import { getUser } from "../../util/localStorage";
+import Comments from "../../components/Comments";
 
 export default function QnaContent() {
   const userId = getUser();
@@ -204,46 +205,7 @@ export default function QnaContent() {
                 <p>작성자만 수정할 수 있습니다</p>
               )}
             </div>
-            <div className="qna-comments">
-              <h4 className="qna-comments h4">댓글</h4>
-              <div className="comments-list">
-                {comments.map((comment) => (
-                  <div key={comment.comment_id} className="comment-item">
-                    <div className="comment-user">{comment.user_id}</div>
-                    <div className="comment-body">
-                      <div className="comment-text">{comment.comment_text}</div>
-                      <div className="comment-date">
-                        {new Date(comment.created_at).toLocaleString()}
-                      </div>
-                    </div>
-                    <button
-                      className="comment-btn"
-                      onClick={() =>
-                        handleDeleteComment(comment.comment_id, comment.user_id)
-                      }
-                    >
-                      삭제
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <div className="comment-form">
-                <textarea
-                  className="qna-comments textarea"
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                  placeholder="댓글을 입력하세요"
-                />
-                <div className="qna-comments-btn">
-                  <button
-                    className="qna-comments-btn button"
-                    onClick={handleAddComment}
-                  >
-                    댓글 추가
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Comments />
             <div className="qna-foot">
               <Link to="/qna">
                 <div className="qna-link-list">목록보기</div>
