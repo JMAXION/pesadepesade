@@ -69,7 +69,7 @@ export default function Order() {
     year + "" + month + "" + day + userInfo.userId + hour + "" + minute;
 
     const totalPrice = orderItem.reduce(
-      (acc, item) => acc + item.pprice * item.qty -couponPrice,
+      (acc, item) => acc + item.pprice * item.qty ,
       0
     );
 
@@ -88,7 +88,7 @@ export default function Order() {
     const [orderInfo, setOrderInfo] =useState({
       orderNumber : orderNumber,
       userId : userInfo.userId,
-      totalPrice : totalPrice,
+      totalPrice : totalPrice - couponPrice,
       zipcode :'',
       address : '',
       detailAddress : '',
@@ -97,16 +97,16 @@ export default function Order() {
 
  
 
-  const calculateTotalPrice = (items) => {
-    if (!Array.isArray(items)) {
-      console.error("items is not an array:", items);
-      return 0;
-    }
-    return items.reduce((acc, item) => acc + (item.tprice || 0), 0)-couponPrice;
-  };
+  // const calculateTotalPrice = (items) => {
+  //   if (!Array.isArray(items)) {
+  //     console.error("items is not an array:", items);
+  //     return 0;
+  //   }
+  //   return items.reduce((acc, item) => acc + (item.tprice || 0), 0)-couponPrice;
+  // };
 
 
-  const total = calculateTotalPrice(orderItem);
+  // const total = calculateTotalPrice(orderItem);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -268,7 +268,7 @@ export default function Order() {
     if (userId) {
       originMemberInfo();
     }
-  }, [userId,couponPrice,totalPrice,orderFormData]);
+  }, [userId/* ,couponPrice,totalPrice,orderFormData */]);
 
 
   const order = () => {
@@ -640,7 +640,7 @@ export default function Order() {
         </div>
         <div className="order-final">
         <Link to="/orderok" state={{ orderInfo,orderItem }}>
-            <button type="button" onClick={order}>{totalPrice} krw 결제하기</button>
+            <button type="button" onClick={order}>{(totalPrice - couponPrice).toLocaleString()} krw 결제하기</button>
         </Link>
         </div>
       </div>
