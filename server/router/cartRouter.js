@@ -7,5 +7,5 @@ router.post("/", controller.getCarts);
 router.post("/add", controller.addCart);
 router.post("/update", controller.updateCartItem);
 router.delete('/remove', controller.removeCartItem);
-
+router.post('/delete', controller.cartDelete)
 export default router;

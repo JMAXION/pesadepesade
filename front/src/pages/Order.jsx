@@ -274,6 +274,7 @@ export default function Order() {
   const order = () => {
     const url1 = `http://127.0.0.1:8080/order/create`;
     const url2 = `http://127.0.0.1:8080/order/orderdetail`;
+    const url3 = `http://127.0.0.1:8080/cart/delete`
   
     // 첫 번째 axios 호출
     axios({
@@ -304,6 +305,21 @@ export default function Order() {
     .catch(error => {
       console.error('Error in second axios call:', error);
     });
+
+    axios({
+      method: "POST",
+      url: url3,
+      data: orderInfo
+    })
+    .then(result => {
+      if (result.data.cnt === 1) {
+        alert("delete ok");
+      }
+    })
+    .catch(error => {
+      console.error('Error in second axios call:', error);
+    });
+
   };
 
 
