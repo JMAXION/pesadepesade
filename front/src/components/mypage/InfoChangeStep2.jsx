@@ -4,10 +4,13 @@ import DaumPostcode from "react-daum-postcode";
 import { getUser } from "../../util/localStorage";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function InfoChangeStep2() {
   const userId = getUser().userId;
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     userPass: "",
     userPassCheck: "",
@@ -26,6 +29,8 @@ export default function InfoChangeStep2() {
     month: "",
     day: "",
   });
+
+  console.log("폼데이터", formData);
   const refs = {
     userPassRef: useRef(null),
     userPassCheckRef: useRef(null),
@@ -211,19 +216,79 @@ export default function InfoChangeStep2() {
   //   });
   // };
 
-  const handleDeleteUserData = () => {
-    const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
+  const validateUserPass = () => {
+    const passRegEx =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,16}$/;
+    if (!formData.userPass || !passRegEx.test(formData.userPass)) {
+      alert(
+        "비밀번호는 대소문자, 숫자, 특수문자 중 3가지 이상을 조합하여 8자에서 16자 사이로 입력해 주세요."
+      );
+      refs.userPassRef.current.focus();
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const handleUpdateUserData = () => {
+    if (!validateUserPass()) {
+      return;
+    }
+    if (formData.userPass !== formData.userPassCheck) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    const url = "http://127.0.0.1:8080/mypage/updateuserdata";
+
     axios({
       method: "post",
       url: url,
-      data: userId,
+      data: {
+        userId: userId,
+        formData: formData,
+      },
+    }).then((res) => {
+      if (res.data) {
+        alert("회원 정보가 수정되었습니다.");
+      } else {
+        alert("회원정보 수정 중 오류가 발생했습니다");
+      }
+    });
+  };
+
+  const handleDeleteUserData = async () => {
+    /*   const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
+    await axios({
+      method: "post",
+      url: url,
+      data: { userId },
     }).then((res) => {
       if (res.data === 0) {
         alert("회원 탈퇴가 완료되었습니다.");
+        localStorage.removeItem("accessToken"); // 예시: 로그인 토큰을 로컬 스토리지에서 삭제
+        navigate("/");
       } else {
-        alert("틀림");
+        alert("탈퇴 도중 오류가 발생했습니다. 다시 시도해 주세요.");
       }
     });
+ */
+
+    try {
+      const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
+      const res = await axios.post(url, { userId });
+
+      if (res.data === 0) {
+        alert("회원 탈퇴가 완료되었습니다.");
+        localStorage.removeItem("accessToken");
+        navigate("/");
+      } else {
+        alert("탈퇴에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("회원 탈퇴 오류:", error);
+      alert("회원 탈퇴 중 오류가 발생했습니다.");
+    }
   };
 
   return (
@@ -511,7 +576,9 @@ export default function InfoChangeStep2() {
         </table>
 
         <p className="profileedit-buttons">
-          <button className="profileedit-button">Edit Account</button>
+          <button className="profileedit-button" onClick={handleUpdateUserData}>
+            Edit Account
+          </button>
           <button className="profileedit-button" onClick={handleDeleteUserData}>
             Delete Account
           </button>

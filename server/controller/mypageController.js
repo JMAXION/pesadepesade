@@ -16,6 +16,14 @@ export const getUserData = async (req, res) => {
   res.end();
 };
 
+export const getUpdateUserData = async (req, res) => {
+  const { userId, formData } = req.body;
+  const result = await repository.getUpdateUserData(userId, formData);
+
+  res.json(result);
+  res.end();
+};
+
 export const getDeleteUserData = async (req, res) => {
   const { userId } = req.body;
   const result = await repository.getDeleteUserData(userId);
