@@ -65,3 +65,32 @@ export const getUserInfo = async (userId) => {
 
   return db.execute(sql, [userId]).then(([result]) => result[0]);
 };
+
+export const list = async (userId) => {
+  const sql = `
+SELECT 
+    po.oid, 
+    po.user_id, 
+    po.total_price, 
+    left(po.odate ,10) as odate, 
+    CONCAT(
+        MAX(CASE WHEN rn = 1 THEN CONCAT(pp.pname, ' ', pp.pDetail) ELSE NULL END), 
+        ' 외 ', 
+        COUNT(pod.pid) - 1, 
+        '건'
+    ) AS full_detail
+FROM 
+    (SELECT 
+        oid, 
+        pid, 
+        ROW_NUMBER() OVER (PARTITION BY oid ORDER BY od_id) AS rn
+    FROM pesade_order_detail) pod
+JOIN pesade_order po ON po.oid = pod.oid
+JOIN pesade_product pp ON pp.pid = pod.pid
+WHERE po.user_id = 'test'
+GROUP BY po.oid, po.user_id, po.total_price, po.odate
+ORDER BY po.odate DESC;
+
+  `;
+  return db.execute(sql, [userId]).then((result) => result[0]);
+};

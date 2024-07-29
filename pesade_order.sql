@@ -1,4 +1,3 @@
--- 주문 테이블
 CREATE TABLE pesade_order (
     oid VARCHAR(30) PRIMARY KEY, -- 주문 번호
     user_id VARCHAR(50), -- 사용자 아이디
@@ -6,7 +5,7 @@ CREATE TABLE pesade_order (
     odate DATETIME, -- 주문 날짜
     CONSTRAINT fk_order_user FOREIGN KEY (user_id) REFERENCES pesade_member(user_id)
 );
-drop table pesade_order;
+
 
 -- 주문 상세 테이블
 

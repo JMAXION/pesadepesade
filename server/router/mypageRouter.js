@@ -32,6 +32,12 @@ const upload = multer({
   fileFilter: fileFilter,
 });
 
+router.get("/profileupload", controller.getProfileImage);
+router.post(
+  "/upload-profile-image",
+  upload.single("profileImage"),
+  controller.uploadProfileImage
+); // multer 미들웨어 추가
 router.post("/passconfirm", controller.getPassConfirm);
 router.post("/userdata", controller.getUserData);
 router.post("/updateuserdata", controller.getUpdateUserData);
