@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Product from "../components/Product";
 import { useParams } from "react-router-dom";
 
 export default function Shop() {
   const { category } = useParams();
   const [filter, setFilter] = useState("all");
+  const navigate = useNavigate();
+
   const aname = ["jomalone", "pesade", "bvgari", "gucci","dior"];
 
   useEffect(() => {
@@ -12,6 +15,7 @@ export default function Shop() {
   }, [category]);
 
   function handleChange(type) {
+    navigate(`/shop/${type}`);
     setFilter(type);
   }
 
