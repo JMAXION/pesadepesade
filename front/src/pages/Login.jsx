@@ -45,7 +45,8 @@ export default function Login() {
             const userInfo = {
               userId: res.id,
               iat: 0,
-              /*   nickname: res.properties.nickname, */
+              nickname: res.properties.nickname,
+              type: "kakao",
             };
 
             /*  window.Kakao.Auth.setAccessToken("${ACCESS_TOKEN}");*/
@@ -53,9 +54,6 @@ export default function Login() {
             dispatch(setUserInfo(userInfo)); // 사용자 정보를 리덕스 상태에 저장
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
             cookie.setCookie("x-auth-jwt", authObj);
-            /*     dispatch(getIsLogin({ formData: userInfo })); // 로그인 상태 업데이트 */
-            /* 
-            handleKakaoLoginRequest(authObj.access_token); // 여기에서 호출 */
           },
           fail: (error) => {
             console.error(error);
@@ -68,24 +66,6 @@ export default function Login() {
     });
   };
 
-  /*   const handleKakaoLoginRequest = async (accessToken) => {
-    const url = "http://127.0.0.1:8080/member/kakaoLogin";
-    const data = { accessToken };
-
-    const loginResult = await axiosPost({ url, data });
-    const cnt = loginResult.cnt;
-
-    if (cnt === 1) {
-      cookie.setCookie("x-auth-jwt", loginResult.token);
-      const userInfo = jwtDecode(loginResult.token);
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-      dispatch(setIsLogin({ cnt }));
-    } else {
-      alert(loginResult.message || "Login failed");
-    }
-  };
- */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

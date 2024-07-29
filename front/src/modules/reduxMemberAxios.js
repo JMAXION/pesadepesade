@@ -59,6 +59,7 @@ export function getIsLogin({ formData }) {
       if (cnt === 1) {
         cookie.setCookie("x-auth-jwt", loginResult.token);
         const userInfo = jwtDecode(loginResult.token);
+
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
         dispatch(setIsLogin({ cnt }));

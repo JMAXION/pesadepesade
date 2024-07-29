@@ -55,9 +55,6 @@ export default function InfoChangeStep2() {
   };
 
   const changeEmailDomain = (e, refs, handleChange) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
-
     const name = e.target.name;
     const value = e.target.value;
 
@@ -231,14 +228,15 @@ export default function InfoChangeStep2() {
   };
 
   const handleUpdateUserData = () => {
-    if (!validateUserPass()) {
-      return;
+    if (formData.userPass || formData.userPassCheck) {
+      if (!validateUserPass()) {
+        return;
+      }
+      if (formData.userPass !== formData.userPassCheck) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+      }
     }
-    if (formData.userPass !== formData.userPassCheck) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-
     const url = "http://127.0.0.1:8080/mypage/updateuserdata";
 
     axios({
@@ -258,22 +256,6 @@ export default function InfoChangeStep2() {
   };
 
   const handleDeleteUserData = async () => {
-    /*   const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
-    await axios({
-      method: "post",
-      url: url,
-      data: { userId },
-    }).then((res) => {
-      if (res.data === 0) {
-        alert("회원 탈퇴가 완료되었습니다.");
-        localStorage.removeItem("accessToken"); // 예시: 로그인 토큰을 로컬 스토리지에서 삭제
-        navigate("/");
-      } else {
-        alert("탈퇴 도중 오류가 발생했습니다. 다시 시도해 주세요.");
-      }
-    });
- */
-
     try {
       const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
       const res = await axios.post(url, { userId });
@@ -292,7 +274,7 @@ export default function InfoChangeStep2() {
   };
 
   return (
-    <div className="content">
+    <div className="content mypage-info-step2">
       <div className="editprofile">
         <SubTitle title="Edit Profile" />
         <table className="editprofile-table">
