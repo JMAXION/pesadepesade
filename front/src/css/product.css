@@ -96,6 +96,20 @@ img.product-inner-img.gucci.프로푸모.디.피오리\,.\31 00ML {
   top: 22px;
 }
 
+img.product-inner-img.bvgari.익스트림.오.드.뚜왈렛.\31 00ML {
+  max-width: 560px !important;
+  right: 89px;
+  top: -13px;
+}
+
+img.product-inner-img.gucci.더.아이즈.오브.더.타이거\,.\31 00ML,
+img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ML {
+  max-width: 550px;
+  right: 57px;
+
+}
+
+
 .product-inner::after {
   content: "";
   position: absolute;
