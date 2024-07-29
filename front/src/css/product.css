@@ -71,6 +71,31 @@ body {
   object-fit: contain; 
 }
 
+
+.product-inner-img.bvgari {
+  max-width: 500px;
+  margin-right: 300px;
+  right: 55px
+}
+
+img.product-inner-img.bvgari.오.드.뚜왈렛.\31 00ML {
+  top: 50px;
+}
+
+.product-inner-img.pesade {
+  max-width: 300px;
+  left: 50px;
+}
+
+.product-inner-img.dior {
+  max-width: 500px;
+  right: 55px
+}
+
+img.product-inner-img.gucci.프로푸모.디.피오리\,.\31 00ML {
+  top: 22px;
+}
+
 .product-inner::after {
   content: "";
   position: absolute;

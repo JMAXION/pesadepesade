@@ -62,6 +62,8 @@ export default function Product({ name }) {
     return null; // Render null or loading indicator while 'items' is empty
   }
 
+  console.log('찍어보기',currentItems);
+
   return (
     <div className="product-wrapper">
       <h1 className="product-category">{name}</h1>
@@ -89,7 +91,7 @@ export default function Product({ name }) {
               <div className="product-inner">
                 <Link to={`/shop/detail/${obj.pid}`}>
                   <img
-                    className="product-inner-img"
+                    className={`product-inner-img ${obj.category_name} ${obj.pdetail} `}
                     src={`http://localhost:8080/${obj.pimage}`}
                     alt={obj.pname}
                     ref={productThumbnailRef}
