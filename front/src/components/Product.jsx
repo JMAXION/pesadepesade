@@ -4,13 +4,14 @@ import "../css/product.css"; // CSS 파일을 임포트합니다
 import AddToCartModal from "./AddToCartModal";
 import { Link } from "react-router-dom";
 import Pagination from "rc-pagination";
+import en_US from 'rc-pagination/lib/locale/en_US';
 import "rc-pagination/assets/index.css";
 
 export default function Product({ name }) {
   const [items, setItems] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
   const productThumbnailRef = useRef(null);
 
   const url = "http://127.0.0.1:8080/product";
@@ -104,16 +105,17 @@ export default function Product({ name }) {
         </ul>
       </div>
 
+      <Pagination
+        className="product-pagination"
+        current={currentPage}
+        total={items.length}
+        pageSize={itemsPerPage}
+        onChange={handlePageChange}
+        locale={en_US}
+        showLessItems
+      />
 
-      {/* Pagination */}
-        <Pagination
-          className="product-pagination"
-          current={currentPage}
-          total={items.length}
-          pageSize={itemsPerPage}
-          onChange={handlePageChange}
-        />
-      {/* Modal component */}
+
       {selectedProduct && (
         <AddToCartModal product={selectedProduct} closeModal={closeModal} />
       )}
