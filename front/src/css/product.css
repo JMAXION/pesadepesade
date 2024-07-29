@@ -87,6 +87,10 @@ img.product-inner-img.bvgari.오.드.뚜왈렛.\31 00ML {
   left: 50px;
 }
 
+.product-inner-img.jomalone {
+  right: 10px;
+}
+
 .product-inner-img.dior {
   max-width: 500px;
   right: 55px
@@ -106,6 +110,7 @@ img.product-inner-img.gucci.더.아이즈.오브.더.타이거\,.\31 00ML,
 img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ML {
   max-width: 550px;
   right: 57px;
+  top: -17px;
 
 }
 
@@ -700,18 +705,60 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ML {
   cursor: pointer;
 }
 
-.product-pagination{
+.product-pagination {
   display: flex !important; 
   justify-content: center !important;
-  margin-top: 50px !important;
-   padding: 5rem !important;
-   position:fixed;
-   top:15%;
-   right:10%;
-
+  position: absolute !important;
+  top: -60px !important;
+  right: 50% !important;
+  transform: translateX(50%) !important;
 }
 
-.pagination-container {
+
+.rc-pagination-item {
+  margin: 0 5px !important;
+  padding: 0.5rem 1rem !important;
+  border: none !important; 
+  background-color: transparent !important; 
+  cursor: pointer !important;
+  transition: color 0.3s, background-color 0.3s !important;
+  font-size: 1rem !important;
+}
+
+.rc-pagination-item:hover a {
+  color: #333 !important;
+}
+
+
+.rc-pagination-item-link:hover {
+  color: #333 !important;
+}
+
+
+.rc-pagination-item-active a {
+  /* background-color: #333 !important; */
+  color: #333 !important;
+  border-bottom: 2px solid #333 !important;
+  font-weight: bold !important; 
+  line-height: 1.4 !important;
+}
+
+
+.rc-pagination-disabled .rc-pagination-item-link, .rc-pagination-disabled:hover .rc-pagination-item-link{
+  background-color: inherit !important;
+}
+
+.rc-pagination-prev .rc-pagination-item-link, .rc-pagination-next .rc-pagination-item-link {
+  font-size: 30px !important;
+  background-color: inherit !important;
+  border: none !important;
+  transition: all 0.3s;
+}
+
+.rc-pagination-disabled .rc-pagination-item-link, .rc-pagination-disabled:hover .rc-pagination-item-link, .rc-pagination-disabled:focus .rc-pagination-item-link {
+  cursor: default  !important ;
+}
+/* .pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -719,7 +766,7 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ML {
 
 .image-pagination {
   margin-top: 10px;
-}
+} */
 
 .button-group {
   display: flex;
