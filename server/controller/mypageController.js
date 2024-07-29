@@ -23,3 +23,35 @@ export const getDeleteUserData = async (req, res) => {
   res.json(result);
   res.end();
 };
+
+export const getProfileImage = async (req, res) => {
+  const userId = req.query.userId;
+  console.log(`Received request to get profile image for userId: ${userId}`); // 로그 추가
+
+  try {
+    const profileImageUrl = await repository.getProfileImageUrl(userId);
+    if (profileImageUrl) {
+      console.log(`Sending profile image URL: ${profileImageUrl}`); // 로그 추가
+      res.send({ profileImageUrl });
+    } else {
+      console.log("User not found"); // 로그 추가
+      res.status(404).send({ message: "User not found" });
+    }
+  } catch (err) {
+    console.error("Error fetching profile image:", err); // 로그 추가
+    res.status(500).send(err);
+  }
+};
+
+export const uploadProfileImage = async (req, res) => {
+  const userId = req.body.userId;
+  const profileImageUrl = `/uploads/${req.file.filename}`;
+
+  console.log("upload", profileImageUrl, userId);
+  try {
+    await repository.updateProfileImageUrl(userId, profileImageUrl);
+    res.send({ profileImageUrl });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};

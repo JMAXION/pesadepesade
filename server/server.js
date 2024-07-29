@@ -22,7 +22,6 @@ server.use(express.json());
 server.use(cors());
 server.use(express.urlencoded({ extended: true }));
 server.use("/uploads", express.static("uploads"));
-// server.use("/uploadsQnaImg", express.static("uploadsQnaImg"));
 
 server.use("/product", productRouter);
 server.use("/qna", qnaRouter);

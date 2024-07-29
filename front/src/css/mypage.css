@@ -12,7 +12,7 @@
   color: red;
 }
 .mypage-toggle:hover {
-  color: red;
+  color: black;
   cursor: pointer;
 }
 .mypage-toggle-title {
@@ -20,13 +20,13 @@
   margin-bottom: 0.5rem;
 }
 .mypage-toggle-detail {
+  margin: 0 5px;
   font-weight: 400;
-  color: white;
-  font-size: 0.8rem;
-  border-left: 1px dotted black;
+  color: black;
+  font-size: 1rem;
 }
 .mypage-toggle-detail:hover {
-  color: red;
+  color: rgb(255, 17, 17);
   cursor: pointer;
 }
 .mypage-toggle-detail-link {
@@ -39,34 +39,38 @@
 }
 
 .mypage-leftmenu {
-  position: fixed;
+  /* position: fixed; */
+  margin-top: 40px;
+  font-size: 15px;
+  min-height: 300px;
   top: 19.5rem;
   left: 0;
   width: 200px; /* 원하는 너비로 설정 */
   height: 50%;
   overflow-y: auto; /* 메뉴가 길어질 경우 스크롤 가능하게 설정 */
   padding: 20px; /* 원하는 패딩 설정 */
-  background-color: #2d2d2d;
-  color: white;
+  border: 1px solid rgb(179, 169, 151);
+  color: rgb(95, 95, 95);
 }
 
 .mypage-rightmenu {
-  margin-left: 220px; /* left menu의 너비 + 여백 */
   padding: 20px;
   flex: 1; /* 남은 공간을 차지하도록 설정 */
 }
 .mypage-info {
   display: flex;
   justify-content: space-between;
-  background-color: #2d2d2d;
+  background-color: rgb(179, 169, 151);
   color: white;
   padding: 2rem 0;
+  height: 100px;
 }
 .mypage-info-name {
+  display: flex;
   margin-left: 14.8rem;
 }
 .mypage-info-name-highlight {
-  color: red;
+  color: var(--color--bg);
 }
 .mypage-info-buy {
   display: flex;

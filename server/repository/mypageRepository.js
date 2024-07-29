@@ -46,3 +46,36 @@ export const getDeleteUserData = async (userId) => {
   const result = await db.execute(sql, [userId]);
   return result[0].affectedRows;
 };
+
+export const getProfileImageUrl = (userId) => {
+  return new Promise((resolve, reject) => {
+    const query =
+      "SELECT profile_image_url FROM pesade_member WHERE user_id = ?";
+    db.execute(query, [userId], (err, results) => {
+      if (err) {
+        console.error("Database query error:", err); // 에러 로그 추가
+        return reject(err);
+      }
+      if (results.length > 0) {
+        console.log("Query results:", results); // 쿼리 결과 로그 추가
+        resolve(results[0].profile_image_url);
+      } else {
+        console.log("No results found for userId:", userId); // 결과 없음 로그 추가
+        resolve(null);
+      }
+    });
+  });
+};
+
+export const updateProfileImageUrl = (userId, profileImageUrl) => {
+  return new Promise((resolve, reject) => {
+    const sql =
+      "UPDATE pesade_member SET profile_image_url = ? WHERE user_id = ?";
+    db.execute(sql, [profileImageUrl, userId], (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results);
+    });
+  });
+};

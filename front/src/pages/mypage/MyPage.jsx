@@ -3,6 +3,7 @@ import SubTitle from "../../components/SubTitle";
 import "../../css/mypage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser } from "../../util/localStorage";
+import ProfilePictureUpload from "../../components/mypage/ProfileUpload";
 
 export default function MyPage() {
   const userId = getUser().userId;
@@ -25,16 +26,16 @@ export default function MyPage() {
       <SubTitle title="mypage" />
       <ul className="mypage-info">
         <li className="mypage-info-name">
+          <li className="mypage-info-profile">
+            <ProfilePictureUpload />
+          </li>
           <p>
             <span className="mypage-info-name-highlight">{userId}</span> 님은{" "}
             <span className="mypage-info-name-highlight">기본 등급</span>
             입니다.
           </p>
-          <p className="mypage-info-buy">
-            <p>구매금액 0원</p>
-            <p>구매횟수 0건</p>
-          </p>
         </li>
+
         <li className="mypage-info-detail">
           <li className="mypage-info-detail-grade">
             <p>등급혜택 안내</p>
@@ -58,7 +59,7 @@ export default function MyPage() {
       </ul>
       <div className="mypage">
         <div className="mypage-leftmenu">
-          <p className="mypage-toggle-title">마이페이지</p>
+          <p className="mypage-toggle-title">MY PAGE</p>
           <ul>
             <li
               onClick={() => handleToggle("shoppingInfo")}
@@ -137,8 +138,6 @@ export default function MyPage() {
                 >
                   <li className="mypage-toggle-detail">1:1문의</li>
                 </Link>
-                <li className="mypage-toggle-detail">상품문의</li>
-                <li className="mypage-toggle-detail">상품후기</li>
               </>
             )}
           </ul>
@@ -177,26 +176,31 @@ export default function MyPage() {
             </li>
           </ul>
           <ul>
-            <p>나의 게시글</p>
             <ul className="mypage-myscript">
               <li className="mypage-myscript-detail">
-                <p className="mypage-myscript-detail-title">1:1문의</p>
-                <p className="mypage-myscript-detail-answer">
-                  <Link to={"/mypage/myboard"}>
-                    <p>문의내역</p>
-                  </Link>
+                <p className="mypage-myscript-detail-title">My board</p>
+                <p className="mypage-info-buy">
+                  <p>
+                    <li>
+                      <Link to={"/mypage/myboard"}>
+                        <p>문의내역</p>
+                      </Link>
+                    </li>
+                  </p>
                 </p>
               </li>
               <li className="mypage-myscript-detail">
-                <p className="mypage-myscript-detail-title">상품후기</p>
-                <p className="mypage-myscript-detail-answer">
+                <p className="mypage-myscript-detail-title">My Order</p>
+                <p className="mypage-info-buy">
                   <p>
-                    <p>작성가능 후기</p>
-                    <p>작성완료 후기</p>
+                    <li>
+                      <p>구매금액 0</p>
+                      <p>구매횟수 0</p>
+                    </li>
                   </p>
                   <p>
-                    <p>0</p>
-                    <p>0</p>
+                    <p>krw</p>
+                    <p>건</p>
                   </p>
                 </p>
               </li>
