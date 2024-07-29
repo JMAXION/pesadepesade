@@ -17,10 +17,7 @@ export default function GiftCard() {
         <FontAwesomeIcon className={`gift-arrow ${isClick ? 'rotate' : ''}`} icon={faArrowRightLong} />
         {isClick && (
           <div className="gift-content-info poor-story-regular">
-            <img
-              src="https://cafe24.poxo.com/ec01/pesade/riyx6H4Qgn12CNAAvdKWORrW2JQd1TTFoaCJGhyuokq1MWxKxAMOFqImpMhTLUZH/_/wJk/img/detail/message_card.png"
-              alt=""
-            />
+            
             <div className="gift-desc">
               <span className="gift-card">메시지 카드 증정</span>
               <br />

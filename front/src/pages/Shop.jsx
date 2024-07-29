@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 export default function Shop() {
   const { category } = useParams();
   const [filter, setFilter] = useState("all");
-  const aname = ["jomalone", "pesade", "bvgari", "gucci","dior"];
+  const aname = ["jomalone", "pesade", "bvgari", "gucci","dior","byredo"];
 
   useEffect(() => {
     setFilter(category || "all");
