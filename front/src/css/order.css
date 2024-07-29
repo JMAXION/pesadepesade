@@ -324,45 +324,43 @@ tbody .order-phonenumber input {
   color: var(--color-white);
 }
 
-.order-result{
+.order-result {
   margin-top: 5rem;
   margin-left: 50%;
   transform: translateX(-50%);
-  width:1200px;
+  width: 1200px;
   text-align: center;
-  border:1px solid black;
+  border: 1px solid black;
 }
 
-.order-result-header{
-
-  padding:1rem;
+.order-result-header {
+  padding: 1rem;
   font-size: 1.2rem;
   border-bottom: 1px solid black;
 }
 
-
-.order-result-ok{
-  padding-top:5rem;
+.order-result-ok {
+  padding-top: 5rem;
   margin-bottom: 1rem;
   border-bottom: 1px dashed #666666;
-  width:1100px;
+  width: 1100px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
 
-.order-result-ok p:nth-child(2){
+.order-result-ok p:nth-child(2) {
   margin-bottom: 1rem;
 }
 
-.order-number-price{
+.order-number-price {
   display: flex;
   justify-content: space-between;
 }
 
-.order-number-price span:nth-child(1){
+.order-number-price span:nth-child(1) {
   margin-left: 3rem;
 }
-.order-number-price span:nth-child(2){
+.order-number-price span:nth-child(2) {
   margin-right: 3rem;
 }
 
@@ -425,4 +423,39 @@ tbody .order-phonenumber input {
 .admincoupon-admin-table-tbody-td {
   padding: 0.5rem 0;
   background-color: white;
+}
+
+.order-list a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.order-list {
+  margin: -1px 0 0;
+  font-size: 11px;
+  /* border-top: 1px solid #ececec; */
+}
+
+.order-list ul {
+  padding: 0;
+}
+
+.order-list ul li {
+  margin: auto;
+  position: relative;
+  padding: 14px 14px;
+  color: #757575;
+  border-bottom: 1px solid #ececec;
+}
+
+.order-summary .order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-family: "AppleSDGothicNeoL";
+  color: #000;
+}
+.order-summary .order-row.bottom {
+  margin-top: 10px;
 }

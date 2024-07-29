@@ -4,11 +4,14 @@ import SubTitle from "../../components/SubTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
+import OrderResult from "../../components/order/OrderResult.jsx";
 
 export default function MyPageOrder() {
   const location = useLocation();
   const [activeButton, setActiveButton] = useState(1);
   const [activeDate, setActiveDate] = useState(3);
+  const [orderList, setOrderList] = useState([]);
+
   const clickChange = (index) => {
     setActiveButton(index);
   };
@@ -89,7 +92,8 @@ export default function MyPageOrder() {
               <FontAwesomeIcon icon={faTriangleExclamation} /> 취소/교환/반품
               신청은 주문 완료일 기준 7일까지 가능합니다.
             </p>
-            <p className="myorder-orderlist">주문 내역이 없습니다.</p>
+
+            <OrderResult />
           </div>
         )}
         {activeButton === 2 && (

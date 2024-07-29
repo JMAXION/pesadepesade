@@ -53,7 +53,7 @@ export const getProfileImage = async (req, res) => {
 
 export const uploadProfileImage = async (req, res) => {
   const userId = req.body.userId;
-  const profileImageUrl = `/uploads/${req.file.filename}`;
+  const profileImageUrl = `/uploads/profile/${req.file.filename}`; // 수정된 부분
 
   console.log("upload", profileImageUrl, userId);
   try {
