@@ -69,7 +69,7 @@ export default function Order() {
     year + "" + month + "" + day + userInfo.userId + hour + "" + minute;
 
   const totalPrice = orderItem.reduce(
-    (acc, item) => acc + item.pprice * item.qty - couponPrice,
+    (acc, item) => acc + item.pprice * item.qty,
     0
   );
 
@@ -88,23 +88,22 @@ export default function Order() {
   const [orderInfo, setOrderInfo] = useState({
     orderNumber: orderNumber,
     userId: userInfo.userId,
-    totalPrice: totalPrice,
+    totalPrice: totalPrice - couponPrice,
     zipcode: "",
     address: "",
     detailAddress: "",
+    orderItem: orderItem,
   });
 
-  const calculateTotalPrice = (items) => {
-    if (!Array.isArray(items)) {
-      console.error("items is not an array:", items);
-      return 0;
-    }
-    return (
-      items.reduce((acc, item) => acc + (item.tprice || 0), 0) - couponPrice
-    );
-  };
+  // const calculateTotalPrice = (items) => {
+  //   if (!Array.isArray(items)) {
+  //     console.error("items is not an array:", items);
+  //     return 0;
+  //   }
+  //   return items.reduce((acc, item) => acc + (item.tprice || 0), 0)-couponPrice;
+  // };
 
-  const total = calculateTotalPrice(orderItem);
+  // const total = calculateTotalPrice(orderItem);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -263,19 +262,56 @@ export default function Order() {
     if (userId) {
       originMemberInfo();
     }
-  }, [userId, couponPrice, totalPrice, orderFormData]);
+  }, [userId /* ,couponPrice,totalPrice,orderFormData */]);
 
   const order = () => {
-    const url = `http://127.0.0.1:8080/order/create`;
+    const url1 = `http://127.0.0.1:8080/order/create`;
+    const url2 = `http://127.0.0.1:8080/order/orderdetail`;
+    const url3 = `http://127.0.0.1:8080/cart/delete`;
+
+    // 첫 번째 axios 호출
     axios({
       method: "POST",
-      url: url,
+      url: url1,
       data: orderInfo,
-    }).then((result) => {
-      if (result.data.cnt === 1) {
-        alert("insert ok");
-      }
-    });
+    })
+      .then((result) => {
+        if (result.data.cnt === 1) {
+          alert("insert ok");
+        }
+      })
+      .catch((error) => {
+        console.error("Error in first axios call:", error);
+      });
+
+    // 두 번째 axios 호출
+    axios({
+      method: "POST",
+      url: url2,
+      data: orderInfo,
+    })
+      .then((result) => {
+        if (result.data.cnt === 1) {
+          alert("insert ok2");
+        }
+      })
+      .catch((error) => {
+        console.error("Error in second axios call:", error);
+      });
+
+    axios({
+      method: "POST",
+      url: url3,
+      data: orderInfo,
+    })
+      .then((result) => {
+        if (result.data.cnt === 1) {
+          alert("delete ok");
+        }
+      })
+      .catch((error) => {
+        console.error("Error in second axios call:", error);
+      });
   };
 
   return (
@@ -614,7 +650,7 @@ export default function Order() {
         <div className="order-final">
           <Link to="/orderok" state={{ orderInfo, orderItem }}>
             <button type="button" onClick={order}>
-              {totalPrice} krw 결제하기
+              {(totalPrice - couponPrice).toLocaleString()} krw 결제하기
             </button>
           </Link>
         </div>

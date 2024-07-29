@@ -83,6 +83,22 @@ export const removeCartItem = async (cid) => {
   return { affectedRows: result.affectedRows };
 }
 
+
+export const cartDelete = async (cartList) => {
+  console.log(cartList);
+  let result_rows = 0;
+  const sql = `DELETE FROM pesade_cart WHERE user_id = ?`;
+  try {
+    const [result] = await db.execute(sql, [cartList.userId]);
+    result_rows = result.affectedRows;
+  } catch (error) {
+    console.log('Error in createOrder:', error);
+    throw error;
+  }
+
+  return { cnt: result_rows };
+};
+
 // export const qtyIncrease = async (cid) => {
 //   let result_rows = 0;
 //   const sql = `update pesade_cart set qty = qty+1

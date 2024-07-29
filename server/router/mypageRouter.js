@@ -34,24 +34,7 @@ const upload = multer({
 
 router.post("/passconfirm", controller.getPassConfirm);
 router.post("/userdata", controller.getUserData);
-router.post("/userdata", controller.getUserData);
-router.get(
-  "/profileupload",
-  (req, res, next) => {
-    console.log("GET /mypage/profileupload"); // 로그 추가
-    next();
-  },
-  controller.getProfileImage
-);
-
-router.post(
-  "/upload-profile-image",
-  upload.single("profileImage"),
-  (req, res, next) => {
-    console.log("POST /mypage/upload-profile-image"); // 로그 추가
-    next();
-  },
-  controller.uploadProfileImage
-);
+router.post("/updateuserdata", controller.getUpdateUserData);
+router.post("/deleteuserdata", controller.getDeleteUserData);
 
 export default router;
