@@ -92,6 +92,10 @@ export default function Order() {
     zipcode: "",
     address: "",
     detailAddress: "",
+    userName: "",
+    phoneNumber1: "",
+    phoneNumber2: "",
+    phoneNumber3: "",
     orderItem: orderItem,
   });
 
@@ -234,6 +238,10 @@ export default function Order() {
       zipcode: memberInfo.zipcode,
       address: addressParts[0] || "",
       detailAddress: addressParts[1] || "",
+      userName: memberInfo.user_name,
+      phoneNumber1: memberInfo.phone.split("-")[0] || "",
+      phoneNumber2: memberInfo.phone.split("-")[1] || "",
+      phoneNumber3: memberInfo.phone.split("-")[2] || "",
     });
   };
 
@@ -277,7 +285,6 @@ export default function Order() {
     })
       .then((result) => {
         if (result.data.cnt === 1) {
-          alert("insert ok");
         }
       })
       .catch((error) => {
@@ -292,7 +299,6 @@ export default function Order() {
     })
       .then((result) => {
         if (result.data.cnt === 1) {
-          alert("insert ok2");
         }
       })
       .catch((error) => {
@@ -306,7 +312,6 @@ export default function Order() {
     })
       .then((result) => {
         if (result.data.cnt === 1) {
-          alert("delete ok");
         }
       })
       .catch((error) => {
