@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import "../../css/login.css";
 
 export default function IdRetrievalForm({ formData, idResult }) {
-  console.log("idresult==>", idResult);
-
   return (
     <div className="content">
       <div className="idretrievalform">

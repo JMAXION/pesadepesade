@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { getIsLogin, validationCheck } from "../modules/reduxMemberAxios";
 import { setUserInfo } from "../reducers/memberReducer";
-
 import { setIsLogin /* , setIsLogout  */ } from "../reducers/memberReducer";
 import { axiosPost } from "../modules/reduxAxios.js";
 import { jwtDecode } from "jwt-decode";
+
 import * as cookie from "../util/cookies.js";
 
 export default function Login() {
@@ -36,26 +36,26 @@ export default function Login() {
 
   const handleKakaoLogin = () => {
     if (!window.Kakao.isInitialized()) return;
-
+    /*   window.Kakao.Auth.setAccessToken("${ACCESS_TOKEN}"); */
     window.Kakao.Auth.login({
       success: (authObj) => {
-        console.log(authObj);
-
         window.Kakao.API.request({
           url: "/v2/user/me",
           success: (res) => {
-            console.log(res);
-
-            // 사용자 정보를 getIsLogin으로 전달
             const userInfo = {
-              id: res.id,
-              nickname: res.properties.nickname,
+              userId: res.id,
+              iat: 0,
+              /*   nickname: res.properties.nickname, */
             };
 
-            dispatch(setUserInfo(userInfo)); // 사용자 정보를 리덕스 상태에 저장
-            dispatch(getIsLogin({ formData: userInfo })); // 로그인 상태 업데이트
+            /*  window.Kakao.Auth.setAccessToken("${ACCESS_TOKEN}");*/
 
-            handleKakaoLoginRequest(authObj.access_token); // 여기에서 호출
+            dispatch(setUserInfo(userInfo)); // 사용자 정보를 리덕스 상태에 저장
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            cookie.setCookie("x-auth-jwt", authObj);
+            /*     dispatch(getIsLogin({ formData: userInfo })); // 로그인 상태 업데이트 */
+            /* 
+            handleKakaoLoginRequest(authObj.access_token); // 여기에서 호출 */
           },
           fail: (error) => {
             console.error(error);
@@ -68,7 +68,7 @@ export default function Login() {
     });
   };
 
-  const handleKakaoLoginRequest = async (accessToken) => {
+  /*   const handleKakaoLoginRequest = async (accessToken) => {
     const url = "http://127.0.0.1:8080/member/kakaoLogin";
     const data = { accessToken };
 
@@ -85,7 +85,7 @@ export default function Login() {
       alert(loginResult.message || "Login failed");
     }
   };
-
+ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

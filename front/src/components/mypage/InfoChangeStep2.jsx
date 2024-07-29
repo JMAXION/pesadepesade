@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import SubTitle from "../SubTitle";
 import DaumPostcode from "react-daum-postcode";
-import { getUser } from "../../util/localStorage";
+import { getUser, removeUser } from "../../util/localStorage";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function InfoChangeStep2() {
   const userId = getUser().userId;
+
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,7 +31,6 @@ export default function InfoChangeStep2() {
     day: "",
   });
 
-  console.log("폼데이터", formData);
   const refs = {
     userPassRef: useRef(null),
     userPassCheckRef: useRef(null),
@@ -278,9 +278,9 @@ export default function InfoChangeStep2() {
       const url = "http://127.0.0.1:8080/mypage/deleteuserdata";
       const res = await axios.post(url, { userId });
 
-      if (res.data === 0) {
+      if (res.data === 1) {
         alert("회원 탈퇴가 완료되었습니다.");
-        localStorage.removeItem("accessToken");
+        removeUser();
         navigate("/");
       } else {
         alert("탈퇴에 실패했습니다.");
