@@ -145,7 +145,6 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ml {
   font-weight: normal;
   line-height: 18px;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   height: 135px;
   margin-bottom: 1rem;
@@ -374,7 +373,6 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ml {
   color: #000;
   word-break: break-all;
   font-weight: inherit;
-  -webkit-appearance: none;
 }
 
 .purchase-qty-label {
@@ -719,15 +717,15 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ml {
 }
 
 .rc-pagination-item-active a {
-  /* background-color: #333 !important; */
   color: #333 !important;
   border-bottom: 2px solid #333 !important;
   font-weight: bold !important;
   line-height: 1.4 !important;
 }
 
+
 .rc-pagination-disabled .rc-pagination-item-link,
-.rc-pagination-disabled:hover .rc-pagination-item-link {
+.rc-pagination-disabled:hover .rc-pagination-item-link{
   background-color: inherit !important;
 }
 
@@ -742,17 +740,8 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ml {
 .rc-pagination-disabled .rc-pagination-item-link,
 .rc-pagination-disabled:hover .rc-pagination-item-link,
 .rc-pagination-disabled:focus .rc-pagination-item-link {
-  cursor: default !important ;
+  cursor: default  !important ;
 }
-/* .pagination-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.image-pagination {
-  margin-top: 10px;
-} */
 
 .button-group {
   display: flex;
