@@ -3,7 +3,6 @@ import SubTitle from "../../components/SubTitle";
 import "../../css/mypage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser } from "../../util/localStorage";
-import ProfilePictureUpload from "../../components/mypage/ProfileUpload";
 
 export default function MyPage() {
   const userId = getUser().userId;
@@ -26,9 +25,6 @@ export default function MyPage() {
       <SubTitle title="mypage" />
       <ul className="mypage-info">
         <li className="mypage-info-name">
-          <li className="mypage-info-profile">
-            <ProfilePictureUpload />
-          </li>
           <p>
             <span className="mypage-info-name-highlight">{userId}</span> 님은{" "}
             <span className="mypage-info-name-highlight">기본 등급</span>
