@@ -20,8 +20,11 @@ export default function Product({ name }) {
     axios({
       method: "POST",
       url: url,
-      data: { type: name },
+      data: { type: name }, 
     }).then((result) => setItems(result.data));
+  }, [name]);
+  useEffect(() => {
+        setCurrentPage(1);
   }, [name]);
 
   useEffect(() => {
@@ -61,6 +64,14 @@ export default function Product({ name }) {
 
   if (items.length === 0) {
     return null; // Render null or loading indicator while 'items' is empty
+  }
+  if ( currentItems.length === 0 ) {
+    return (
+      <div>제품을 불러오는 중 오류가 발생했습니다.
+        <br/>
+        새로고침을 부탁드려요.
+      </div>
+    )
   }
 
   console.log('찍어보기',currentItems);
@@ -105,16 +116,17 @@ export default function Product({ name }) {
         </ul>
       </div>
 
-      <Pagination
-        className="product-pagination"
-        current={currentPage}
-        total={items.length}
-        pageSize={itemsPerPage}
-        onChange={handlePageChange}
-        locale={en_US}
-        showLessItems
-      />
-
+      {items.length > itemsPerPage && (
+        <Pagination
+          className="product-pagination"
+          current={currentPage}
+          total={items.length}
+          pageSize={itemsPerPage}
+          onChange={handlePageChange}
+          locale={en_US}
+          showLessItems
+        />
+)}
 
       {selectedProduct && (
         <AddToCartModal product={selectedProduct} closeModal={closeModal} />
