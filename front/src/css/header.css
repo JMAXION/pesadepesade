@@ -278,3 +278,14 @@
     text-decoration: none;
   }
 }
+
+
+.cart-item-circle{
+  position: absolute;
+  top:30px;
+  right:90px;
+  width:14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: blue;
+}

@@ -99,6 +99,12 @@ export const cartDelete = async (cartList) => {
   return { cnt: result_rows };
 };
 
+
+export const getCartCount = async(count)=>{
+  const sql =`select count(cid) as count from pesade_cart where user_id = ?`
+  return db.execute(sql, [count.userId]).then((result) => result[0][0]);
+}
+
 // export const qtyIncrease = async (cid) => {
 //   let result_rows = 0;
 //   const sql = `update pesade_cart set qty = qty+1

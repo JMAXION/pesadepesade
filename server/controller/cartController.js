@@ -31,7 +31,14 @@ export const removeCartItem = async (req, res) => {
 
 export const cartDelete = async (req,res)=>{
   const cartList = req.body;
-  console.log(cartList);
+  
   const cartResult = await repository.cartDelete(cartList)
   res.json(cartResult)
+}
+
+export const getCartCount = async(req,res)=>{
+  const count =req.body;
+  console.log(count);
+  const countResult = await repository.getCartCount(count)
+  res.json(countResult)
 }
