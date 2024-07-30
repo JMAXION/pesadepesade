@@ -36,42 +36,6 @@ export const getUserData = async (userId) => {
   return rows;
 };
 
-/* export const getUpdateUserData = async (userId, formData) => {
-  let phone1 = formData.phoneNumber1;
-  let phone2 = formData.phoneNumber2;
-  let phone3 = formData.phoneNumber3;
-
-  const params = [
-    bcrypt.hashSync(formData.userPass, 7),
-    formData.userName,
-    formData.zipcode,
-    formData.address.concat("", formData.detailAddress),
-    phone1.concat("-", phone2, "-", phone3),
-    formData.emailId.concat("@", formData.emailDomain),
-    formData.gender,
-    formData.birthDate,
-    formData.year.concat("년", formData.month, "월", formData.day, "일"),
-  ];
-
-  const sql = `
-      UPDATE pesade_member
-      SET user_pass = ?, 
-          user_name = ?, 
-          zipcode = ?, 
-          address = ?, 
-          phone = ?,
-          email = ?, 
-          gender = ?, 
-          bdate_type = ?, 
-          bdate = ?
-      WHERE user_id = ?
-  `;
-  const result = await db.execute(sql, [...params, userId]);
-
-  console.log("result", result);
-  return result;
-}; */
-
 export const getUpdateUserData = async (userId, formData) => {
   let phone1 = formData.phoneNumber1;
   let phone2 = formData.phoneNumber2;
@@ -90,8 +54,7 @@ export const getUpdateUserData = async (userId, formData) => {
 
   let sql = `
         UPDATE pesade_member
-      SET user_pass = ?, 
-          user_name = ?, 
+        SET user_name = ?, 
           zipcode = ?, 
           address = ?, 
           phone = ?,
@@ -99,7 +62,6 @@ export const getUpdateUserData = async (userId, formData) => {
           gender = ?, 
           bdate_type = ?, 
           bdate = ?
-      WHERE user_id = ?
   `;
 
   if (formData.userPass) {
