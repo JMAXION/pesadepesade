@@ -108,23 +108,3 @@ export const getVerifycode = async (req, res) => {
   res.json(result);
   res.end();
 };
-
-export const getKakaoLogin = async (req, res) => {
-  const { accessToken } = req.body;
-  const result = await repository.getKakaoLogin(accessToken);
-
-  res.json(result);
-  res.end();
-
-  if (!accessToken) {
-    return res.status(400).json({ message: "AccessToken is required" });
-  }
-
-  const loginResult = await getKakaoLogin(accessToken);
-
-  if (loginResult.cnt === 1) {
-    res.status(200).json(loginResult);
-  } else {
-    res.status(401).json({ message: loginResult.message });
-  }
-};

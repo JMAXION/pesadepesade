@@ -7,7 +7,9 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function InfoChangeStep1({ nextStep }) {
-  const userId = getUser().userId;
+  const userInfo = getUser();
+  const userId = userInfo.userId;
+  const userNickName = userInfo.nickname;
   const [userPass, setUserPass] = useState("");
 
   const handleChange = (e) => {
@@ -33,7 +35,7 @@ export default function InfoChangeStep1({ nextStep }) {
   };
 
   return (
-    <div>
+    <div className="content mypage-info-step1">
       <SubTitle title="회원 정보 수정" />
       <div className="mypage-infochange">
         <p className="mypage-infochange-title">비밀번호 확인</p>
@@ -41,8 +43,9 @@ export default function InfoChangeStep1({ nextStep }) {
           <FontAwesomeIcon icon={faLock} className="mypage-infochange-icon" />
           <p>
             <p className="mypage-infochange-text">
-              {userId}님의 회원정보를 안전하게 보호하기 위해 비밀번호를 한번 더
-              확인해 주세요.
+              {userInfo.type === "pesade" ? userId : userNickName}님의
+              회원정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인해
+              주세요.
             </p>
           </p>
         </p>

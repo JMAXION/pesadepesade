@@ -352,3 +352,20 @@
 .mycoupon-admin-table-tbody td {
   padding: 0.5rem 0;
 }
+
+.mypage-info-step1,
+.mypage-info-step2 {
+  animation: slide-in-right 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}

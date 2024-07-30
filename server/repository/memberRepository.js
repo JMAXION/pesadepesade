@@ -65,13 +65,14 @@ export const getLogin = async (userId, userPass) => {
   try {
     const [result] = await db.execute(sql, [userId]);
 
-    // console.log("result=>>>>>>>", result);
-
     if (result[0].cnt === 1) {
       const passCheck = bcrypt.compareSync(userPass, result[0].user_pass);
       if (passCheck) login_result = 1;
 
-      login_token = jwt.sign({ userId: userId }, "cmVhY3QxMjM0Cgo=");
+      login_token = jwt.sign(
+        { userId: userId, type: "pesade" },
+        "cmVhY3QxMjM0Cgo="
+      );
     }
   } catch (error) {
     console.log(error);
@@ -224,10 +225,4 @@ export const getVerifycode = async (userId) => {
     console.error("Error executing query:", error);
     throw error;
   }
-};
-
-export const getKakaoLogin = async (kakaoId) => {
-  const sql = `SELECT * FROM pesade_member WHERE kakao_id = ?`;
-  const [result] = await db.execute(sql, [kakaoId]);
-  return result[0];
 };

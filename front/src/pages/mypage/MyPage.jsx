@@ -5,7 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUser } from "../../util/localStorage";
 
 export default function MyPage() {
-  const userId = getUser().userId;
+  const userInfo = getUser();
+  const userId = userInfo.userId;
+  const userNickName = userInfo.nickname;
+
   const navigate = useNavigate();
   const [openSections, setOpenSections] = useState({
     shoppingInfo: false,
@@ -26,8 +29,11 @@ export default function MyPage() {
       <ul className="mypage-info">
         <li className="mypage-info-name">
           <p>
-            <span className="mypage-info-name-highlight">{userId}</span> 님은{" "}
-            <span className="mypage-info-name-highlight">기본 등급</span>
+            <span className="mypage-info-name-highlight">
+              {" "}
+              {userInfo.type === "pesade" ? userId : userNickName}
+            </span>{" "}
+            님은 <span className="mypage-info-name-highlight">기본 등급</span>
             입니다.
           </p>
         </li>
