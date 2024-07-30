@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getUser } from "../../util/localStorage";
+import { Link } from "react-router-dom";
 
 export default function OrderResult() {
   const [orderList, setOrderList] = useState([]);
@@ -34,7 +35,9 @@ export default function OrderResult() {
               <div className="order-summary">
                 <div className="order-row top">
                   <div className="order-left">{list.odate}</div>
-                  <span className="subject-text">{list.full_detail}</span>
+                  <Link to={`/mypage/order/order-detail/${list.oid}`}>
+                    <span className="subject-text">{list.full_detail}</span>
+                  </Link>
                 </div>
                 <div className="order-row bottom">
                   <strong>

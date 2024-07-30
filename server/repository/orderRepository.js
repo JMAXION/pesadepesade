@@ -94,3 +94,36 @@ ORDER BY po.odate DESC;
   `;
   return db.execute(sql, [userId]).then((result) => result[0]);
 };
+
+export const detail = async (oid) => {
+  const sql = `
+  SELECT 
+    CONCAT(' ', pp.pname, ' ', pp.pDetail) AS full_detail,
+    pod.pprice AS product_price,
+    pod.qty AS quantity,
+    LEFT(po.odate, 10) AS odate,
+    po.user_id,
+    po.total_price
+FROM 
+    pesade_order_detail pod
+JOIN 
+    pesade_product pp ON pod.pid = pp.pid
+JOIN 
+    pesade_order po ON po.oid = pod.oid
+WHERE 
+    po.oid = ?
+ORDER BY 
+    po.oid DESC;
+
+
+    `;
+  return db.execute(sql, [oid]).then((result) => result[0]);
+};
+
+export const deleteOrder = async (oid) => {
+  const sql = `
+  DELETE FROM pesade_order WHERE oid = ?
+  `;
+  const [result] = await db.execute(sql, [oid]);
+  return result.affectedRows > 0;
+};

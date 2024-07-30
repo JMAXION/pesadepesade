@@ -23,3 +23,30 @@ export const list = async (req, res) => {
   const result = await repository.list(userId);
   res.json(result);
 };
+
+/* qna detail */
+export const detail = async (req, res) => {
+  const { oid } = req.params;
+  const result = await repository.detail(oid);
+  res.json(result);
+};
+
+export const deleteOrder = async (req, res) => {
+  const oid = req.body.oid;
+
+  if (!oid) {
+    return res.status(400).json({ error: "qid is required" });
+  }
+
+  try {
+    const success = await repository.deleteOrder(oid);
+    if (success) {
+      res.json({ cnt: 1 });
+    } else {
+      res.status(404).json({ error: "No record found with that qid" });
+    }
+  } catch (error) {
+    console.error("Error deleting record:", error);
+    res.status(500).json({ error: "Database error" });
+  }
+};
