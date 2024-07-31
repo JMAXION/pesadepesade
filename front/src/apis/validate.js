@@ -5,33 +5,34 @@
  */
 
 export const validateCheckStep1 = (nextStep, formData) => {
+  console.log("form==>", formData);
   if (!formData.terms && !formData.personal) {
     alert("약관에 동의해 주세요");
-    /*     document.getElementById("check2").style.border = "10px solid red";
-    document.getElementById("check3").style.border = "10px solid red"; */
+    document.getElementById("check2").style.outline = "10px solid red";
+    document.getElementById("check3").style.outline = "10px solid red";
   } else if (!formData.terms) {
     alert("이용 약관에 동의해 주세요");
-    /*   document.getElementById("check2").style.border = "10px solid red"; */
+    document.getElementById("check2").style.outline = "10px solid red";
   } else if (!formData.personal) {
     alert("개인정보처리방침에 동의해 주세요");
-    /*  document.getElementById("check3").style.border = "10px solid red"; */
+    document.getElementById("check3").style.outline = "10px solid red";
   } else {
     nextStep();
   }
 };
 
-/* export const handleFocus = (type) => {
+export const handleFocus = (type) => {
   console.log("type ==>", type);
   if (type === "terms") {
-    document.getElementById("check2").style.border = "none";
+    document.getElementById("check2").style.outline = "none";
   } else if (type === "personal") {
-    document.getElementById("check3").style.border = "none";
+    document.getElementById("check3").style.outline = "none";
   } else if (type === "all") {
-    document.getElementById("check2").style.border = "none";
-    document.getElementById("check3").style.border = "none";
+    document.getElementById("check2").style.outline = "none";
+    document.getElementById("check3").style.outline = "none";
   }
 };
- */
+
 /**
  *
  * Step2
@@ -41,7 +42,6 @@ export const validateCheckStep1 = (nextStep, formData) => {
 export const validateCheckStep2 = (formData, refs) => {
   let checkFlag = true;
 
-  console.log("form", formData);
   if (!formData.userId) {
     alert("아이디를 입력해 주세요.");
     refs.userIdRef.current.focus();
@@ -89,9 +89,6 @@ export const passCheck = (refs) => {
 };
 
 export const changeEmailDomain = (e, refs, handleChange) => {
-  console.log(e.target.name);
-  console.log(e.target.value);
-
   const name = e.target.name;
   const value = e.target.value;
 

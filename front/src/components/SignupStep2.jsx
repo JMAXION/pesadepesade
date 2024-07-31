@@ -111,8 +111,6 @@ export default function SignupStep2({
 
     if (validateCheckStep2(formData, refs)) {
       if (passCheck(refs)) {
-        console.log("submit->>", formData);
-
         const url = "http://127.0.0.1:8080/member/signup";
 
         axios({
