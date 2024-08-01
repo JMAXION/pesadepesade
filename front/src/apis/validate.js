@@ -19,9 +19,8 @@ export const validateCheckStep1 = (nextStep, formData) => {
     nextStep();
   }
 };
-
+/* 
 export const handleFocus = (type) => {
-  console.log("type ==>", type);
   if (type === "terms") {
     document.getElementById("check2").style.outline = "none";
   } else if (type === "personal") {
@@ -30,7 +29,7 @@ export const handleFocus = (type) => {
     document.getElementById("check2").style.outline = "none";
     document.getElementById("check3").style.outline = "none";
   }
-};
+}; */
 
 /**
  *
