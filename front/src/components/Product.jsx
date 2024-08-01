@@ -22,7 +22,7 @@ export default function Product({ name }) {
       url: url,
       data: { type: name }, 
     }).then((result) => setItems(result.data));
-  }, [name]);
+  }, [name,items]);
   useEffect(() => {
         setCurrentPage(1);
   }, [name]);
