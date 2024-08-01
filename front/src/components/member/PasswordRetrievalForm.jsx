@@ -64,7 +64,7 @@ export default function PasswordRetrievalForm({ formData }) {
 
         <div className="passwordretrievalform-box">
           <strong style={{ fontSize: "20px" }}>
-            인증에 성공하였습니다!🍓🍒🍑
+            인증에 성공하였습니다!
           </strong>
           <p>사용하실 비밀번호를 입력해 주세요.</p>
           <div className="passwordretrievalform-div">

@@ -18,7 +18,8 @@ export const getUserInfo = async (req, res) => {
 };
 
 export const list = async (req, res) => {
-  const { userId } = req.params; //
+  const { userId } = req.body; 
+
   const result = await repository.list(userId);
   res.json(result);
 };
