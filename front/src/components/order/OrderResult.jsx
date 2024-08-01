@@ -8,10 +8,11 @@ export default function OrderResult() {
   const userId = getUser().userId;
 
   useEffect(() => {
-    const url = ` http://localhost:8080/order/list/${userId}`;
+    const url = ` http://localhost:8080/order/list/`;
     axios({
-      method: "get",
+      method: "POST",
       url: url,
+      data : {userId:userId}
     })
       .then((res) => {
         // 데이터를 rno 값에 따라 내림차순으로 정렬
@@ -21,7 +22,7 @@ export default function OrderResult() {
       })
       .catch((error) => console.log(error));
   }, [userId]);
-
+ 
   return (
     <div className="order-list">
       {orderList.length == 0 ? (
