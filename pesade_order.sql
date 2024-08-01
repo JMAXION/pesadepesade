@@ -19,3 +19,6 @@ CREATE TABLE pesade_order_detail (
     CONSTRAINT fk_order_detail_order FOREIGN KEY (oid) REFERENCES pesade_order(oid),
     CONSTRAINT fk_order_detail_product FOREIGN KEY (pid) REFERENCES pesade_product(pid)
 );
+
+ALTER TABLE pesade_order MODIFY COLUMN oid VARCHAR(50);
+
