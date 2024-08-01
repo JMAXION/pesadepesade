@@ -106,7 +106,6 @@ export default function PasswordFind({
   const handleVerificationCodeChange = (event) => {
     setVerificationCode(event.target.value);
   };
-  console.log("nextddd ==>", nextStep);
 
   return (
     <div className="content">

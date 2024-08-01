@@ -5,17 +5,16 @@
  */
 
 export const validateCheckStep1 = (nextStep, formData) => {
-  console.log("form==>", formData);
   if (!formData.terms && !formData.personal) {
     alert("약관에 동의해 주세요");
-    document.getElementById("check2").style.outline = "10px solid red";
-    document.getElementById("check3").style.outline = "10px solid red";
+    document.getElementById("check2").style.outline = "5px solid red";
+    document.getElementById("check3").style.outline = "5px solid red";
   } else if (!formData.terms) {
     alert("이용 약관에 동의해 주세요");
-    document.getElementById("check2").style.outline = "10px solid red";
+    document.getElementById("check2").style.outline = "5px solid red";
   } else if (!formData.personal) {
     alert("개인정보처리방침에 동의해 주세요");
-    document.getElementById("check3").style.outline = "10px solid red";
+    document.getElementById("check3").style.outline = "5px solid red";
   } else {
     nextStep();
   }

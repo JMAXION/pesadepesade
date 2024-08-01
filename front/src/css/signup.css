@@ -202,6 +202,7 @@
 
 .step1 input[type="checkbox"] {
   display: none;
+  /*   content: "✔"; */
 }
 
 .step1 label {
