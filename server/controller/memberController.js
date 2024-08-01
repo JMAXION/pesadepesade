@@ -49,13 +49,13 @@ export const getUpdatePassword = async (req, res) => {
 const verificationCodes = {};
 
 const transporter = nodemailer.createTransport({
-  // host: "smtp.gmail.com",
-  host: "sandbox.smtp.mailtrap.io",
+  host: "smtp.gmail.com",
+  // host: "sandbox.smtp.mailtrap.io",
   port: 587,
   secure: false,
   auth: {
-    user: "ea501d4ab826e6",
-    pass: "c8b0d2598c504c",
+    user: "hnn30011@gmail.com",
+    pass: "mpeo goem pyrw jecj",
   },
 });
 
