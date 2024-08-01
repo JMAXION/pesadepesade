@@ -109,7 +109,6 @@ export const updateHits = async (qid) => {
   try {
     const [result] = await db.execute(sql, [qid]);
     result_rows = result.affectedRows;
-    console.log(result_rows);
   } catch (error) {
     console.error(error);
   }

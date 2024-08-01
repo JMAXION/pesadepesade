@@ -26,7 +26,6 @@ export const myList = async (req, res) => {
 /* 게시물 수정 */
 export const getUpdate = async (req, res) => {
   const qna = req.body;
-  console.log(qna);
   const result = await repository.getUpdate(qna);
   res.json(result);
 };
@@ -91,7 +90,6 @@ export const getComments = async (req, res) => {
 
 export const addComment = async (req, res) => {
   const { qid, userId, comment_text } = req.body;
-  console.log(req.body);
 
   if (!qid || !userId || !comment_text) {
     return res.status(400).json({ success: false, error: "error" });

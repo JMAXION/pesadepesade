@@ -85,7 +85,6 @@ export const removeCartItem = async (cid) => {
 
 
 export const cartDelete = async (cartList) => {
-  console.log(cartList);
   let result_rows = 0;
   const sql = `DELETE FROM pesade_cart WHERE user_id = ?`;
   try {

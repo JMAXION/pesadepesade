@@ -1,10 +1,14 @@
 .admin-content {
   text-align: center;
   padding: 20px;
+  min-height: 800px;
+  align-items: center;
+
 }
 
 .admin-links {
-  margin-top: 20px;
+  /* margin: auto; */
+  margin-top: 250px;
 }
 
 .admin-link {

@@ -504,10 +504,12 @@ export default function Order() {
           <div className="order-coupon">
             <div className="order-coupon-div">
               <span>쿠폰 할인</span>
-              <span>{couponPrice}krw</span>
-              <button type="button" onClick={() => openModal()}>
-                쿠폰 적용
-              </button>
+            <div className="order-coupon-select">
+                <span>{couponPrice}krw</span>
+                <button type="button" onClick={() => openModal()}>
+                  쿠폰 적용
+                </button>
+            </div>
             </div>
             <p className="order-coupon-p">보유 쿠폰: {coupons.length}개</p>
             {isModalOpen && (

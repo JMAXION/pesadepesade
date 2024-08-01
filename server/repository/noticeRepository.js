@@ -75,7 +75,6 @@ export const updateHits = async (nid) => {
 
   try {
     const [result] = await db.execute(sql, [nid]);
-    console.log(result);
     result_rows = result.affectedRows;
   } catch (error) {}
   return { cnt: result_rows };

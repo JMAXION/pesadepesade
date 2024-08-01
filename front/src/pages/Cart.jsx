@@ -12,7 +12,6 @@ export default function Cart() {
   const cartList = useSelector((state) => state.carts.list);
   const dispatch = useDispatch();
 
-  console.log('장가', cartList);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,13 +32,17 @@ export default function Cart() {
       {cartList.length == 0 ? (
         <>
           <h4 className="cart-empty">Empty</h4>
-          <Link to={'/shop'}>Continue Shopping</Link>
+          <div className="cart-link">
+            <Link to={'/shop'}>Continue Shopping</Link>
+            </div>
         </>
       ) : (
         <>
           <CartTable />
-          <Link to={'/shop'}>Continue Shopping</Link> <br/>
-          <button onClick={handlePlaceOrder}>Place Order</button>
+         <div className="cart-link">
+            <Link to={'/shop'} className="cart-link-shop">Continue Shopping</Link> <br/>
+            <button onClick={handlePlaceOrder} className="cart-link-order">Place Order</button>
+         </div >
         </>
         
       )}

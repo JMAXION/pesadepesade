@@ -178,13 +178,16 @@ tbody .order-phonenumber input {
 }
 
 .order-coupon-div {
-  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  min-height: 42px;
   font-size: 16px;
   line-height: 30px;
 }
 
-.order-coupon div span:nth-child(2) {
-  margin-left: 680px;
+.order-coupon-select {
+  padding-right: 20px;
 }
 
 .order-coupon div button {
