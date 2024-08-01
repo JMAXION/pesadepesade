@@ -44,6 +44,7 @@ export default function OrderCouponModal({ onClose, couponDiscount }) {
       },
     },
   ];
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -56,17 +57,21 @@ export default function OrderCouponModal({ onClose, couponDiscount }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   const handleClose = () => {
     setFadeOut(true);
     setTimeout(() => {
       onClose();
     }, 500);
   };
-  const handleCouponUse = (price) => {
-    setCouponPrice(price);
-    console.log(price);
-    couponDiscount(price);
+
+  const handleCouponUse = (coupon) => {
+    setCouponPrice(coupon.details.discountRate); // 쿠폰 할인 금액 저장
+    couponDiscount(coupon.details.discountRate, coupon); // 쿠폰 정보 전달
+    console.log("Applied coupon:", coupon);
+    onClose(); // 모달 닫기
   };
+
   return (
     <div className="modal-overlay">
       <div ref={modalRef} className={`modal ${fadeOut ? "fade-out" : ""}`}>
@@ -109,8 +114,7 @@ export default function OrderCouponModal({ onClose, couponDiscount }) {
                     </td>
                     <td
                       onClick={() => {
-                        handleCouponUse(coupon.details.discountRate);
-                        onClose();
+                        handleCouponUse(coupon);
                       }}
                     >
                       적용하기

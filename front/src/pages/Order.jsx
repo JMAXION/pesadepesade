@@ -14,12 +14,19 @@ import { getUser } from "../util/localStorage";
 import axios from "axios";
 import { setUserInfo } from "../reducers/memberReducer.js";
 export default function Order() {
+  const [selectedCoupon, setSelectedCoupon] = useState(null);
   const location = useLocation();
   const { orderItem } = location.state || { orderItem: [] };
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponPrice, setCouponPrice] = useState(0);
   const userInfo = getUser();
+// 쿠폰 적용을 취소하는 함수
+const removeCoupon = () => {
+  setCouponPrice(0); // 쿠폰 가격을 0으로 초기화
+  setSelectedCoupon(null); // 선택된 쿠폰 정보 초기화
+};
+
   const coupons = [
     {
       id: 1,
@@ -509,15 +516,24 @@ export default function Order() {
                 <button type="button" onClick={() => openModal()}>
                   쿠폰 적용
                 </button>
+                {selectedCoupon && (
+                  <button type="button" onClick={removeCoupon}>
+                    쿠폰 취소
+                  </button>
+                )}
             </div>
             </div>
             <p className="order-coupon-p">보유 쿠폰: {coupons.length}개</p>
             {isModalOpen && (
-              <OrderCouponModal
-                onClose={closeModal}
-                couponDiscount={couponDiscount}
-              />
-            )}
+      <OrderCouponModal
+        onClose={closeModal}
+        couponDiscount={(price, coupon) => {
+          setCouponPrice(price);
+          setSelectedCoupon(coupon); // 쿠폰 정보 저장
+        }}
+        selectedCoupon={selectedCoupon}
+      />
+    )}
           </div>
           <div className="order-point">
             <div>
