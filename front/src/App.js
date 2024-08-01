@@ -31,13 +31,14 @@ import NoticeWrite from "./pages/notice/NoticeWrite.jsx";
 import MyPage from "./pages/mypage/MyPage.jsx";
 import MyPageChangeInfo from "./pages/mypage/MyPageChangeInfo.jsx";
 import MyPageOrder from "./pages/mypage/MyPageOrder.jsx";
+import OrderDetail from "./pages/mypage/OrderDetail.jsx";
 import MyPageBoard from "./pages/mypage/MyPageBoard.jsx";
 import ShopProductDetail from "./pages/ProductDetail.jsx";
 import MyPageCoupon from "./pages/mypage/MyPageCoupon.jsx";
 import ServiceTerm from "./pages/ServiceTerm.jsx";
 import PrivatePolicy from "./pages/PrivatePolicy.jsx";
 import Order from "./pages/Order.jsx";
-import OrderOk from './pages/OrderOk.jsx'
+import OrderOk from "./pages/OrderOk.jsx";
 import ReviewWrite from "./pages/reviews/ReviewWrite.jsx";
 export default function App() {
   const router = createBrowserRouter([
@@ -84,12 +85,13 @@ export default function App() {
         { path: "/mypage", element: <MyPage /> },
         { path: "/mypage/userinfo", element: <MyPageChangeInfo /> },
         { path: "/mypage/order", element: <MyPageOrder /> },
+        { path: "/mypage/order/order-detail/:oid", element: <OrderDetail /> },
         { path: "/mypage/coupon", element: <MyPageCoupon /> },
         { path: "/serviceterm", element: <ServiceTerm /> },
         { path: "/privatepolicy", element: <PrivatePolicy /> },
         { path: "/mypage/myboard", element: <MyPageBoard /> },
         { path: "/order", element: <Order /> },
-        { path: "/orderok", element: <OrderOk/>}
+        { path: "/orderok", element: <OrderOk /> },
       ],
     },
   ]);

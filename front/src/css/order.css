@@ -506,3 +506,83 @@ tbody .order-phonenumber input {
 .order-summary .order-row.bottom {
   margin-top: 10px;
 }
+
+/* order-detail */
+
+/* orderdetail.css */
+
+.order-detail-container {
+  width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.order-detail-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.order-detail-header h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.order-detail-user-info {
+  font-size: 0.9em;
+  color: #999;
+}
+
+.order-detail-body {
+  padding: 10px 0;
+}
+
+.order-detail-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-detail-item span {
+  display: block;
+  font-size: 1em;
+  color: #666;
+}
+
+.order-detail-item p {
+  font-size: 1em;
+  color: #000;
+  margin: 10px 0;
+}
+
+.order-detail-item a {
+  border-bottom: 0.5px solid #ccc;
+}
+
+.order-detail-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.order-detail-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-detail-button.cancel {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.order-detail-button:hover {
+  background-color: #ddd;
+}
+
+.order-detail-button.cancel:hover {
+  background-color: #c0392b;
+}

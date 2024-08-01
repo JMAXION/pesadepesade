@@ -66,11 +66,11 @@ export const getUpdateUserData = async (userId, formData) => {
 
   if (formData.userPass) {
     const hashedPassword = bcrypt.hashSync(formData.userPass, 7);
-    sql += `, user_pass = ?`;
+   // sql += `, user_pass = ?`;
     params.push(hashedPassword);
   }
 
-  sql += ` WHERE user_id = ?`;
+  //sql += ` WHERE user_id = ?`;
 
   params.push(userId);
 

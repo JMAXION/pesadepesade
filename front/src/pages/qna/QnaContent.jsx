@@ -122,27 +122,6 @@ export default function QnaContent() {
     });
   };
 
-  const handleDeleteComment = (commentId, commentUserId) => {
-    if (!userId || commentUserId !== userId.userId) {
-      alert("자신이 작성한 댓글만 삭제할 수 있습니다.");
-      return;
-    }
-
-    const url = `http://localhost:8080/qna/comments/${commentId}`;
-    axios
-      .delete(url)
-      .then((response) => {
-        if (response.data.success) {
-          setComments(
-            comments.filter((comment) => comment.comment_id !== commentId)
-          );
-        } else {
-          console.error("Server error:", response.data.error);
-        }
-      })
-      .catch((error) => console.error("Error deleting comment:", error));
-  };
-
   const handleNavigate = (type) => {
     navigate(`/qna/${type}/${qna.qid}/${rno}`);
   };
