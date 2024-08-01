@@ -617,19 +617,23 @@ img.product-inner-img.gucci.어.송.포.더.로즈\,.\31 00ML {
 .gift-desc {
   position: absolute;
 
-  left: 130px;
+  left: 45px;
 }
 
 /*  */
 
 .product-notice,
 .product-info {
-  font-size: 12px;
+  font-size: 15px;
   color: #555555;
   height: 182px;
   overflow-y: scroll;
 
 
+}
+
+.product-notice{
+  font-size:1rem;
 }
 
 .select-msg-card {

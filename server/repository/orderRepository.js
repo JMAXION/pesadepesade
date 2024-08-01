@@ -87,7 +87,7 @@ FROM
     FROM pesade_order_detail) pod
 JOIN pesade_order po ON po.oid = pod.oid
 JOIN pesade_product pp ON pp.pid = pod.pid
-WHERE po.user_id = 'test'
+WHERE po.user_id = ?
 GROUP BY po.oid, po.user_id, po.total_price, po.odate
 ORDER BY po.odate DESC;
 
