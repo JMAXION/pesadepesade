@@ -21,11 +21,11 @@ export default function Order() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [couponPrice, setCouponPrice] = useState(0);
   const userInfo = getUser();
-// 쿠폰 적용을 취소하는 함수
-const removeCoupon = () => {
-  setCouponPrice(0); // 쿠폰 가격을 0으로 초기화
-  setSelectedCoupon(null); // 선택된 쿠폰 정보 초기화
-};
+  // 쿠폰 적용을 취소하는 함수
+  const removeCoupon = () => {
+    setCouponPrice(0); // 쿠폰 가격을 0으로 초기화
+    setSelectedCoupon(null); // 선택된 쿠폰 정보 초기화
+  };
 
   const coupons = [
     {
@@ -104,7 +104,15 @@ const removeCoupon = () => {
     phoneNumber2: "",
     phoneNumber3: "",
     orderItem: orderItem,
+    couponPrice: couponPrice, // 쿠폰 가격 추가
   });
+
+  useEffect(() => {
+    setOrderInfo((prevInfo) => ({
+      ...prevInfo,
+      totalPrice: totalPrice - couponPrice,
+    }));
+  }, [couponPrice, totalPrice]); // 쿠폰 가격이나 총 가격이 변경될 때마다 업데이트
 
   // const calculateTotalPrice = (items) => {
   //   if (!Array.isArray(items)) {
@@ -511,7 +519,7 @@ const removeCoupon = () => {
           <div className="order-coupon">
             <div className="order-coupon-div">
               <span>쿠폰 할인</span>
-            <div className="order-coupon-select">
+              <div className="order-coupon-select">
                 <span>{couponPrice}krw</span>
                 <button type="button" onClick={() => openModal()}>
                   쿠폰 적용
@@ -521,19 +529,19 @@ const removeCoupon = () => {
                     쿠폰 취소
                   </button>
                 )}
-            </div>
+              </div>
             </div>
             <p className="order-coupon-p">보유 쿠폰: {coupons.length}개</p>
             {isModalOpen && (
-      <OrderCouponModal
-        onClose={closeModal}
-        couponDiscount={(price, coupon) => {
-          setCouponPrice(price);
-          setSelectedCoupon(coupon); // 쿠폰 정보 저장
-        }}
-        selectedCoupon={selectedCoupon}
-      />
-    )}
+              <OrderCouponModal
+                onClose={closeModal}
+                couponDiscount={(price, coupon) => {
+                  setCouponPrice(price);
+                  setSelectedCoupon(coupon); // 쿠폰 정보 저장
+                }}
+                selectedCoupon={selectedCoupon}
+              />
+            )}
           </div>
           <div className="order-point">
             <div>
