@@ -21,7 +21,7 @@ export default function ProductInfo({ prop }) {
         />
         {isClick && (
           <div className="gift-content-info poor-story-regular">
-            <div className="product-notice" style={{ whiteSpace: "pre-wrap" }}>
+            <div className="product-notice" style={{ whiteSpace: "pre-wrap",fontSize:'16px' }}>
               {prop.pnotice}
             </div>
           </div>
