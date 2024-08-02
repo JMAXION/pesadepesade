@@ -38,7 +38,7 @@ export const cartDelete = async (req,res)=>{
 
 export const getCartCount = async(req,res)=>{
   const count =req.body;
-  console.log(count);
+  
   const countResult = await repository.getCartCount(count)
   res.json(countResult)
 }
