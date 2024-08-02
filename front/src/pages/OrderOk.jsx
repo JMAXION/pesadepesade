@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import '../css/order.css'
+import "../css/order.css";
 
 export default function OrderOk() {
   const location = useLocation();
   const { orderInfo, orderItem } = location.state || {};
-
+  const finalPrice = orderInfo?.totalPrice; // 쿠폰 적용된 최종 가격
   return (
     <div className="order-result">
       <div className="order-result-header">주문 완료</div>
@@ -36,13 +36,15 @@ export default function OrderOk() {
             <div className="order-info">
               <span className="label">주소:</span>{" "}
               <span className="value">
-                {orderInfo.zipcode} {orderInfo.address} {orderInfo.detailAddress}
+                {orderInfo.zipcode} {orderInfo.address}{" "}
+                {orderInfo.detailAddress}
               </span>
             </div>
             <div className="order-info">
               <span className="label">연락처:</span>{" "}
               <span className="value">
-                {orderInfo.phoneNumber1} {orderInfo.phoneNumber2} {orderInfo.phoneNumber3}
+                {orderInfo.phoneNumber1} {orderInfo.phoneNumber2}{" "}
+                {orderInfo.phoneNumber3}
               </span>
             </div>
           </div>
@@ -51,7 +53,10 @@ export default function OrderOk() {
           <p className="section-title">주문상품</p>
           {orderItem.map((obj, index) => (
             <div className="order-item" key={index}>
-              <img src={`http://127.0.0.1:8080/${obj.pimage}`} alt={obj.pname} />
+              <img
+                src={`http://127.0.0.1:8080/${obj.pimage}`}
+                alt={obj.pname}
+              />
               <div className="order-item-details">
                 <p className="order-item-name">{obj.pname}</p>
                 <p className="order-item-detail">{obj.pdetail}</p>
@@ -69,7 +74,9 @@ export default function OrderOk() {
           <div className="order-price-details">
             <div className="order-info">
               <span className="label">주문상품:</span>{" "}
-              <span className="value">{orderInfo.totalPrice.toLocaleString()} KRW</span>
+              <span className="value">
+                {orderInfo.totalPrice.toLocaleString()} KRW
+              </span>
             </div>
             <div className="order-info">
               <span className="label">배송비:</span>{" "}
@@ -77,7 +84,7 @@ export default function OrderOk() {
             </div>
             <div className="order-info">
               <span className="label">결제금액:</span>{" "}
-              <span className="value">{orderInfo.totalPrice.toLocaleString()} KRW</span>
+              <span className="value">{finalPrice.toLocaleString()} KRW</span>
             </div>
           </div>
         </div>
