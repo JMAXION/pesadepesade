@@ -14,7 +14,7 @@ export default function HomeCarousel({ images }) {
         slidesPerView={1}
         pagination={{ clickable: true }}
         loop={true}
-        autoplay={{ delay: 8000, disableOnInteraction: false }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay]}
       >
         {images.map((src, index) => (
