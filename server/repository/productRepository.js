@@ -5,7 +5,7 @@ export const getProduct = async (params) => {
   if (params.type === "all") {
     sql = `select *  from pesade_product p, pesade_category c 
             where p.category_id = c.category_id
-            order  by c.category_name desc`;
+            order  by p.pid desc`;
   } else if (params.type != "all") {
     sql = `SELECT *
             FROM pesade_product p

@@ -43,12 +43,14 @@ export default function DeleteProduct() {
       <ul className="delete-ul">
         {products.map((product) => (
           <li key={product.pid} className="delete-li">
-            <img
-              src={`http://localhost:8080/${product.pimage}`}
-              alt={product.pname}
-              width="150"
-              className="delete-img"
-            />
+            <Link to={`/shop/detail/${product.pid}`}>
+              <img
+                src={`http://localhost:8080/${product.pimage}`}
+                alt={product.pname}
+                width="150"
+                className="delete-img"
+              />
+            </Link>
             <p className="delete-p">{product.pname}</p>
             <button
               onClick={() => handleDelete(product.pid)}
