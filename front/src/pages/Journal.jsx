@@ -18,7 +18,7 @@ export default function Journal() {
     })
       .then((res) => {
         setJournalList(res.data);
-        setFilteredJournalList(res.data); // 초기에는 전체 리스트를 설정
+        setFilteredJournalList(res.data);
       })
       .catch((error) => console.log(error));
   }, []);
