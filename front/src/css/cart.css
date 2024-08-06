@@ -77,7 +77,8 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 20px;
 }
 
-.cart-link a, .cart-link button {
+.cart-link a,
+.cart-link button {
   margin: 0 10px;
   padding: 10px 20px;
   background-color: black;
@@ -88,6 +89,14 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 16px;
 }
 
-.cart-link a:hover, .cart-link button:hover {
+.cart-link a:hover,
+.cart-link button:hover {
   background-color: darkgray;
+}
+.modal-content img.cart-modal-result-img {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  position: relative;
+  top: 1px;
 }
